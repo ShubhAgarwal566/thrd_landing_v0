@@ -17,10 +17,82 @@
             }
         }
     </script>
+    <style>
+        @font-face {
+            font-family: "SplineSans";
+            src: url("./fonts/SplineSansMono-VariableFont_wght.ttf") format('truetype-variations');
+        }
+
+        @font-face {
+            font-family: "SilkScreenBold";
+            src: url("./fonts/Silkscreen-Bold.ttf");
+        }
+
+        @font-face {
+            font-family: "SilkScreen";
+            src: url("./fonts/Silkscreen-Regular.ttf");
+        }
+
+        .spline-font {
+            font-family: "SplineSans";
+        }
+
+        .silk-screen-bold {
+            font-family: "SilkScreenBold";
+        }
+
+        .silk-screen {
+            font-family: "SilkScreen";
+        }
+
+        .banner {
+            font-size: 6px;
+            letter-spacing: 6px;
+        }
+    </style>
 </head>
 
 <body>
-    <section class="bg-thrd-pink h-screen"></section>
+    <section class="bg-thrd-pink">
+        <div class="flex flex-row items-center justify-around banner spline-font py-2">
+            <p>EXCLUSIVITY</p>
+            <p>·</p>
+            <p>BRANDS</p>
+            <p>·</p>
+            <p>DISCOUNTS</p>
+        </div>
+
+        <div class="flex flex-col items-center justify-around p-6 gap-16">
+            <p class="silk-screen text-7xl m-4 ">THRD</p>
+            <p class="silk-screen text-xs text-center m-4 w-36">UNLOCK EXCLUSIVE ACCESS TO AUTHENTIC HIGH FASHION BRANDS AT UNBEATABLE PRICES</p>
+        </div>
+    </section>
+    <section class="bg-black">
+        <div class="flex flex-col items-center mx-10 p-4">
+            <p class="text-[#ffd8b1] silk-screen text-center p-2">SNEAK PEAK: THRD&apos;S EXCLUSIVE COLLECTION</p>
+            <div class="w-full h-48 bg-red-100 py-4">Picture or GIF goes here</div>
+            <p class="spline-font text-white text-xs py-4">From threads to trends, preview our selection. The best remains behind our doors.</p>
+        </div>
+
+        <div class="container text-white text-center p-4">···</div>
+
+        <div class="flex flex-col mx-10 py-8">
+            <p class="text-thrd-pink silk-screen">THRD VERIFIED : AUTHENTICITY IN EVERY THREAD</p>
+            <div class="flex flex-row items-center justify-center bg-white my-8 mx-6 rounded-xl">
+                <img class="h-48 w-48" src="/images/seal.png" />
+            </div>
+            <p class="text-white spline-font text-xs">Our THRD verified seal ensures you have the best price and the finest threads.</p>
+        </div>
+    </section>
+
+    <section class="bg-thrd-pink">
+        <p class="silk-screen p-8 text-center text-xl">OUR COMMITMENT? NEVER LESS THAN 70% OFF</p>
+    </section>
+
+    <section class="bg-white flex flex-col items-center justify-center p-6">
+        <p class="silk-screen text-black text-2xl text-center">UNBELIEVABLE FASHION ACCESS</p>
+    </section>
+    <section></section>
 </body>
 
 </html>
