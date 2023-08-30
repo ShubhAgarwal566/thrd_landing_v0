@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-black">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Thrd Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "thrd-pink": '#ffd8b1',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @font-face {
+            font-family: "SplineSans";
+            src: url("./fonts/SplineSansMono-VariableFont_wght.ttf") format('truetype-variations');
+        }
+
+        @font-face {
+            font-family: "SilkScreenBold";
+            src: url("./fonts/Silkscreen-Bold.ttf");
+        }
+
+        @font-face {
+            font-family: "SilkScreen";
+            src: url("./fonts/Silkscreen-Regular.ttf");
+        }
+
+        .spline-font {
+            font-family: "SplineSans";
+        }
+
+        .silk-screen-bold {
+            font-family: "SilkScreenBold";
+        }
+
+        .silk-screen {
+            font-family: "SilkScreen";
+        }
+
+        .banner {
+            font-size: 6px;
+            letter-spacing: 6px;
+        }
+
+        #faqBg {
+            background-image: url("./images/question_bg.svg");
+            background-repeat: repeat;
+            background-size: cover;
+            height: 200px;
+            width: 645px;
+        }
+
+        .arrow-up {
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+
+            border-bottom: 10px solid #ffd8b1;
+        }
+
+        .arrow-down {
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+
+            border-top: 10px solid #ffd8b1;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .backgroundRepeat {
+            background-repeat: repeat;
+            height: 100%;
+            background-image: url("./images/question_bg.svg");
+            background-size: 25px 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="flex flex-row bg-thrd-pink p-2 px-4 text-xs items-center justify-between">
+            <p class="silk-screen">STORE</p>
+            <p class="silk-screen text-white bg-black p-1">THRD</p>
+            <p class="silk-screen">FAQ</p>
+        </div>
+        <div class="h-48 flex flex-col items-center justify-center backgroundRepeat bg-white">
+            <p class="text-4xl silk-screen">FAQ</p>
+        </div>
+
+
+        <div class="flex flex-col items-center justify-center p-2 pt-8 text-black" id="faqSection">
+        </div>
+
+    </section>
+    <script>
+        const data = [
+            {
+                q: 'are the clothes really branded and original?',
+                a: 'Absolutely. Every garment we sell goes through a strict quality check and its THRD-Verified for authenticity.'
+            }
+        ]
+        window.onload = function () {
+            const faqSection = document.getElementById('faqSection');
+
+            data.forEach(q => {
+                let container = document.createElement("div");
+                let questionContaienrDiv = document.createElement("div");
+                let answerContaienrDiv = document.createElement("div");
+                let answer = document.createElement("p");
+
+                questionContaienrDiv.classList.add(..."flex flex-row items-center justify-center".split(' '))
+
+                let question = document.createElement("p");
+                question.innerText = q.q;
+                question.classList.add("text-thrd-pink", "silk-screen", "text-md", "w-4/5");
+
+                let arrow = document.createElement("div");
+                arrow.classList.add("arrow-up", "spline-font", "m-1")
+                arrow.onclick = () => {
+                    if (arrow.classList.contains("arrow-up")) {
+                        arrow.classList.remove("arrow-up");
+                        arrow.classList.add("arrow-down")
+                        answer.classList.remove("hidden")
+                    }
+                    else {
+                        arrow.classList.remove("arrow-down");
+                        arrow.classList.add("arrow-up")
+                        answer.classList.add("hidden")
+                    }
+                }
+
+                questionContaienrDiv.append(question, arrow)
+
+                answer.innerText = q.a;
+                answer.classList.add(..."spline-font text-white text-xs p-2 px-6".split(" "))
+                answer.classList.add("hidden")
+
+                answerContaienrDiv.append(answer)
+
+                container.append(questionContaienrDiv, answerContaienrDiv)
+
+                faqSection.append(container)
+            })
+        }
+    </script>
+</body>
+
+</html>
