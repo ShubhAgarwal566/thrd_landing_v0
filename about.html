@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-black">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Thrd Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "thrd-pink": '#ffd8b1',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @font-face {
+            font-family: "SplineSans";
+            src: url("./fonts/SplineSansMono-VariableFont_wght.ttf") format('truetype-variations');
+        }
+
+        @font-face {
+            font-family: "SilkScreenBold";
+            src: url("./fonts/Silkscreen-Bold.ttf");
+        }
+
+        @font-face {
+            font-family: "SilkScreen";
+            src: url("./fonts/Silkscreen-Regular.ttf");
+        }
+
+        .spline-font {
+            font-family: "SplineSans";
+        }
+
+        .silk-screen-bold {
+            font-family: "SilkScreenBold";
+        }
+
+        .silk-screen {
+            font-family: "SilkScreen";
+        }
+
+        .banner {
+            font-size: 6px;
+            letter-spacing: 6px;
+        }
+
+        .backgroundRepeat {
+            background-repeat: repeat;
+            height: 100%;
+            background-image: url("./images/question_bg.svg");
+            background-size: 25px 25px;
+        }
+
+        .invert {
+            filter: invert(100%);
+            -webkit-filter: invert(100%);
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="flex flex-row bg-thrd-pink p-2 px-4 text-xs md:text-2xl items-center justify-between">
+            <p class="silk-screen">STORE</p>
+            <p class="silk-screen text-white bg-black p-1">THRD</p>
+            <p class="silk-screen">FAQ</p>
+        </div>
+        <div class="h-48 md:h-64 flex flex-col items-center justify-center backgroundRepeat bg-white">
+            <p class="text-4xl md:text-6xl silk-screen text-center">HOW THRD CHANGES THE FASHION GAME</p>
+        </div>
+    </section>
+    <section>
+        <div class="flex flex-col items-center justify-center p-2 pt-8">
+            <p class="silk-screen text-thrd-pink text-3xl">THE JOURNEY</p>
+            <div class="w-32 h-64 bg-red-100 my-4">Picture of tshirt goes here</div>
+            <p class="spline-font text-white text-lg px-8">
+                From January to July 2023, we
+                journeyed across India, visiting
+                numerous factories that produce
+                garments for globally acclaimed
+                brands. After countless meetings
+                and tireless negotiations, we
+                established a unique, direct
+                partnership with these
+                manufacturers.
+            </p>
+        </div>
+    </section>
+    <div class="md:hidden container text-white flex flex-row items-center justify-center py-4">···</div>
+    <section>
+        <div class="flex flex-col items-center justify-center">
+            <p class="text-thrd-pink text-3xl silk-screen p-2 text-center">QUALITY ASSURANCE</p>
+            <div class="bg-white rounded-xl m-16 flex flex-col items-center justify-center">
+                <img src="/images/seal.png" alt="">
+            </div>
+            <p class="spline-font text-white text-lg px-8">
+                Quality is not an afterthought for
+                us—it's a promise. We've set up an
+                in-house quality inspection team to
+                ensure that every piece of clothing
+                you buy from THRD is 100% original
+                and meets the highest quality
+                standards.
+            </p>
+        </div>
+    </section>
+    <div class="md:hidden container text-white flex flex-row items-center justify-center py-4">···</div>
+    <section>
+        <div class="flex flex-col items-center justify-center">
+            <p class="text-thrd-pink text-3xl silk-screen p-2 text-center">WHY EXCLUSIVE?</p>
+
+            <div class="bg-white p-3 rounded-xl m-8">
+                <div class="bg-black p-8  rounded-xl">
+                    <img class="invert h-16 w-auto" src="/images/icons/diamond.png" alt="">
+                </div>
+                <p class="silk-screen text-center">ITS A<br>CLUB NOT<br>A CROWD</p>
+            </div>
+
+            <p class="spline-font text-white text-lg px-8">
+                Exclusivity is not a marketing
+                gimmick—it's a necessity. The
+                stocks we procure are limited, and
+                we want to build a curated
+                community of fashion-forward
+                individuals. This community
+                understands the value of what they
+                are buying and can confidently
+                flaunt the brands they always
+                aspired to wear, without any
+                skepticism about authenticity.
+            </p>
+        </div>
+    </section>
+
+    <div class="md:hidden container text-white flex flex-row items-center justify-center py-4">···</div>
+    <section>
+        <div class="flex flex-col items-center justify-center">
+            <p class="text-thrd-pink text-3xl silk-screen p-2 text-center">THE FUTURE</p>
+
+            <p class="spline-font text-white text-lg px-8">
+                This is just the beginning. With
+                regular drops of curated designs,
+                the best is yet to come for our
+                exclusive members.
+            </p>
+
+            <div class="flex flex-col items-center justify-center gap-4 silk-screen p-8">
+                <a href="" class="rounded-3xl p-4 bg-white w-full text-center">REQUEST ACCESS</a>
+                <a href="" class="rounded-3xl p-4 bg-thrd-pink w-full text-center">ENTER & SHOP</a>
+            </div>
+        </div>
+    </section>
+    <section class="bg-black p-2 md:bg-[#14213d]">
+        <div class="flex flex-col text-white p-2 mt-16 mb-8 md:text-4xl md:p-16">
+            <div class="flex flex-row items-center justify-between py-2">
+                <a class="text-thrd-pink silk-screen">ABOUT</a>
+                <a class="text-thrd-pink silk-screen">SOCIAL</a>
+                <a class="text-thrd-pink silk-screen">HELP</a>
+            </div>
+            <div class="flex flex-row items-center justify-between py-2">
+                <a class="text-xs md:text-xl spline-font" href="/about.html">Our Story</a>
+                <a class="text-xs md:text-xl spline-font">Instagram</a>
+                <a class="text-xs md:text-xl spline-font">Contact</a>
+            </div>
+            <div class="flex flex-row items-center justify-between py-2">
+                <a class="text-xs md:text-xl spline-font" href="/faq.html">FAQ</a>
+                <a class="text-xs md:text-xl spline-font">Policy</a>
+            </div>
+        </div>
+        <p class="silk-screen text-thrd-pink md:text-white text-xs text-center md:p-4 md:text-2xl">&#169; THRD PREMIUM CLOTHING 2023</p>
+    </section>
+</body>
+
+</html>
