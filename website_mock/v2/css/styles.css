@@ -17,6 +17,7 @@
 body{
   font-size: large;
   font-family: "ClashDisplay";
+  overflow-x: hidden;
 }
 .navBar{
     background-color: white;
@@ -56,15 +57,6 @@ body{
   
 }
 @media only screen and (min-width: 1000px) {
-  .navBar{
-    align-items: center;
-  }
-  .navbarelements{
-    padding: 0%;
-  }
-  .carousel-caption{
-    bottom: 5rem;   
-  }
 }
 
 .heroImg{
@@ -72,6 +64,7 @@ body{
   width: 100%;
   object-fit: cover;
   position: relative;
+  object-position: 0% 34%;
 }
 
 
@@ -96,7 +89,7 @@ body{
   position: relative;
 }
 .sneakPeak{
-  height: 70vh;
+  height: auto;
   position: relative;
 }
 .sneakPeak h1{
@@ -106,17 +99,28 @@ body{
   font-family: "ClashDisplaySemiBold";
   font-size: 50px
 }
-
+.sneakPeak .swiper-pagination-bullet-active{
+  content: "hello";
+}
 .mySwiper{
   height: auto;
 }
 .card{
   max-width: 50vw;
-  max-height: 70vh;
   font-size: 30px;
   border: transparent;
   padding-bottom: 10px;
   margin-bottom: 0;
+  position: relative;
+}
+.card a::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  z-index: 100;
 }
 .card img{
   width: 100%;
@@ -142,7 +146,6 @@ body{
   background-color: #111;
   color: #eee;
   overflow: hidden;
-  position: relative;
 }
 .marquee:before, .marquee:after {
   position: absolute;
@@ -242,5 +245,129 @@ body{
       height: calc(var(--img-height) + 50px);
     }
   }
-  
-} */
+   */
+.carousel2{
+  background-color: rgb(232, 226, 214);
+}
+.carousel2 .swiper-slide{
+  display: flex;
+  justify-content: center;
+}
+.carousel2 img{
+  width: 80%;
+  object-fit: cover;
+  left : 50%;
+}
+.carousel2 .swiper-button-next{
+  bottom: 0;
+}
+.swiper2part2 p{
+  font-size: 40px;
+}
+.swiper2part2{
+  --swiper-navigation-size: 22px;
+  --swiper-navigation-top-offset: 40%;
+  --swiper-navigation-sides-offset: 30%;  
+  --swiper-navigation-color: black;
+}
+.timerContainer{
+  text-align: center;  
+  color: white;
+  padding: 40px;
+  margin-bottom: 40px;
+}
+.timer{
+  display: flex;
+  justify-content: space-around;
+}
+.timer p{
+  font-size: 30px;
+  color: black;
+  margin-bottom:30px ;
+}
+.timerContainer h1{
+  font-size: 50px;
+  font-family: "ClashDisplaySemiBold";
+  text-wrap: nowrap;
+  text-align: center;
+  color: black;
+  margin: 30px 0 0 0
+}
+.timerContainer a{
+  box-sizing: border-box;
+  font-size: 30px;
+  padding: 10px 20px;
+  text-decoration: none;
+  background-color: black;
+  font-family: "ClashDisplay";
+}
+
+footer{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 50vh;
+  background-color: black;
+  color: white;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px;
+
+}
+
+footer h1{
+  font-size: 40px;
+  font-family: "ClashDisplaySemiBold";
+  text-wrap: wrap;
+  text-align: center;
+  margin:20px 50px
+}
+footer a{
+  box-sizing: border-box;
+  font-size: 20px;
+  padding: 10px 20px;
+  text-decoration: none;
+  background-color: white;
+  color: #111;
+  font-family: "ClashDisplay";
+  margin:20px 50px
+}
+footer p{
+  font-size: 35px;
+  text-align: center;
+  margin:20px 50px
+}
+footer .message{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: centered;
+  width: 100%;
+  height: 30vh;
+  background-color: black;
+  color: white;
+  padding: 20px;
+}
+
+.main,.sec{
+  text-decoration: none;
+  list-style: none;  
+  display: flex;
+  justify-content: space-around;
+  width: 100vw;
+}
+.links .main li{
+  font-size: 40px;  
+}
+.sec{
+  flex-wrap: wrap;
+
+}
+.sec li{
+  font-size: 30px;
+  margin :20px 50px;  
+  width: 150px;
+}
+.cr{
+  font-size: 20px;
+}
