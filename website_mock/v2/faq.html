@@ -43,10 +43,45 @@
               a: 'Absolutely. Every garment we sell goes through a strict quality check and is THRD-Verified for authenticity.'
           },
           {
-              q: 'What is your return policy?',
-              a: 'We have a 30-day return policy. If you are not satisfied with your purchase, you can return it within 30 days for a full refund.'
+              q: 'How do you offer such deep discounts?',
+              a: 'We source directly from factories where top-notch brands are manufactured. This direct-to-consumer model allows us to offer incredible discounts without compromising on quality.'
+          },
+          {
+            q: 'Why is THRD a members-only store?',
+            a: 'HRD operates on a members-only model to maintain exclusivity and ensure that our limited stock reaches a curated community who appreciates the value of the products we offer.'
+          },
+          {
+            q: 'How long will it take to process my membership?',
+            a: 'The time it takes to process memberships varies depending on current demand and membership caps. There may be periods when we\'re not accepting new members. Regardless, you can expect a response from us within 2 to 3 days.'
+          },
+          {
+            q: 'What payment methods do you accept?',
+            a: 'We accept Cash on Delivery (COD), all major credit and debit cards, as well as payments through UPI.'
+          },
+          {
+            q: 'Are the sizes true to fit?',
+            a: 'Sizes can vary widely between brands, which can be confusing. That\'s why we\'ve introduced "THRD Sizing" a tailored sizing chart that helps you find your perfect size.'
+          },
+          {
+            q: 'Is there a minimum purchase requirement?',
+            a: 'While there is no minimum purchase requirement to shop at THRD, we do offer an additional 5% discount for orders exceeding 2500 INR.'
+          },
+          {
+            q: 'Do you deliver in India?',
+            a: 'Yes, we are an Indian startup and we proudly deliver all across India.'
+          },
+          {
+            q: 'When can I expect my delivery?',
+            a: 'Typical delivery times are 3-5 business days, depending on your location.'
+          },
+          {
+            q: 'Is it possible to modify my order?',
+            a: 'If you need to make changes to your order, please contact our customer service immediately. Once the order is processed, we cannot guarantee modifications.'
+          },
+          {
+            q: 'Can I return or exchange products?',
+            a: 'Yes, we have a hassle-free return and exchange policy. Please refer to our Policy page for more details.'
           }
-          // Add more questions and answers here as needed
       ];
 
       const faqSection = document.getElementById('faqSection');
@@ -71,6 +106,7 @@
 
           const answerElement = document.createElement('div');
           answerElement.className = 'faq-answer';
+          answerElement.style.display = 'none';
           answerElement.innerText = answer;
 
           faqItem.appendChild(questionElement);
