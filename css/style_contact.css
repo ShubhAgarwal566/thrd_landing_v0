@@ -14,13 +14,7 @@
     font-family: "ClashDisplaySemiBold";
     src: url("../fonts/ClashDisplay-Semibold.otf");
   }
-  body{
-    font-size: large;
-    font-family: "ClashDisplay";
-    overflow-x: hidden;
-  }
  
-  
   @media only screen and (min-width: 1000px) {
   }
 
@@ -75,130 +69,98 @@
 
 /* Header and Footer */
 
-  .navBar {
-    background-color: black;
-    color: black;
-    font-size: 30px;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    width: 100%;
-    height: 120px;
-  }
-  
-  .navbarelements {
-    text-decoration: none;
-    color: black;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: "ClashDisplay";
-  }
-  
-  .name {
-    font-family: "SilkScreen";
-    font-size: 60px;
-  }
-  
-  .navitem {
-    padding-top: 12px;
-    margin-right: 2.5%;
-  }
-  
-  .navitem a {
-    text-decoration: none;
-    color: white;
-    background-color: black;
-  }
-  
-  footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 30vh;
-    background-color: black;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
-  footer h1 {
-    font-size: 70px;
-    font-family: "ClashDisplaySemiBold";
-    text-align: center;
-    margin: 20px 50px;
-  }
-  
-  
-  
-  footer p {
-    font-size: 35px;
-    text-align: center;
-    margin: 20px 50px;
-  }
-  
-  footer .message {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: auto;
-    background-color: black;
-    color: white;
-    padding: 20px;
-  }
-  
-  .q {
-    width: 50%;
-  }
-  
-  .main {
-    text-decoration: none;
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    width: 100vw;
-    margin-bottom: 0;
-  }
-  
-  .links ul {
-    padding-left: 0;
-    text-align: center;
-  }
-  
-  .links .main li {
-    margin: 0px 50px;
-    font-size: 40px;
-  }
-  
-  .sec1,
-  .sec2 {
-    flex-wrap: wrap;
-    display: flex;
-    margin-bottom: 0;
-    justify-content: space-between;
-  }
-  
-  .sec1 li,
-  .sec2 li {
-    font-size: 30px;
-    list-style: none;
-    margin: 10px 50px;
-    text-align: center;
-  }
-  
-  .cr {
-    font-size: 30px;
-  }
-  
-  footer a {
-    text-decoration: none;
-    color: white;
-  }
+body{
+  font-size: large;
+  font-family: "ClashDisplay";
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.navBar {
+  background-color: black;
+  color: black;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+  height: 120px;
+}
+
+.navbarelements {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "ClashDisplay";
+}
+
+.name {
+  font-family: "SilkScreen";
+  font-size: 60px;
+}
+
+.navitem {
+  padding-top: 12px;
+  margin-right: 2.5%;
+}
+
+.navitem a {
+  text-decoration: none;
+  color: white;
+  background-color: black;
+}
+
+footer {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-top: auto;
+}
+
+.links {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  font-size: 25px;
+}
+
+.links a {
+  text-decoration: none;
+  color: white;
+}
+
+.column {
+  flex: 1;
+  margin: 0 15px;
+  text-align: left;
+}
+
+.column-last-child {
+  margin-left: 10px;
+  text-align: left;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+ul li {
+  margin: 5px 0;
+}
+
+.cr {
+  font-size: 20px;
+  margin-top: 50px;
+}
   

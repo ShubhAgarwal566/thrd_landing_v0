@@ -14,11 +14,7 @@
     font-family: "ClashDisplaySemiBold";
     src: url("../fonts/ClashDisplay-Semibold.otf");
   }
-  body{
-    font-size: large;
-    font-family: "ClashDisplay";
-    overflow-x: hidden;
-  }
+
 
   @media only screen and (min-width: 1000px) {
   }
@@ -62,6 +58,7 @@
     background-color: black;
     font-family: "ClashDisplay";
     letter-spacing: 5px;
+    color: white;
   }
 
   .para p{
@@ -87,7 +84,14 @@
   }
   
 /* Header and Footer */
-
+  body{
+    font-size: large;
+    font-family: "ClashDisplay";
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
   .navBar {
     background-color: black;
     color: black;
@@ -137,7 +141,7 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    font-size: 20px;
+    font-size: 25px;
   }
   
   .links a {
