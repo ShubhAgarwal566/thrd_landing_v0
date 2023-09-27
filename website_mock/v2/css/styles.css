@@ -178,7 +178,7 @@ body{
 }
 .marquee-content li{
   letter-spacing: 5px;
-  
+  margin-right: 75px;
 }
 /* .marquee-content:hover {
   animation-play-state: paused;
