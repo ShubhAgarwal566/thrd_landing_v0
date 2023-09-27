@@ -72,6 +72,10 @@ body{
   object-position: 30% 50%;
 }
 
+.discover{
+  text-decoration: None;
+  color: black;
+}
 
 .carousel-caption h4{
   font-size: 40px;
