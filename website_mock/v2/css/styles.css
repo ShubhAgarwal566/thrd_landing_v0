@@ -118,6 +118,16 @@ body{
 .mySwiper{
   height: auto;
 }
+
+.swiper-pagination .swiper-pagination-bullet-active {
+  background-color: black;
+}
+
+.swiper-pagination .swiper-pagination-bullet {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+
 .card{
   max-width: 50vw;
   font-size: 30px;
