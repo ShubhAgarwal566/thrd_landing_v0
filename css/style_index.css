@@ -15,12 +15,38 @@
   src: url("../fonts/ClashDisplay-Semibold.otf");
 }
 
-@media (min-width: 1000px) {
+/* @media (min-width: 1000px) {
   body {
+    max-width: 40vw;
+    margin: 0 auto; 
+    transform: scale(0.8);
+    transform-origin: center;
+  }
+} */
+
+@media (min-width: 1000px) {
+  body, html {
+    height: 100%; /* Ensure full height */
+  }
+
+  body {
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
+  }
+
+  .container {
     max-width: 40vw; /* Adjust this value to match a typical mobile screen width */
     margin: 0 auto; /* Center the content horizontally */
+    transform: scale(0.8); /* Adjust the scaling factor as needed */
+    transform-origin: top center; /* Keep content anchored at the top */
+  }
+
+  /* Add a class to elements with overflow-x to allow horizontal scrolling */
+  .overflow-x-scroll {
+    overflow-x: auto;
   }
 }
+
+
 .navBar{
     background-color: white;
     color: #ffffff;
