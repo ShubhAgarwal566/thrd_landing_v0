@@ -39,10 +39,19 @@ var heroSwiper = new Swiper(".heroSwiper", {
 });
 
 const captions = document.getElementsByClassName("carousel-caption")
-heroSwiper.on('slideChange',()=>{
-  captions[heroSwiper.activeIndex].classList.add("active")
-  captions[heroSwiper.previousIndex].classList.remove("active")
-})
+
+function setActiveCaption(index) {
+  captions[index].classList.add("active");
+  captions[heroSwiper.previousIndex].classList.remove("active");
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  setActiveCaption(heroSwiper.activeIndex);
+});
+
+heroSwiper.on("slideChange", () => {
+  setActiveCaption(heroSwiper.activeIndex);
+});
 
 var swiper2 = new Swiper(".swiper2", {
   initialSlide: 3,
