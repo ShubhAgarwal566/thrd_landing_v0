@@ -1,0 +1,120 @@
+body{
+    font-size: large;
+    font-family: "ClashDisplay";
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .navBar {
+    background-color: black;
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    /* text-decoration: none; */
+    width: 100%;
+    height: 120px;
+  }
+  
+  .navbarelements {
+    /* text-decoration: none; */
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "ClashDisplay";
+  }
+  
+  .navitem {
+    padding-top: 12px;
+    margin-right: 2.5%;
+  }
+  
+  .navitem a {
+    text-decoration: none;
+    color: white;
+    background-color: black;
+  }
+
+  .right{
+    margin-right: 3%;
+  }
+  
+  .left{
+    margin-left: 3%;  
+  }
+  
+  .name {
+    font-family: "SilkScreen";
+    font-size: 60px;
+    margin-left: 3%;
+  }
+  
+  
+  .navitem a:active{
+    background-color: white; 
+  color: black;
+  border-radius: 5px;
+  }
+
+  footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 30px;
+    box-sizing: border-box;
+    margin-top: auto;
+  }
+  
+  .links {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    font-size: 25px;
+  }
+  
+  .links a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  .links a:active{
+    background-color: white; 
+    color: black;
+    border-radius: 5px;
+  }
+
+  .column {
+    flex: 1;
+    margin: 0 15px;
+    text-align: left;
+  }
+  
+  .column-last-child {
+    margin-left: 10px;
+    text-align: left;
+  }
+  
+  .links h3 {
+    font-size: 25px;
+    color: white;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+  
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+  
+  ul li {
+    margin: 5px 0;
+  }
+  
+  .cr {
+    font-size: 20px;
+    margin-top: 50px;
+  }
+    
