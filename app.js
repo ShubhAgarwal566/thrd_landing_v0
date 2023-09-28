@@ -10,32 +10,20 @@ for(let i=0; i<marqueeElementsDisplayed; i++) {
 
 const clientWidth = window.innerWidth;
 
-if(clientWidth > 1000) {  
-  var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 6,
-    spaceBetween: 30,
-    centeredSlides: true,
-    initialSlide: 3,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-  });
-}else{
-  var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 2,
-    spaceBetween: 30,
-    loop: true,    
-    centeredSlides: true,
-    initialSlide: 3,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-  });
-}
+var swiper = new Swiper(".mySwiper", {
+  slidesPerView: 2,
+  spaceBetween: 30,
+  loop: true,    
+  centeredSlides: true,
+  initialSlide: 3,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+});
 
-var swiper = new Swiper(".heroSwiper", {
+
+var heroSwiper = new Swiper(".heroSwiper", {
   slidesPerView: 1,
   spaceBetween: 30,
   loop: true,  
@@ -44,15 +32,27 @@ var swiper = new Swiper(".heroSwiper", {
     el: ".swiper-pagination",
     clickable: true,
   },
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false,
+  },
 });
 
-var swiper2 = new Swiper(".swiper2", {
+const captions = document.getElementsByClassName("carousel-caption")
+heroSwiper.on('slideChange',()=>{
+  captions[heroSwiper.activeIndex].classList.add("active")
+  captions[heroSwiper.previousIndex].classList.remove("active")
+})
 
+var swiper2 = new Swiper(".swiper2", {
+  initialSlide: 3,
 });
 var swiper2part2 = new Swiper(".swiper2part2", {
   slidesPerView: 2,
   centeredSlides: true,
   slideToClickedSlide: true,
+  // crossFade : true,
+  // effect: "fade",
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
