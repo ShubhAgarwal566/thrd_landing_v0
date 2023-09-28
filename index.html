@@ -1,8 +1,6 @@
 <!-- TODO
-1. Fix order of products on carousal
-4. add instagram link
-5. Zoom on hover
 6. Mark your calendar after timer expires
+7. Add request access link
 -->
 
 <!DOCTYPE html>
@@ -70,48 +68,12 @@
         <div class="swiper-wrapper">
 
           <div class="swiper-slide card">
-            <img src="./images/carousal/tommy.jpg">
-            <a href="./request_access.html"></a>
-            <p>Tommy Hilfiger</p>
-            <p class="bottomLine">White Logo Tshirt</p>
-            <p>1349  <s>4999</s></p>
-            <p style="margin-top: -6%;"> 73% off</p>
-          </div>
-
-          <div class="swiper-slide card">
-            <img src="./images/carousal/puma.jpg">
-            <a href="./request_access.html"></a>
-            <p>Puma</p>
-            <p class="bottomLine">Red Ferrari Tshirt</p>
-            <p>₹749  <s>2999</s></p>
-            <p style="margin-top: -6%;"> 75% off</p>
-          </div>
-
-          <div class="swiper-slide card">
-            <img src="./images/carousal/guess.jpg">
-            <a href="./request_access.html"></a>
-            <p>Guess</p>
-            <p class="bottomLine">Tiger Print Tshirt</p>
-            <p>₹749  <s>4490</s></p>
-            <p style="margin-top: -6%;"> 84% off</p>
-          </div>
-
-          <div class="swiper-slide card">
-            <img src="./images/carousal/h&m.jpg">
-            <a href="./request_access.html"></a>
-            <p>H&M</p>
-            <p class="bottomLine">Blue White Stripe Tshirt</p>
-            <p>₹299  <s>1299</s></p>
-            <p style="margin-top: -6%;"> 77% off</p>
-          </div>
-
-          <div class="swiper-slide card">
             <img src="./images/carousal/essentials.jpg">
             <a href="./request_access.html"></a>
             <p>FOG Essentials</p>
             <p class="bottomLine">Navy Oversized Tee</p>
-            <p>₹1199  <s>4000</s></p>
-            <p style="margin-top: -6%;"> 70% off</p>
+            <p>₹1199  <s class="original-price">4000</s></p>
+            <p class="discount"> 70% off</p>
           </div>
 
           <div class="swiper-slide card">
@@ -119,10 +81,47 @@
             <a href="./request_access.html"></a>
             <p>Uniqlo</p>
             <p class="bottomLine">Black Bros Rider</p>
-            <p>₹599  <s>1990</s></p>
-            <p style="margin-top: -6%;"> 70% off</p>
+            <p>₹599  <s class="original-price">1990</s></p>
+            <p class="discount"> 70% off</p>
+          </div>
+
+          <div class="swiper-slide card">
+            <img src="./images/carousal/puma.jpg">
+            <a href="./request_access.html"></a>
+            <p>Puma</p>
+            <p class="bottomLine">Red Ferrari Tshirt</p>
+            <p>₹749  <s class="original-price">2999</s></p>
+            <p class="discount"> 75% off</p>
+          </div>
+
+          <!-- This is the center card -->
+          <div class="swiper-slide card">
+            <img src="./images/carousal/tommy.jpg">
+            <a href="./request_access.html"></a>
+            <p>Tommy Hilfiger</p>
+            <p class="bottomLine">White Logo Tshirt</p>
+            <p>₹1349  <s class="original-price">4999</s></p>
+            <p class="discount"> 73% off</p>
           </div>
           
+          <div class="swiper-slide card">
+            <img src="./images/carousal/h&m.jpg">
+            <a href="./request_access.html"></a>
+            <p>H&M</p>
+            <p class="bottomLine">Blue White Stripe Tshirt</p>
+            <p>₹299  <s class="original-price">1299</s></p>
+            <p class="discount"> 77% off</p>
+          </div>
+
+          <div class="swiper-slide card">
+            <img src="./images/carousal/guess.jpg">
+            <a href="./request_access.html"></a>
+            <p>Guess</p>
+            <p class="bottomLine">Tiger Print Tshirt</p>
+            <p>₹749  <s class="original-price">4490</s></p>
+            <p class="discount"> 84% off</p>
+          </div>
+
         </div>
         <div class="swiper-pagination"></div>
       </div>
@@ -145,24 +144,24 @@
     <div class="carousel2">
       <div class="swiper swiper2">
         <div class="swiper-wrapper">
-          <div class="swiper-slide"><a href="'./request_access.html"><img style='margin-left: 12%' src="./images/carousal2/dkny.png"></a></div>
           <div class="swiper-slide"><a href="'./request_access.html"><img style='margin-left: 12%' src="./images/carousal2/essentials.png"></a></div>
+          <div class="swiper-slide"><a href="'./request_access.html"><img style='margin-left: 12%' src="./images/carousal2/dkny.png"></a></div>
           <div class="swiper-slide"><a href="'./request_access.html"><img style='margin-left: 12%' src="./images/carousal2/guess.png"></a></div>
-          <div class="swiper-slide"><a href="'./request_access.html"><img style='margin-left: 12%' src="./images/carousal2/tommy.png"></a></div>
-          <div class="swiper-slide"><a href="'./request_access.html"><img style='margin-left: 12%' src="./images/carousal2/h&m.png"></a></div>
           <div class="swiper-slide"><a href="'./request_access.html"><img style='margin-left: 12%' src="./images/carousal2/puma.png"></a></div>
           <div class="swiper-slide"><a href="'./request_access.html"><img style='margin-left: 12%' src="./images/carousal2/uniqlo.png"></a></div>
+          <div class="swiper-slide"><a href="'./request_access.html"><img style='margin-left: 12%' src="./images/carousal2/h&m.png"></a></div>
+          <div class="swiper-slide"><a href="'./request_access.html"><img style='margin-left: 12%' src="./images/carousal2/tommy.png"></a></div>
         </div>
       </div>
       <div class="swiper swiper2part2">
         <div class="swiper-wrapper">
-          <div class="swiper-slide"><p>DKNY</p></div>
           <div class="swiper-slide"><p>Essentials</p></div>
+          <div class="swiper-slide"><p>DKNY</p></div>
           <div class="swiper-slide"><p>Guess</p></div>
-          <div class="swiper-slide"><p>Tommy Hilfiger</p></div>
-          <div class="swiper-slide"><p>H&M</p></div>
           <div class="swiper-slide"><p>Puma</p></div>
           <div class="swiper-slide"><p>Uniqlo</p></div>
+          <div class="swiper-slide"><p>H&M</p></div>
+          <div class="swiper-slide"><p>Tommy Hilfiger</p></div>
         </div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
@@ -212,7 +211,7 @@
         <div class="column">
           <h3>SOCIAL</h3>
           <ul>
-            <li><a href="./">Instagram</a></li>
+            <li><a href="https://www.instagram.com/thrd.store/">Instagram</a></li>
           </ul>
         </div>
         <div class="column-last-child">

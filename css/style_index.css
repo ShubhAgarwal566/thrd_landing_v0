@@ -453,3 +453,14 @@ ul li {
   font-size: 20px;
   margin-top: 50px;
 }
+
+.original-price{
+  text-decoration: line-through;
+  color:gray;
+  margin-left: 10px;
+}
+
+.discount{
+  margin-top: -6%; 
+  color: #d54c12;
+}

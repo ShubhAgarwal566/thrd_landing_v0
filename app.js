@@ -54,7 +54,7 @@ heroSwiper.on("slideChange", () => {
 });
 
 var swiper2 = new Swiper(".swiper2", {
-  initialSlide: 3,
+  initialSlide: 0,
 });
 var swiper2part2 = new Swiper(".swiper2part2", {
   slidesPerView: 2,
