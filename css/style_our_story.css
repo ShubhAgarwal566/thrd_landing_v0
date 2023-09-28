@@ -66,6 +66,12 @@
     color: white;
   }
 
+  .buttonContainer a:active{
+    background-color: white; 
+    color: black;
+    border-radius: 5px;
+  }
+
   .para p{
     margin-left: 5%;
     margin-right: 5%;
@@ -73,7 +79,7 @@
     text-align: left;
     color: #000000;
     font-size: 43px;
-    font-family: "Syne";
+    font-family: "ClashDisplay";
     line-height: 55px;
     
   }

@@ -60,6 +60,12 @@
     letter-spacing: 5px;
   }
 
+  .buttonContainer a:active{
+    background-color: white; 
+    color: black;
+    border-radius: 5px;
+  }
+
   .para p{
     margin-left: 5%;
     margin-right: 5%;

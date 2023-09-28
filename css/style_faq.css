@@ -118,11 +118,15 @@
     color: white;
     padding: 5%;
     font-size: 42px;
-    width: 100%; /* Ensure answer takes full width */
+    width: 100%;
     box-sizing: border-box; 
     font-family: "Syne";
 }
 
 .faq-arrow {
     font-size: 30px;
+}
+
+.faq-arrow:active{
+    color: white;
 }
