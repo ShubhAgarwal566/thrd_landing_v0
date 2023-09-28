@@ -14,7 +14,10 @@
   font-family: "ClashDisplaySemiBold";
   src: url("../fonts/ClashDisplay-Semibold.otf");
 }
-
+body {
+  max-width: 1500px; /* Adjust this value to match a typical mobile screen width */
+  margin: 0 auto; /* Center the content horizontally */
+}
 .navBar{
     background-color: white;
     color: #ffffff;
@@ -255,12 +258,13 @@
   margin-top: 5vh;
   height: 50vh;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
 }
 .seal img{
   height: 50vh;
-  width: 33vw;
+  width: 900px;
   object-fit: cover;
 }
 .seal h1{
@@ -280,7 +284,6 @@
   .seal {
     flex-direction: column;
     justify-content: space-between;
-
     height: 35vh;
   }
   .seal img{
