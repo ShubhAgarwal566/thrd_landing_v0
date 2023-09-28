@@ -74,8 +74,6 @@ swiper2part2.on('slideChange', function () {
   swiper2.slideTo(swiper2part2.activeIndex)
 });
 
-
-
 var sneakImage = document.querySelector(".mySwiper .swiper-wrapper .swiper-slide-active img");
 root.style.setProperty("--img-height", sneakImage.height + "px");
 
@@ -90,12 +88,14 @@ function showRemaining() {
     var now = new Date();
     var distance = end - now;
     if (distance < 0) {
+      document.getElementById('days').innerHTML = '0';
+      document.getElementById('hours').innerHTML = '0';
+      document.getElementById('minutes').innerHTML = '0';
+      document.getElementById('seconds').innerHTML = '0';
 
-        clearInterval(timer);
-        // document.getElementById('countdown').innerHTML = 'EXPIRED!';
-
-        return;
+      return;
     }
+
 var days = Math.floor(distance / _day);
 var hours = Math.floor((distance % _day) / _hour);
 var minutes = Math.floor((distance % _hour) / _minute);
