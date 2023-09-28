@@ -14,9 +14,12 @@
   font-family: "ClashDisplaySemiBold";
   src: url("../fonts/ClashDisplay-Semibold.otf");
 }
-body {
-  max-width: 1500px; /* Adjust this value to match a typical mobile screen width */
-  margin: 0 auto; /* Center the content horizontally */
+
+@media (min-width: 1000px) {
+  body {
+    max-width: 40vw; /* Adjust this value to match a typical mobile screen width */
+    margin: 0 auto; /* Center the content horizontally */
+  }
 }
 .navBar{
     background-color: white;
@@ -256,7 +259,7 @@ body {
 
 .seal {
   margin-top: 5vh;
-  height: 50vh;
+  /* height: 50vh; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -264,7 +267,7 @@ body {
 }
 .seal img{
   height: 50vh;
-  width: 900px;
+  width: 33vw;
   object-fit: cover;
 }
 .seal h1{
@@ -329,12 +332,15 @@ body {
   bottom: 0;
 }
 .swiper2part2 p{
-  font-size: 40px;
+  font-size: 30px;
+}
+.swiper2part2 .swiper-slide{
+  justify-content: center; 
 }
 .swiper2part2{
   --swiper-navigation-size: 22px;
   --swiper-navigation-top-offset: 40%;
-  --swiper-navigation-sides-offset: 30%;  
+  --swiper-navigation-sides-offset: 25%;  
   --swiper-navigation-color: black;
 }
 .timerContainer{
