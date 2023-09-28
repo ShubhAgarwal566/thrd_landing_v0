@@ -32,11 +32,15 @@
   justify-content: space-between;
   align-items: center;
   font-family: "ClashDisplay";  
-  margin-top:3%;
+  margin-top:1%;
 }
 
 .right{
   margin-right: 3%;  
+}
+
+.left{
+  margin-left: 3%;  
 }
 
 .name{
