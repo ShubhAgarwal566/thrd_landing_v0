@@ -182,14 +182,14 @@
   color: #eee;
   overflow: hidden;
 }
-.marquee:before, .marquee:after {
+/* .marquee:before, .marquee:after {
   position: absolute;
   top: 0;
   width: 10rem;
   height: 100%;
   content: "";
   z-index: 1;
-}
+} */
 .marquee-content {
   list-style: none;
   height: 100%;
