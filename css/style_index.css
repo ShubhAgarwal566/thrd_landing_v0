@@ -23,6 +23,11 @@
     transform-origin: center;
   }
 } */
+.container{
+  margin: 0;
+  min-width: 100vw;
+  padding: 0;
+}
 
 @media (min-width: 1000px) {
   body, html {
@@ -38,6 +43,8 @@
     margin: 0 auto; /* Center the content horizontally */
     transform: scale(0.8); /* Adjust the scaling factor as needed */
     transform-origin: top center; /* Keep content anchored at the top */
+    min-width: 0;
+    padding: 0;
   }
 
   /* Add a class to elements with overflow-x to allow horizontal scrolling */
@@ -45,7 +52,6 @@
     overflow-x: auto;
   }
 }
-
 
 .navBar{
     background-color: white;
