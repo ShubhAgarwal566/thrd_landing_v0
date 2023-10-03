@@ -324,7 +324,7 @@
   .seal img{
     height: 30rem;
     width: 50vw;
-    margin: -450px;
+    margin: -50px;
    object-fit: cover;
   }
   .seal p{
