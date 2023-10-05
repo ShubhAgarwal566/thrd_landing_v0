@@ -77,7 +77,7 @@ swiper2part2.on('slideChange', function () {
 var sneakImage = document.querySelector(".mySwiper .swiper-wrapper .swiper-slide-active img");
 root.style.setProperty("--img-height", sneakImage.height + "px");
 
-var end = new Date('10/06/2023 10:00 PM');
+var end = new Date('10/06/2023 6:00 PM');
 
 var _second = 1000;
 var _minute = _second * 60;
