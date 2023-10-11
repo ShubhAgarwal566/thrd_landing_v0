@@ -1,4 +1,4 @@
-var end = new Date('10/13/2023 6:00 PM');
+var end = new Date('10/27/2023 6:00 PM');
 
 var now = new Date();
 var distance = end - now;
