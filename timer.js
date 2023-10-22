@@ -1,14 +1,10 @@
-var end = new Date('10/27/2023 6:00 PM');
+var end = new Date('11/01/2023 6:00 PM');
 
 var now = new Date();
 var distance = end - now;
 
 if (distance < 0) {
-  const shopLink = document.getElementsByClassName("shop-link");
   const timerContainer = document.getElementsByClassName("timerContainer")[0];
-  for (var i = 0; i < shopLink.length; i++) {
-  shopLink[i].href = "https://bit.ly/thrdshop";
-  }
   timerContainer.style.display = "none";
 }
 
