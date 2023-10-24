@@ -77,3 +77,15 @@ swiper2part2.on('slideChange', function () {
 var sneakImage = document.querySelector(".mySwiper .swiper-wrapper .swiper-slide-active img");
 root.style.setProperty("--img-height", sneakImage.height + "px");
 
+var reviewSwiper = new Swiper(".reviewSwiper", {
+  slidesPerView: 2,
+  centeredSlides: false,
+  slideToClickedSlide: true,
+  pagination: {
+    el: ".swiper-pagination",
+  },
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false,
+  },
+});
