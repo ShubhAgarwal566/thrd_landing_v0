@@ -429,6 +429,9 @@
   width: 100%;
   height: auto;
 }
+.review .swiper-slide{
+  height: 100%;
+}
 .review h1{
   font-size: 70px;
   font-family: "ClashDisplaySemiBold";
@@ -475,8 +478,9 @@
   padding: 50px 10px;
   border-style: solid;
   margin: 5px 5px;
-  border-radius: 5%;
+  border-radius: 20px;
   border:5px solid #f0f0f0;
+  height: 100%;
 }
 .review-card img {
   width: 10rem;
