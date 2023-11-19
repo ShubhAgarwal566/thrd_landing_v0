@@ -347,7 +347,7 @@
    */
 .carousel2{
   margin-top: 5vh;
-  background-color: rgb(232, 226, 214);
+  background-color: #d9dbdd;
   padding: 50px 0px;
 }
 .carousel2 .swiper-slide{
@@ -355,11 +355,6 @@
   justify-content: center;
 }
 
-.carousel2 img{
-  width: 80%;
-  object-fit: cover;
-  left : 50%;
-}
 .carousel2 .swiper-button-next{
   bottom: 0;
 }
@@ -376,8 +371,46 @@
   --swiper-navigation-color: black;
 }
 
+.tshirt-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* This will ensure vertical centering */
+  gap: 5%; /* Adjust the gap to your preference */
+}
 
+.tshirt-image {
+  flex: none; /* Do not grow or shrink */
+  display: flex; /* Makes the tshirt-image a flex container too */
+  justify-content: center; /* Centers the child img horizontally */
+  align-items: center; /* Centers the child img vertically */
+}
 
+.tshirt-image.front {
+  width: 60%; /* Adjust if needed to reflect the size in your original image */
+}
+
+.tshirt-image.folded {
+  margin-top: 200px;
+  width: 30%; /* Adjust if needed to reflect the size in your original image */
+}
+
+.tshirt-image img {
+  width: 100%;
+  height: auto;
+  display: block; /* Removes bottom space under the image */
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+  .tshirt-container {
+      flex-direction: column;
+  }
+
+  .tshirt-image.front, .tshirt-image.folded {
+      width: auto; /* On smaller screens, let the image take the necessary width */
+      max-width: 100%; /* Ensure images don't overflow their container */
+  }
+}
 
 .timerContainer{
   margin-top: 0vh;
