@@ -84,7 +84,7 @@ src="https://www.facebook.com/tr?id=3479504865642846&ev=PageView&noscript=1"
       </div>
   
       <div class="buttonContainer">
-        <a href="https://bit.ly/48KnDV5"> Membership Form</a>
+        <a id="membershipFormButton" href="https://bit.ly/48KnDV5"> Membership Form</a>
       </div>
       <div class="already-member">
         <div class="headingContainer" style="margin-top: 50px;">
@@ -127,6 +127,11 @@ src="https://www.facebook.com/tr?id=3479504865642846&ev=PageView&noscript=1"
       </footer>
     </div>
     
+    <script>
+      document.getElementById('membershipFormButton').addEventListener('click', function() {
+        fbq('track', 'Lead');
+      });
+    </script>
 
   </body>
 </html>
