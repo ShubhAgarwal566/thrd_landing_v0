@@ -1,0 +1,23 @@
+.whatsapp-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000; /* Ensure it stays on top of other content */
+    display: none; /* Initially hide the icon */
+}
+
+.whatsapp-icon img {
+    width: 100px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-icon:hover img {
+    transform: scale(1.1); /* Slightly increase size on hover for a nice effect */
+}
+
+@media screen and (max-width: 1024px) {
+    .whatsapp-icon {
+        display: block;
+    }
+}
