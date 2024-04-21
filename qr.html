@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Generator</title>
+    <title>QR Code Generator and Scanner</title>
     <link rel="stylesheet" href="css/qr_code.css">
 </head>
 <body>
     <div class="container">
-        <input type="number" id="numberInput" placeholder="Enter a number" style="font-size: 40px;">
+        <input type="text" id="inputText" placeholder="Type here or scan QR" style="font-size: 20px; width: 300px;">
+        <button onclick="generateQR()">Generate QR</button>
         <div id="qrCode"></div>
+        <button id="btnScanQR">Scan QR Code</button>
+        <video id="qrVideo" style="display:none;"></video>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+    <script src="https://cdn.rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     <script src="qr_code.js"></script>
 </body>
 </html>
