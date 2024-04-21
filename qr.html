@@ -111,6 +111,7 @@
         }
 
         scanner.addListener('scan', function (content) {
+            inputText.value = content;
             content = content.trim();
             if (/^\d+$/.test(content)) { // Check if the content is only digits
                 inputText.value = content;
