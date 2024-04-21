@@ -3,20 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Generator and Scanner</title>
-    <link rel="stylesheet" href="css/qr_code.css">
+    <title>Interactive QR Code Generator and Scanner</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            height: 100vh;
+            padding: 20px;
+        }
+        #qrVideo {
+            width: 100%; /* Adjusts the size of the video display */
+            display: none; /* Hidden initially */
+            position: relative;
+        }
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <input type="text" id="inputText" placeholder="Type here or scan QR" style="font-size: 20px; width: 300px;">
-        <button onclick="generateQR()">Generate QR</button>
-        <div id="qrCode"></div>
+        <!-- Top part: Button to trigger QR code scanning -->
         <button id="btnScanQR">Scan QR Code</button>
-        <video id="qrVideo" style="display:none;"></video>
+        <div id="qrVideoContainer">
+            <video id="qrVideo"></video>
+            <span class="close-btn" onclick="closeScanner()">&times;</span>
+        </div>
+        <!-- Middle part: QR code display -->
+        <div id="qrCode"></div>
+        <!-- Bottom part: Input field -->
+        <input type="text" id="inputText" placeholder="Enter text or scan QR" oninput="generateQR()">
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
     <script src="https://cdn.rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
-    <script src="qr_code.js"></script>
+    <script>
+        const qrCodePlace = document.getElementById('qrCode');
+        const inputText = document.getElementById('inputText');
+        const qrVideo = document.getElementById('qrVideo');
+        const qrVideoContainer = document.getElementById('qrVideoContainer');
+        let scanner = new Instascan.Scanner({ video: qrVideo });
+
+        function generateQR() {
+            qrCodePlace.innerHTML = ''; // Clear previous QR code
+            if (inputText.value.trim() !== '') {
+                new QRCode(qrCodePlace, inputText.value);
+            }
+        }
+
+        Instascan.Camera.getCameras().then(function (cameras) {
+            if (cameras.length > 0) {
+                document.getElementById('btnScanQR').onclick = function() {
+                    qrVideoContainer.style.display = 'block';
+                    scanner.start(cameras[0]);
+                };
+            } else {
+                console.error('No cameras found.');
+            }
+        }).catch(function (e) {
+            console.error(e);
+        });
+
+        function closeScanner() {
+            qrVideoContainer.style.display = 'none';
+            scanner.stop();
+        }
+
+        scanner.addListener('scan', function (content) {
+            inputText.value = content;
+            closeScanner();
+            generateQR(); // Generate QR code from scanned content
+        });
+    </script>
 </body>
 </html>
