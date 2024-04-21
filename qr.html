@@ -5,25 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive QR Code Generator and Scanner</title>
     <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
         .container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-around;
-            height: 100vh;
+            justify-content: space-between;
+            height: 90vh;
             padding: 20px;
         }
-        #qrVideo {
+        #qrVideoContainer {
             width: 100%; /* Adjusts the size of the video display */
-            display: none; /* Hidden initially */
             position: relative;
+            display: none; /* Hidden initially */
+        }
+        video {
+            width: 100%;
+            height: auto; /* Maintain aspect ratio */
         }
         .close-btn {
             position: absolute;
-            top: 5px;
-            right: 5px;
+            top: 10px;
+            right: 10px;
+            z-index: 100;
             font-size: 24px;
             cursor: pointer;
+            color: #fff;
+            background-color: rgba(0,0,0,0.5);
+            border: none;
+            border-radius: 10px;
+            padding: 5px 10px;
+        }
+        #inputText {
+            width: 100%; 
+            font-size: 32px; 
+            padding: 8px 10px; 
+            box-sizing: border-box; 
+            border: 1px solid #ccc; 
+            display: block; 
+        }
+        #btnScanQR {
+            padding: 12px 24px; 
+            font-size: 18px; 
+            background-color: #bbbbbb; 
+            color: black; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            outline: black; 
         }
     </style>
 </head>
@@ -33,12 +66,13 @@
         <button id="btnScanQR">Scan QR Code</button>
         <div id="qrVideoContainer">
             <video id="qrVideo"></video>
-            <span class="close-btn" onclick="closeScanner()">&times;</span>
+            <button class="close-btn" onclick="closeScanner()">&times;</button>
         </div>
         <!-- Middle part: QR code display -->
         <div id="qrCode"></div>
         <!-- Bottom part: Input field -->
-        <input type="text" id="inputText" placeholder="Enter text or scan QR" oninput="generateQR()">
+        <input type="text" id="inputText" placeholder="Enter number" oninput="generateQR()">
+    </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
@@ -76,9 +110,12 @@
         }
 
         scanner.addListener('scan', function (content) {
-            inputText.value = content;
-            closeScanner();
-            generateQR(); // Generate QR code from scanned content
+            content = content.trim();
+            if (/^\d+$/.test(content)) { // Check if the content is only digits
+                inputText.value = content;
+                closeScanner(); 
+                generateQR(); 
+            }
         });
     </script>
 </body>
