@@ -22,11 +22,11 @@
             width: 100%; /* Adjusts the size of the video display */
             position: relative;
             display: none; /* Hidden initially */
+            transform: rotateX(180deg);
         }
         video {
             width: 100%;
             height: auto; /* Maintain aspect ratio */
-            transform: rotateX(180deg);
         }
         .close-btn {
             position: absolute;
@@ -64,7 +64,7 @@
 <body>
     <div class="container">
         <!-- Top part: Button to trigger QR code scanning -->
-        <button id="btnScanQR">Scan QR Code3</button>
+        <button id="btnScanQR">Scan QR Code1</button>
         <div id="qrVideoContainer">
             <video id="qrVideo"></video>
             <button class="close-btn" onclick="closeScanner()">&times;</button>
