@@ -15,18 +15,47 @@
             font-size: 1.2em;
             color: #333;
             text-align: center;
+            flex-direction: column;
+            gap: 20px; /* Adds space between elements */
+        }
+
+        /* Button styling */
+        .btn {
+            padding: 12px 24px;
+            background-color: #25D366; /* WhatsApp green color */
+            color: white;
+            border: none;
+            border-radius: 25px; /* Rounded corners */
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease; /* Smooth transition for hover effects */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow */
+        }
+
+        .btn:hover {
+            background-color: #20bd57; /* Slightly darker green on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+        }
+
+        .btn:active {
+            transform: translateY(0); /* Reset lift on click */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
     </style>
 </head>
 <body>
     <div id="loading" class="loading-container">
         Processing your free membership request...<br>
-        You'll be redirected to WhatsApp shortly.
+        Click on the button to redirected.
+        <button class="btn" onclick="manualRedirect()">Click here</button>
     </div>
 
     <script>
         // Google Apps Script Web App URL for counter increment
         const COUNTER_URL = 'https://script.google.com/macros/s/AKfycbwadiT9CIwUWUFORAQxUZopz7hqOHcEPdOVGQz7LEP3PHFJZAgMR2TmWaZzmavn-hLo/exec';
+        const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=918306709827&text=I%20want%20my%20Free%20Membership";
 
         async function incrementCounter() {
             try {
@@ -35,17 +64,21 @@
                     method: 'GET'
                 });
                 
-                // Optional: Check response if needed
                 const data = await response.json();
                 console.log('Counter updated:', data);
 
-                // Redirect to WhatsApp
-                window.location.href = "https://api.whatsapp.com/send?phone=918306709827&text=I%20want%20my%20Free%20Membership";
+                // Automatic redirect after counter increment
+                window.open(WHATSAPP_URL, '_blank');
             } catch (error) {
                 console.error('Error updating counter:', error);
                 // Fallback redirect
-                window.location.href = "https://api.whatsapp.com/send?phone=918306709827&text=I%20want%20my%20Free%20Membership";
+                window.open(WHATSAPP_URL, '_blank');
             }
+        }
+
+        // Manual redirect function for button click
+        function manualRedirect() {
+            window.open(WHATSAPP_URL, '_blank');
         }
 
         // Call when page loads
