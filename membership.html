@@ -1,4 +1,127 @@
+
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THRD - March Drop</title>
+  
+</head>
+<link rel="stylesheet" href="./css/latest_updates.css" />
+<body>
+    <nav class="navBar">
+        <ul class="navbarelements">
+          <li class="navitem left">
+            <a class="shop-link" href="./request_access.html">SHOP</a>
+          </li>
+          <li class="navitem name"><a href="./index.html">THRD</a></li>
+          <li class="navitem right"><a href="./our_story.html">ABOUT</a></li>
+        </ul>
+      </nav>
+
+    <div class="hero-video">
+        
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/S30kuP6LeQM?si=nX8RHX40v9XrdhTf&autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>    </div>
+
+    <div class="container">
+        <div class="countdown" id="countdown">
+            ⏰ THRD's March Drop – Winter's farewell, Summer's heat! 🔥
+        </div>
+
+        <div class="drop-info">
+            <div class="highlight">
+                <h2>👀 Preview on IG Stories: <a href="https://instagram.com/thrd.store">https://instagram.com/thrd.store</a></h2>
+            </div>
+        </div>
+
+        <div class="category">
+            <h3>🔥 Winter Clearance –</h3>
+            <p>For drop day only, all winter pieces at a massive discount for 24 hours.</p>
+        </div>
+
+        <div class="category">
+            <h3>⭐ Polos</h3>
+            <p>Our best polo lineup yet!</p>
+            <ul>
+                <li>First-time Roberto Cavalli polos!</li>
+                <li>Boss x Porsche, AX, Diesel, Emporio, Fred Perry, Karl Lagerfeld & Lacoste.</li>
+                <li>Classics from Michael Kors, Ralph Lauren (Teddy Polos) & True Religion OGs.</li>
+                <li>Budget polos from Bershka!</li>
+            </ul>
+        </div>
+
+        <div class="category">
+            <h3>💥 Round Neck Tees</h3>
+            <p>Essentials first time ever, plus Adidas, AX, Emporio, Fred Perry, Hugo, Karl, Lacoste, Nautica, Nike, Paul Smith, Puma, Quiksilver, Ralph Lauren, Superdry, Tommy Hilfiger, True Religion & Under Armour!</p>
+        </div>
+
+        <div class="category">
+            <h3>🔥 Oversized Tees</h3>
+            <p>Graphics from Bershka, Allsaints, Adidas, Rare Rabbit, Tommy Hilfiger & Zara!</p>
+        </div>
+
+        <div class="category">
+            <h3>👔 Shirts</h3>
+            <p>AllSaints, AX, Brooks Brothers (back!), Guess, Ralph Lauren, Superdry & Hilfiger</p>
+        </div>
+
+        <div class="category">
+            <h3>🏅 Sportswear</h3>
+            <p>Sweat-free tees from Adidas & Nike built for movement.</p>
+        </div>
+
+       
+
+        <div class="drop-details">
+           8 March, 2025. 7:00 PM sharp. Don't miss out!
+        </div>
+        
+    </div>
+
+    <script>
+        // Countdown functionality
+        const dropDate = new Date('March 8, 2025 19:00:00').getTime();
+        
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = dropDate - now;
+            
+            if (distance < 0) {
+                document.getElementById('countdown').innerHTML = "⏰ THRD's March Drop – LIVE NOW! 🔥";
+                return;
+            }
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('countdown').innerHTML = 
+                `⏰ THRD's March Drop – ${days}d ${hours}h ${minutes}m ${seconds}s until launch! 🔥`;
+        };
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Mobile responsive navigation toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add any additional JavaScript functionality here
+            
+            // For example, smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -57,4 +180,6 @@
         window.onload = incrementCounter;
     </script>
 </body>
-</html>
+</html> -->
+
+
