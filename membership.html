@@ -4,51 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Member Ship</title>
-    <style>
-        /* Simple centering styles for the loading message */
-        .loading-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-            font-size: 1.2em;
-            color: #333;
-            text-align: center;
-            flex-direction: column;
-            gap: 20px; /* Adds space between elements */
-        }
-
-        /* Button styling */
-        .btn {
-            padding: 12px 24px;
-            background-color: #25D366; /* WhatsApp green color */
-            color: white;
-            border: none;
-            border-radius: 25px; /* Rounded corners */
-            font-size: 1em;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease; /* Smooth transition for hover effects */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow */
-        }
-
-        .btn:hover {
-            background-color: #20bd57; /* Slightly darker green on hover */
-            transform: translateY(-2px); /* Slight lift effect */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.25);
-        }
-
-        .btn:active {
-            transform: translateY(0); /* Reset lift on click */
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-        }
-    </style>
+    
+  
 </head>
+<link rel="stylesheet"  href="./css/membership.css" />
 <body>
+    <nav class="navBar">
+        <ul class="navbarelements">
+          <li class="navitem left">
+            <a class="shop-link" href="./request_access.html">SHOP</a>
+          </li>
+          <li class="navitem name"><a href="./index.html">THRD</a></li>
+          <li class="navitem right"><a href="./our_story.html">ABOUT</a></li>
+        </ul>
+      </nav>
     <div id="loading" class="loading-container">
-        Processing your free membership request...<br>
-        Click on the button to redirected.
+        Your membership has been approved.<br>
+        Please Click on the button to join the community and to stay up to date with all the latest drops.
         <button class="btn" onclick="manualRedirect()">Click here</button>
     </div>
 

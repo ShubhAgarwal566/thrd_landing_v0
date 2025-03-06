@@ -1,0 +1,148 @@
+ /* Simple centering styles for the loading message */
+  
+
+@font-face {
+    font-family: "SilkScreen";
+    src: url("../fonts/Silkscreen-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "SilkScreenBold";
+    src: url("../fonts/Silkscreen-Bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "ClashDisplay";
+    src: url("../fonts/ClashDisplay-Regular.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "ClashDisplaySemiBold";
+    src: url("../fonts/ClashDisplay-Semibold.otf") format("opentype");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+ 
+ /* Reset and Base Styles */
+
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f1f1f1;
+    color: #222;
+    line-height: 1.6;
+}
+
+ .loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    font-size: 1.2em;
+    color: #333;
+    text-align: center;
+    flex-direction: column;
+    gap: 20px; /* Adds space between elements */
+}
+
+/* Button styling */
+.btn {
+background-color: black;
+color: white;
+font-family: "ClashDisplay", Arial, sans-serif;
+font-size: 18px;
+padding: 12px 24px;
+border: none;
+cursor: pointer;
+text-transform: uppercase;
+letter-spacing: 1px;
+transition: all 0.3s ease;
+}
+
+.btn:hover {
+background-color: white;
+color: black;
+border: 2px solid black;
+}
+
+.btn:active {
+background-color: white;
+color: black;
+border-radius: 5px;
+}
+
+
+.navBar {
+    background-color: black;
+    color: black;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    /* text-decoration: none; */
+    width: 100%;
+    height: 70px;
+    }
+    
+    .navbarelements {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: "ClashDisplay", Arial, sans-serif;
+        color: black;
+      }
+      
+      .name {
+        font-family: "SilkScreen", Arial, sans-serif;
+        font-size: 16px;
+        margin-left: 3%;
+      }
+      .name a{
+        font-size: 32px;
+        font-family: "SilkScreen", Arial, sans-serif;
+    
+      }
+      
+    
+    .navitem a {
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    }
+    
+    .right{
+    margin-right: 3%;
+    }
+    
+    .left{
+    margin-left: 3%;  
+    }
+    
+    .name {
+    font-family: "SilkScreen";
+    font-size: 32px;
+    margin-left: 3%;
+    }
+    
+    
+    .navitem a:active{
+    background-color: white; 
+    color: black;
+    border-radius: 5px;
+    }

@@ -1,0 +1,351 @@
+ 
+
+@font-face {
+    font-family: "SilkScreen";
+    src: url("../fonts/Silkscreen-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "SilkScreenBold";
+    src: url("../fonts/Silkscreen-Bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "ClashDisplay";
+    src: url("../fonts/ClashDisplay-Regular.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "ClashDisplaySemiBold";
+    src: url("../fonts/ClashDisplay-Semibold.otf") format("opentype");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+ 
+ /* Reset and Base Styles */
+
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f1f1f1;
+    color: #222;
+    line-height: 1.6;
+}
+
+/* Header Styles */
+header {
+    background-color: #000;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+}
+
+/* Hero Video Section */
+.hero-video {
+    width: 100%;
+    height: 50vh;
+    position: relative;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.hero-video iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Main Content */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.countdown {
+    text-align: center;
+    margin: 30px 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.drop-info {
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+}
+
+.highlight {
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+}
+
+.highlight h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.highlight a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* Product Categories */
+.category {
+    margin-bottom: 40px;
+}
+
+.category h3 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.category h3::before {
+    content: "";
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.category ul {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.category li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.category li::before {
+    content: "🔹";
+    position: absolute;
+    left: 0;
+}
+
+/* Story Section (from the image) */
+.our-story {
+    padding: 40px 0;
+    background-color: #f1f1f1;
+}
+
+.our-story h2 {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.our-story p {
+    font-size: 18px;
+    max-width: 800px;
+    line-height: 1.8;
+}
+
+/* Exclusivity Section with Diamond Icon */
+.exclusivity {
+    padding: 40px 0;
+}
+
+.exclusivity h2 {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.diamond-icon {
+    width: 150px;
+    height: 150px;
+    margin: 20px auto;
+    display: block;
+}
+
+/* Drop Details Footer */
+.drop-details {
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    margin-top: 40px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navBar {
+background-color: black;
+color: black;
+font-size: 30px;
+font-weight: bold;
+text-align: center;
+/* text-decoration: none; */
+width: 100%;
+height: 120px;
+}
+
+.navbarelements {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "ClashDisplay", Arial, sans-serif;
+    color: black;
+  }
+  
+  .name {
+    font-family: "SilkScreen", Arial, sans-serif;
+    font-size: 32px;
+    margin-left: 3%;
+  }
+  .name a{
+    font-size: 32px;
+    font-family: "SilkScreen", Arial, sans-serif;
+
+  }
+
+.navitem a {
+text-decoration: none;
+color: white;
+background-color: black;
+}
+
+.right{
+margin-right: 3%;
+}
+
+.left{
+margin-left: 3%;  
+}
+
+.name {
+font-family: "SilkScreen";
+font-size: 60px;
+margin-left: 3%;
+}
+
+
+.navitem a:active{
+background-color: white; 
+color: black;
+border-radius: 5px;
+}
+
+
+
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    header {
+        padding: 10px;
+    }
+    
+    .logo {
+        font-size: 24px;
+    }
+    
+    nav a {
+        margin: 0 8px;
+        font-size: 16px;
+    }
+    
+    .hero-video {
+        height: 30vh;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+    
+    .category h3 {
+        font-size: 22px;
+    }
+    
+    .our-story h2, .exclusivity h2 {
+        font-size: 32px;
+    }
+    
+    .our-story p {
+        font-size: 16px;
+    }
+    
+    .drop-details {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 20px;
+    }
+    
+    nav a {
+        margin: 0 5px;
+        font-size: 14px;
+    }
+    
+    .section-title {
+        font-size: 24px;
+    }
+    
+    .highlight h2 {
+        font-size: 20px;
+    }
+    
+    .category h3 {
+        font-size: 18px;
+    }
+    
+    .our-story h2, .exclusivity h2 {
+        font-size: 28px;
+    }
+    
+    .drop-details {
+        font-size: 16px;
+    }
+}
