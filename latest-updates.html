@@ -5,68 +5,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Member Ship</title>
-    
-  
-</head>
-<link rel="stylesheet"  href="./css/membership.css" />
-<body>
-    <nav class="navBar">
-        <ul class="navbarelements">
-          <li class="navitem left">
-            <a class="shop-link" href="./request_access.html">SHOP</a>
-          </li>
-          <li class="navitem name"><a href="./index.html">THRD</a></li>
-          <li class="navitem right"><a href="./our_story.html">ABOUT</a></li>
-        </ul>
-      </nav>
-    <div id="loading" class="loading-container">
-        Your membership has been approved.<br>
-        Please Click on the button to join the community and to stay up to date with all the latest drops.
-        <button class="btn" onclick="manualRedirect()">Click here</button>
-    </div>
-
-    <script>
-        // Google Apps Script Web App URL for counter increment
-        const COUNTER_URL = 'https://script.google.com/macros/s/AKfycbwadiT9CIwUWUFORAQxUZopz7hqOHcEPdOVGQz7LEP3PHFJZAgMR2TmWaZzmavn-hLo/exec';
-        const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=918306709827&text=I%20want%20my%20Free%20Membership";
-
-        async function incrementCounter() {
-            try {
-                // Fetch to increment counter
-                const response = await fetch(COUNTER_URL, {
-                    method: 'GET'
-                });
-                
-                const data = await response.json();
-                console.log('Counter updated:', data);
-
-                // Automatic redirect after counter increment
-                window.open(WHATSAPP_URL, '_blank');
-            } catch (error) {
-                console.error('Error updating counter:', error);
-                // Fallback redirect
-                window.open(WHATSAPP_URL, '_blank');
-            }
-        }
-
-        // Manual redirect function for button click
-        function manualRedirect() {
-            window.open(WHATSAPP_URL, '_blank');
-        }
-
-        // Call when page loads
-        window.onload = incrementCounter;
-    </script>
-</body>
-</html>
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>THRD - March Drop</title>
   
 </head>
@@ -182,5 +120,68 @@
         });
     </script>
 </body>
+</html>
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Ship</title>
+    
+  
+</head>
+<link rel="stylesheet"  href="./css/membership.css" />
+<body>
+    <nav class="navBar">
+        <ul class="navbarelements">
+          <li class="navitem left">
+            <a class="shop-link" href="./request_access.html">SHOP</a>
+          </li>
+          <li class="navitem name"><a href="./index.html">THRD</a></li>
+          <li class="navitem right"><a href="./our_story.html">ABOUT</a></li>
+        </ul>
+      </nav>
+    <div id="loading" class="loading-container">
+        Your membership has been approved.<br>
+        Please Click on the button to join the community and to stay up to date with all the latest drops.
+        <button class="btn" onclick="manualRedirect()">Click here</button>
+    </div>
+
+    <script>
+        // Google Apps Script Web App URL for counter increment
+        const COUNTER_URL = 'https://script.google.com/macros/s/AKfycbwadiT9CIwUWUFORAQxUZopz7hqOHcEPdOVGQz7LEP3PHFJZAgMR2TmWaZzmavn-hLo/exec';
+        const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=918306709827&text=I%20want%20my%20Free%20Membership";
+
+        async function incrementCounter() {
+            try {
+                // Fetch to increment counter
+                const response = await fetch(COUNTER_URL, {
+                    method: 'GET'
+                });
+                
+                const data = await response.json();
+                console.log('Counter updated:', data);
+
+                // Automatic redirect after counter increment
+                window.open(WHATSAPP_URL, '_blank');
+            } catch (error) {
+                console.error('Error updating counter:', error);
+                // Fallback redirect
+                window.open(WHATSAPP_URL, '_blank');
+            }
+        }
+
+        // Manual redirect function for button click
+        function manualRedirect() {
+            window.open(WHATSAPP_URL, '_blank');
+        }
+
+        // Call when page loads
+        window.onload = incrementCounter;
+    </script>
+</body>
 </html> -->
+
+
 
