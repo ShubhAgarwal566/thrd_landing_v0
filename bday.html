@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THRD Birthday Celebration</title>
+    <link rel="stylesheet" href="/css/membership.css" />
+    <style>
+        /* Custom Font Import */
+        @font-face {
+            font-family: 'SplineSansMono';
+            src: url('SplineSansMono-Italic-VariableFont_wght.ttf') format('truetype-variations');
+            font-style: italic;
+            font-weight: 100 900;
+            font-display: swap;
+        }
+        
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        /* Main hero container */
+        .hero-container {
+            position: relative;
+            min-height: 100vh;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Background pattern styling */
+        .bg-pattern {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+        
+        .bg-radial-gradient {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(0,0,0,0.05) 0, rgba(0,0,0,0) 70%);
+        }
+        
+        .grid-pattern {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: repeat(8, 1fr);
+            gap: 1rem;
+            opacity: 0.05;
+        }
+        
+        .grid-item {
+            border: 1px solid black;
+        }
+        
+        /* Content container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            z-index: 10;
+            position: relative;
+        }
+        
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        /* Birthday celebration specific styles */
+        .celebration-card {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .birthday-heading {
+            font-family: 'SplineSansMono', monospace;
+            font-style: italic;
+            font-weight: 700;
+            font-size: 2.25rem;
+            margin-bottom: 1.5rem;
+            color: black;
+            line-height: 1.2;
+        }
+        
+        .birthday-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        
+        .milestone-text {
+            font-size: 1.25rem;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+        
+        .thank-you-text {
+            font-size: 1.125rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+        
+        .sale-heading {
+            font-family: 'SplineSansMono', monospace;
+            font-style: italic;
+            font-weight: 600;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: black;
+        }
+        
+        .sale-details {
+            list-style: none;
+            margin-bottom: 2.5rem;
+            text-align: left;
+        }
+        
+        .sale-details li {
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+            line-height: 1.5;
+        }
+        
+        .detail-emoji {
+            margin-right: 0.5rem;
+        }
+        
+        .sale-highlight {
+            font-weight: 600;
+        }
+        
+        /* Confetti decoration */
+        .confetti {
+            position: absolute;
+            width: 1rem;
+            height: 1rem;
+            opacity: 0.6;
+        }
+        
+        .confetti-1 {
+            top: 10%;
+            left: 10%;
+            background-color: #f472b6;
+            transform: rotate(15deg);
+        }
+        
+        .confetti-2 {
+            top: 15%;
+            right: 15%;
+            background-color: #34d399;
+            transform: rotate(45deg);
+        }
+        
+        .confetti-3 {
+            bottom: 20%;
+            left: 20%;
+            background-color: #60a5fa;
+            transform: rotate(-30deg);
+        }
+        
+        .confetti-4 {
+            bottom: 15%;
+            right: 10%;
+            background-color: #fcd34d;
+            transform: rotate(60deg);
+        }
+        
+        /* Button styling */
+        .excited-button {
+            background-color: black;
+            color: white;
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .excited-button:hover {
+            background-color: #333;
+            transform: scale(1.05);
+        }
+        
+        .excited-button:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Balloon animation */
+        .balloon {
+            position: absolute;
+            font-size: 2.5rem;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.8;
+        }
+        
+        .balloon-1 {
+            top: -40px;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .balloon-2 {
+            top: -20px;
+            right: 15%;
+            animation-delay: 1s;
+        }
+        
+        .balloon-3 {
+            top: -30px;
+            left: 30%;
+            animation-delay: 2s;
+        }
+        
+        .balloon-4 {
+            top: -50px;
+            right: 30%;
+            animation-delay: 3s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        /* Abstract shapes */
+        .square {
+            display: none;
+            position: absolute;
+            top: 25%;
+            left: 3rem;
+            width: 3rem;
+            height: 3rem;
+            border: 2px solid black;
+            opacity: 0.1;
+            transform: rotate(45deg);
+        }
+        
+        .circle {
+            display: none;
+            position: absolute;
+            bottom: 25%;
+            right: 4rem;
+            width: 5rem;
+            height: 5rem;
+            border: 2px solid black;
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+        
+        /* For font loading failure fallback */
+        .font-not-loaded .birthday-heading,
+        .font-not-loaded .sale-heading {
+            font-family: monospace;
+            font-style: italic;
+        }
+        
+        /* Media queries */
+        @media (min-width: 768px) {
+            .birthday-heading {
+                font-size: 2.75rem;
+            }
+            
+            .square, .circle {
+                display: block;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .birthday-heading {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body class="font-not-loaded">
+    <nav class="navBar">
+        <ul class="navbarelements">
+          <li class="navitem left">
+            <a class="shop-link" href="./request_access.html">SHOP</a>
+          </li>
+          <li class="navitem name"><a href="./index.html">THRD</a></li>
+          <li class="navitem right"><a href="./our_story.html">ABOUT</a></li>
+        </ul>
+    </nav>
+    
+    <div class="hero-container">
+        <!-- Background pattern -->
+        <div class="bg-pattern">
+            <div class="bg-radial-gradient"></div>
+            <div class="grid-pattern" id="gridPattern"></div>
+        </div>
+        
+        <div class="container">
+            <div class="content">
+                <div class="celebration-card">
+                    <!-- Floating balloons -->
+                    <div class="balloon balloon-1">🎈</div>
+                    <div class="balloon balloon-2">🎈</div>
+                    <div class="balloon balloon-3">🎈</div>
+                    <div class="balloon balloon-4">🎈</div>
+                    
+                    <!-- Confetti decoration -->
+                    <div class="confetti confetti-1"></div>
+                    <div class="confetti confetti-2"></div>
+                    <div class="confetti confetti-3"></div>
+                    <div class="confetti confetti-4"></div>
+                    
+                    <div class="birthday-emoji">🎂</div>
+                    <h1 class="birthday-heading">It's THRD's Birthday on 25th March!</h1>
+                    
+                    <p class="milestone-text">
+                        We're celebrating more than just our birthday—we've also reached 100K followers on Instagram! <span class="birthday-emoji">🥳</span>
+                    </p>
+                    
+                    <p class="thank-you-text">
+                        Thanks for being a special part of our journey!
+                    </p>
+                    
+                    <h2 class="sale-heading">As a big thank you, enjoy our Birthday Flash Sale:</h2>
+                    
+                    <ul class="sale-details">
+                        <li>
+                            <span class="detail-emoji">✨</span>
+                            <span class="sale-highlight">Flat 60% OFF</span> on the entire collection!
+                        </li>
+                        <li>
+                            <span class="detail-emoji">🕛</span>
+                            Starts 25th March at Midnight (<span class="sale-highlight">12:00 AM</span>)
+                        </li>
+                        <li>
+                            <span class="detail-emoji">🎁</span>
+                            <span class="sale-highlight">Win FREE Garments!</span> At 2 PM, 4 PM, and 6 PM, catch exclusive coupon codes on our Instagram Stories. First to claim gets a free garment!
+                        </li>
+                    </ul>
+                    
+                    <a href="https://wa.me/918306709827?text=Birthday" class="excited-button">
+                        Yay, I'm Excited!
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Abstract shapes -->
+        <div class="square"></div>
+        <div class="circle"></div>
+    </div>
+
+    <script>
+        // Create grid pattern
+        const gridPattern = document.getElementById('gridPattern');
+        for (let i = 0; i < 64; i++) {
+            const gridItem = document.createElement('div');
+            gridItem.className = 'grid-item';
+            gridPattern.appendChild(gridItem);
+        }
+        
+        // Font loading check
+        document.fonts.ready.then(() => {
+            // Check if the font is loaded
+            if (document.fonts.check('italic 700 1em SplineSansMono')) {
+                document.body.classList.remove('font-not-loaded');
+            }
+        });
+    </script>
+</body>
+</html>

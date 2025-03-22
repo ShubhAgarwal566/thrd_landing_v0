@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Community Landing Page</title>
+    <title>THRD Insider Community</title>
     <link rel="stylesheet" href="/css/membership.css" />
     <style>
         /* Reset and base styles */
@@ -111,7 +111,7 @@
             align-items: center;
         }
         
-        .join-button {
+        .button {
             background-color: black;
             color: white;
             font-weight: 500;
@@ -124,12 +124,12 @@
             font-size: 1rem;
         }
         
-        .join-button:hover {
+        .button:hover {
             background-color: #333;
             transform: scale(1.05);
         }
         
-        .join-button:focus {
+        .button:focus {
             outline: none;
             box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
         }
@@ -198,6 +198,76 @@
             }
         }
         
+        /* Content pages */
+        .page {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        #page2 {
+            display: none;
+        }
+        
+        .welcome-heading {
+            font-size: 2rem;
+            color: black;
+            margin-bottom: 1rem;
+        }
+        
+        .congrats-text {
+            font-size: 1.25rem;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+        }
+        
+        .benefits-heading {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .benefits-list {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        
+        .benefits-list li {
+            margin-bottom: 0.75rem;
+            font-size: 1.125rem;
+        }
+        
+        .emoji {
+            margin-right: 0.5rem;
+        }
+        
+        .next-btn {
+            display: inline-block;
+            margin-top: 1rem;
+        }
+        
+        .community-heading {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .community-description {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .warning-text {
+            color: #ef4444;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .promise-text {
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+        
         /* Media queries */
         @media (min-width: 768px) {
             .heading {
@@ -229,7 +299,8 @@
           <li class="navitem name"><a href="./index.html">THRD</a></li>
           <li class="navitem right"><a href="./our_story.html">ABOUT</a></li>
         </ul>
-      </nav>
+    </nav>
+    
     <div class="hero-container">
         <!-- Background pattern -->
         <div class="bg-pattern">
@@ -239,30 +310,43 @@
         
         <div class="container">
             <div class="content">
-                <h1 class="heading">
-                    Join Our <span class="highlight">
-                        <span>Exclusive</span>
-                        <span class="highlight-bg"></span>
-                    </span> Community
-                </h1>
-                
-                <p class="description">
-                    <!-- Connect with like-minded individuals and get access to premium resources, events, and opportunities. -->
-                </p>
-                
-                <div class="button-container">
-                    <button id="joinButton" class="join-button">
-                        Join the Community
-                    </button>
+                <!-- Page 1 - Welcome -->
+                <div id="page1" class="page">
+                    <h1 class="welcome-heading">🎉 Welcome to THRD Insider!</h1>
+                    <p class="congrats-text">Congrats, you've been selected for our exclusive community!</p>
                     
-                    <div class="early-access">
-                        <p class="early-access-text">
-                            <span class="pulse">✦</span>
-                            GET EARLY ACCESS
-                            <span class="pulse">✦</span>
-                        </p>
-                        
-                        <div class="divider"></div>
+                    <h2 class="benefits-heading">Benefits you'll love:</h2>
+                    <ul class="benefits-list">
+                        <li><strong>✨ Early Access:</strong> Shop sales & drops 30 mins before everyone else.</li>
+                        <li><strong>💰 Extra Savings:</strong> Special discounts and community-only launches.</li>
+                        <li><strong>🔔 First to Know:</strong> Be notified first about new arrivals.</li>
+                    </ul>
+                    
+                    <div class="button-container">
+                        <button id="nextButton" class="button next-btn">Next →</button>
+                    </div>
+                </div>
+                
+                <!-- Page 2 - WhatsApp Community -->
+                <div id="page2" class="page">
+                    <h1 class="community-heading">📲 THRD Insider WhatsApp Community</h1>
+                    
+                    <p class="community-description">
+                        Once you join THRD Insider, all membership alerts and updates will be exclusively 
+                        shared in this WhatsApp community. You will no longer receive regular WhatsApp 
+                        or membership alerts separately.
+                    </p>
+                    
+                    <p class="warning-text">
+                        ⚠️ If you leave this WhatsApp community later, you'll miss out on all future updates.
+                    </p>
+                    
+                    <p class="promise-text">
+                        <em>We promise minimal messages and absolutely no spam.</em>
+                    </p>
+                    
+                    <div class="button-container">
+                        <button id="joinButton" class="button">Join THRD Insider</button>
                     </div>
                 </div>
             </div>
@@ -281,6 +365,12 @@
             gridItem.className = 'grid-item';
             gridPattern.appendChild(gridItem);
         }
+
+        // Page navigation
+        document.getElementById('nextButton').addEventListener('click', function() {
+            document.getElementById('page1').style.display = 'none';
+            document.getElementById('page2').style.display = 'block';
+        });
 
         // SnapShot data structure
         let snapData = null;
@@ -308,7 +398,7 @@
         }
 
         // Function to update group info
-         function updateGroupInfo() {
+        function updateGroupInfo() {
             try {
                 // Fetch fresh data before redirecting
                 // const res = await fetch('http://localhost:5000/api/snapshot', {
@@ -330,7 +420,7 @@
 
                 // Get the valid invite link
                 // const validInviteLink = data.data.invite_link;
-                const validInviteLink = "https://chat.whatsapp.com/Gh4VMbCWg03A7iiWzGJ2y8";
+                const validInviteLink = "https://chat.whatsapp.com/Gh4VMbCWg03A7iiWzGJ2y8";   //Hard coded for testing
 
                 // Redirect to the valid invite link
                 window.open(validInviteLink, '_blank');
@@ -346,13 +436,11 @@
             }
         }
 
-// Add event listener to the join button
-document.getElementById('joinButton').addEventListener('click', updateGroupInfo);
-
         // Add event listener to the join button
         document.getElementById('joinButton').addEventListener('click', updateGroupInfo);
 
         // Get group info on page load
+        getGroupInfo();
     </script>
 </body>
 </html>
