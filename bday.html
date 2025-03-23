@@ -34,6 +34,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 2rem 1rem;
         }
         
         /* Background pattern styling */
@@ -70,6 +71,7 @@
             padding: 0 1rem;
             z-index: 10;
             position: relative;
+            width: 100%;
         }
         
         .content {
@@ -77,13 +79,14 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            width: 100%;
         }
         
         /* Birthday celebration specific styles */
         .celebration-card {
             background-color: white;
             border-radius: 1rem;
-            padding: 2.5rem;
+            padding: 2rem;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             max-width: 600px;
             width: 100%;
@@ -95,7 +98,7 @@
             font-family: 'SplineSansMono', monospace;
             font-style: italic;
             font-weight: 700;
-            font-size: 2.25rem;
+            font-size: 2rem;
             margin-bottom: 1.5rem;
             color: black;
             line-height: 1.2;
@@ -108,7 +111,7 @@
         }
         
         .milestone-text {
-            font-size: 1.25rem;
+            font-size: 1.125rem;
             color: #4b5563;
             margin-bottom: 1.5rem;
             line-height: 1.5;
@@ -125,7 +128,7 @@
             font-family: 'SplineSansMono', monospace;
             font-style: italic;
             font-weight: 600;
-            font-size: 1.5rem;
+            font-size: 1.35rem;
             margin-bottom: 1.5rem;
             color: black;
         }
@@ -148,6 +151,26 @@
         
         .sale-highlight {
             font-weight: 600;
+        }
+        
+        /* Video container */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            margin: 2rem 0;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
         
         /* Confetti decoration */
@@ -200,6 +223,9 @@
             font-size: 1rem;
             text-decoration: none;
             display: inline-block;
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
         }
         
         .excited-button:hover {
@@ -285,10 +311,81 @@
             font-style: italic;
         }
         
+        /* Responsive navbar */
+        .navBar {
+            position: relative;
+            width: 100%;
+            padding: 1rem;
+            z-index: 50;
+        }
+        
+        .navbarelements {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .navitem {
+            display: inline-block;
+        }
+        
+        .navitem a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        
+        .navitem a:hover {
+            color: #555;
+        }
+        
+        .navitem.name {
+            font-size: 1.5rem;
+        }
+        
         /* Media queries */
-        @media (min-width: 768px) {
+        @media (max-width: 767px) {
+            .celebration-card {
+                padding: 1.5rem;
+            }
+            
             .birthday-heading {
-                font-size: 2.75rem;
+                font-size: 1.75rem;
+            }
+            
+            .sale-heading {
+                font-size: 1.25rem;
+            }
+            
+            .sale-details li {
+                font-size: 1rem;
+            }
+            
+            .milestone-text,
+            .thank-you-text {
+                font-size: 1rem;
+            }
+            
+            .navitem.name {
+                font-size: 1.25rem;
+            }
+            
+            .excited-button {
+                padding: 0.875rem 1.5rem;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .celebration-card {
+                padding: 2.5rem;
+            }
+            
+            .birthday-heading {
+                font-size: 2.5rem;
             }
             
             .square, .circle {
@@ -299,6 +396,10 @@
         @media (min-width: 1024px) {
             .birthday-heading {
                 font-size: 3rem;
+            }
+            
+            .sale-heading {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -347,6 +448,11 @@
                         Thanks for being a special part of our journey!
                     </p>
                     
+                    <!-- YouTube Video -->
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/W0Fgr2Vg7oQ?si=R1zRm2GqIcu_d-Vj" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    
                     <h2 class="sale-heading">As a big thank you, enjoy our Birthday Flash Sale:</h2>
                     
                     <ul class="sale-details">
@@ -356,9 +462,9 @@
                         </li>
                         <li>
                             <span class="detail-emoji">🕛</span>
-                            Starts 25th March at Midnight (<span class="sale-highlight">12:00 AM</span>)
+                            Starts 25th March at Midnight (<span class="sale-highlight">12:00 AM</span>) Just 1 hour. Just madness.
                         </li>
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/W0Fgr2Vg7oQ?si=PMIfOr5bS4A4GQ4E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        
                         <li>
                             <span class="detail-emoji">🎁</span>
                             <span class="sale-highlight">Win FREE Garments!</span> At 2 PM, 4 PM, and 6 PM, catch exclusive coupon codes on our Instagram Stories. First to claim gets a free garment!
