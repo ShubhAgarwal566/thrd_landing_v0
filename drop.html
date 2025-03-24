@@ -340,7 +340,7 @@
     </script>
     <script>
       // Google Apps Script Web App URL for counter increment
-      const COUNTER_URL = 'https://script.google.com/macros/s/AKfycbwadiT9CIwUWUFORAQxUZopz7hqOHcEPdOVGQz7LEP3PHFJZAgMR2TmWaZzmavn-hLo/exec';
+      const COUNTER_URL = 'http://3.110.163.18:5000/api/website/counter?base_name=drop';
     
       async function incrementCounter() {
           try {
@@ -350,7 +350,7 @@
               });
               
               const data = await response.json();
-              console.log('Counter updated:', data);
+            //   console.log('Counter updated:', data);
     
               // Automatic redirect after counter increment
               // window.open(WHATSAPP_URL, '_blank');
