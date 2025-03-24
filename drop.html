@@ -270,74 +270,69 @@
         }
         
         function updateTimer() {
-            // Get the current date/time
+            // Get the current date/time in local time zone
             const now = new Date();
-            
-            // Add 5 hours and 30 minutes to adjust for IST (+5:30)
-            const nowIST = new Date(now.getTime() + (5.5 * 60 * 60 * 1000));
-            
-            // Set sale start time to 12:00 AM (midnight) tomorrow in IST
-            const saleStartTime = new Date(nowIST);
+
+            // Set sale start time to 12:00 AM (midnight) tomorrow in local time
+            const saleStartTime = new Date(now);
             saleStartTime.setDate(saleStartTime.getDate() + 1); // Tomorrow
             saleStartTime.setHours(0, 0, 0, 0); // 12:00 AM
-            
+
             // Set sale end time - 1 hour after start time
             const saleEndTime = new Date(saleStartTime);
-            saleEndTime.setHours(saleEndTime.getHours() + 1); // 1 hour later
-            
-            // Convert back to user's local time for comparison
-            const localStartTime = new Date(saleStartTime.getTime() );
-            const localEndTime = new Date(saleEndTime.getTime() );
-            
+            saleEndTime.setHours(saleEndTime.getHours() + 1); // 1:00 AM
+
             const timerLabel = document.getElementById('timer-label');
             const timerElement = document.getElementById('countdown');
-            
-            // Check if sale has started
-            if (now < localStartTime) {
-                // Sale hasn't started yet
+
+            // Check sale status
+            if (now < saleStartTime) {
+                // Sale hasn't started
                 timerLabel.textContent = "Sale Starts In:";
-                const timeRemaining = localStartTime - now;
+                const timeRemaining = saleStartTime - now;
                 updateTimerDisplay(timeRemaining, timerElement);
-                
-                // Update announcement text
-                document.querySelector('.highlight').innerHTML = 
+                document.querySelector('.highlight').innerHTML =
                     '<span class="emoji">🎉</span> Our Birthday Sale Starting Soon! <span class="emoji">🎉</span>';
-            } 
-            else if (now < localEndTime) {
+            } else if (now < saleEndTime) {
                 // Sale is live
                 timerLabel.textContent = "Sale Ends In:";
-                const timeRemaining = localEndTime - now;
+                const timeRemaining = saleEndTime - now;
                 updateTimerDisplay(timeRemaining, timerElement);
-                
-                // Update announcement text
-                document.querySelector('.highlight').innerHTML = 
+                document.querySelector('.highlight').innerHTML =
                     '<span class="emoji">🎉</span> Our Birthday Sale is LIVE! <span class="emoji">🎉</span>';
-            } 
-            else {
+            } else {
                 // Sale has ended
-                timerElement.textContent = "00:00:00";
                 timerLabel.textContent = "Sale Has Ended";
-                
-                // Update announcement text
-                document.querySelector('.highlight').innerHTML = 
+                timerElement.textContent = "00:00:00";
+                document.querySelector('.highlight').innerHTML =
                     '<span class="emoji">🎉</span> Our Birthday Sale Has Ended <span class="emoji">🎉</span>';
             }
         }
 
         // Helper function to format the time display
         function updateTimerDisplay(timeRemaining, timerElement) {
-            const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
-            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-            
-            // Format time with leading zeros
+            // Ensure timeRemaining is non-negative
+            const time = Math.max(0, timeRemaining);
+
+            const hours = Math.floor(time / (1000 * 60 * 60));
+            const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((time % (1000 * 60)) / 1000);
+
             const formattedHours = String(hours).padStart(2, '0');
             const formattedMinutes = String(minutes).padStart(2, '0');
             const formattedSeconds = String(seconds).padStart(2, '0');
-            
+
             timerElement.textContent = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
         }
-        // Update the timer every second
+
+        // Initial call and continuous update every second
+        // updateTimer();
+        // const timerInterval = setInterval(updateTimer, 1000);
+
+        // Optional: Cleanup (if in a component lifecycle, e.g., React)
+        // Uncomment if needed:
+        // window.addEventListener('unload', () => clearInterval(timerInterval));
+
         setInterval(updateTimer, 1000);
         
         // Initialize the timer
