@@ -1,4 +1,305 @@
+
+
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THRD Birthday Sale Live 🔥</title>
+    <link rel="stylesheet" href="./css/membership.css" />
+    <style>
+        /* Text styling for the announcement message */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "ClashDisplay", Arial, sans-serif;
+  font-size: 1.4em;
+  color: #222;
+  text-align: center;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+  line-height: 1.8;
+}
+
+/* Add animation for the announcement text */
+.announcement-text {
+  max-width: 600px;
+  animation: fadeIn 1s ease-in;
+}
+
+/* Style the highlighted text */
+.highlight {
+  font-family: "ClashDisplaySemiBold", Arial, sans-serif;
+  font-size: 1.2em;
+  color: #000;
+  background: linear-gradient(to right, rgba(255,255,255,0), #f5f5f5, rgba(255,255,255,0));
+  padding: 5px 10px;
+  margin: 15px 0;
+  display: inline-block;
+}
+
+/* Add animation for the discount text */
+.discount-text {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #000;
+  padding: 10px 0;
+  position: relative;
+  display: inline-block;
+}
+
+.discount-text::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #000;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s ease;
+}
+
+.discount-text:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Button styling enhancement */
+.btn {
+  background-color: black;
+  color: white;
+  font-family: "ClashDisplay", Arial, sans-serif;
+  font-size: 18px;
+  padding: 15px 35px;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  margin-top: 15px;
+}
+
+.btn:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.btn:active {
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  transform: translateY(0);
+}
+
+/* Added animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Emoji animation */
+.emoji {
+  display: inline-block;
+  animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-5px); }
+}
+
+/* Timer styling */
+.timer-container {
+  margin: 20px 0;
+  font-size: 1.2em;
+}
+
+.timer {
+  font-family: "ClashDisplaySemiBold", Arial, sans-serif;
+  font-size: 1.5em;
+  color: #000;
+  letter-spacing: 2px;
+  margin-top: 10px;
+}
+
+.promo-code {
+  background: #000;
+  color: #fff;
+  padding: 8px 15px;
+  border-radius: 4px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin: 5px 0;
+  display: inline-block;
+}
+
+.limit-notice {
+  font-size: 0.8em;
+  max-width: 500px;
+  margin: 15px auto;
+  padding: 10px;
+  border: 1px dashed #999;
+  background-color: #f9f9f9;
+}
+    </style>
+</head>
+
+<body>
+    <nav class="navBar">
+        <ul class="navbarelements">
+          <li class="navitem left">
+            <a class="shop-link" href="./request_access.html">SHOP</a>
+          </li>
+          <li class="navitem name"><a href="./index.html">THRD</a></li>
+          <li class="navitem right"><a href="./our_story.html">ABOUT</a></li>
+        </ul>
+    </nav>
+    
+    <div id="loading" class="loading-container">
+        <div class="announcement-text">
+            <div class="highlight"><span class="emoji">🎉</span> Our Birthday Sale is LIVE! <span class="emoji">🎉</span></div>
+            
+            <div class="discount-text">Use code: <span class="promo-code">BIRTHDAY60</span></div>
+            
+            <div><span class="emoji">⚡</span> Extra 60% OFF on top of 70% OFF! <span class="emoji">⚡</span></div>
+            
+            <div class="timer-container">
+                <div id="timer-label">Sale Ends In:</div>
+                <div id="countdown" class="timer">00:00:00</div>
+            </div>
+            
+            <div class="limit-notice">
+                <div><span class="emoji">⏳</span> Only live for ONE hour!</div>
+                <div>To keep it fair for everyone, there's a limit of 2 products per person.</div>
+                <div>Orders with more than 2 items will be cancelled.</div>
+            </div>
+            
+            <div>Go, go, go! <span class="emoji">🛒🔥</span></div>
+        </div>
+        
+        <button class="btn" onclick="manualRedirect()">SHOP NOW</button>
+    </div>
+
+    <script>
+        // Google Apps Script Web App URL for counter increment
+        const URL = "https://shop.thrd.store";
+
+        // Manual redirect function for button click
+        function manualRedirect() {
+            window.open(URL, '_blank');
+        }
+        
+        // Timer functionality
+        function updateTimer() {
+            // Set sale start and end times
+            const saleStartTime = new Date()
+            saleStartTime.setDate(saleStartTime.getDate() + 1);
+            saleStartTime.setHours(0, 0, 0, 0); // 12:00 AM today
+            
+            const saleEndTime = new Date(saleStartTime);
+            saleEndTime.setHours(saleEndTime.getHours() + 1); // 1 hour later
+            
+            const now = new Date();
+            const timerLabel = document.getElementById('timer-label');
+            const timerElement = document.getElementById('countdown');
+            
+            // Check if sale has started
+            if (now < saleStartTime) {
+                // Sale hasn't started yet
+                timerLabel.textContent = "Sale Starts In:";
+                const timeRemaining = saleStartTime - now;
+                updateTimerDisplay(timeRemaining, timerElement);
+                
+                // Update announcement text
+                document.querySelector('.highlight').innerHTML = 
+                    '<span class="emoji">🎉</span> Our Birthday Sale Starting Soon! <span class="emoji">🎉</span>';
+            } 
+            else if (now < saleEndTime) {
+                // Sale is live
+                timerLabel.textContent = "Sale Ends In:";
+                const timeRemaining = saleEndTime - now;
+                updateTimerDisplay(timeRemaining, timerElement);
+                
+                // Update announcement text
+                document.querySelector('.highlight').innerHTML = 
+                    '<span class="emoji">🎉</span> Our Birthday Sale is LIVE! <span class="emoji">🎉</span>';
+            } 
+            else {
+                // Sale has ended
+                timerElement.textContent = "00:00:00";
+                timerLabel.textContent = "Sale Has Ended";
+                
+                // Update announcement text
+                document.querySelector('.highlight').innerHTML = 
+                    '<span class="emoji">🎉</span> Our Birthday Sale Has Ended <span class="emoji">🎉</span>';
+            }
+        }
+        
+        function updateTimerDisplay(timeRemaining, timerElement) {
+            // Convert to hours, minutes, seconds
+            const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+            
+            // Format the time
+            const formattedHours = String(hours).padStart(2, '0');
+            const formattedMinutes = String(minutes).padStart(2, '0');
+            const formattedSeconds = String(seconds).padStart(2, '0');
+            
+            // Update the timer display
+            timerElement.textContent = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+        }
+        
+        // Update the timer every second
+        setInterval(updateTimer, 1000);
+        
+        // Initialize the timer
+        updateTimer();
+    </script>
+    <script>
+      // Google Apps Script Web App URL for counter increment
+      const COUNTER_URL = 'https://script.google.com/macros/s/AKfycbwadiT9CIwUWUFORAQxUZopz7hqOHcEPdOVGQz7LEP3PHFJZAgMR2TmWaZzmavn-hLo/exec';
+    
+      async function incrementCounter() {
+          try {
+              // Fetch to increment counter
+              const response = await fetch(COUNTER_URL, {
+                  method: 'GET'
+              });
+              
+              const data = await response.json();
+              console.log('Counter updated:', data);
+    
+              // Automatic redirect after counter increment
+              // window.open(WHATSAPP_URL, '_blank');
+          } catch (error) {
+              console.error('Error updating counter:', error);
+              // Fallback redirect
+              // window.open(WHATSAPP_URL, '_blank');
+          }
+      }
+    
+      // Call when page loads
+      window.onload = incrementCounter;
+    </script>
+</body>
+</html>
+
+
+
+
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -182,4 +483,4 @@
 </body>
 
 
-</html>
+</html> -->
