@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,149 +7,219 @@
     <title>THRD Birthday Sale Live 🔥</title>
     <link rel="stylesheet" href="./css/membership.css" />
     <style>
+        /* Base styles for scrolling */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
         /* Text styling for the announcement message */
-.loading-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  font-family: "ClashDisplay", Arial, sans-serif;
-  font-size: 1.4em;
-  color: #222;
-  text-align: center;
-  flex-direction: column;
-  gap: 30px;
-  padding: 20px;
-  line-height: 1.8;
-}
+        .loading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Changed from height to min-height to ensure content doesn't get cut off */
+            font-family: "ClashDisplay", Arial, sans-serif;
+            font-size: 1.4em;
+            color: #222;
+            text-align: center;
+            flex-direction: column;
+            gap: 30px;
+            padding: 20px;
+            line-height: 1.8;
+            box-sizing: border-box; /* Ensure padding is included in the element's dimensions */
+            overflow-y: auto; /* Allow vertical scrolling within the container if needed */
+        }
 
-/* Add animation for the announcement text */
-.announcement-text {
-  max-width: 600px;
-  animation: fadeIn 1s ease-in;
-}
+        /* Add animation for the announcement text */
+        .announcement-text {
+            max-width: 600px;
+            animation: fadeIn 1s ease-in;
+            overflow-y: visible; /* Ensure content can be scrolled */
+        }
 
-/* Style the highlighted text */
-.highlight {
-  font-family: "ClashDisplaySemiBold", Arial, sans-serif;
-  font-size: 1.2em;
-  color: #000;
-  background: linear-gradient(to right, rgba(255,255,255,0), #f5f5f5, rgba(255,255,255,0));
-  padding: 5px 10px;
-  margin: 15px 0;
-  display: inline-block;
-}
+        /* Style the highlighted text */
+        .highlight {
+            font-family: "ClashDisplaySemiBold", Arial, sans-serif;
+            font-size: 1.2em;
+            color: #000;
+            background: linear-gradient(to right, rgba(255,255,255,0), #f5f5f5, rgba(255,255,255,0));
+            padding: 5px 10px;
+            margin: 15px 0;
+            display: inline-block;
+        }
 
-/* Add animation for the discount text */
-.discount-text {
-  font-size: 1.4em;
-  font-weight: bold;
-  color: #000;
-  padding: 10px 0;
-  position: relative;
-  display: inline-block;
-}
+        /* Add animation for the discount text */
+        .discount-text {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #000;
+            padding: 10px 0;
+            position: relative;
+            display: inline-block;
+        }
 
-.discount-text::after {
-  content: '';
-  position: absolute;
-  bottom: 5px;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: #000;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.5s ease;
-}
+        .discount-text::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #000;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+        }
 
-.discount-text:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
+        .discount-text:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
 
-/* Button styling enhancement */
-.btn {
-  background-color: black;
-  color: white;
-  font-family: "ClashDisplay", Arial, sans-serif;
-  font-size: 18px;
-  padding: 15px 35px;
-  border: none;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  margin-top: 15px;
-}
+        /* Button styling enhancement */
+        .btn {
+            background-color: black;
+            color: white;
+            font-family: "ClashDisplay", Arial, sans-serif;
+            font-size: 18px;
+            padding: 15px 35px;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            margin-top: 15px;
+            margin-bottom: 20px; /* Add some bottom margin to ensure button is not cut off */
+        }
 
-.btn:hover {
-  background-color: white;
-  color: black;
-  border: 2px solid black;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
+        .btn:hover {
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
 
-.btn:active {
-  background-color: white;
-  color: black;
-  border-radius: 5px;
-  transform: translateY(0);
-}
+        .btn:active {
+            background-color: white;
+            color: black;
+            border-radius: 5px;
+            transform: translateY(0);
+        }
 
-/* Added animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+        /* Added animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-/* Emoji animation */
-.emoji {
-  display: inline-block;
-  animation: bounce 1s infinite alternate;
-}
+        /* Emoji animation */
+        .emoji {
+            display: inline-block;
+            animation: bounce 1s infinite alternate;
+        }
 
-@keyframes bounce {
-  from { transform: translateY(0); }
-  to { transform: translateY(-5px); }
-}
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-5px); }
+        }
 
-/* Timer styling */
-.timer-container {
-  margin: 20px 0;
-  font-size: 1.2em;
-}
+        /* Timer styling */
+        .timer-container {
+            margin: 20px 0;
+            font-size: 1.2em;
+        }
 
-.timer {
-  font-family: "ClashDisplaySemiBold", Arial, sans-serif;
-  font-size: 1.5em;
-  color: #000;
-  letter-spacing: 2px;
-  margin-top: 10px;
-}
+        .timer {
+            font-family: "ClashDisplaySemiBold", Arial, sans-serif;
+            font-size: 1.5em;
+            color: #000;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
 
-.promo-code {
-  background: #000;
-  color: #fff;
-  padding: 8px 15px;
-  border-radius: 4px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  margin: 5px 0;
-  display: inline-block;
-}
+        .promo-code {
+            background: #000;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin: 5px 0;
+            display: inline-block;
+        }
 
-.limit-notice {
-  font-size: 0.8em;
-  max-width: 500px;
-  margin: 15px auto;
-  padding: 10px;
-  border: 1px dashed #999;
-  background-color: #f9f9f9;
-}
+        .limit-notice {
+            font-size: 0.8em;
+            max-width: 500px;
+            margin: 15px auto;
+            padding: 10px;
+            border: 1px dashed #999;
+            background-color: #f9f9f9;
+        }
+
+        /* Navbar styles - making it sticky */
+        .navBar {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background-color: black;
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* Custom scrollbar styling for better UX */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Media queries for better responsiveness */
+        @media (max-width: 768px) {
+            .loading-container {
+                padding: 10px;
+                font-size: 1.2em;
+            }
+
+            .announcement-text {
+                max-width: 100%;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+            
+            .timer {
+                font-size: 1.3em;
+            }
+        }
+
+        @media (max-height: 700px) {
+            .loading-container {
+                padding-top: 60px;
+                justify-content: flex-start;
+            }
+        }
     </style>
 </head>
 
@@ -185,9 +254,10 @@
             </div>
             
             <div>Go, go, go! <span class="emoji">🛒🔥</span></div>
+            <button class="btn" onclick="manualRedirect()">SHOP NOW</button>
+
         </div>
         
-        <button class="btn" onclick="manualRedirect()">SHOP NOW</button>
     </div>
 
     <script>
