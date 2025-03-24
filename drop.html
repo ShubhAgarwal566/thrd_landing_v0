@@ -203,8 +203,8 @@
         function updateTimer() {
             // Set sale start and end times
             const saleStartTime = new Date()
-            saleStartTime.setDate(saleStartTime.getDate() + 1);
-            saleStartTime.setHours(0, 0, 0, 0); // 12:00 AM today
+            saleStartTime.setDate(saleStartTime.getDate() );
+            saleStartTime.setHours(12, 0, 0, 0); // 12:00 AM today
             
             const saleEndTime = new Date(saleStartTime);
             saleEndTime.setHours(saleEndTime.getHours() + 1); // 1 hour later
