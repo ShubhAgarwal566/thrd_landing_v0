@@ -273,14 +273,11 @@
             // Get the current date/time in local time zone
             const now = new Date();
 
-            // Set sale start time to 12:00 AM (midnight) tomorrow in local time
-            const saleStartTime = new Date(now);
-            saleStartTime.setDate(saleStartTime.getDate() + 1); // Tomorrow
-            saleStartTime.setHours(0, 0, 0, 0); // 12:00 AM
+            // Set sale start time to 12:00 AM (midnight) on 2025-03-25 in local time
+            const saleStartTime = new Date('2025-03-25T00:00:00');
 
             // Set sale end time - 1 hour after start time
-            const saleEndTime = new Date(saleStartTime);
-            saleEndTime.setHours(saleEndTime.getHours() + 1); // 1:00 AM
+            const saleEndTime = new Date('2025-03-25T01:00:00');
 
             const timerLabel = document.getElementById('timer-label');
             const timerElement = document.getElementById('countdown');
@@ -308,7 +305,6 @@
                     '<span class="emoji">🎉</span> Our Birthday Sale Has Ended <span class="emoji">🎉</span>';
             }
         }
-
         // Helper function to format the time display
         function updateTimerDisplay(timeRemaining, timerElement) {
             // Ensure timeRemaining is non-negative
@@ -338,7 +334,7 @@
         // Initialize the timer
         updateTimer();
     </script>
-    <script>
+    <!-- <script>
       // Google Apps Script Web App URL for counter increment
       const COUNTER_URL = 'http://3.110.163.18:5000/api/website/counter?base_name=drop';
     
@@ -363,7 +359,7 @@
     
       // Call when page loads
       window.onload = incrementCounter;
-    </script>
+    </script> -->
 </body>
 </html>
 
