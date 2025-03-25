@@ -401,7 +401,7 @@
         async function updateGroupInfo() {
             try {
                 // Fetch fresh data before redirecting
-                const res = await fetch('http://3.110.163.18:5000/api/whatsapp/snapshot', {
+                const res = await fetch('http://3.111.37.193:5000/api/whatsapp/snapshot', {
                     method: "GET",
                     headers: { "Content-Type": "application/json" }
                 });
@@ -426,7 +426,7 @@
                 window.open(validInviteLink, '_blank');
 
                 // Update the participant count in the backend
-                await fetch(`http://3.110.163.18:5000/api/whatsapp/snapshot/${data.data.group_id}`, {
+                await fetch(`http://3.111.37.193:5000/api/whatsapp/snapshot/${data.data.group_id}`, {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" }
                 });
