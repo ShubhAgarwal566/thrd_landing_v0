@@ -403,35 +403,35 @@
         async function updateGroupInfo() {
             try {
                 // Fetch fresh data before redirecting
-                const res = await fetch('http://3.111.37.193:5000/api/whatsapp/snapshot', {
-                    method: "GET",
-                    headers: { "Content-Type": "application/json" }
-                });
+                // const res = await fetch('http://3.111.37.193:5000/api/whatsapp/snapshot', {
+                //     method: "GET",
+                //     headers: { "Content-Type": "application/json" }
+                // });
 
-                if (!res.ok) {
-                    alert("Something went wrong!");
-                    return;
-                }
+                // if (!res.ok) {
+                //     alert("Something went wrong!");
+                //     return;
+                // }
 
-                const data = await res.json();
+                // const data = await res.json();
 
-                if (!data.success || !data.data?.invite_link) {
-                    alert("No available group at the moment.");
-                    return;
-                }
+                // if (!data.success || !data.data?.invite_link) {
+                //     alert("No available group at the moment.");
+                //     return;
+                // }
 
                 // Get the valid invite link
-                const validInviteLink = data.data.invite_link;
-                // const validInviteLink = "https://chat.whatsapp.com/Gh4VMbCWg03A7iiWzGJ2y8";   //Hard coded for testing
+                // const validInviteLink = data.data.invite_link;
+                const validInviteLink = "https://chat.whatsapp.com/Gh4VMbCWg03A7iiWzGJ2y8";   //Hard coded for testing
 
                 // Redirect to the valid invite link
                 window.open(validInviteLink, '_blank');
 
                 // Update the participant count in the backend
-                await fetch(`http://3.111.37.193:5000/api/whatsapp/snapshot/${data.data.group_id}`, {
-                    method: "PUT",
-                    headers: { "Content-Type": "application/json" }
-                });
+                // await fetch(`http://3.111.37.193:5000/api/whatsapp/snapshot/${data.data.group_id}`, {
+                //     method: "PUT",
+                //     headers: { "Content-Type": "application/json" }
+                // });
 
             } catch (error) {
                 console.log(error);
