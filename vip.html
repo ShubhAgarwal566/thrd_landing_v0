@@ -269,6 +269,31 @@
             font-style: italic;
             margin-bottom: 2rem;
         }
+        .loader-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 0.5rem;
+        }
+
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #000;
+            border-radius: 50%;
+            width: 1rem;
+            height: 1rem;
+            animation: spin 1s linear infinite;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         
         /* Media queries */
         @media (min-width: 768px) {
@@ -348,7 +373,13 @@
                     </p>
                     
                     <div class="button-container">
-                        <button id="joinButton" class="button">Join THRD Insider</button>
+                        <button id="joinButton" class="button">
+                            <div id="loaderContainer" class="loader-container hidden">
+                              <div class="loader"></div>
+                            </div>
+                            <span id="buttonText">Join THRD Insider</span>
+                          </button>
+                          
                     </div>
                 </div>
             </div>
@@ -374,34 +405,45 @@
             document.getElementById('page2').style.display = 'block';
         });
 
+        // Elements
+        const joinButton = document.getElementById('joinButton');
+        const loaderContainer = document.getElementById('loaderContainer');
+        const buttonText = document.getElementById('buttonText');
+        const notification = document.getElementById('notification');
+
         // SnapShot data structure
         let snapData = null;
 
-        // Function to get group info
-        async function getGroupInfo() {
-            try {
-                const res = await fetch('http://localhost:5000/api/snapshot', {
-                    method: "GET",
-                    headers: { "Content-Type": "application/json" }
-                });
-                
-                if (!res.ok) {
-                    alert("Something went wrong!");
-                    return;
-                }
-                
-                const data = await res.json();
-                console.log('data', data?.data);
-                
-                snapData = data?.data;
-            } catch (error) {
-                console.log(error);
+        // Display notification function
+        function showNotification(message, isError = true) {
+            notification.innerText = message;
+            notification.style.backgroundColor = isError ? '#ef4444' : '#10b981';
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 4000);
+        }
+
+        // Toggle loading state
+        function setLoading(isLoading) {
+            if (isLoading) {
+                joinButton.disabled = true;
+                loaderContainer.classList.remove('hidden');
+                buttonText.innerText = 'Loading...';
+            } else {
+                joinButton.disabled = false;
+                loaderContainer.classList.add('hidden');
+                buttonText.innerText = 'Join THRD Insider';
             }
         }
 
         // Function to update group info
         async function updateGroupInfo() {
             try {
+                // Set loading state
+                setLoading(true);
+                
                 // Fetch fresh data before redirecting
                 const res = await fetch('https://sdv7rb0e37.execute-api.ap-south-1.amazonaws.com/s1/snapshot', {
                     method: "GET",
@@ -409,24 +451,18 @@
                 });
 
                 if (!res.ok) {
-                    alert("Something went wrong!");
-                    return;
+                    throw new Error("Network response was not ok");
                 }
 
                 const data = await res.json();
-                console.log(data)
+                console.log(data);
 
-                if (data.statusCode!==200 || !data.data?.invite_link) {
-                    alert("No available group at the moment.");
-                    return;
+                if (data.statusCode !== 200 || !data.data?.invite_link) {
+                    throw new Error("No available group at the moment");
                 }
 
                 // Get the valid invite link
                 const validInviteLink = data.data.invite_link;
-                // const validInviteLink = "https://chat.whatsapp.com/Gh4VMbCWg03A7iiWzGJ2y8";   //Hard coded for testing
-
-                // Redirect to the valid invite link
-                window.open(validInviteLink, '_blank');
 
                 // Update the participant count in the backend
                 await fetch(`https://sdv7rb0e37.execute-api.ap-south-1.amazonaws.com/s1/snapshot?group_id=${data.data.group_id}`, {
@@ -434,13 +470,23 @@
                     headers: { "Content-Type": "application/json" }
                 });
 
+                // Finally, redirect to the WhatsApp group
+                window.open(validInviteLink, '_blank');
+                
+                // Show success notification
+                showNotification('Successfully joined the Insider community!', false);
+                
             } catch (error) {
-                console.log(error);
+                console.error('Error:', error);
+                showNotification(error.message || 'Something went wrong. Please try again later.');
+            } finally {
+                // Reset loading state
+                setLoading(false);
             }
         }
 
         // Add event listener to the join button
-        document.getElementById('joinButton').addEventListener('click', updateGroupInfo);
+        joinButton.addEventListener('click', updateGroupInfo);
 
         // Get group info on page load
         // getGroupInfo();
