@@ -19,7 +19,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         }
         
-        /* Main hero container */
+        /* Hero container */
         .hero-container {
             position: relative;
             min-height: 100vh;
@@ -29,7 +29,7 @@
             justify-content: center;
         }
         
-        /* Background pattern styling */
+        /* Background pattern */
         .bg-pattern {
             position: absolute;
             inset: 0;
@@ -82,22 +82,6 @@
             line-height: 1.2;
         }
         
-        .highlight {
-            position: relative;
-            display: inline-block;
-            z-index: 10;
-        }
-        
-        .highlight-bg {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 0.75rem;
-            background-color: #e5e7eb;
-            transform: rotate(-1deg);
-        }
-        
         /* Description text */
         .description {
             font-size: 1.125rem;
@@ -106,13 +90,7 @@
             margin-bottom: 3rem;
         }
         
-        /* Button area */
-        .button-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
+        /* Button styles */
         .button {
             background-color: black;
             color: white;
@@ -131,76 +109,38 @@
             transform: scale(1.05);
         }
         
-        .button:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+        .button:disabled {
+            background-color: #666;
+            cursor: not-allowed;
         }
         
-        /* Early access text */
-        .early-access {
-            margin-top: 1rem;
-            position: relative;
-        }
-        
-        .early-access-text {
-            font-size: 0.875rem;
-            color: #6b7280;
-            font-weight: 500;
-            display: flex;
+        /* Loader */
+        .loader-container {
+            display: inline-flex;
             align-items: center;
+            margin-right: 0.5rem;
         }
         
-        .pulse {
-            animation: pulse 2s infinite;
-            margin: 0 0.5rem;
-        }
-        
-        .divider {
-            position: absolute;
-            bottom: -1.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 6rem;
-            height: 0.125rem;
-            background-color: #e5e7eb;
-        }
-        
-        /* Abstract shapes */
-        .square {
-            display: none;
-            position: absolute;
-            top: 25%;
-            left: 3rem;
-            width: 3rem;
-            height: 3rem;
-            border: 2px solid black;
-            opacity: 0.1;
-            transform: rotate(45deg);
-        }
-        
-        .circle {
-            display: none;
-            position: absolute;
-            bottom: 25%;
-            right: 4rem;
-            width: 5rem;
-            height: 5rem;
-            border: 2px solid black;
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #000;
             border-radius: 50%;
-            opacity: 0.1;
+            width: 1rem;
+            height: 1rem;
+            animation: spin 1s linear infinite;
+            display: none;
         }
         
-        /* Animation keyframes */
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.5;
-            }
+        .loader.active {
+            display: inline-block;
         }
         
-        /* Content pages */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Pages */
         .page {
             width: 100%;
             max-width: 600px;
@@ -244,11 +184,6 @@
             margin-right: 0.5rem;
         }
         
-        .next-btn {
-            display: inline-block;
-            margin-top: 1rem;
-        }
-        
         .community-heading {
             font-size: 1.5rem;
             margin-bottom: 1rem;
@@ -269,31 +204,6 @@
             font-style: italic;
             margin-bottom: 2rem;
         }
-        .loader-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 0.5rem;
-        }
-
-        .loader {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #000;
-            border-radius: 50%;
-            width: 1rem;
-            height: 1rem;
-            animation: spin 1s linear infinite;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
         
         /* Media queries */
         @media (min-width: 768px) {
@@ -303,10 +213,6 @@
             
             .description {
                 font-size: 1.25rem;
-            }
-            
-            .square, .circle {
-                display: block;
             }
         }
         
@@ -320,11 +226,9 @@
 <body>
     <nav class="navBar">
         <ul class="navbarelements">
-          <li class="navitem left">
-            <a class="shop-link" href="./request_access.html">SHOP</a>
-          </li>
-          <li class="navitem name"><a href="./index.html">THRD</a></li>
-          <li class="navitem right"><a href="./our_story.html">ABOUT</a></li>
+            <li class="navitem left"><a class="shop-link" href="./request_access.html">SHOP</a></li>
+            <li class="navitem name"><a href="./index.html">THRD</a></li>
+            <li class="navitem right"><a href="./our_story.html">ABOUT</a></li>
         </ul>
     </nav>
     
@@ -344,50 +248,35 @@
                     
                     <h2 class="benefits-heading">Benefits you'll love:</h2>
                     <ul class="benefits-list">
-                        <li><strong>✨ Early Access:</strong> Shop sales & drops 30 mins before everyone else.</li>
-                        <li><strong>💰 Extra Savings:</strong> Special discounts and community-only launches.</li>
-                        <li><strong>🔔 First to Know:</strong> Be notified first about new arrivals.</li>
+                        <li><span class="emoji">✨</span><strong>Early Access:</strong> Shop sales & drops 30 mins before everyone else.</li>
+                        <li><span class="emoji">💰</span><strong>Extra Savings:</strong> Special discounts and community-only launches.</li>
+                        <li><span class="emoji">🔔</span><strong>First to Know:</strong> Be notified first about new arrivals.</li>
                     </ul>
                     
-                    <div class="button-container">
-                        <button id="nextButton" class="button next-btn">Next →</button>
-                    </div>
+                    <button id="nextButton" class="button">Next →</button>
                 </div>
                 
                 <!-- Page 2 - WhatsApp Community -->
                 <div id="page2" class="page">
                     <h1 class="community-heading">📲 THRD Insider WhatsApp Community</h1>
-                    
                     <p class="community-description">
                         Once you join THRD Insider, all membership alerts and updates will be exclusively 
                         shared in this WhatsApp community. You will no longer receive regular WhatsApp 
                         or membership alerts separately.
                     </p>
-                    
                     <p class="warning-text">
                         ⚠️ If you leave this WhatsApp community later, you'll miss out on all future updates.
                     </p>
-                    
                     <p class="promise-text">
                         <em>We promise minimal messages and absolutely no spam.</em>
                     </p>
-                    
-                    <div class="button-container">
-                        <button id="joinButton" class="button">
-                            <div id="loaderContainer" class="loader-container hidden">
-                              <div class="loader"></div>
-                            </div>
-                            <span id="buttonText">Join THRD Insider</span>
-                          </button>
-                          
-                    </div>
+                    <button id="joinButton" class="button">
+                        <span class="loader-container"><span id="loader" class="loader"></span></span>
+                        <span id="buttonText">Join THRD Insider</span>
+                    </button>
                 </div>
             </div>
         </div>
-        
-        <!-- Abstract shapes -->
-        <div class="square"></div>
-        <div class="circle"></div>
     </div>
 
     <script>
@@ -400,122 +289,77 @@
         }
 
         // Page navigation
-        document.getElementById('nextButton').addEventListener('click', function() {
-            document.getElementById('page1').style.display = 'none';
-            document.getElementById('page2').style.display = 'block';
-        });
-
-        // Elements
+        const page1 = document.getElementById('page1');
+        const page2 = document.getElementById('page2');
+        const nextButton = document.getElementById('nextButton');
         const joinButton = document.getElementById('joinButton');
-        const loaderContainer = document.getElementById('loaderContainer');
+        const loader = document.getElementById('loader');
         const buttonText = document.getElementById('buttonText');
-        const notification = document.getElementById('notification');
 
-        // SnapShot data structure
-        let snapData = null;
-
-        // Display notification function
-        function showNotification(message, isError = true) {
-            notification.innerText = message;
-            notification.style.backgroundColor = isError ? '#ef4444' : '#10b981';
-            notification.classList.add('show');
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 4000);
-        }
+        nextButton.addEventListener('click', () => {
+            page1.style.display = 'none';
+            page2.style.display = 'block';
+        });
 
         // Toggle loading state
         function setLoading(isLoading) {
-            if (isLoading) {
-                joinButton.disabled = true;
-                loaderContainer.classList.remove('hidden');
-                buttonText.innerText = 'Loading...';
-            } else {
-                joinButton.disabled = false;
-                loaderContainer.classList.add('hidden');
-                buttonText.innerText = 'Join THRD Insider';
-            }
+            joinButton.disabled = isLoading;
+            loader.classList.toggle('active', isLoading);
+            buttonText.textContent = isLoading ? 'Loading...' : 'Join THRD Insider';
         }
 
-        // Function to update group info
-        async function updateGroupInfo() {
+        // Show notification (simple alert for now, can be enhanced)
+        function showNotification(message, isError = true) {
+            alert(message); // Replace with a styled notification if desired
+        }
+
+        // Join WhatsApp community
+        joinButton.addEventListener('click', async () => {
+            setLoading(true);
+
             try {
-                // Set loading state
-                setLoading(true);
-                
-                // Fetch fresh data before redirecting
-                const res = await fetch('https://sdv7rb0e37.execute-api.ap-south-1.amazonaws.com/s1/snapshot', {
-                    method: "GET",
-                    headers: { "Content-Type": "application/json" }
+                // Fetch group snapshot
+                const snapshotRes = await fetch('https://sdv7rb0e37.execute-api.ap-south-1.amazonaws.com/s1/snapshot', {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' }
                 });
 
-                if (!res.ok) {
-                    throw new Error("Network response was not ok");
+                if (!snapshotRes.ok) throw new Error('Failed to fetch group data');
+                const snapshotData = await snapshotRes.json();
+
+                if (snapshotData.statusCode !== 200 || !snapshotData.data?.invite_link) {
+                    throw new Error('No available group at the moment');
                 }
 
-                const data = await res.json();
-                console.log(data);
+                const inviteLink = snapshotData.data.invite_link;
 
-                if (data.statusCode !== 200 || !data.data?.invite_link) {
-                    throw new Error("No available group at the moment");
-                }
-
-                // Get the valid invite link
-                const validInviteLink = data.data.invite_link;
-
-                // Update the participant count in the backend
-                await fetch(`https://sdv7rb0e37.execute-api.ap-south-1.amazonaws.com/s1/snapshot?group_id=${data.data.group_id}`, {
-                    method: "PUT",
-                    headers: { "Content-Type": "application/json" }
+                // Update participant count
+                await fetch(`https://sdv7rb0e37.execute-api.ap-south-1.amazonaws.com/s1/snapshot?group_id=${snapshotData.data.group_id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' }
                 });
 
-                // Finally, redirect to the WhatsApp group
-                window.open(validInviteLink, '_blank');
-                
-                // Show success notification
-                showNotification('Successfully joined the Insider community!', false);
-                
+                // Redirect to WhatsApp (reliable across browsers, including Safari)
+                window.location.href = inviteLink;
+
             } catch (error) {
-                console.error('Error:', error);
-                showNotification(error.message || 'Something went wrong. Please try again later.');
-            } finally {
-                // Reset loading state
-                setLoading(false);
+                console.error('Error joining community:', error);
+                showNotification(error.message || 'Something went wrong. Please try again.');
+                setLoading(false); // Reset button state on error
             }
-        }
+        });
 
-        // Add event listener to the join button
-        joinButton.addEventListener('click', updateGroupInfo);
-
-        // Get group info on page load
-        // getGroupInfo();
-    </script>
-     <script>
-        // Google Apps Script Web App URL for counter increment
-        const COUNTER_URL = 'http://3.110.163.18:5000/api/website/counter?base_name=vip';
-      
-        async function incrementCounter() {
+        // Counter increment on page load
+        const COUNTER_URL = 'http://3.110.163.18:5000/api/website/counter?base_name=vip'; // Update to HTTPS if possible
+        window.onload = async () => {
             try {
-                // Fetch to increment counter
-                const response = await fetch(COUNTER_URL, {
-                    method: 'GET'
-                });
-                
+                const response = await fetch(COUNTER_URL, { method: 'GET' });
                 const data = await response.json();
                 console.log('Counter updated:', data);
-      
-                // Automatic redirect after counter increment
-                // window.open(WHATSAPP_URL, '_blank');
             } catch (error) {
                 console.error('Error updating counter:', error);
-                // Fallback redirect
-                // window.open(WHATSAPP_URL, '_blank');
             }
-        }
-      
-        // Call when page loads
-        window.onload = incrementCounter;
-      </script>
+        };
+    </script>
 </body>
 </html>
