@@ -315,6 +315,11 @@
             z-index: 1;
         }
 
+        .shop-now{
+            position: fixed;
+            bottom: 5%;
+        }
+
         .btn::before {
             content: '';
             position: absolute;
@@ -565,7 +570,7 @@
                 </div>
             </div>
             
-            <button class="btn pulse">I'm Ready for the Drop!</button>
+            <button class="btn pulse" onclick="manualRedirect1()">I'm Ready for the Drop!</button>
         </section>
         
         <!-- Live drop content - shown after countdown ends -->
@@ -602,7 +607,7 @@
                 </div>
             </div>
             
-            <button class="btn pulse" onclick="manualRedirect()">SHOP NOW</button>
+            <button class="btn pulse shop-now" onclick="manualRedirect()">SHOP NOW</button>
         </section>
     </div>
 
@@ -621,9 +626,14 @@
         // Shop URL
         const SHOP_URL = "https://www.thrd.store/shop";
 
+        const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=918198845888&text=Lets%20GOOO%0A";
+
         // Manual redirect function for button click
         function manualRedirect() {
-            window.open(SHOP_URL, '_blank');
+            window.location.href=SHOP_URL
+        }
+        function manualRedirect1() {
+            window.location.href=WHATSAPP_URL;
         }
         
         function updateTimer() {
@@ -632,7 +642,7 @@
 
             // Set drop time to 7:00 PM on 2025-04-12 in IST
             // Convert to local time zone
-            const dropTimeIST = new Date('2025-04-11T17:26:00+05:30');
+            const dropTimeIST = new Date('2025-04-12T19:00:00+05:30');
 
             const timerElement = document.getElementById('countdown');
             const preLaunchContent = document.getElementById('pre-launch-content');
