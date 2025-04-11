@@ -1,183 +1,492 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THRD Birthday Sale Live 🔥</title>
-    <link rel="stylesheet" href="./css/membership.css" />
+    <title>THRD Biggest Drop Coming Soon 🔥</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="./css//membership.css" >
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Base styles for scrolling */
-        html, body {
-            height: 100%;
+        :root {
+            --primary-color: #000;
+            --accent-color: #ff4d00;
+            --light-bg: #f8f8f8;
+            --dark-text: #222;
+            --light-text: #fff;
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
-            overflow-y: auto; /* Enable vertical scrolling */
+            box-sizing: border-box;
         }
 
-        /* Text styling for the announcement message */
-        .loading-container {
+        html, body {
+            height: 100%;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Modern Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 0.8rem 1rem;
+        }
+
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            min-height: 100vh; /* Changed from height to min-height to ensure content doesn't get cut off */
-            font-family: "ClashDisplay", Arial, sans-serif;
-            font-size: 1.4em;
-            color: #222;
-            text-align: center;
-            flex-direction: column;
-            gap: 30px;
-            padding: 20px;
-            line-height: 1.8;
-            box-sizing: border-box; /* Ensure padding is included in the element's dimensions */
-            overflow-y: auto; /* Allow vertical scrolling within the container if needed */
         }
 
-        /* Add animation for the announcement text */
-        .announcement-text {
-            max-width: 600px;
-            animation: fadeIn 1s ease-in;
-            overflow-y: visible; /* Ensure content can be scrolled */
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
         }
 
-        /* Style the highlighted text */
-        .highlight {
-            font-family: "ClashDisplaySemiBold", Arial, sans-serif;
-            font-size: 1.2em;
-            color: #000;
-            background: linear-gradient(to right, rgba(255,255,255,0), #f5f5f5, rgba(255,255,255,0));
-            padding: 5px 10px;
-            margin: 15px 0;
-            display: inline-block;
+        .navbar-links {
+            display: flex;
+            gap: 2rem;
         }
 
-        /* Add animation for the discount text */
-        .discount-text {
-            font-size: 1.4em;
-            font-weight: bold;
-            color: #000;
-            padding: 10px 0;
+        .nav-link {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: var(--transition);
             position: relative;
-            display: inline-block;
         }
 
-        .discount-text::after {
+        .nav-link:after {
             content: '';
             position: absolute;
-            bottom: 5px;
+            bottom: -4px;
             left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover:after {
             width: 100%;
-            height: 3px;
-            background: #000;
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.5s ease;
         }
 
-        .discount-text:hover::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        /* Button styling enhancement */
-        .btn {
-            background-color: black;
-            color: white;
-            font-family: "ClashDisplay", Arial, sans-serif;
-            font-size: 18px;
-            padding: 15px 35px;
+        .mobile-toggle {
+            display: none;
+            background: none;
             border: none;
+            color: var(--light-text);
+            font-size: 1.5rem;
             cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
+        }
+
+        /* Main Content */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .content-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 0.8s ease-in;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 3rem 2rem;
+            margin: 2rem 0;
+            text-align: center;
             position: relative;
             overflow: hidden;
-            margin-top: 15px;
-            margin-bottom: 20px; /* Add some bottom margin to ensure button is not cut off */
+        }
+
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+        }
+
+        .highlight {
+            display: inline-block;
+            font-weight: 700;
+            margin: 1rem 0;
+            padding: 0.8rem 1.5rem;
+            background-color: rgba(255, 77, 0, 0.08);
+            border-radius: var(--border-radius);
+        }
+
+        .headline {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 1rem 0;
+            line-height: 1.2;
+        }
+
+        .subheading {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        /* Modern countdown */
+        .countdown-container {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background-color: var(--light-bg);
+            border-radius: var(--border-radius);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .countdown-label {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .timer {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            justify-content: center;
+            letter-spacing: 2px;
+        }
+
+        /* Video Container */
+        .video-wrapper {
+            margin: 2.5rem 0;
+            width: 100%;
+            max-width: 700px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Notice Box */
+        .notice-box {
+            background-color: rgba(255, 69, 0, 0.05);
+            border-left: 4px solid var(--accent-color);
+            padding:.5rem 1.5rem;
+            margin: 2rem 0;
+            border-radius: var(--border-radius);
+            width: 100%;
+            max-width: 700px;
+            text-align: left;
+        }
+
+        .notice-title {
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .warning-icon {
+            color: var(--accent-color);
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            width: 100%;
+            max-width: 700px;
+            margin: 2rem 0;
+        }
+
+        .benefits-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .benefits-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .benefit-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefit-icon {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .benefit-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Button styling */
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), #333);
+            color: var(--light-text);
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-color), #ff7a00);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            width: 100%;
         }
 
         .btn:hover {
-            background-color: white;
-            color: black;
-            border: 2px solid black;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
         .btn:active {
-            background-color: white;
-            color: black;
-            border-radius: 5px;
-            transform: translateY(0);
+            transform: translateY(-1px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* Added animations */
+        /* Shop Now Content */
+        #live-drop-content {
+            display: none;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* Emoji animation */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Emoji styles */
         .emoji {
             display: inline-block;
             animation: bounce 1s infinite alternate;
         }
 
         @keyframes bounce {
-            from { transform: translateY(0); }
-            to { transform: translateY(-5px); }
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-5px);
+            }
         }
 
-        /* Timer styling */
-        .timer-container {
-            margin: 20px 0;
-            font-size: 1.2em;
+        /* Responsive design */
+        @media screen and (max-width: 992px) {
+            .headline {
+                font-size: 1.8rem;
+            }
+            
+            .countdown-container {
+                padding: 1rem;
+            }
+            
+            .timer {
+                font-size: 1.8rem;
+            }
         }
 
-        .timer {
-            font-family: "ClashDisplaySemiBold", Arial, sans-serif;
-            font-size: 1.5em;
-            color: #000;
-            letter-spacing: 2px;
-            margin-top: 10px;
+        @media screen and (max-width: 768px) {
+            .navbar-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                flex-direction: column;
+                padding: 1rem 0;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .navbar-links.active {
+                display: flex;
+            }
+            
+            .content-section {
+                padding: 2rem 1rem;
+            }
+            
+            .headline {
+                font-size: 1.6rem;
+            }
+            
+            .subheading {
+                font-size: 1rem;
+            }
+            
+            .timer {
+                font-size: 1.6rem;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
-        .promo-code {
-            background: #000;
-            color: #fff;
-            padding: 8px 15px;
-            border-radius: 4px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            margin: 5px 0;
-            display: inline-block;
+        @media screen and (max-width: 480px) {
+            .navbar {
+                padding: 0.6rem 0.8rem;
+            }
+            
+            .navbar-brand {
+                font-size: 1.4rem;
+            }
+            
+            .content-section {
+                padding: 1.5rem 1rem;
+                margin: 1rem 0;
+            }
+            
+            .headline {
+                font-size: 1.4rem;
+            }
+            
+            .countdown-container {
+                padding: 0.8rem;
+            }
+            
+            .timer {
+                font-size: 1.4rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .notice-box {
+                padding: 1rem;
+            }
         }
 
-        .limit-notice {
-            font-size: 0.8em;
-            max-width: 500px;
-            margin: 15px auto;
-            padding: 10px;
-            border: 1px dashed #999;
-            background-color: #f9f9f9;
-        }
-
-        /* Navbar styles - making it sticky */
-        .navBar {
-            position: sticky;
-            top: 0;
-            width: 100%;
-            background-color: black;
-            z-index: 1000;
-            border-bottom: 1px solid #eee;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-
-        /* Custom scrollbar styling for better UX */
+        /* Modern scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
 
         ::-webkit-scrollbar-track {
@@ -186,39 +495,11 @@
 
         ::-webkit-scrollbar-thumb {
             background: #888;
-            border-radius: 4px;
+            border-radius: 6px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
             background: #555;
-        }
-
-        /* Media queries for better responsiveness */
-        @media (max-width: 768px) {
-            .loading-container {
-                padding: 10px;
-                font-size: 1.2em;
-            }
-
-            .announcement-text {
-                max-width: 100%;
-            }
-            
-            .btn {
-                padding: 12px 25px;
-                font-size: 16px;
-            }
-            
-            .timer {
-                font-size: 1.3em;
-            }
-        }
-
-        @media (max-height: 700px) {
-            .loading-container {
-                padding-top: 60px;
-                justify-content: flex-start;
-            }
         }
     </style>
 </head>
@@ -226,85 +507,156 @@
 <body>
     <nav class="navBar">
         <ul class="navbarelements">
-          <li class="navitem left">
-            <a class="shop-link" href="./request_access.html">SHOP</a>
-          </li>
-          <li class="navitem name"><a href="./index.html">THRD</a></li>
-          <li class="navitem right"><a href="./our_story.html">ABOUT</a></li>
+            <li class="navitem left">
+                <a class="shop-link" href="./request_access.html">SHOP</a>
+            </li>
+            <li class="navitem name"><a href="./index.html">THRD</a></li>
+            <li class="navitem right"><a href="./our_story.html">ABOUT</a></li>
         </ul>
     </nav>
     
-    <div id="loading" class="loading-container">
-        <div class="announcement-text">
-            <div class="highlight"><span class="emoji">🎉</span> Our Birthday Sale is LIVE! <span class="emoji">🎉</span></div>
+    <div class="main-container">
+        <!-- Pre-launch content -->
+        <section id="pre-launch-content" class="content-section">
+            <div class="highlight"><span class="emoji">👋</span> Hey THRD Members! <span class="emoji">👋</span></div>
             
-            <div class="discount-text">Use code: <span class="promo-code">BIRTHDAY60</span></div>
+            <h1 class="headline"><span class="emoji">🎉</span> Our Biggest Drop Is Almost Here! <span class="emoji">🎉</span></h1>
             
-            <div><span class="emoji">⚡</span> Extra 60% OFF on top of 70% OFF! <span class="emoji">⚡</span></div>
+            <p class="subheading">The moment you've been waiting for—less than 24 hours until we reveal our most exciting collection yet.</p>
             
-            <div class="timer-container">
-                <div id="timer-label">Sale Ends In:</div>
+            <div class="countdown-container">
+                <div class="countdown-label">⏰ Countdown to Launch:</div>
                 <div id="countdown" class="timer">00:00:00</div>
             </div>
             
-            <div class="limit-notice">
-                <div><span class="emoji">⏳</span> Only live for ONE hour!</div>
-                <div>To keep it fair for everyone, there's a limit of 2 products per person.</div>
-                <div>Orders with more than 2 items will be cancelled.</div>
+            <h2 class="benefits-title"><span class="emoji">🚀</span> Stay Ahead of the Crowd</h2>
+            
+            <p class="subheading">We've upgraded our search features to help you find and purchase your favorites faster than ever before!</p>
+            
+            <div class="video-wrapper">
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/lUTM7_Aa0-4?si=ZvXQzXVvmEL8ZdPO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
             </div>
             
-            <div>Go, go, go! <span class="emoji">🛒🔥</span></div>
-            <button class="btn" onclick="manualRedirect()">SHOP NOW</button>
-
-        </div>
+            <div class="notice-box">
+                <div class="notice-title"><span class="warning-icon">⚠️</span> Community Notice</div>
+                <p>If you refuse COD (Cash on Delivery) orders upon delivery, your membership will be revoked and you'll be blacklisted. Please only order items you intend to keep.</p>
+            </div>
+            
+            <div class="benefits-section">
+                <h2 class="benefits-title">Why Choose Prepaid Orders?</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🚚</div>
+                        <div class="benefit-title">Faster Shipping</div>
+                        <p>Prepaid orders are processed and shipped with priority</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🔒</div>
+                        <div class="benefit-title">Safer Deliveries</div>
+                        <p>Secured packaging and tracking for your peace of mind</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">✅</div>
+                        <div class="benefit-title">100% Delivery Rate</div>
+                        <p>Our data confirms prepaid orders are always delivered successfully</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn pulse">I'm Ready for the Drop!</button>
+        </section>
         
+        <!-- Live drop content - shown after countdown ends -->
+        <section id="live-drop-content" class="content-section">
+            <div class="highlight"><span class="emoji">🎊</span> The Drop Is Live Now! <span class="emoji">🎊</span></div>
+            
+            <h1 class="headline"><span class="emoji">🛒</span> Shop Our Exclusive Collection</h1>
+            
+            <p class="subheading">Don't miss your chance to grab our limited edition items before they're gone!</p>
+            
+            <div class="benefits-section">
+                <h2 class="benefits-title">Shopping Benefits</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🔑</div>
+                        <div class="benefit-title">Easy Login</div>
+                        <p>Use your registered WhatsApp phone number</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🌍</div>
+                        <div class="benefit-title">Free Shipping</div>
+                        <p>Enjoy free delivery anywhere in India</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">💸</div>
+                        <div class="benefit-title">Cash on Delivery</div>
+                        <p>Free COD available across India</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🏃‍♂️</div>
+                        <div class="benefit-title">Limited Stocks</div>
+                        <p>Act fast before they're gone!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn pulse" onclick="manualRedirect()">SHOP NOW</button>
+        </section>
     </div>
 
     <script>
-        // Google Apps Script Web App URL for counter increment
-        const URL = "https://shop.thrd.store";
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            if (mobileMenuToggle) {
+                const navbarLinks = document.getElementById('navbar-links');
+                mobileMenuToggle.addEventListener('click', () => {
+                    navbarLinks.classList.toggle('active');
+                });
+            }
+        });
+    
+        // Shop URL
+        const SHOP_URL = "https://www.thrd.store/shop";
 
         // Manual redirect function for button click
         function manualRedirect() {
-            window.open(URL, '_blank');
+            window.open(SHOP_URL, '_blank');
         }
         
         function updateTimer() {
             // Get the current date/time in local time zone
             const now = new Date();
 
-            // Set sale start time to 12:00 AM (midnight) on 2025-03-25 in local time
-            const saleStartTime = new Date('2025-03-25T00:00:00');
+            // Set drop time to 7:00 PM on 2025-04-12 in IST
+            // Convert to local time zone
+            const dropTimeIST = new Date('2025-04-11T17:26:00+05:30');
 
-            // Set sale end time - 1 hour after start time
-            const saleEndTime = new Date('2025-03-25T01:00:00');
-
-            const timerLabel = document.getElementById('timer-label');
             const timerElement = document.getElementById('countdown');
+            const preLaunchContent = document.getElementById('pre-launch-content');
+            const liveDropContent = document.getElementById('live-drop-content');
 
-            // Check sale status
-            if (now < saleStartTime) {
-                // Sale hasn't started
-                timerLabel.textContent = "Sale Starts In:";
-                const timeRemaining = saleStartTime - now;
+            // Check drop status
+            if (now < dropTimeIST) {
+                // Drop hasn't started yet
+                const timeRemaining = dropTimeIST - now;
                 updateTimerDisplay(timeRemaining, timerElement);
-                document.querySelector('.highlight').innerHTML =
-                    '<span class="emoji">🎉</span> Our Birthday Sale Starting Soon! <span class="emoji">🎉</span>';
-            } else if (now < saleEndTime) {
-                // Sale is live
-                timerLabel.textContent = "Sale Ends In:";
-                const timeRemaining = saleEndTime - now;
-                updateTimerDisplay(timeRemaining, timerElement);
-                document.querySelector('.highlight').innerHTML =
-                    '<span class="emoji">🎉</span> Our Birthday Sale is LIVE! <span class="emoji">🎉</span>';
+                
+                // Show pre-launch content
+                preLaunchContent.style.display = "flex";
+                liveDropContent.style.display = "none";
             } else {
-                // Sale has ended
-                timerLabel.textContent = "Sale Has Ended";
+                // Drop is live
                 timerElement.textContent = "00:00:00";
-                document.querySelector('.highlight').innerHTML =
-                    '<span class="emoji">🎉</span> Our Birthday Sale Has Ended <span class="emoji">🎉</span>';
+                
+                // Show live drop content
+                preLaunchContent.style.display = "none";
+                liveDropContent.style.display = "flex";
             }
         }
+        
         // Helper function to format the time display
         function updateTimerDisplay(timeRemaining, timerElement) {
             // Ensure timeRemaining is non-negative
@@ -321,238 +673,36 @@
             timerElement.textContent = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
         }
 
-        // Initial call and continuous update every second
-        // updateTimer();
-        // const timerInterval = setInterval(updateTimer, 1000);
-
-        // Optional: Cleanup (if in a component lifecycle, e.g., React)
-        // Uncomment if needed:
-        // window.addEventListener('unload', () => clearInterval(timerInterval));
-
+        // Update timer every second
         setInterval(updateTimer, 1000);
         
-        // Initialize the timer
-        updateTimer();
+        // Initialize the timer immediately
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTimer();
+        });
+        
+        // Counter API call
+        const COUNTER_URL = 'http://3.111.37.193:5000/api/website/counter?base_name=drop';
+        
+        async function incrementCounter() {
+            try {
+                const response = await fetch(COUNTER_URL, {
+                    method: 'GET'
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Counter updated:', data);
+                } else {
+                    console.error('Error updating counter: Server returned', response.status);
+                }
+            } catch (error) {
+                console.error('Error updating counter:', error);
+            }
+        }
+        
+        // Call when page loads
+        window.addEventListener('load', incrementCounter);
     </script>
-    <script>
-      // Google Apps Script Web App URL for counter increment
-      const COUNTER_URL = 'http://3.111.37.193:5000/api/website/counter?base_name=drop';
-    
-      async function incrementCounter() {
-          try {
-              // Fetch to increment counter
-              const response = await fetch(COUNTER_URL, {
-                  method: 'GET'
-              });
-              
-              const data = await response.json();
-            //   console.log('Counter updated:', data);
-    
-              // Automatic redirect after counter increment
-              // window.open(WHATSAPP_URL, '_blank');
-          } catch (error) {
-              console.error('Error updating counter:', error);
-              // Fallback redirect
-              // window.open(WHATSAPP_URL, '_blank');
-          }
-      }
-    
-      // Call when page loads
-      window.onload = incrementCounter;
-    </script>
-
-
-
-    
 </body>
 </html>
-
-
-
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THRD Drop Live 🔥</title>
-    <link rel="stylesheet" href="./css/membership.css" />
-    <style>
-        /* Text styling for the announcement message */
-.loading-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  font-family: "ClashDisplay", Arial, sans-serif;
-  font-size: 1.4em;
-  color: #222;
-  text-align: center;
-  flex-direction: column;
-  gap: 30px;
-  padding: 20px;
-  line-height: 1.8;
-}
-
-/* Add animation for the announcement text */
-.announcement-text {
-  max-width: 600px;
-  animation: fadeIn 1s ease-in;
-}
-
-/* Style the highlighted text */
-.highlight {
-  font-family: "ClashDisplaySemiBold", Arial, sans-serif;
-  font-size: 1.2em;
-  color: #000;
-  background: linear-gradient(to right, rgba(255,255,255,0), #f5f5f5, rgba(255,255,255,0));
-  padding: 5px 10px;
-  margin: 15px 0;
-  display: inline-block;
-}
-
-/* Add animation for the discount text */
-.discount-text {
-  font-size: 1.4em;
-  font-weight: bold;
-  color: #000;
-  padding: 10px 0;
-  position: relative;
-  display: inline-block;
-}
-
-.discount-text::after {
-  content: '';
-  position: absolute;
-  bottom: 5px;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: #000;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.5s ease;
-}
-
-.discount-text:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-/* Button styling enhancement */
-.btn {
-  background-color: black;
-  color: white;
-  font-family: "ClashDisplay", Arial, sans-serif;
-  font-size: 18px;
-  padding: 15px 35px;
-  border: none;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  margin-top: 15px;
-}
-
-.btn:hover {
-  background-color: white;
-  color: black;
-  border: 2px solid black;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.btn:active {
-  background-color: white;
-  color: black;
-  border-radius: 5px;
-  transform: translateY(0);
-}
-
-/* Added animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Emoji animation */
-.emoji {
-  display: inline-block;
-  animation: bounce 1s infinite alternate;
-}
-
-@keyframes bounce {
-  from { transform: translateY(0); }
-  to { transform: translateY(-5px); }
-}
-    </style>
-</head>
-
-<body>
-    <nav class="navBar">
-        <ul class="navbarelements">
-          <li class="navitem left">
-            <a class="shop-link" href="./request_access.html">SHOP</a>
-          </li>
-          <li class="navitem name"><a href="./index.html">THRD</a></li>
-          <li class="navitem right"><a href="./our_story.html">ABOUT</a></li>
-        </ul>
-    </nav>
-    
-    <div id="loading" class="loading-container">
-        <div class="announcement-text">
-            <div class="highlight">Hurray! Our Next Drop is <span class="emoji">🎉</span> LIVE <span class="emoji">🎉</span></div>
-            
-            <div class="discount-text"><span class="emoji">🔥</span> 70% OFF on ALL Top Brands! <span class="emoji">🔥</span></div>
-            
-            <div>Shop Now – Limited Stocks, Don't Miss Out! <span class="emoji">🛍️</span></div>
-        </div>
-        
-        <button class="btn" onclick="manualRedirect()">SHOP NOW</button>
-    </div>
-
-    <script>
-        // Google Apps Script Web App URL for counter increment
-        const URL = "https://shop.thrd.store";
-
-        // Manual redirect function for button click
-        function manualRedirect() {
-            window.open(URL, '_blank');
-        }
-    </script>
-    <script>
-      // Google Apps Script Web App URL for counter increment
-      const COUNTER_URL = 'https://script.google.com/macros/s/AKfycbwadiT9CIwUWUFORAQxUZopz7hqOHcEPdOVGQz7LEP3PHFJZAgMR2TmWaZzmavn-hLo/exec';
-    
-      async function incrementCounter() {
-          try {
-              // Fetch to increment counter
-              const response = await fetch(COUNTER_URL, {
-                  method: 'GET'
-              });
-              
-              const data = await response.json();
-              console.log('Counter updated:', data);
-    
-              // Automatic redirect after counter increment
-              // window.open(WHATSAPP_URL, '_blank');
-          } catch (error) {
-              console.error('Error updating counter:', error);
-              // Fallback redirect
-              // window.open(WHATSAPP_URL, '_blank');
-          }
-      }
-    
-      // Manual redirect function for button click
-     
-    
-      // Call when page loads
-      window.onload = incrementCounter;
-    </script>
-</body>
-
-
-</html> -->
