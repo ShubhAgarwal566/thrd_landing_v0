@@ -26,9 +26,6 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
-
-    <link rel="stylesheet" href="/css/onboard.css" />
-    <link rel="stylesheet" href="/css/membership.css" />
     
     <title>Welcome to THRD Clothing</title>
     
@@ -59,6 +56,8 @@
     /></noscript>
     <!-- End Meta Pixel Code -->
 
+   <link rel="stylesheet" href="/css/onboard.css" />
+   <!-- <link rel="stylesheet" href="/css/membership.css" /> -->
  
 </head>
 <body>
@@ -133,8 +132,66 @@
         </main>
     </div>
 
-    <a href="https://thrdclothing.notion.site/welcome" class="cta-button" aria-label="Explore onboarding guide">
-        👉 Explore Onboarding Guide →
+    <a href="https://thrdclothing.notion.site/welcome" class="cta-button pulse" aria-label="Explore onboarding guide">
+        <span>👉 Explore Onboarding Guide →</span>
     </a>
+
+    <script>
+        // Add interactive button effects
+        const ctaButton = document.querySelector('.cta-button');
+        
+        // Remove pulse animation after first interaction
+        ctaButton.addEventListener('mouseenter', function() {
+            this.classList.remove('pulse');
+        });
+
+        // Add click ripple effect
+        ctaButton.addEventListener('click', function(e) {
+            const ripple = document.createElement('div');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.style.position = 'absolute';
+            ripple.style.borderRadius = '50%';
+            ripple.style.background = 'rgba(255,255,255,0.4)';
+            ripple.style.transform = 'scale(0)';
+            ripple.style.animation = 'ripple 0.6s linear';
+            ripple.style.pointerEvents = 'none';
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add touch feedback for mobile devices
+        if ('ontouchstart' in window) {
+            ctaButton.addEventListener('touchstart', function() {
+                this.style.transform = 'translateX(-50%) scale(0.98)';
+            });
+
+            ctaButton.addEventListener('touchend', function() {
+                this.style.transform = 'translateX(-50%) scale(1)';
+            });
+        }
+    </script>
 </body>
 </html>
