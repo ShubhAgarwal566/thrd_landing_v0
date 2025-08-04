@@ -1,0 +1,396 @@
+/* Custom Font Import */
+@font-face {
+    font-family: 'SplineSansMono';
+    src: url('SplineSansMono-Italic-VariableFont_wght.ttf') format('truetype-variations');
+    font-style: italic;
+    font-weight: 100 900;
+    font-display: swap;
+}
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Main hero container */
+.hero-container {
+    position: relative;
+    min-height: 100vh;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+/* Background pattern styling */
+.bg-pattern {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.bg-radial-gradient {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(0,0,0,0.05) 0, rgba(0,0,0,0) 70%);
+}
+
+.grid-pattern {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 1rem;
+    opacity: 0.05;
+}
+
+.grid-item {
+    border: 1px solid black;
+}
+
+/* Content container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    z-index: 10;
+    position: relative;
+    width: 100%;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+/* Birthday celebration specific styles */
+.celebration-card {
+    background-color: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.birthday-heading {
+    font-family: 'SplineSansMono', monospace;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: black;
+    line-height: 1.2;
+}
+
+.birthday-emoji {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+.milestone-text {
+    font-size: 1.125rem;
+    color: #4b5563;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.thank-you-text {
+    font-size: 1.125rem;
+    color: #6b7280;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.sale-heading {
+    font-family: 'SplineSansMono', monospace;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 1.35rem;
+    margin-bottom: 1.5rem;
+    color: black;
+}
+
+.sale-details {
+    list-style: none;
+    margin-bottom: 2.5rem;
+    text-align: left;
+}
+
+.sale-details li {
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+    line-height: 1.5;
+}
+
+.detail-emoji {
+    margin-right: 0.5rem;
+}
+
+.sale-highlight {
+    font-weight: 600;
+}
+
+/* Video container */
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    margin: 2rem 0;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Confetti decoration */
+.confetti {
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    opacity: 0.6;
+}
+
+.confetti-1 {
+    top: 10%;
+    left: 10%;
+    background-color: #f472b6;
+    transform: rotate(15deg);
+}
+
+.confetti-2 {
+    top: 15%;
+    right: 15%;
+    background-color: #34d399;
+    transform: rotate(45deg);
+}
+
+.confetti-3 {
+    bottom: 20%;
+    left: 20%;
+    background-color: #60a5fa;
+    transform: rotate(-30deg);
+}
+
+.confetti-4 {
+    bottom: 15%;
+    right: 10%;
+    background-color: #fcd34d;
+    transform: rotate(60deg);
+}
+
+/* Button styling */
+.excited-button {
+    background-color: black;
+    color: white;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    font-size: 1rem;
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+}
+
+.excited-button:hover {
+    background-color: #333;
+    transform: scale(1.05);
+}
+
+.excited-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Balloon animation */
+.balloon {
+    position: absolute;
+    font-size: 2.5rem;
+    animation: float 6s ease-in-out infinite;
+    opacity: 0.8;
+}
+
+.balloon-1 {
+    top: -40px;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.balloon-2 {
+    top: -20px;
+    right: 15%;
+    animation-delay: 1s;
+}
+
+.balloon-3 {
+    top: -30px;
+    left: 30%;
+    animation-delay: 2s;
+}
+
+.balloon-4 {
+    top: -50px;
+    right: 30%;
+    animation-delay: 3s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Abstract shapes */
+.square {
+    display: none;
+    position: absolute;
+    top: 25%;
+    left: 3rem;
+    width: 3rem;
+    height: 3rem;
+    border: 2px solid black;
+    opacity: 0.1;
+    transform: rotate(45deg);
+}
+
+.circle {
+    display: none;
+    position: absolute;
+    bottom: 25%;
+    right: 4rem;
+    width: 5rem;
+    height: 5rem;
+    border: 2px solid black;
+    border-radius: 50%;
+    opacity: 0.1;
+}
+
+/* For font loading failure fallback */
+.font-not-loaded .birthday-heading,
+.font-not-loaded .sale-heading {
+    font-family: monospace;
+    font-style: italic;
+}
+
+/* Responsive navbar */
+.navBar {
+    position: relative;
+    width: 100%;
+    padding: 1rem;
+    z-index: 50;
+}
+
+.navbarelements {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navitem {
+    display: inline-block;
+}
+
+.navitem a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.navitem a:hover {
+    color: #555;
+}
+
+.navitem.name {
+    font-size: 1.5rem;
+}
+
+/* Media queries */
+@media (max-width: 767px) {
+    .celebration-card {
+        padding: 1.5rem;
+    }
+    
+    .birthday-heading {
+        font-size: 1.75rem;
+    }
+    
+    .sale-heading {
+        font-size: 1.25rem;
+    }
+    
+    .sale-details li {
+        font-size: 1rem;
+    }
+    
+    .milestone-text,
+    .thank-you-text {
+        font-size: 1rem;
+    }
+    
+    .navitem.name {
+        font-size: 1.25rem;
+    }
+    
+    .excited-button {
+        padding: 0.875rem 1.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .celebration-card {
+        padding: 2.5rem;
+    }
+    
+    .birthday-heading {
+        font-size: 2.5rem;
+    }
+    
+    .square, .circle {
+        display: block;
+    }
+}
+
+@media (min-width: 1024px) {
+    .birthday-heading {
+        font-size: 3rem;
+    }
+    
+    .sale-heading {
+        font-size: 1.5rem;
+    }
+}

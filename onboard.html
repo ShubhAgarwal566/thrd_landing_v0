@@ -7,24 +7,17 @@
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-    
+   
     <title>Welcome to THRD Clothing</title>
-    
+                                                                                                                                                     
     <!-- Google tag (gtag.js) -->
    
-    <!-- Meta Pixel Code -->
+    <!-- Meta Pixel Code -->                                                                                                                                                                                                                                                                                        
    
     <!-- End Meta Pixel Code -->
 
-   <link rel="stylesheet" href="/css/onboard.css" />
-   <!-- <link rel="stylesheet" href="/css/membership.css" /> -->
- 
+    <link rel="stylesheet" href="/css/onboard.css" />
+    <!-- <link rel="stylesheet" href="/css/membership.css" /> -->
 </head>
 <body>
     <nav class="navBar">
@@ -102,62 +95,7 @@
         <span>👉 Explore Onboarding Guide →</span>
     </a>
 
-    <script>
-        // Add interactive button effects
-        const ctaButton = document.querySelector('.cta-button');
-        
-        // Remove pulse animation after first interaction
-        ctaButton.addEventListener('mouseenter', function() {
-            this.classList.remove('pulse');
-        });
-
-        // Add click ripple effect
-        ctaButton.addEventListener('click', function(e) {
-            const ripple = document.createElement('div');
-            const rect = this.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-            
-            ripple.style.width = ripple.style.height = size + 'px';
-            ripple.style.left = x + 'px';
-            ripple.style.top = y + 'px';
-            ripple.style.position = 'absolute';
-            ripple.style.borderRadius = '50%';
-            ripple.style.background = 'rgba(255,255,255,0.4)';
-            ripple.style.transform = 'scale(0)';
-            ripple.style.animation = 'ripple 0.6s linear';
-            ripple.style.pointerEvents = 'none';
-            
-            this.appendChild(ripple);
-            
-            setTimeout(() => {
-                ripple.remove();
-            }, 600);
-        });
-
-        // Add ripple animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes ripple {
-                to {
-                    transform: scale(2);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Add touch feedback for mobile devices
-        if ('ontouchstart' in window) {
-            ctaButton.addEventListener('touchstart', function() {
-                this.style.transform = 'translateX(-50%) scale(0.98)';
-            });
-
-            ctaButton.addEventListener('touchend', function() {
-                this.style.transform = 'translateX(-50%) scale(1)';
-            });
-        }
-    </script>
+    <!-- External JavaScript file - will be cached after first load -->
+    <script src="/js/animations.js"></script>
 </body>
 </html>
