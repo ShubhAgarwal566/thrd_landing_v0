@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Website Bandwidth Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border-left: 4px solid #4facfe;
+        }
+
+        .section h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group label {
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .input-group input {
+            padding: 10px 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #4facfe;
+            box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
+        }
+
+        .add-page-btn {
+            background: #38ef7d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .add-page-btn:hover {
+            background: #11998e;
+            transform: translateY(-1px);
+        }
+
+        .page-entry {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #e1e5e9;
+        }
+
+        .page-entry h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .remove-btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .calculate-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 30px auto;
+            min-width: 250px;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .results {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+            display: none;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .result-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .result-card h4 {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+
+        .result-card .value {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .breakdown {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .breakdown h4 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .breakdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .warning {
+            background: #ff6b6b;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .tips {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+            border-left: 4px solid #38ef7d;
+        }
+
+        .tips h4 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .tips ul {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .file-drop {
+            border: 2px dashed #4facfe;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            background: rgba(79, 172, 254, 0.05);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .file-drop:hover {
+            background: rgba(79, 172, 254, 0.1);
+        }
+
+        .file-drop.dragover {
+            background: rgba(79, 172, 254, 0.2);
+            border-color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌐 Complete Website Bandwidth Calculator</h1>
+            <p>Calculate bandwidth for your entire project - all pages, assets, and traffic patterns</p>
+        </div>
+
+        <div class="content">
+            <!-- Shared Assets Section -->
+            <div class="section">
+                <h3>🗂️ Shared Assets (Cached across all pages)</h3>
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label>Total CSS Files Size (KB)</label>
+                        <input type="number" id="totalCssSize" value="25" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <label>Total JavaScript Files Size (KB)</label>
+                        <input type="number" id="totalJsSize" value="15" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <label>Shared Images/Icons (KB)</label>
+                        <input type="number" id="sharedImagesSize" value="50" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <label>Other Shared Assets (KB)</label>
+                        <input type="number" id="otherSharedSize" value="10" step="0.1">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Individual Pages Section -->
+            <div class="section">
+                <h3>📄 Individual Pages</h3>
+                <div id="pagesContainer">
+                    <!-- Pages will be added here -->
+                </div>
+                <button class="add-page-btn" onclick="addPage()">+ Add Another Page</button>
+            </div>
+
+            <!-- Traffic Patterns Section -->
+            <div class="section">
+                <h3>📈 Traffic Patterns</h3>
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label>Monthly Unique Visitors</label>
+                        <input type="number" id="monthlyVisitors" value="10000">
+                    </div>
+                    <div class="input-group">
+                        <label>Average Pages Per Session</label>
+                        <input type="number" id="pagesPerSession" value="3" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <label>Return Visitor Rate (%)</label>
+                        <input type="number" id="returnRate" value="30" max="100">
+                    </div>
+                    <div class="input-group">
+                        <label>Sessions Per Visitor/Month</label>
+                        <input type="number" id="sessionsPerVisitor" value="2" step="0.1">
+                    </div>
+                </div>
+            </div>
+
+            <!-- File Upload Section -->
+            <div class="section">
+                <h3>📁 Quick Analysis (Optional)</h3>
+                <div class="file-drop" id="fileDrop">
+                    <p>📤 Drop your project files here or click to browse</p>
+                    <p style="font-size: 14px; opacity: 0.7; margin-top: 10px;">This will analyze file sizes locally in your browser</p>
+                    <input type="file" id="fileInput" multiple style="display: none;" accept=".html,.css,.js,.png,.jpg,.jpeg,.gif,.webp">
+                </div>
+                <div id="fileAnalysis" style="display: none; margin-top: 15px;"></div>
+            </div>
+
+            <button class="calculate-btn" onclick="calculateProjectBandwidth()">
+                🚀 Calculate Total Project Bandwidth
+            </button>
+
+            <div id="results" class="results">
+                <h3>📊 Complete Bandwidth Analysis</h3>
+                <div class="results-grid" id="resultsGrid"></div>
+                <div class="breakdown" id="breakdown"></div>
+            </div>
+
+            <div class="tips">
+                <h4>💡 Project-Wide Optimization Tips</h4>
+                <ul>
+                    <li><strong>Consolidate CSS/JS:</strong> Fewer files = fewer requests = better caching</li>
+                    <li><strong>Optimize images globally:</strong> Use WebP, compress all images to 80-85% quality</li>
+                    <li><strong>Implement lazy loading:</strong> Load images only when needed</li>
+                    <li><strong>Use HTTP/2:</strong> Netlify supports this automatically</li>
+                    <li><strong>Minify all assets:</strong> Use build tools to compress HTML/CSS/JS</li>
+                    <li><strong>Set aggressive caching:</strong> Static assets should cache for 1 year</li>
+                    <li><strong>Consider a CDN:</strong> For global traffic, serve assets from multiple locations</li>
+                    <li><strong>Monitor regularly:</strong> Set up alerts for unusual bandwidth spikes</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let pageCount = 0;
+        let pages = [];
+
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function addPage() {
+            pageCount++;
+            const pageDiv = document.createElement('div');
+            pageDiv.className = 'page-entry';
+            pageDiv.id = `page-${pageCount}`;
+            
+            pageDiv.innerHTML = `
+                <h4>
+                    Page ${pageCount}
+                    <button class="remove-btn" onclick="removePage(${pageCount})">Remove</button>
+                </h4>
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label>Page Name</label>
+                        <input type="text" id="pageName-${pageCount}" placeholder="e.g., homepage, about, contact" value="Page ${pageCount}">
+                    </div>
+                    <div class="input-group">
+                        <label>HTML Size (KB)</label>
+                        <input type="number" id="pageHtml-${pageCount}" value="4" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <label>Page-Specific Images (KB)</label>
+                        <input type="number" id="pageImages-${pageCount}" value="100" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <label>Monthly Views (%)</label>
+                        <input type="number" id="pageViews-${pageCount}" value="${pageCount === 1 ? 40 : 20}" max="100" step="1">
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('pagesContainer').appendChild(pageDiv);
+        }
+
+        function removePage(pageId) {
+            const pageElement = document.getElementById(`page-${pageId}`);
+            if (pageElement) {
+                pageElement.remove();
+            }
+        }
+
+        function setupFileUpload() {
+            const fileDrop = document.getElementById('fileDrop');
+            const fileInput = document.getElementById('fileInput');
+
+            fileDrop.addEventListener('click', () => fileInput.click());
+
+            fileDrop.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                fileDrop.classList.add('dragover');
+            });
+
+            fileDrop.addEventListener('dragleave', () => {
+                fileDrop.classList.remove('dragover');
+            });
+
+            fileDrop.addEventListener('drop', (e) => {
+                e.preventDefault();
+                fileDrop.classList.remove('dragover');
+                handleFiles(e.dataTransfer.files);
+            });
+
+            fileInput.addEventListener('change', (e) => {
+                handleFiles(e.target.files);
+            });
+        }
+
+        function handleFiles(files) {
+            const analysis = document.getElementById('fileAnalysis');
+            let totalSize = 0;
+            let fileTypes = {
+                html: { count: 0, size: 0 },
+                css: { count: 0, size: 0 },
+                js: { count: 0, size: 0 },
+                images: { count: 0, size: 0 },
+                other: { count: 0, size: 0 }
+            };
+
+            Array.from(files).forEach(file => {
+                totalSize += file.size;
+                const ext = file.name.split('.').pop().toLowerCase();
+                
+                if (ext === 'html') {
+                    fileTypes.html.count++;
+                    fileTypes.html.size += file.size;
+                } else if (ext === 'css') {
+                    fileTypes.css.count++;
+                    fileTypes.css.size += file.size;
+                } else if (ext === 'js') {
+                    fileTypes.js.count++;
+                    fileTypes.js.size += file.size;
+                } else if (['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg'].includes(ext)) {
+                    fileTypes.images.count++;
+                    fileTypes.images.size += file.size;
+                } else {
+                    fileTypes.other.count++;
+                    fileTypes.other.size += file.size;
+                }
+            });
+
+            // Auto-populate fields based on analysis
+            if (fileTypes.css.size > 0) {
+                document.getElementById('totalCssSize').value = (fileTypes.css.size / 1024).toFixed(1);
+            }
+            if (fileTypes.js.size > 0) {
+                document.getElementById('totalJsSize').value = (fileTypes.js.size / 1024).toFixed(1);
+            }
+
+            analysis.innerHTML = `
+                <h4>📊 File Analysis Results</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 15px;">
+                    <div style="background: white; padding: 12px; border-radius: 8px; text-align: center;">
+                        <strong>HTML Files</strong><br>
+                        ${fileTypes.html.count} files<br>
+                        ${formatBytes(fileTypes.html.size)}
+                    </div>
+                    <div style="background: white; padding: 12px; border-radius: 8px; text-align: center;">
+                        <strong>CSS Files</strong><br>
+                        ${fileTypes.css.count} files<br>
+                        ${formatBytes(fileTypes.css.size)}
+                    </div>
+                    <div style="background: white; padding: 12px; border-radius: 8px; text-align: center;">
+                        <strong>JS Files</strong><br>
+                        ${fileTypes.js.count} files<br>
+                        ${formatBytes(fileTypes.js.size)}
+                    </div>
+                    <div style="background: white; padding: 12px; border-radius: 8px; text-align: center;">
+                        <strong>Images</strong><br>
+                        ${fileTypes.images.count} files<br>
+                        ${formatBytes(fileTypes.images.size)}
+                    </div>
+                </div>
+                <p style="margin-top: 15px; text-align: center;"><strong>Total Project Size: ${formatBytes(totalSize)}</strong></p>
+            `;
+            analysis.style.display = 'block';
+        }
+
+        function calculateProjectBandwidth() {
+            // Get shared assets
+            const totalCssSize = parseFloat(document.getElementById('totalCssSize').value) || 0;
+            const totalJsSize = parseFloat(document.getElementById('totalJsSize').value) || 0;
+            const sharedImagesSize = parseFloat(document.getElementById('sharedImagesSize').value) || 0;
+            const otherSharedSize = parseFloat(document.getElementById('otherSharedSize').value) || 0;
+
+            const sharedAssetsSize = (totalCssSize + totalJsSize + sharedImagesSize + otherSharedSize) * 1024; // Convert to bytes
+
+            // Get traffic data
+            const monthlyVisitors = parseInt(document.getElementById('monthlyVisitors').value) || 0;
+            const pagesPerSession = parseFloat(document.getElementById('pagesPerSession').value) || 1;
+            const returnRate = parseFloat(document.getElementById('returnRate').value) || 0;
+            const sessionsPerVisitor = parseFloat(document.getElementById('sessionsPerVisitor').value) || 1;
+
+            // Collect all pages
+            const allPages = [];
+            const pageElements = document.querySelectorAll('.page-entry');
+            let totalPageViewsPercent = 0;
+
+            pageElements.forEach((pageEl, index) => {
+                const pageId = pageEl.id.split('-')[1];
+                const pageName = document.getElementById(`pageName-${pageId}`).value;
+                const htmlSize = parseFloat(document.getElementById(`pageHtml-${pageId}`).value) || 0;
+                const imageSize = parseFloat(document.getElementById(`pageImages-${pageId}`).value) || 0;
+                const viewsPercent = parseFloat(document.getElementById(`pageViews-${pageId}`).value) || 0;
+
+                totalPageViewsPercent += viewsPercent;
+
+                allPages.push({
+                    name: pageName,
+                    htmlSize: htmlSize * 1024, // Convert to bytes
+                    imageSize: imageSize * 1024,
+                    viewsPercent: viewsPercent,
+                    totalPageSize: (htmlSize + imageSize) * 1024
+                });
+            });
+
+            if (allPages.length === 0) {
+                alert('Please add at least one page to calculate bandwidth!');
+                return;
+            }
+
+            // Calculate visitor types and sessions
+            const newVisitors = monthlyVisitors * (1 - returnRate / 100);
+            const returningVisitors = monthlyVisitors * (returnRate / 100);
+            const totalMonthlySessions = monthlyVisitors * sessionsPerVisitor;
+
+            // Calculate bandwidth for each scenario
+            let newVisitorBandwidth = 0;
+            let returningVisitorBandwidth = 0;
+
+            // New visitors download shared assets once + pages based on traffic distribution
+            newVisitorBandwidth += newVisitors * sharedAssetsSize; // Shared assets downloaded once
+
+            // Calculate page views based on distribution
+            allPages.forEach(page => {
+                const monthlyPageViews = (totalMonthlySessions * pagesPerSession) * (page.viewsPercent / 100);
+                const newVisitorPageViews = monthlyPageViews * (newVisitors / monthlyVisitors);
+                const returningVisitorPageViews = monthlyPageViews * (returningVisitors / monthlyVisitors);
+
+                newVisitorBandwidth += newVisitorPageViews * page.totalPageSize;
+                returningVisitorBandwidth += returningVisitorPageViews * page.totalPageSize;
+            });
+
+            const totalMonthlyBandwidth = newVisitorBandwidth + returningVisitorBandwidth;
+            const annualBandwidth = totalMonthlyBandwidth * 12;
+
+            // Netlify calculations
+            const netlifyFreeTier = 100 * 1024 * 1024 * 1024; // 100GB
+            const netlifyOverage = Math.max(0, totalMonthlyBandwidth - netlifyFreeTier);
+            const overageCost = netlifyOverage > 0 ? (netlifyOverage / (1024 * 1024 * 1024)) * 55 : 0; // $55 per GB
+
+            // Calculate average page size
+            const avgPageSize = allPages.reduce((sum, page) => sum + page.totalPageSize, 0) / allPages.length;
+            const firstVisitSize = sharedAssetsSize + avgPageSize;
+
+            // Display results
+            displayResults({
+                sharedAssetsSize,
+                avgPageSize,
+                firstVisitSize,
+                totalMonthlyBandwidth,
+                annualBandwidth,
+                netlifyOverage,
+                overageCost,
+                newVisitorBandwidth,
+                returningVisitorBandwidth,
+                allPages,
+                totalMonthlySessions,
+                newVisitors,
+                returningVisitors
+            });
+        }
+
+        function displayResults(data) {
+            const resultsDiv = document.getElementById('results');
+            const resultsGrid = document.getElementById('resultsGrid');
+            const breakdown = document.getElementById('breakdown');
+
+            let warningHtml = '';
+            if (data.netlifyOverage > 0) {
+                warningHtml = `
+                    <div class="warning">
+                        ⚠️ You'll exceed Netlify's free tier by ${formatBytes(data.netlifyOverage)}<br>
+                        Estimated overage cost: <strong>$${data.overageCost.toFixed(2)}/month</strong>
+                    </div>
+                `;
+            }
+
+            resultsGrid.innerHTML = `
+                <div class="result-card">
+                    <h4>Shared Assets Size</h4>
+                    <div class="value">${formatBytes(data.sharedAssetsSize)}</div>
+                </div>
+                <div class="result-card">
+                    <h4>Avg Page Size</h4>
+                    <div class="value">${formatBytes(data.avgPageSize)}</div>
+                </div>
+                <div class="result-card">
+                    <h4>First Visit Size</h4>
+                    <div class="value">${formatBytes(data.firstVisitSize)}</div>
+                </div>
+                <div class="result-card">
+                    <h4>Monthly Bandwidth</h4>
+                    <div class="value">${formatBytes(data.totalMonthlyBandwidth)}</div>
+                </div>
+                <div class="result-card">
+                    <h4>Annual Bandwidth</h4>
+                    <div class="value">${formatBytes(data.annualBandwidth)}</div>
+                </div>
+                <div class="result-card">
+                    <h4>Netlify Free Remaining</h4>
+                    <div class="value">${formatBytes(Math.max(0, 100 * 1024 * 1024 * 1024 - data.totalMonthlyBandwidth))}</div>
+                </div>
+            `;
+
+            // Page breakdown
+            let pageBreakdown = '<h4>📄 Page-by-Page Bandwidth</h4>';
+            data.allPages.forEach(page => {
+                const monthlyPageViews = (data.totalMonthlySessions * parseFloat(document.getElementById('pagesPerSession').value)) * (page.viewsPercent / 100);
+                const pageBandwidth = monthlyPageViews * page.totalPageSize;
+                
+                pageBreakdown += `
+                    <div class="breakdown-item">
+                        <span>${page.name} (${page.viewsPercent}% of traffic)</span>
+                        <span>${formatBytes(pageBandwidth)}/month</span>
+                    </div>
+                `;
+            });
+
+            pageBreakdown += `
+                <div class="breakdown-item" style="border-top: 2px solid rgba(255,255,255,0.3); margin-top: 15px; padding-top: 15px;">
+                    <span><strong>New Visitors Bandwidth</strong></span>
+                    <span><strong>${formatBytes(data.newVisitorBandwidth)}</strong></span>
+                </div>
+                <div class="breakdown-item">
+                    <span><strong>Returning Visitors Bandwidth</strong></span>
+                    <span><strong>${formatBytes(data.returningVisitorBandwidth)}</strong></span>
+                </div>
+            `;
+
+            breakdown.innerHTML = pageBreakdown + warningHtml;
+            resultsDiv.style.display = 'block';
+            resultsDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Initialize with default pages
+        function initializeDefaultPages() {
+            // Add common pages for THRD Clothing
+            addPage(); // Page 1
+            document.getElementById('pageName-1').value = 'Welcome/Home';
+            document.getElementById('pageViews-1').value = '35';
+
+            addPage(); // Page 2
+            document.getElementById('pageName-2').value = 'Shop/Request Access';
+            document.getElementById('pageViews-2').value = '25';
+
+            addPage(); // Page 3
+            document.getElementById('pageName-3').value = 'About/Our Story';
+            document.getElementById('pageViews-3').value = '20';
+
+            addPage(); // Page 4
+            document.getElementById('pageName-4').value = 'Other Pages';
+            document.getElementById('pageViews-4').value = '20';
+        }
+
+        // Initialize everything
+        window.addEventListener('load', function() {
+            initializeDefaultPages();
+            setupFileUpload();
+            calculateProjectBandwidth(); // Show initial calculation
+        });
+    </script>
+</body>
+</html>
