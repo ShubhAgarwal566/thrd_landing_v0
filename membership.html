@@ -1,39 +1,50 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>THRD — Dhurandar Members-Only Drop (13 Aug • 7:00 PM IST)</title>
+  <title>THRD — Members-Only Drop (22 Sep • 7:00 PM IST)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Members-only Dhurandar Drop — COACH lands. OFF-WHITE returns. Live on 13 Aug, 7:00 PM IST. Sneak peek + Add to Calendar + final CTAs." />
+  <meta name="description" content="Oversized tees lead the drop. AMI Paris launches. Subtle retro vibe. Members-only. Sneak peek + Calendar + CTAs." />
   <meta name="theme-color" content="#0b0b0c" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <!-- Groovy headline + clean body + Silkscreen for THRD logo -->
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Montserrat:wght@600;800&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
   <style>
+    /* ====== SUBTLE RETRO THEME ====== */
     :root{
       --bg:#0b0b0c;
-      --card:#121317;
-      --fg:#f6f7fb;
+      --card:#111016;
+      --fg:#f7f9ff;
       --muted:#b9bcc7;
-      --accent:#18e07f;         /* NEW */
-      --accent-2:#6ae1ff;       /* BACK */
-      --accent-3:#ffd166;       /* COMEBACK */
-      --chip:#1c1e25;
+      --border:#272634;
+
+      /* toned accents (no rainbow buttons) */
+      --accent:#ffd166;   /* warm highlight */
+      --accent2:#7ac6ff;  /* cool highlight */
+
+      /* UI */
+      --chip:#191a21;
       --pill:#ffffff;
       --pill-fg:#111217;
-      --border:#22242c;
-      --cta-glow:0 8px 24px rgba(24,224,127,.22);
       --radius:16px;
+      --shadow:0 18px 40px rgba(0,0,0,.35);
     }
+
     *{box-sizing:border-box}
     html,body{margin:0;background:var(--bg);color:var(--fg);font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
     a{color:inherit;text-decoration:none}
 
-    /* NAV — perfectly centered THRD, equal sides */
-    .navBar{position:sticky;top:0;z-index:50;background:rgba(11,11,12,.75);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+    /* Background: soft retro wash (very subtle) */
+    body{
+      background:
+        radial-gradient(920px 600px at 10% -6%, rgba(255,209,102,.12), transparent 55%),
+        radial-gradient(820px 560px at 92% 5%, rgba(122,198,255,.10), transparent 55%),
+        linear-gradient(180deg,#0b0b0c 0%, #0c0c10 100%);
+    }
+
+    /* ====== NAV (center THRD, equal sides; Silkscreen logo) ====== */
+    .navBar{position:sticky;top:0;z-index:50;background:rgba(11,11,12,.78);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
     .navbarelements{
       display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
       list-style:none;margin:0;padding:12px 16px;max-width:1100px;margin-inline:auto;gap:8px;
@@ -42,111 +53,168 @@
     .navitem.name{justify-self:center}
     .navitem.right{justify-self:end}
     .navitem a{font-weight:700;letter-spacing:.04em}
-    .navitem.name a{font-family:Montserrat;font-weight:800;font-size:clamp(22px,3.2vw,28px);letter-spacing:.02em}
+    .navitem.name a{
+      font-family:Silkscreen, monospace;
+      font-weight:700;
+      font-size:clamp(22px,3.2vw,30px);
+      letter-spacing:.02em;
+    }
 
     .container{max-width:1100px;margin:0 auto;padding:18px 16px 120px}
 
-    /* Non-sticky announcement — centered, two lines */
-    .announce{background:linear-gradient(90deg,var(--card),#0f1014);border:1px solid var(--border);padding:12px 14px;margin:14px 0;border-radius:12px;text-align:center}
-    .announce .line1{font-weight:700}
-    .announce a{display:inline-block;margin-top:6px;color:var(--accent);font-weight:700}
+    /* Announcement (centered, two lines) */
+    .announce{
+      margin:14px 0;border-radius:14px;padding:12px 16px;text-align:center;
+      border:1px solid var(--border);
+      background:linear-gradient(180deg,#121118,#0f0f14);
+    }
+    .announce .line1{font-weight:800;letter-spacing:.02em}
+    .announce a{display:inline-block;margin-top:6px;font-weight:800;color:#e9f3ff}
 
-    /* HERO */
+    /* ====== HERO ====== */
     .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:center;margin-top:10px}
     @media (max-width:960px){.hero{grid-template-columns:1fr}}
-    .hero-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;position:relative;overflow:hidden}
-    .eyebrow{font-size:.9rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
-    .hero h1{font-family:Montserrat;font-size:2.1rem;line-height:1.15;margin:6px 0 10px}
-    .hero p.sub{color:var(--muted);margin:6px 0 16px}
 
-    /* TIMER — four ticks (no ring) */
+    .hero-card{
+      position:relative;overflow:hidden;padding:24px;border-radius:var(--radius);
+      border:1px solid var(--border);
+      background:linear-gradient(180deg,#111016,#0e0e12);
+      box-shadow:var(--shadow);
+    }
+    .hero-card::before{
+      /* extremely subtle swirl */
+      content:"";position:absolute;inset:-20%;
+      background:radial-gradient(60% 40% at 70% 20%, rgba(255,209,102,.15), transparent 50%),
+                 radial-gradient(50% 40% at 30% 80%, rgba(122,198,255,.12), transparent 60%);
+      filter:blur(40px);z-index:-1;opacity:.6;
+    }
+    .eyebrow{font-size:.9rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+    .hero h1{
+      font-family:Montserrat, sans-serif;
+      font-weight:800;
+      font-size:clamp(26px,3.6vw,38px);
+      line-height:1.08;margin:6px 0 10px;
+      letter-spacing:.01em;
+    }
+    .hero p.sub{color:#e8e9f6;margin:6px 0 14px;font-weight:600}
+
+    /* Timer (4 boxes) */
     .timer{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 10px}
-    .tick{background:#15161a;border:1px solid rgba(255,255,255,.08);padding:10px 12px;border-radius:12px;text-align:center;min-width:82px}
-    .tick strong{font-family:Montserrat;display:block;font-size:22px}
+    .tick{
+      min-width:88px;text-align:center;border-radius:14px;padding:10px 12px;
+      background:linear-gradient(180deg,#151421,#0f0e15);
+      border:1px solid rgba(255,255,255,.12)
+    }
+    .tick strong{font-family:Montserrat, sans-serif;display:block;font-size:22px;letter-spacing:.02em}
     .tick span{font-size:12px;color:var(--muted)}
-    .unlock{font-size:.95rem;color:var(--muted);margin-top:6px}
+    .unlock{font-size:.95rem;color:#e0e2ef;margin-top:6px;opacity:.9}
 
+    /* Buttons — SUBTLE */
     .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border-radius:999px;font-weight:700;border:1px solid transparent;transition:.2s transform,.2s opacity}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border-radius:999px;font-weight:800;border:1px solid transparent;transition:.2s transform,.2s opacity,.2s box-shadow}
     .btn:hover{transform:translateY(-1px)}
-    .btn-primary{background:var(--pill);color:var(--pill-fg);box-shadow:var(--cta-glow)}
-    .btn-outline{border-color:#2a2d36}
+    .btn-primary{background:var(--pill);color:var(--pill-fg);box-shadow:0 8px 20px rgba(0,0,0,.22)}
+    .btn-outline{border:1px solid #2b2b35;background:#14141a;color:#e9ecf5}
     .meta{font-size:.9rem;color:var(--muted);margin-top:10px}
 
-    /* VIDEO */
-    .video{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+    /* Video */
+    .video{
+      border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);
+      background:linear-gradient(180deg,#0f0f15,#0f0f15);
+    }
     .video .frame{position:relative;padding-top:177.77%} /* 9:16 */
     .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:12px}
     .video .caption{font-size:.9rem;color:var(--muted);padding:10px 14px}
 
-    /* STRIPE */
-    .stripe{margin:22px 0;background:linear-gradient(90deg,#0f1115, #121317);border:1px solid var(--border);border-radius:14px;padding:14px 16px;text-align:center}
+    /* Stripe */
+    .stripe{
+      margin:22px 0;border-radius:14px;padding:14px 16px;text-align:center;
+      border:1px dashed rgba(255,255,255,.18);
+      background:linear-gradient(180deg,#12111a,#13131b);
+    }
+    .stripe b{font-family:Montserrat, sans-serif;color:#f1f2ff}
 
-    /* CATEGORIES */
-    .section-title{font-family:Montserrat;font-weight:800;letter-spacing:.02em;margin:20px 0 12px}
+    /* Categories */
+    .section-title{
+      font-family:Montserrat, sans-serif;font-weight:800;letter-spacing:.01em;margin:20px 0 12px;
+      font-size:clamp(22px,3.2vw,28px)
+    }
     .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
     @media (max-width:900px){.grid{grid-template-columns:1fr}}
-    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
-    .card h3{margin:0 0 6px;font-size:1.05rem}
-    .card p{margin:8px 0 10px;color:var(--muted)}
-    .chips{display:flex;flex-wrap:wrap;gap:8px}
-    .pill{background:var(--chip);border:1px solid #2a2d36;padding:6px 10px;border-radius:999px;font-size:.88rem;white-space:nowrap}
-    .pill.new{border-color:var(--accent);color:var(--accent)}
-    .pill.back{border-color:var(--accent-2);color:var(--accent-2)}
-    .pill.cb{border-color:var(--accent-3);color:var(--accent-3)}
-    .pill.sport{border-color:#a88bff;color:#cbb7ff}
-    .pill.denim{border-color:#7bd3ff;color:#bfe9ff}
-    .pill.polo{border-color:#9cff8e;color:#e6ffe2}
-    .pill.tee{border-color:#ff9ad9;color:#ffd8f0}
-    .pill.shirt{border-color:#ffd18b;color:#ffe8c4}
 
-    /* WARNING */
-    .warning{margin:2px 0 0;padding:14px;border-radius:14px;background:linear-gradient(180deg,#171206,#15100b);border:1px solid rgba(255,220,130,.25)}
+    .card{
+      border-radius:16px;padding:16px;position:relative;overflow:hidden;
+      border:1px solid var(--border);
+      background:linear-gradient(180deg,#12111a,#111118);
+    }
+    .card h3{margin:0 0 6px;font-size:1.05rem;font-weight:800}
+    .card p{margin:8px 0 10px;color:#dfe1ee}
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .pill{background:var(--chip);border:1px solid rgba(255,255,255,.14);padding:6px 10px;border-radius:999px;font-size:.88rem;white-space:nowrap;font-weight:700}
+    .pill.new{border-color:var(--accent);color:#fff0c6}
+    .pill.back{border-color:#f2a5c4;color:#ffe0ec}
+    .pill.cb{border-color:#f6e6a6;color:#fff6cd}
+    .pill.sport{border-color:var(--accent2);color:#d7f0ff}
+    .pill.denim{border-color:#9fd9ff;color:#e8f6ff}
+    .pill.polo{border-color:#b8ffb0;color:#efffef}
+    .pill.tee{border-color:#ffc3e6;color:#fff0fb}
+    .pill.shirt{border-color:#ffd5a7;color:#fff0dc}
+    .pill.sock{border-color:#c9ffb8;color:#efffec}
+
+    /* Warning */
+    .warning{
+      margin:2px 0 0;padding:14px;border-radius:14px;
+      background:linear-gradient(180deg,#1a1509,#130f07);
+      border:1px dashed rgba(255,220,130,.45)
+    }
     .warning strong{color:#ffdf6a}
 
-    /* FINAL CTA DOCK */
-    .final-cta{margin:28px 0 0;padding:18px;border-radius:16px;background:linear-gradient(180deg,#0f1514,#0d0f12);border:1px solid var(--border);text-align:center}
-    .final-cta h3{margin:0 0 10px}
+    /* Final CTA Dock */
+    .final-cta{
+      margin:28px 0 0;padding:18px;border-radius:16px;text-align:center;
+      border:1px solid var(--border);
+      background:linear-gradient(180deg,#0f1514,#0d1014);
+    }
+    .final-cta h3{margin:0 0 10px;font-weight:800}
     .cta-stack{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
     .fine{color:var(--muted);font-size:.9rem;margin-top:6px}
 
-    /* FLOATING CTA that merges */
+    /* Floating CTA that merges */
     .floating-cta{position:fixed;right:16px;bottom:16px;z-index:60;display:flex;gap:8px;align-items:center;transition:.28s transform,.28s opacity}
-    .floating-cta .btn{box-shadow:var(--cta-glow)}
+    .floating-cta .btn{box-shadow:0 10px 24px rgba(0,0,0,.25)}
     body.merged .floating-cta{opacity:0;transform:translateY(12px) scale(.95);pointer-events:none}
 
-    /* CONFETTI */
+    /* Confetti canvas */
     #confetti{position:fixed;inset:0;pointer-events:none;z-index:70}
 
-    /* FOOTER */
+    /* Footer */
     footer{margin:22px 0;color:var(--muted);font-size:.9rem;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+    footer a{font-weight:800;color:#f1f2ff}
   </style>
 </head>
 <body>
   <!-- NAV -->
-  <nav class="navBar">
+  <nav class="navBar" aria-label="Primary">
     <ul class="navbarelements">
-        <li class="navitem left">
-            <a class="shop-link" href="./request_access.html">SHOP</a>
-        </li>
-        <li class="navitem name"><a href="./index.html">THRD</a></li>
-        <li class="navitem right"><a href="./our_story.html">ABOUT</a></li>
+      <li class="navitem left"><a class="shop-link" href="./request_access.html" aria-label="Shop / Request Access">SHOP</a></li>
+      <li class="navitem name"><a href="./index.html" aria-label="THRD Home">THRD</a></li>
+      <li class="navitem right"><a href="./our_story.html" aria-label="About THRD">ABOUT</a></li>
     </ul>
-</nav>
+  </nav>
 
   <div class="container">
-    <!-- Announcement (centered, two lines) -->
+    <!-- Announcement -->
     <div class="announce" role="region" aria-label="Announcement">
       <div class="line1">👀 Sneak peek is LIVE</div>
-      <a href="https://instagram.com/thrd.store"  rel="noopener" aria-label="Open Instagram sneak peek">instagram.com/thrd.store</a>
+      <a href="https://instagram.com/thrd.store" rel="noopener" aria-label="Open Instagram sneak peek">instagram.com/thrd.store</a>
     </div>
 
     <!-- HERO -->
     <section class="hero">
       <div class="hero-card">
         <div class="eyebrow">Members-only drop</div>
-        <h1>COACH lands. OFF-WHITE returns.</h1>
-        <p class="sub">THRD Dhurandar Drop — <b>13 Aug • 7:00 PM IST</b></p>
+        <h1>Oversized takes over. AMI Paris lands.</h1>
+        <p class="sub"><b>THRD Members-Only Drop</b> — <span id="heroDate">22 Sep • 7:00 PM IST</span></p>
 
         <!-- 4-box timer -->
         <div class="timer" id="timer" aria-live="polite">
@@ -155,21 +223,21 @@
           <div class="tick"><strong id="m">00</strong><span>Mins</span></div>
           <div class="tick"><strong id="s">00</strong><span>Secs</span></div>
         </div>
-        <div class="unlock">Unlocks on <b>13 Aug, 7:00 PM IST</b></div>
+        <div class="unlock" id="unlockLine">Unlocks on <b>22 Sep, 7:00 PM IST</b></div>
 
         <div class="cta-row">
-          <a class="btn btn-primary" href="https://instagram.com/thrd.store"  rel="noopener" aria-label="Watch Sneak Peek on Instagram">👀 Watch Sneak Peek</a>
-          <a class="btn btn-outline" id="calLink"  rel="noopener" aria-label="Add to Google Calendar">📅 Add to Calendar</a>
+          <a class="btn btn-primary" href="https://instagram.com/thrd.store" rel="noopener" aria-label="Watch Sneak Peek on Instagram">👀 Watch Sneak Peek</a>
+          <a class="btn btn-outline" id="calLink" rel="noopener" aria-label="Add to Google Calendar">📅 Add to Calendar</a>
         </div>
-        <div class="meta">Membership required to shop. <a href="./request_access.html" style="color:var(--accent);font-weight:700">Request access</a>.</div>
+        <div class="meta">Membership required to shop. <a href="/request_access">Request access</a>.</div>
       </div>
 
       <div class="video">
         <div class="frame">
           <!-- Replace VIDEO_ID if needed -->
           <iframe
-          src="https://www.youtube.com/embed/NjL7DP6Q-TE"
-            title="THRD Dhurandar Drop Sneak Peek"
+            src="https://www.youtube.com/embed/Pf9Jio5NwRk"
+            title="THRD Drop Sneak Peek"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin"
             allowfullscreen></iframe>
@@ -179,84 +247,119 @@
     </section>
 
     <div class="stripe">
-      <b>August = Dhurandar.</b> Main Character Energy only. Limited units — once it’s gone, it’s gone.
+      <b>Subtle retro, golden-hour energy.</b> Limited units — once it’s gone, it’s gone.
     </div>
 
     <!-- WHAT’S IN THIS DROP -->
     <h2 class="section-title">What’s in this drop</h2>
     <div class="grid">
-      <!-- Coach debut -->
+      <!-- Oversized spotlight -->
       <article class="card">
-        <h3>Coach debuts.</h3>
-        <p>POLOs + round necks — clean, premium, unmistakable.</p>
-        <div class="chips"><span class="pill new">Coach (NEW)</span></div>
+        <h3>Oversized tees — main event</h3>
+        <p>Hero fits, relaxed drape.</p>
+        <div class="chips">
+          <span class="pill tee">AllSaints</span><span class="pill tee">Diesel</span>
+          <span class="pill back">Off-White</span><span class="pill tee">Stüssy</span>
+          <span class="pill tee">Karl Lagerfeld</span><span class="pill tee">GANT</span>
+        </div>
+      </article>
+
+      <!-- New launches -->
+      <article class="card">
+        <h3>New launches</h3>
+        <p>First time & fresh drops.</p>
+        <div class="chips">
+          <span class="pill new">AMI Paris (NEW)</span>
+          <span class="pill new">Coach</span>
+          <span class="pill new">Emporio Armani</span>
+        </div>
       </article>
 
       <!-- Polos -->
       <article class="card">
-        <h3>Polos that do the talking.</h3>
+        <h3>Polos that do the talking</h3>
         <p>From boardroom to brunch.</p>
         <div class="chips">
-          <span class="pill polo">AX</span><span class="pill polo">Boss</span><span class="pill polo">CK</span>
-          <span class="pill polo">Diesel</span><span class="pill polo">Hackett</span><span class="pill polo">Karl Lagerfeld</span>
-          <span class="pill polo">Lacoste</span><span class="pill polo">Michael Kors</span>
-          <span class="pill polo">Ralph Lauren</span><span class="pill polo">Tommy</span><span class="pill polo">True Religion</span>
-          <span class="pill new">+ Coach</span>
+          <span class="pill polo">AX</span><span class="pill polo">Hugo Boss</span>
+          <span class="pill polo">Coach</span><span class="pill polo">Diesel</span>
+          <span class="pill polo">Emporio Armani</span><span class="pill polo">Fred Perry</span>
+          <span class="pill polo">Hackett</span><span class="pill polo">Karl Lagerfeld</span>
+          <span class="pill polo">Lacoste</span><span class="pill polo">Nike</span>
+          <span class="pill polo">Paul Smith</span><span class="pill polo">Polo Ralph Lauren</span>
+          <span class="pill polo">Rare Rabbit</span>
         </div>
       </article>
 
-      <!-- Jerseys -->
+      <!-- Round necks / graphics -->
       <article class="card">
-        <h3>Jerseys are back.</h3>
-        <p>RM &amp; City heat, more clubs incoming.</p>
+        <h3>Round necks / graphics</h3>
+        <p>Statement tees. Zero effort.</p>
         <div class="chips">
-          <span class="pill sport">Real Madrid</span><span class="pill sport">Man City</span>
-          <span class="pill sport">Nike</span><span class="pill sport">Adidas</span>
-          <span class="pill sport">Puma</span><span class="pill sport">Under Armour</span>
+          <span class="pill tee">AllSaints</span><span class="pill tee">AX</span><span class="pill tee">Hugo Boss</span>
+          <span class="pill tee">CK</span><span class="pill tee">Diesel</span>
+          <span class="pill tee">Fear of God Essentials</span>
+          <span class="pill tee">Karl Lagerfeld</span><span class="pill tee">Lacoste</span>
+          <span class="pill back">Off-White</span><span class="pill tee">Ralph Lauren</span>
+          <span class="pill tee">Nike</span><span class="pill tee">Puma</span>
+          <span class="pill tee">Rare Rabbit</span><span class="pill tee">Reebok</span>
+          <span class="pill tee">Stüssy</span><span class="pill tee">Superdry</span><span class="pill tee">Tommy</span>
         </div>
       </article>
 
-      <!-- Round necks / Graphic tees -->
+      <!-- Denim & lowers -->
       <article class="card">
-        <h3>Graphic tees, heavy drip.</h3>
-        <p>Statement fits. Zero effort.</p>
-        <div class="chips">
-          <span class="pill tee">AllSaints</span><span class="pill tee">AX</span><span class="pill tee">Boss</span>
-          <span class="pill tee">Diesel</span><span class="pill tee">Emporio Armani</span><span class="pill tee">Fred Perry</span>
-          <span class="pill cb">Guess (comeback)</span><span class="pill tee">Hugo</span><span class="pill tee">Jordan</span>
-          <span class="pill tee">Karl Lagerfeld</span><span class="pill tee">Lacoste</span><span class="pill tee">Michael Kors</span>
-          <span class="pill back">Off-White (BACK)</span><span class="pill tee">Nike</span><span class="pill tee">Superdry</span>
-          <span class="pill tee">Tommy</span><span class="pill tee">Under Armour</span>
-        </div>
-      </article>
-
-      <!-- Denim & Pants (fixed brand: Polo Ralph Lauren) -->
-      <article class="card">
-        <h3>Denim &amp; cargos that work hard.</h3>
+        <h3>Denim & lowers</h3>
         <p>Fits that stay in rotation.</p>
         <div class="chips">
-          <span class="pill denim">CK</span><span class="pill denim">Karl Lagerfeld</span><span class="pill denim">Levi’s</span>
-          <span class="pill denim">Polo Ralph Lauren</span><span class="pill denim">Tommy</span>
-          <span class="pill denim">Zara</span><span class="pill denim">Uniqlo</span>
-          <span class="pill denim">Cargos/Pants — Zara</span><span class="pill denim">Uniqlo</span><span class="pill denim">CK</span>
+          <span class="pill denim">Calvin Klein</span><span class="pill denim">Diesel</span>
+          <span class="pill denim">GANT</span><span class="pill denim">GAS</span>
+          <span class="pill denim">H&M</span><span class="pill denim">Jack & Jones</span>
+          <span class="pill denim">Lacoste</span><span class="pill denim">Ralph Lauren</span>
+          <span class="pill denim">Tommy Hilfiger</span><span class="pill denim">Zara</span>
         </div>
       </article>
 
       <!-- Shirts -->
       <article class="card">
-        <h3>Shirts, dialed up.</h3>
+        <h3>Shirts, dialed up</h3>
         <p>Sharp, clean, ready.</p>
         <div class="chips">
-          <span class="pill shirt">Boss</span><span class="pill shirt">Brooks Brothers</span><span class="pill shirt">Gant</span>
-          <span class="pill shirt">Hackett</span><span class="pill shirt">Karl Lagerfeld</span><span class="pill shirt">Lacoste</span>
-          <span class="pill shirt">Ralph Lauren</span><span class="pill shirt">Rare Rabbit</span><span class="pill shirt">Tommy</span>
+          <span class="pill shirt">AllSaints</span><span class="pill shirt">AMI Paris</span>
+          <span class="pill shirt">AX</span><span class="pill shirt">CK</span>
+          <span class="pill shirt">GANT</span><span class="pill shirt">Hackett</span>
+          <span class="pill shirt">Lacoste</span><span class="pill shirt">Ralph Lauren</span>
+          <span class="pill shirt">Superdry</span><span class="pill shirt">Tommy</span>
+          <span class="pill shirt">Zara</span>
+        </div>
+      </article>
+
+      <!-- Socks drop -->
+      <article class="card">
+        <h3>Socks drop (new)</h3>
+        <p>Premium pairs. Everyday flex.</p>
+        <div class="chips">
+          <span class="pill sock">AMI Paris</span><span class="pill sock">Calvin Klein</span>
+          <span class="pill sock">Karl Lagerfeld</span><span class="pill sock">Kenzo</span>
+          <span class="pill sock">Lacoste</span><span class="pill sock">Nike</span>
+          <span class="pill sock">Tommy Hilfiger</span>
+        </div>
+      </article>
+
+      <!-- Sports & jerseys -->
+      <article class="card">
+        <h3>Sports & jerseys</h3>
+        <p>Pitch to pavement.</p>
+        <div class="chips">
+          <span class="pill sport">Adidas</span><span class="pill sport">Nike</span>
+          <span class="pill sport">Puma</span><span class="pill sport">Under Armour</span>
+          <span class="pill sport">Football Jerseys</span>
         </div>
       </article>
 
       <!-- Warning -->
       <aside class="warning card" role="note" aria-label="Stock warning">
-        <p><strong>⚠ Limited stock:</strong> things disappear in hours. Don’t be the “sold out already?” person.</p>
-        <p>Drop: <strong>13 Aug</strong> • <strong>7:00 PM (IST)</strong></p>
+        <p><strong>⚠ Limited stock:</strong> sizes vanish fast. Avoid the “sold out already?” moment.</p>
+        <p><span id="warnDate">Drop at 7:00 PM (IST)</span></p>
       </aside>
     </div>
 
@@ -265,20 +368,20 @@
       <h3>Set your alarm. Then tap this.</h3>
       <div class="cta-stack">
         <a class="btn btn-primary" href="https://instagram.com/thrd.store" rel="noopener" aria-label="Watch Sneak Peek (footer)">👀 Watch Sneak Peek</a>
-        <a class="btn btn-outline" id="waBottom"  rel="noopener" aria-label="I’m in for this drop on WhatsApp">🔥 I’m in for this drop</a>
+        <a class="btn btn-outline" id="waBottom" rel="noopener" aria-label="I’m in for this drop on WhatsApp">🔥 I’m in for this drop</a>
       </div>
       <div class="fine">P.S. Add to Calendar above so you don’t miss the 7 PM rush.</div>
     </section>
 
     <footer>
       <span>Curated.</span><span>Verified.</span><span>Members-only.</span>
-      <a href="./request_access.html" style="color:var(--accent);font-weight:700">Request access</a>
+      <a href="/request_access">Request access</a>
     </footer>
   </div>
 
   <!-- Floating sticky pill (merges at footer) -->
   <div class="floating-cta" id="floatingCta">
-    <a class="btn btn-primary" href="https://instagram.com/thrd.store"  rel="noopener" aria-label="Watch Sneak Peek (floating)">▶ Watch Sneak Peek</a>
+    <a class="btn btn-primary" href="https://instagram.com/thrd.store" rel="noopener" aria-label="Watch Sneak Peek (floating)">▶ Watch Sneak Peek</a>
     <a class="btn btn-outline" href="#final" aria-label="Scroll to final CTAs">⬇ Scroll to CTAs</a>
   </div>
 
@@ -286,73 +389,66 @@
   <canvas id="confetti"></canvas>
 
   <script>
-    // https://api.whatsapp.com/send/?phone=918198845888&text=Lets+GOO&type=phone_number&app_absent=0
-    // ====== CONFIG ======
-    const DROP_ISO = '2025-08-13T19:00:00+05:30'; // 13 Aug 2025 — 7:00 PM IST
-    const WA_NUMBER = '918198845888'; // TODO: replace with your WhatsApp number
-    const WA_TEXT = "Lets GOO";
-    const WA_URL = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_TEXT)}`;
+    // ====== CONFIG: Drop datetime (IST) & WhatsApp ======
+    // Set to 22 Sep 2025, 7:00 PM IST
+    const DROP_ISO = '2025-09-22T19:00:00+05:30';
+    const WA_NUMBER = '918198845888'; // your WhatsApp number
+    const WA_TEXT   = "Let's go — ping me before the drop!";
+    const WA_URL    = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_TEXT)}`;
     document.getElementById('waBottom').href = WA_URL;
+
+    // ====== Date helpers ======
+    function monthAbbr(i){return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][i];}
+    function formatIST(dt){
+      const d = dt.getDate();
+      const m = monthAbbr(dt.getMonth());
+      const t = dt.toLocaleString('en-IN',{hour:'numeric',minute:'2-digit',hour12:true,timeZone:'Asia/Kolkata'}).toUpperCase();
+      return `${d} ${m}, ${t} IST`;
+    }
+    const target = new Date(DROP_ISO);
+    document.getElementById('heroDate').textContent  = formatIST(target);
+    document.getElementById('unlockLine').innerHTML  = `Unlocks on <b>${formatIST(target)}</b>`;
+    document.getElementById('warnDate').textContent  = `Drop at ${target.toLocaleString('en-IN',{hour:'numeric',minute:'2-digit',hour12:true,timeZone:'Asia/Kolkata'}).toUpperCase()} (IST)`;
 
     // ====== TIMER (four boxes) ======
     (function(){
-      const target = new Date(DROP_ISO).getTime();
-      const dEl = document.getElementById('d');
-      const hEl = document.getElementById('h');
-      const mEl = document.getElementById('m');
-      const sEl = document.getElementById('s');
+      const t = target.getTime();
+      const dEl = document.getElementById('d'), hEl = document.getElementById('h'), mEl = document.getElementById('m'), sEl = document.getElementById('s');
       let firedTen=false;
-
-      function pad(n){return String(n).padStart(2,'0')}
+      const pad = n => String(n).padStart(2,'0');
       function tick(){
-        const now = Date.now();
-        let diff = Math.max(0, target - now);
+        const now = Date.now(); let diff = Math.max(0, t - now);
         const days = Math.floor(diff / 86400000); diff -= days*86400000;
         const hours = Math.floor(diff / 3600000); diff -= hours*3600000;
         const mins = Math.floor(diff / 60000); diff -= mins*60000;
         const secs = Math.floor(diff / 1000);
+        dEl.textContent = pad(days); hEl.textContent = pad(hours); mEl.textContent = pad(mins); sEl.textContent = pad(secs);
 
-        dEl.textContent = pad(days);
-        hEl.textContent = pad(hours);
-        mEl.textContent = pad(mins);
-        sEl.textContent = pad(secs);
-
-        // light confetti at T-10s
-        const leftSecs = Math.floor((target - now)/1000);
-        if(leftSecs === 10 && !firedTen){ firedTen=true; launchConfetti(250); }
-
-        if(leftSecs <= 0){
-          dEl.textContent='00';hEl.textContent='00';mEl.textContent='00';sEl.textContent='00';
-          launchConfetti(700);
-          clearInterval(iv);
-        }
+        const leftSecs = Math.floor((t - now)/1000);
+        if(leftSecs === 10 && !firedTen){ firedTen=true; launchConfetti(200); }
+        if(leftSecs <= 0){ dEl.textContent='00'; hEl.textContent='00'; mEl.textContent='00'; sEl.textContent='00'; launchConfetti(500); clearInterval(iv); }
       }
       tick();
       const iv = setInterval(tick,1000);
     })();
 
-    // ====== ADD TO CALENDAR (Google, 7–8 PM IST) ======
+    // ====== ADD TO CALENDAR (Google, builds from DROP_ISO) ======
     (function(){
-      // 7:00 PM IST == 13:30 UTC
-      const start = '20250813T133000Z';
-      const end   = '20250813T143000Z'; // 1-hour window
-      const text  = encodeURIComponent('THRD Dhurandar Drop — Live');
-      const details = encodeURIComponent('Members-only drop goes live at 7:00 PM IST. Be ready.');
-      const location = encodeURIComponent('thrd.store');
-      const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=${text}&dates=${start}/${end}&details=${details}&location=${location}&sf=true&output=xml`;
+      const start = new Date(DROP_ISO);
+      const end   = new Date(start.getTime() + 60*60*1000); // +1h
+      const toGC = (d)=>`${d.getUTCFullYear()}${String(d.getUTCMonth()+1).padStart(2,'0')}${String(d.getUTCDate()).padStart(2,'0')}T${String(d.getUTCHours()).padStart(2,'0')}${String(d.getUTCMinutes()).padStart(2,'0')}00Z`;
+      const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('THRD Members-Only Drop — Live')}&dates=${toGC(start)}/${toGC(end)}&details=${encodeURIComponent('Members-only drop goes live. Be ready.')}&location=${encodeURIComponent('thrd.store')}&sf=true&output=xml`;
       document.getElementById('calLink').href = url;
     })();
 
     // ====== FLOATING CTA MERGE ======
     const dock = document.getElementById('final');
     const obs = new IntersectionObserver(entries=>{
-      entries.forEach(entry=>{
-        document.body.classList.toggle('merged', entry.isIntersecting);
-      });
+      entries.forEach(entry=>{ document.body.classList.toggle('merged', entry.isIntersecting); });
     },{threshold:.25});
     obs.observe(dock);
 
-    // ====== CONFETTI (lightweight) ======
+    // ====== CONFETTI (muted colors) ======
     const canvas = document.getElementById('confetti');
     const ctx = canvas.getContext('2d');
     let confettiPieces = [];
@@ -361,39 +457,31 @@
 
     function makePiece(){
       const w = canvas.width, h = canvas.height;
+      const colors = ['#ffd166','#7ac6ff','#ffffff','#f1f2ff','#cbd5e1'];
       return {
-        x: Math.random()*w,
-        y: -20,
-        r: Math.random()*8+4,
-        c: `hsl(${Math.floor(Math.random()*360)} 90% 60%)`,
-        vx: (Math.random()-0.5)*2,
-        vy: Math.random()*2+2,
-        rot: Math.random()*Math.PI,
-        vr: (Math.random()-0.5)*0.2
+        x: Math.random()*w, y: -20,
+        r: Math.random()*8+4, c: colors[(Math.random()*colors.length)|0],
+        vx: (Math.random()-0.5)*2, vy: Math.random()*2+2,
+        rot: Math.random()*Math.PI, vr: (Math.random()-0.5)*0.2
       };
     }
     function step(){
       ctx.clearRect(0,0,canvas.width,canvas.height);
       confettiPieces.forEach(p=>{
         p.x += p.vx; p.y += p.vy; p.rot += p.vr;
-        ctx.save();
-        ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+        ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
         ctx.fillStyle = p.c; ctx.fillRect(-p.r, -p.r/2, p.r*2, p.r);
         ctx.restore();
       });
       confettiPieces = confettiPieces.filter(p=>p.y < canvas.height+30);
       if(confettiPieces.length>0) requestAnimationFrame(step);
     }
-    function launchConfetti(count=200){
-      for(let i=0;i<count;i++) confettiPieces.push(makePiece());
-      step();
-    }
+    function launchConfetti(count=140){ for(let i=0;i<count;i++) confettiPieces.push(makePiece()); step(); }
     // fire on first load
-    launchConfetti(180);
+    launchConfetti(120);
   </script>
 
-  <!-- Optional Netlify RUM
-  <script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="..."></script>
-  -->
+  <!-- Optional Netlify RUM -->
+  <!-- <script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="..."></script> -->
 </body>
 </html>
