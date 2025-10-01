@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
              const inviteLink = snapshotData.data.invite_link;
 
              // Update participant count
-             await fetch(`https://sdv7rb0e37.execute-api.ap-south-1.amazonaws.com/s1/snapshot?group_id=${snapshotData.data.group_id}`, {
+             await fetch(`https://psf5kjuexa.execute-api.ap-south-1.amazonaws.com/s1/snapshot?group_id=${snapshotData.data.group_id}`, {
                  method: 'PUT',
                  headers: { 'Content-Type': 'application/json' }
              });
