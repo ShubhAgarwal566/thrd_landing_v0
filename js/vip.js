@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
          try {
              // Fetch group snapshot
-             const snapshotRes = await fetch('https://sdv7rb0e37.execute-api.ap-south-1.amazonaws.com/s1/snapshot', {
+             const snapshotRes = await fetch('https://psf5kjuexa.execute-api.ap-south-1.amazonaws.com/s1/snapshot', {
                  method: 'GET',
                  headers: { 'Content-Type': 'application/json' }
              });
