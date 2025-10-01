@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>THRD Fortune — Win Your Tee Deal</title>
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="/css/spin.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Montserrat:wght@600;800&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+
+<style>
+  .navitem.left{justify-self:start}
+    .navitem.name{justify-self:center}
+    .navitem.right{justify-self:end}
+    .navitem a{font-weight:700;letter-spacing:.04em;color:white;text-decoration: none;}
+    .navitem.name a{
+      font-family:Silkscreen, monospace;
+      font-weight:700;
+      font-size:clamp(22px,3.2vw,30px);
+      letter-spacing:.02em;
+    }
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+    <div class="bar">
+      <div class="brand">
+        <div class="navitem name"><a href="./index.html" aria-label="THRD Home">THRD</a></div>
+
+        <h1>Festive Fortune</h1>
+      </div>
+      <div class="credit-pill" id="creditPill" title="Your credits">
+        <span class="coin" aria-hidden="true"></span>
+        <span id="credits">—</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="screen">
+      <!-- LOGIN -->
+      <section id="login" class="card">
+        <div class="stack">
+          <div class="row">
+            <div>
+              <strong>Play & win up to 60% OFF</strong>
+              <br>
+
+              <small class="help">Enter your mobile Number to start with <b>10,000 credits</b> (10 spins).</small>
+            </div>
+            <!-- <a id="resetDemo" class="link tiny" href="#">Reset (dev)</a> -->
+          </div>
+          <div>
+            <label for="phone">Mobile number</label>
+            <input id="phone" type="tel" inputmode="numeric" placeholder="10-digit Number" maxlength="10" autocomplete="tel" />
+          </div>
+          <button id="startBtn" class="btn">Start Playing</button>
+          <small class="help">By continuing you agree to the <a class="link" href="#" id="showDetails">rules</a>. You'll get your coupon via scratch card when you win.</small>
+        </div>
+      </section>
+
+      <!-- GAME -->
+      <section id="game" class="card hide" aria-live="polite">
+        <div class="row">
+          <div>
+            <div class="muted tiny">Logged in as</div>
+            <div id="phoneEcho" style="letter-spacing:0.3px;font-weight:700"></div>
+          </div>
+          <div class="right">
+            <span class="pill" id="spinsLeftPill">Spins left: —</span>
+            <button id="changeNum" class="btn secondary">Change</button>
+          </div>
+        </div>
+        <div class="machine" aria-label="Slot machine">
+          <img class="sticker s1" alt="" src="data:image/svg+xml;utf8,<?xml version='1.0'?><svg xmlns='http://www.w3.org/2000/svg' width='54' height='54' viewBox='0 0 64 64'><circle cx='32' cy='32' r='30' fill='%23ffffff'/><text x='32' y='40' text-anchor='middle' font-family='Segoe UI' font-size='34' fill='black'>★</text></svg>">
+          <img class="sticker s2" alt="" src="data:image/svg+xml;utf8,<?xml version='1.0'?><svg xmlns='http://www.w3.org/2000/svg' width='54' height='54'><rect width='64' height='64' rx='16' fill='%23e8e7e7'/><text x='32' y='40' text-anchor='middle' font-family='Segoe UI' font-size='34' fill='black'>⚡</text></svg>">
+          <img class="sticker s3" alt="" src="data:image/svg+xml;utf8,<?xml version='1.0'?><svg xmlns='http://www.w3.org/2000/svg' width='54' height='54'><rect width='64' height='64' rx='16' fill='%23ffffff'/><text x='32' y='40' text-anchor='middle' font-family='Segoe UI' font-size='34' fill='%23000000'>👕</text></svg>">
+
+          <div class="banner">
+            <span class="spark">🎁</span> Spin to win <b>25% / 30% / 40% / 50% / 60% OFF</b>
+          </div>
+
+          <div class="reel-wrap">
+            <div class="reel"><div class="strip" id="r0"></div></div>
+            <div class="reel"><div class="strip" id="r1"></div></div>
+            <div class="reel"><div class="strip" id="r2"></div></div>
+            <div class="chrome">
+              <span class="pill">Cost: 1,000 credits</span>
+              <span class="pill">Jackpot: 👕 👕 👕</span>
+            </div>
+          </div>
+
+          <div class="controls">
+            <div class="row">
+              <button id="spinBtn" class="spin-btn">SPIN</button>
+            </div>
+            <div class="pill" id="spinsPill">10/10</div>
+          </div>
+
+          <div class="status" id="status">Ready.</div>
+          <div class="message" id="message"></div>
+        </div>
+
+        <!-- Persistent Coupon Display -->
+        <div id="persistentCoupon" class="coupon-display hide">
+          <div class="title">
+            <span>🎉</span> Your Prize
+          </div>
+          <div class="discount">You won <span id="persistentPct">—</span>% OFF!</div>
+          <div class="code-box">
+            <div class="code-label">Coupon Code</div>
+            <div class="code-value" id="persistentCode">—</div>
+          </div>
+          <div class="actions">
+            <button class="btn copy" id="persistentCopyBtn">Copy Code</button>
+            <a class="btn shop" id="persistentShopBtn" href="#" target="_blank" rel="noopener">Shop Now</a>
+          </div>
+          <small class="help">Works on full-price items at checkout. One-time use.</small>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="confetti" class="confetti" aria-hidden="true"></div>
+
+  <!-- SCRATCH MODAL -->
+  <div id="scratchModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="scTitle">
+    <div class="sheet">
+      <div class="row">
+        <div>
+          <div class="badge">Scratch & reveal</div>
+          <div id="scTitle" class="coupon-line">Your THRD prize</div>
+          <div class="sub">Scratch the card below to see your coupon.</div>
+        </div>
+        <button id="closeScratch" class="btn secondary">Close</button>
+      </div>
+      <div class="coupon-card" id="couponCard">
+        <div id="couponInner">
+          <div class="coupon-line">Congrats! You won <span class="highlight" id="winPct">—</span>% OFF</div>
+          <div class="sub">Coupon: <b id="couponCode">—</b></div>
+          <div class="cta-row">
+            <button class="btn copy" id="copyBtn">Copy code</button>
+            <a class="btn shop" id="shopBtn" href="#" target="_blank" rel="noopener">Shop Now</a>
+          </div>
+          <small class="help">Works on full-price items at checkout. One-time use.</small>
+        </div>
+        <canvas id="scratch"></canvas>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<script src="/js/spin.js">
+
+</script>
+</body>
+</html>
