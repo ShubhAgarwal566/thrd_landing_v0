@@ -289,29 +289,26 @@
   }
 
 
-  /* Reel Wrap */
-  .reel-wrap {
-    position: relative;
-    padding: 12px;
-    padding-bottom: 50px;
-    border-radius: var(--radius);
-    background: var(--surface);
-    border: 1px solid var(--border);
-    overflow: visible;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-  }
+.reel-wrap {
+  position: relative;
+  padding: 12px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  overflow: hidden; /* ensure only 3 rows show */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
 
-   .reel {
-    position: relative;
-    height: calc(var(--slotSize) * 3.2);
-    border-radius: 12px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    overflow: hidden;
-  }
-
+.reel {
+  position: relative;
+  height: calc(var(--slotSize) * 3); /* exactly 3 rows */
+  border-radius: 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
   .strip {
     position: absolute;
     left: 0;
@@ -348,21 +345,18 @@
     transform: scale(1.1);
   }
 
-  .chrome {
-    position: absolute;
-    bottom: 8px;
-    left: 8px;
-    right: 8px;
-    border-radius: 10px;
-    padding: 8px 12px;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
+
+/* Chrome now outside reels */
+.chrome {
+  position: static;
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  border: none;
+  background: transparent;
+}
 
   .pill {
     border: 1px solid var(--border);
@@ -811,3 +805,25 @@
       font-size: 18px;
     }
   }
+
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  :root {
+    --slotSize: 80px; /* smaller rows but still 3 fit */
+  }
+
+  .reel {
+    height: calc(var(--slotSize) * 3); /* force 3 rows */
+  }
+}
+
+@media (max-width: 360px) {
+  :root {
+    --slotSize: 70px;
+  }
+
+  .reel {
+    height: calc(var(--slotSize) * 3); /* force 3 rows */
+  }
+}
