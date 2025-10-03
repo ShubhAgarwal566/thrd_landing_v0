@@ -288,23 +288,24 @@
     50% { transform: scale(1.2) rotate(10deg); }
   }
 
+
   /* Reel Wrap */
   .reel-wrap {
     position: relative;
-    height: calc(var(--slotSize) * 3 + 24px);
     padding: 12px;
+    padding-bottom: 50px;
     border-radius: var(--radius);
     background: var(--surface);
     border: 1px solid var(--border);
-    overflow: hidden;
+    overflow: visible;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 8px;
   }
 
-  .reel {
+   .reel {
     position: relative;
-    height: calc(var(--slotSize) * 3);
+    height: calc(var(--slotSize) * 3.2);
     border-radius: 12px;
     background: var(--bg);
     border: 1px solid var(--border);
