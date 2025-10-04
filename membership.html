@@ -1,487 +1,552 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>THRD — Members-Only Drop (22 Sep • 7:00 PM IST)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Oversized tees lead the drop. AMI Paris launches. Subtle retro vibe. Members-only. Sneak peek + Calendar + CTAs." />
-  <meta name="theme-color" content="#0b0b0c" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Groovy headline + clean body + Silkscreen for THRD logo -->
-  <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Montserrat:wght@600;800&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+
+  <title>THRD Festive Fortune — Oct 7, 6 PM IST</title>
+  <meta name="description" content="THRD Clothing · Festive Fortune · Flat 70% off for all. Win up to +60% extra. Everyone wins. Starts Oct 7, 6 PM IST." />
+  <meta name="theme-color" content="#ffffff" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="THRD Festive Fortune — Flat 70% + up to 60% extra" />
+  <meta property="og:description" content="THRD’s biggest event of the year. Starts Oct 7, 6 PM IST. Everyone wins." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/festive-fortune-hero.png" />
+  <meta property="og:url" content="https://yourdomain.com/thrd-festive-fortune" />
+
+  <!-- Fonts: Silkscreen (logo), Inter (UI) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Silkscreen:wght@700&display=swap" rel="stylesheet">
+
   <style>
-    /* ====== SUBTLE RETRO THEME ====== */
     :root{
-      --bg:#0b0b0c;
-      --card:#111016;
-      --fg:#f7f9ff;
-      --muted:#b9bcc7;
-      --border:#272634;
+      /* Light, modern base with a hint of peach */
+      --bg:#fffdfc;                /* near-white */
+      --bg-soft:#fff7f3;           /* very light peach */
+      --panel:#ffffff;
+      --text:#1b1b1b;
+      --muted:#6c6c6c;
+      --border:#ece6e2;
 
-      /* toned accents (no rainbow buttons) */
-      --accent:#ffd166;   /* warm highlight */
-      --accent2:#7ac6ff;  /* cool highlight */
-
-      /* UI */
-      --chip:#191a21;
-      --pill:#ffffff;
-      --pill-fg:#111217;
-      --radius:16px;
-      --shadow:0 18px 40px rgba(0,0,0,.35);
+      /* Accents (kept from artwork but toned) */
+      --red:#b84528;
+      --green:#2f5a47;
+      --gold:#d49a30;
     }
 
     *{box-sizing:border-box}
-    html,body{margin:0;background:var(--bg);color:var(--fg);font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-    a{color:inherit;text-decoration:none}
-
-    /* Background: soft retro wash (very subtle) */
+    html,body{height:100%}
     body{
-      background:
-        radial-gradient(920px 600px at 10% -6%, rgba(255,209,102,.12), transparent 55%),
-        radial-gradient(820px 560px at 92% 5%, rgba(122,198,255,.10), transparent 55%),
-        linear-gradient(180deg,#0b0b0c 0%, #0c0c10 100%);
+      margin:0;
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial,Helvetica,sans-serif;
+      color:var(--text);
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 80%, var(--bg) 100%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
 
-    /* ====== NAV (center THRD, equal sides; Silkscreen logo) ====== */
-    .navBar{position:sticky;top:0;z-index:50;background:rgba(11,11,12,.78);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
-    .navbarelements{
-      display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
-      list-style:none;margin:0;padding:12px 16px;max-width:1100px;margin-inline:auto;gap:8px;
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:10;
+      background:rgba(255,255,255,.92);
+      border-bottom:1px solid var(--border);
+      backdrop-filter:saturate(120%) blur(6px);
     }
-    .navitem.left{justify-self:start}
-    .navitem.name{justify-self:center}
-    .navitem.right{justify-self:end}
-    .navitem a{font-weight:700;letter-spacing:.04em}
-    .navitem.name a{
-      font-family:Silkscreen, monospace;
-      font-weight:700;
-      font-size:clamp(22px,3.2vw,30px);
-      letter-spacing:.02em;
+    .nav{
+      max-width:1100px; margin:0 auto;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:.9rem .95rem;
     }
-
-    .container{max-width:1100px;margin:0 auto;padding:18px 16px 120px}
-
-    /* Announcement (centered, two lines) */
-    .announce{
-      margin:14px 0;border-radius:14px;padding:12px 16px;text-align:center;
+    .logo{
+      font-family:"Silkscreen",system-ui,monospace;
+      font-weight:700; font-size:1.35rem; letter-spacing:.4px;
+      color:var(--text);
+    }
+    .pill{
+      font-size:.82rem; padding:.45rem .7rem; border-radius:999px;
+      background:#0f0f0f0d;
       border:1px solid var(--border);
-      background:linear-gradient(180deg,#121118,#0f0f14);
+      color:#1f1f1f;
+      display:flex; align-items:center; gap:.5rem;
     }
-    .announce .line1{font-weight:800;letter-spacing:.02em}
-    .announce a{display:inline-block;margin-top:6px;font-weight:800;color:#e9f3ff}
+    .pill svg{width:16px;height:16px;color:#1f1f1f}
 
-    /* ====== HERO ====== */
-    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:center;margin-top:10px}
-    @media (max-width:960px){.hero{grid-template-columns:1fr}}
+    /* Layout container */
+    .wrap{max-width:1100px;margin:0 auto;padding:1rem .9rem}
 
-    .hero-card{
-      position:relative;overflow:hidden;padding:24px;border-radius:var(--radius);
+    /* Artwork (your provided image) */
+    .art{
       border:1px solid var(--border);
-      background:linear-gradient(180deg,#111016,#0e0e12);
-      box-shadow:var(--shadow);
+      border-radius:18px; overflow:hidden; background:var(--panel);
+      box-shadow:0 10px 24px rgba(0,0,0,.06);
     }
-    .hero-card::before{
-      /* extremely subtle swirl */
-      content:"";position:absolute;inset:-20%;
-      background:radial-gradient(60% 40% at 70% 20%, rgba(255,209,102,.15), transparent 50%),
-                 radial-gradient(50% 40% at 30% 80%, rgba(122,198,255,.12), transparent 60%);
-      filter:blur(40px);z-index:-1;opacity:.6;
-    }
-    .eyebrow{font-size:.9rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
-    .hero h1{
-      font-family:Montserrat, sans-serif;
-      font-weight:800;
-      font-size:clamp(26px,3.6vw,38px);
-      line-height:1.08;margin:6px 0 10px;
-      letter-spacing:.01em;
-    }
-    .hero p.sub{color:#e8e9f6;margin:6px 0 14px;font-weight:600}
+    .art img{width:100%;height:auto;display:block}
 
-    /* Timer (4 boxes) */
-    .timer{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 10px}
-    .tick{
-      min-width:88px;text-align:center;border-radius:14px;padding:10px 12px;
-      background:linear-gradient(180deg,#151421,#0f0e15);
-      border:1px solid rgba(255,255,255,.12)
+    /* Leadline */
+    .leadline{
+      margin:.85rem .15rem 1.2rem;
+      font-size:1rem; line-height:1.55; color:#2b2b2b; text-align:center;
     }
-    .tick strong{font-family:Montserrat, sans-serif;display:block;font-size:22px;letter-spacing:.02em}
-    .tick span{font-size:12px;color:var(--muted)}
-    .unlock{font-size:.95rem;color:#e0e2ef;margin-top:6px;opacity:.9}
+    .leadline strong{font-weight:800}
+    .leadline .sep{padding:0 .4rem;color:#9b9b9b}
 
-    /* Buttons — SUBTLE */
-    .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border-radius:999px;font-weight:800;border:1px solid transparent;transition:.2s transform,.2s opacity,.2s box-shadow}
-    .btn:hover{transform:translateY(-1px)}
-    .btn-primary{background:var(--pill);color:var(--pill-fg);box-shadow:0 8px 20px rgba(0,0,0,.22)}
-    .btn-outline{border:1px solid #2b2b35;background:#14141a;color:#e9ecf5}
-    .meta{font-size:.9rem;color:var(--muted);margin-top:10px}
+    /* Countdown */
+    .countdown{
+      display:grid; gap:.6rem; justify-items:center; text-align:center;
+      border:1px solid var(--border); border-radius:16px;
+      background:var(--panel);
+      padding:1rem .9rem;
+      box-shadow:0 4px 14px rgba(0,0,0,.04);
+    }
+    .timer{display:flex;gap:.5rem;font-variant-numeric:tabular-nums}
+    .tile{
+      min-width:4.1rem; padding:.6rem; border-radius:12px;
+      background:var(--bg-soft);
+      border:1px solid var(--border);
+      color:var(--text);
+    }
+    .tile .num{display:block;font-size:1.75rem;font-weight:800}
+    .tile .lbl{display:block;font-size:.72rem;color:var(--muted)}
 
     /* Video */
     .video{
-      border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);
-      background:linear-gradient(180deg,#0f0f15,#0f0f15);
+      margin:1rem 0 1.2rem; border:1px solid var(--border);
+      border-radius:16px; overflow:hidden; background:var(--panel);
+      box-shadow:0 4px 14px rgba(0,0,0,.04);
     }
-    .video .frame{position:relative;padding-top:177.77%} /* 9:16 */
-    .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:12px}
-    .video .caption{font-size:.9rem;color:var(--muted);padding:10px 14px}
+    .video video{width:100%;display:block;background:#fafafa}
 
-    /* Stripe */
-    .stripe{
-      margin:22px 0;border-radius:14px;padding:14px 16px;text-align:center;
-      border:1px dashed rgba(255,255,255,.18);
-      background:linear-gradient(180deg,#12111a,#13131b);
+    /* Highlights */
+    .highlights{
+      display:grid; gap:.6rem; grid-template-columns:1fr; margin:.6rem 0 1.1rem;
     }
-    .stripe b{font-family:Montserrat, sans-serif;color:#f1f2ff}
-
-    /* Categories */
-    .section-title{
-      font-family:Montserrat, sans-serif;font-weight:800;letter-spacing:.01em;margin:20px 0 12px;
-      font-size:clamp(22px,3.2vw,28px)
-    }
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    @media (max-width:900px){.grid{grid-template-columns:1fr}}
-
     .card{
-      border-radius:16px;padding:16px;position:relative;overflow:hidden;
-      border:1px solid var(--border);
-      background:linear-gradient(180deg,#12111a,#111118);
+      display:flex; gap:.75rem; align-items:center;
+      background:var(--panel);
+      border:1px solid var(--border); border-radius:14px; padding:.9rem .95rem;
+      box-shadow:0 4px 14px rgba(0,0,0,.04);
     }
-    .card h3{margin:0 0 6px;font-size:1.05rem;font-weight:800}
-    .card p{margin:8px 0 10px;color:#dfe1ee}
-    .chips{display:flex;flex-wrap:wrap;gap:8px}
-    .pill{background:var(--chip);border:1px solid rgba(255,255,255,.14);padding:6px 10px;border-radius:999px;font-size:.88rem;white-space:nowrap;font-weight:700}
-    .pill.new{border-color:var(--accent);color:#fff0c6}
-    .pill.back{border-color:#f2a5c4;color:#ffe0ec}
-    .pill.cb{border-color:#f6e6a6;color:#fff6cd}
-    .pill.sport{border-color:var(--accent2);color:#d7f0ff}
-    .pill.denim{border-color:#9fd9ff;color:#e8f6ff}
-    .pill.polo{border-color:#b8ffb0;color:#efffef}
-    .pill.tee{border-color:#ffc3e6;color:#fff0fb}
-    .pill.shirt{border-color:#ffd5a7;color:#fff0dc}
-    .pill.sock{border-color:#c9ffb8;color:#efffec}
+    .card svg{width:22px;height:22px;color:var(--green)}
+    .card b{display:block;font-size:1rem}
+    .card span{display:block;font-size:.86rem;color:var(--muted)}
 
-    /* Warning */
-    .warning{
-      margin:2px 0 0;padding:14px;border-radius:14px;
-      background:linear-gradient(180deg,#1a1509,#130f07);
-      border:1px dashed rgba(255,220,130,.45)
+    /* CTA */
+    .cta{
+      display:flex; flex-direction:column; gap:.7rem; align-items:center; text-align:center; margin:1rem 0 1.4rem;
     }
-    .warning strong{color:#ffdf6a}
-
-    /* Final CTA Dock */
-    .final-cta{
-      margin:28px 0 0;padding:18px;border-radius:16px;text-align:center;
-      border:1px solid var(--border);
-      background:linear-gradient(180deg,#0f1514,#0d1014);
+    .btn{
+      --pad:.95rem;
+      display:inline-flex; align-items:center; justify-content:center; gap:.6rem;
+      padding:var(--pad) 1.1rem; border-radius:14px; font-weight:800;
+      background: linear-gradient(180deg, var(--red), #9e3b22);
+      border:1px solid #842f1a; color:#fff;
+      box-shadow:0 10px 22px rgba(184,69,40,.22);
     }
-    .final-cta h3{margin:0 0 10px;font-weight:800}
-    .cta-stack{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
-    .fine{color:var(--muted);font-size:.9rem;margin-top:6px}
+    .btn:active{transform:translateY(1px)}
+    .btn.secondary{
+      background: linear-gradient(180deg, var(--green), #244a3a);
+      border:1px solid #1f3d31;
+    }
+    /* ===== Shorts-style Video ===== */
+.video-shorts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.6rem 0 1.8rem;
+}
 
-    /* Floating CTA that merges */
-    .floating-cta{position:fixed;right:16px;bottom:16px;z-index:60;display:flex;gap:8px;align-items:center;transition:.28s transform,.28s opacity}
-    .floating-cta .btn{box-shadow:0 10px 24px rgba(0,0,0,.25)}
-    body.merged .floating-cta{opacity:0;transform:translateY(12px) scale(.95);pointer-events:none}
+.shorts-frame {
+  position: relative;
+  width: 100%;
+  max-width: 360px; /* typical mobile width */
+  aspect-ratio: 9 / 16; /* vertical video */
+  background: #000;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border);
+}
 
-    /* Confetti canvas */
-    #confetti{position:fixed;inset:0;pointer-events:none;z-index:70}
+.shorts-frame iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: inherit;
+  object-fit: cover;
+}
 
-    /* Footer */
-    footer{margin:22px 0;color:var(--muted);font-size:.9rem;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-    footer a{font-weight:800;color:#f1f2ff}
+/* Caption overlay (like Shorts title text) */
+.shorts-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.65), rgba(0,0,0,0));
+  padding: 1.2rem 0.8rem 0.8rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.shorts-caption {
+  color: #fff;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  max-width: 85%;
+  line-height: 1.3;
+}
+
+/* ===== Responsive tweaks ===== */
+@media (max-width: 480px) {
+  .shorts-frame {
+    max-width: 100%;
+    border-radius: 16px;
+    aspect-ratio: 9 / 16;
+  }
+  .shorts-caption {
+    font-size: 0.85rem;
+  }
+}
+
+    /* Highlights */
+    .highlights {
+      display:grid; gap:.6rem;
+      grid-template-columns:1fr;
+      margin:.6rem 0 1.1rem;
+    }
+
+    /* Slot Machine */
+    .slot{
+      margin:1.2rem 0 1.6rem;
+      border:1px solid var(--border); border-radius:16px;
+      background:var(--panel);
+      box-shadow:0 6px 18px rgba(0,0,0,.05);
+      overflow:hidden;
+    }
+    .slot-head{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:.9rem .9rem; border-bottom:1px dashed var(--border);
+      background:linear-gradient(180deg, #ffffff 0%, #fff9f5 100%);
+    }
+    .slot-title{font-weight:800}
+    .slot-status{font-size:.85rem;color:var(--muted)}
+    .reels{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem;padding:1rem .9rem .2rem}
+    .reel{
+      height:92px; overflow:hidden; border-radius:12px; border:1px solid var(--border);
+      background:#fffafa; position:relative;
+    }
+    .symbols{display:flex;flex-direction:column;align-items:center;padding:.4rem 0;transition:transform 1.2s cubic-bezier(.18,.77,.18,.99);will-change:transform}
+    .symbols>div{height:60px;display:grid;place-items:center}
+    .slot-cta{display:grid;gap:.7rem;padding:0 .9rem 1rem}
+    .slot-cta .btn{width:100%}
+    .hint{font-size:.82rem;color:var(--muted);text-align:center}
+
+    .confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+    .confetti i{position:absolute;width:6px;height:10px;background:#fff;opacity:.9;transform:translateY(-10px) rotate(0deg);border-radius:1px;animation:fall 1.2s ease-in forwards}
+    @keyframes fall{to{transform:translateY(140%) rotate(720deg);opacity:0}}
+    @media (prefers-reduced-motion:reduce){.symbols{transition:none}.confetti i{animation:none;display:none}}
+
+    /* Terms + Footer */
+    .terms{font-size:.82rem;color:var(--muted);padding:1rem .9rem 1.8rem;border-top:1px dashed var(--border)}
+    .terms ul{margin:.4rem 0 0;padding-left:1.2rem}
+    .terms li{margin:.25rem 0}
+    footer{padding:1.2rem .9rem 2.2rem;text-align:center;color:var(--muted);font-size:.82rem}
+
+    /* Desktop tweaks */
+    @media (min-width:720px){
+      .highlights{grid-template-columns:repeat(3,1fr)}
+      .slot-cta{grid-template-columns:1fr 1fr;align-items:center}
+      .slot-cta .btn{width:auto}
+    }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SaleEvent",
+    "name":"THRD Festive Fortune",
+    "startDate":"2025-10-07T18:00:00+05:30",
+    "eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode",
+    "eventStatus":"https://schema.org/EventScheduled",
+    "description":"THRD Clothing’s biggest event of the year — Flat 70% off for all + win up to 60% extra via Festive Fortune.",
+    "image":["https://yourdomain.com/assets/festive-fortune-hero.png"],
+    "location":{"@type":"VirtualLocation","url":"https://yourdomain.com/thrd-festive-fortune"},
+    "organizer":{"@type":"Organization","name":"THRD Clothing","url":"https://yourdomain.com"}
+  }
+  </script>
 </head>
 <body>
-  <!-- NAV -->
-  <nav class="navBar" aria-label="Primary">
-    <ul class="navbarelements">
-      <li class="navitem left"><a class="shop-link" href="./request_access.html" aria-label="Shop / Request Access">SHOP</a></li>
-      <li class="navitem name"><a href="./index.html" aria-label="THRD Home">THRD</a></li>
-      <li class="navitem right"><a href="./our_story.html" aria-label="About THRD">ABOUT</a></li>
-    </ul>
-  </nav>
 
-  <div class="container">
-    <!-- Announcement -->
-    <div class="announce" role="region" aria-label="Announcement">
-      <div class="line1">👀 Sneak peek is LIVE</div>
-      <a href="https://instagram.com/thrd.store" rel="noopener" aria-label="Open Instagram sneak peek">instagram.com/thrd.store</a>
-    </div>
-
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-card">
-        <div class="eyebrow">Members-only drop</div>
-        <h1>Oversized takes over. AMI Paris lands.</h1>
-        <p class="sub"><b>THRD Members-Only Drop</b> — <span id="heroDate">22 Sep • 7:00 PM IST</span></p>
-
-        <!-- 4-box timer -->
-        <div class="timer" id="timer" aria-live="polite">
-          <div class="tick"><strong id="d">00</strong><span>Days</span></div>
-          <div class="tick"><strong id="h">00</strong><span>Hours</span></div>
-          <div class="tick"><strong id="m">00</strong><span>Mins</span></div>
-          <div class="tick"><strong id="s">00</strong><span>Secs</span></div>
-        </div>
-        <div class="unlock" id="unlockLine">Unlocks on <b>22 Sep, 7:00 PM IST</b></div>
-
-        <div class="cta-row">
-          <a class="btn btn-primary" href="https://instagram.com/thrd.store" rel="noopener" aria-label="Watch Sneak Peek on Instagram">👀 Watch Sneak Peek</a>
-          <a class="btn btn-outline" id="calLink" rel="noopener" aria-label="Add to Google Calendar">📅 Add to Calendar</a>
-        </div>
-        <div class="meta">Membership required to shop. <a href="/request_access">Request access</a>.</div>
+  <!-- Header -->
+  <header>
+    <div class="nav">
+      <div class="logo" aria-label="THRD logo" ><a href="/index.html">THRD</a></div>
+      <div class="pill" aria-label="Up to 60% extra off · Win big">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v5M12 16v5M21 12h-5M8 12H3M18.4 5.6l-3.5 3.5M9.1 14.9l-3.5 3.5M18.4 18.4l-3.5-3.5M9.1 9.1L5.6 5.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        Up to +60% extra off · Win big
       </div>
+    </div>
+  </header>
 
-      <div class="video">
-        <div class="frame">
-          <!-- Replace VIDEO_ID if needed -->
-          <iframe
-            src="https://www.youtube.com/embed/Pf9Jio5NwRk"
-            title="THRD Drop Sneak Peek"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen></iframe>
+  <!-- Main -->
+  <main class="wrap" id="main">
+    <!-- Artwork -->
+    <figure class="art">
+      <!-- Replace the src with your hosted image file -->
+      <img src="/images/specials/fortune.png" alt="Festive Fortune — slot machine with diya, fireworks, coins and the words Festive Fortune" />
+    </figure>
+
+    <!-- Leadline (plain text, no bolded initials) -->
+    <p class="leadline">
+      Flat 70% Off For All <span class="sep">·</span> Win Up To +60% Extra <span class="sep">·</span> Everyone Wins
+    </p>
+
+    <!-- Countdown -->
+    <section class="countdown" aria-live="polite">
+      <div class="timer" id="timer">
+        <div class="tile"><span class="num" id="d">00</span><span class="lbl">Days</span></div>
+        <div class="tile"><span class="num" id="h">00</span><span class="lbl">Hours</span></div>
+        <div class="tile"><span class="num" id="m">00</span><span class="lbl">Mins</span></div>
+        <div class="tile"><span class="num" id="s">00</span><span class="lbl">Secs</span></div>
+      </div>
+      <div style="font-size:.92rem;color:var(--muted)">Launches <b>Oct 7 · 6:00 PM IST</b></div>
+    </section>
+
+     <!-- Shorts-style video -->
+    <section class="video video-shorts">
+      <div class="shorts-frame">
+        <iframe
+          src="https://www.youtube.com/embed/rt0RqtNSOaM"
+          title="THRD Festive Fortune"
+          allowfullscreen
+          referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        <div class="shorts-overlay">
+          <div class="shorts-caption">THRD Festive Fortune </div>
         </div>
-        <div class="caption">60s sneak peek. Blink and you’ll miss it.</div>
       </div>
     </section>
 
-    <div class="stripe">
-      <b>Subtle retro, golden-hour energy.</b> Limited units — once it’s gone, it’s gone.
-    </div>
 
-    <!-- WHAT’S IN THIS DROP -->
-    <h2 class="section-title">What’s in this drop</h2>
-    <div class="grid">
-      <!-- Oversized spotlight -->
-      <article class="card">
-        <h3>Oversized tees — main event</h3>
-        <p>Hero fits, relaxed drape.</p>
-        <div class="chips">
-          <span class="pill tee">AllSaints</span><span class="pill tee">Diesel</span>
-          <span class="pill back">Off-White</span><span class="pill tee">Stüssy</span>
-          <span class="pill tee">Karl Lagerfeld</span><span class="pill tee">GANT</span>
-        </div>
-      </article>
-
-      <!-- New launches -->
-      <article class="card">
-        <h3>New launches</h3>
-        <p>First time & fresh drops.</p>
-        <div class="chips">
-          <span class="pill new">AMI Paris (NEW)</span>
-          <span class="pill new">Coach</span>
-          <span class="pill new">Emporio Armani</span>
-        </div>
-      </article>
-
-      <!-- Polos -->
-      <article class="card">
-        <h3>Polos that do the talking</h3>
-        <p>From boardroom to brunch.</p>
-        <div class="chips">
-          <span class="pill polo">AX</span><span class="pill polo">Hugo Boss</span>
-          <span class="pill polo">Coach</span><span class="pill polo">Diesel</span>
-          <span class="pill polo">Emporio Armani</span><span class="pill polo">Fred Perry</span>
-          <span class="pill polo">Hackett</span><span class="pill polo">Karl Lagerfeld</span>
-          <span class="pill polo">Lacoste</span><span class="pill polo">Nike</span>
-          <span class="pill polo">Paul Smith</span><span class="pill polo">Polo Ralph Lauren</span>
-          <span class="pill polo">Rare Rabbit</span>
-        </div>
-      </article>
-
-      <!-- Round necks / graphics -->
-      <article class="card">
-        <h3>Round necks / graphics</h3>
-        <p>Statement tees. Zero effort.</p>
-        <div class="chips">
-          <span class="pill tee">AllSaints</span><span class="pill tee">AX</span><span class="pill tee">Hugo Boss</span>
-          <span class="pill tee">CK</span><span class="pill tee">Diesel</span>
-          <span class="pill tee">Fear of God Essentials</span>
-          <span class="pill tee">Karl Lagerfeld</span><span class="pill tee">Lacoste</span>
-          <span class="pill back">Off-White</span><span class="pill tee">Ralph Lauren</span>
-          <span class="pill tee">Nike</span><span class="pill tee">Puma</span>
-          <span class="pill tee">Rare Rabbit</span><span class="pill tee">Reebok</span>
-          <span class="pill tee">Stüssy</span><span class="pill tee">Superdry</span><span class="pill tee">Tommy</span>
-        </div>
-      </article>
-
-      <!-- Denim & lowers -->
-      <article class="card">
-        <h3>Denim & lowers</h3>
-        <p>Fits that stay in rotation.</p>
-        <div class="chips">
-          <span class="pill denim">Calvin Klein</span><span class="pill denim">Diesel</span>
-          <span class="pill denim">GANT</span><span class="pill denim">GAS</span>
-          <span class="pill denim">H&M</span><span class="pill denim">Jack & Jones</span>
-          <span class="pill denim">Lacoste</span><span class="pill denim">Ralph Lauren</span>
-          <span class="pill denim">Tommy Hilfiger</span><span class="pill denim">Zara</span>
-        </div>
-      </article>
-
-      <!-- Shirts -->
-      <article class="card">
-        <h3>Shirts, dialed up</h3>
-        <p>Sharp, clean, ready.</p>
-        <div class="chips">
-          <span class="pill shirt">AllSaints</span><span class="pill shirt">AMI Paris</span>
-          <span class="pill shirt">AX</span><span class="pill shirt">CK</span>
-          <span class="pill shirt">GANT</span><span class="pill shirt">Hackett</span>
-          <span class="pill shirt">Lacoste</span><span class="pill shirt">Ralph Lauren</span>
-          <span class="pill shirt">Superdry</span><span class="pill shirt">Tommy</span>
-          <span class="pill shirt">Zara</span>
-        </div>
-      </article>
-
-      <!-- Socks drop -->
-      <article class="card">
-        <h3>Socks drop (new)</h3>
-        <p>Premium pairs. Everyday flex.</p>
-        <div class="chips">
-          <span class="pill sock">AMI Paris</span><span class="pill sock">Calvin Klein</span>
-          <span class="pill sock">Karl Lagerfeld</span><span class="pill sock">Kenzo</span>
-          <span class="pill sock">Lacoste</span><span class="pill sock">Nike</span>
-          <span class="pill sock">Tommy Hilfiger</span>
-        </div>
-      </article>
-
-      <!-- Sports & jerseys -->
-      <article class="card">
-        <h3>Sports & jerseys</h3>
-        <p>Pitch to pavement.</p>
-        <div class="chips">
-          <span class="pill sport">Adidas</span><span class="pill sport">Nike</span>
-          <span class="pill sport">Puma</span><span class="pill sport">Under Armour</span>
-          <span class="pill sport">Football Jerseys</span>
-        </div>
-      </article>
-
-      <!-- Warning -->
-      <aside class="warning card" role="note" aria-label="Stock warning">
-        <p><strong>⚠ Limited stock:</strong> sizes vanish fast. Avoid the “sold out already?” moment.</p>
-        <p><span id="warnDate">Drop at 7:00 PM (IST)</span></p>
-      </aside>
-    </div>
-
-    <!-- FINAL CTA (merge target) -->
-    <section id="final" class="final-cta" aria-label="Final call to action">
-      <h3>Set your alarm. Then tap this.</h3>
-      <div class="cta-stack">
-        <a class="btn btn-primary" href="https://instagram.com/thrd.store" rel="noopener" aria-label="Watch Sneak Peek (footer)">👀 Watch Sneak Peek</a>
-        <a class="btn btn-outline" id="waBottom" rel="noopener" aria-label="I’m in for this drop on WhatsApp">🔥 I’m in for this drop</a>
+    <!-- Highlights -->
+    <section class="highlights" aria-label="Why you’ll love this">
+      <div class="card">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l2.09 4.23L18.7 8.1l-3.3 3.22.78 4.54L12 13.77 7.82 15.86l.78-4.54L5.3 8.1l4.61-.87L12 3z" stroke="currentColor" stroke-width="1.5"/></svg>
+        <div><b>Everyone Wins</b><span>No losses—every spin lands a reward.</span></div>
       </div>
-      <div class="fine">P.S. Add to Calendar above so you don’t miss the 7 PM rush.</div>
+      <div class="card">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 12a9 9 0 11-9-9" stroke="currentColor" stroke-width="1.7"/><path d="M21 12c-4 0-6 2-9 2s-5-2-9-2" stroke="currentColor" stroke-width="1.7" opacity=".6"/></svg>
+        <div><b>Up To +60% Extra</b><span>Stacked on top of flat 70% for all customers.</span></div>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2v6M8 6h8M4 10h16M5 10v10h14V10" stroke="currentColor" stroke-width="1.5"/></svg>
+        <div><b>Festive‑Ready</b><span>Diwali vibes, exclusive drops, limited time.</span></div>
+      </div>
     </section>
 
-    <footer>
-      <span>Curated.</span><span>Verified.</span><span>Members-only.</span>
-      <a href="/request_access">Request access</a>
-    </footer>
-  </div>
+    <!-- WhatsApp CTA -->
+    <section class="cta" aria-label="Stay in the loop">
+      <a id="cta-whatsapp" class="btn" href="#" rel="noopener" data-whatsapp-number=""
+         aria-label="Open WhatsApp to say: I'm excited for this one">
+        <!-- WhatsApp icon -->
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">
+          <path d="M3 12a9 9 0 1116.7 4.5L21 21l-4.5-1.3A9 9 0 013 12z" stroke="#ffffff" stroke-width="1.7" />
+          <path d="M8.5 9.5c0 3 2.5 5.5 5.5 5.5.5 0 1-.1 1.4-.3l1.1.3-.3-1.1c.2-.4.3-.9.3-1.4 0-3-2.5-5.5-5.5-5.5-1 0-1.9.3-2.7.8" fill="#ffffff" opacity=".35"/>
+        </svg>
+        I’m excited for this one
+      </a>
+      <div class="hint">Taps open WhatsApp with a prefilled message. Replace the number in code to route to your official account.</div>
+    </section>
 
-  <!-- Floating sticky pill (merges at footer) -->
-  <div class="floating-cta" id="floatingCta">
-    <a class="btn btn-primary" href="https://instagram.com/thrd.store" rel="noopener" aria-label="Watch Sneak Peek (floating)">▶ Watch Sneak Peek</a>
-    <a class="btn btn-outline" href="#final" aria-label="Scroll to final CTAs">⬇ Scroll to CTAs</a>
-  </div>
+    <!-- Slot Machine -->
+    <section class="slot" aria-label="Festive Fortune Slot">
+      <div class="slot-head">
+        <div class="slot-title">Festive Fortune Slot</div>
+        <div class="slot-status" id="slotStatus">Locked until launch</div>
+      </div>
+      <div class="reels" aria-hidden="true">
+        <div class="reel"><div class="symbols" id="reel1"></div></div>
+        <div class="reel"><div class="symbols" id="reel2"></div></div>
+        <div class="reel"><div class="symbols" id="reel3"></div></div>
+      </div>
+      <div class="slot-cta">
+      <button class="btn" id="spinBtn" disabled aria-disabled="true">
+        Spin to Win — Opens Oct 7, 6:00 PM IST
+      </button>
+      <button class="btn secondary" id="claimBtn" hidden>Claim on WhatsApp</button>
+      <div class="hint" id="resultHint">Win up to +60% extra on top of flat 70%.</div>
+    </div>
 
-  <!-- Confetti canvas -->
-  <canvas id="confetti"></canvas>
+      <div class="confetti" id="confetti" aria-hidden="true"></div>
+    </section>
 
-  <script>
-    // ====== CONFIG: Drop datetime (IST) & WhatsApp ======
-    // Set to 22 Sep 2025, 7:00 PM IST
-    const DROP_ISO = '2025-09-22T19:00:00+05:30';
-    const WA_NUMBER = '918198845888'; // your WhatsApp number
-    const WA_TEXT   = "Lets GOO";
-    const WA_URL    = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_TEXT)}`;
-    document.getElementById('waBottom').href = WA_URL;
+    <!-- Terms -->
+    <section class="terms" aria-label="Terms and conditions">
+      <b>Quick T&Cs</b>
+      <ul>
+        <li>Flat 70% off available to all customers during the sale window.</li>
+        <li>Festive Fortune spin yields an extra discount between +10% and +60%; applied on top of 70%.</li>
+        <li>One spin per user (unless otherwise specified). Verification may apply.</li>
+        <li>Categories/exclusions and validity window may apply. See full terms at checkout.</li>
+      </ul>
+    </section>
+  </main>
 
-    // ====== Date helpers ======
-    function monthAbbr(i){return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][i];}
-    function formatIST(dt){
-      const d = dt.getDate();
-      const m = monthAbbr(dt.getMonth());
-      const t = dt.toLocaleString('en-IN',{hour:'numeric',minute:'2-digit',hour12:true,timeZone:'Asia/Kolkata'}).toUpperCase();
-      return `${d} ${m}, ${t} IST`;
-    }
-    const target = new Date(DROP_ISO);
-    document.getElementById('heroDate').textContent  = formatIST(target);
-    document.getElementById('unlockLine').innerHTML  = `Unlocks on <b>${formatIST(target)}</b>`;
-    document.getElementById('warnDate').textContent  = `Drop at ${target.toLocaleString('en-IN',{hour:'numeric',minute:'2-digit',hour12:true,timeZone:'Asia/Kolkata'}).toUpperCase()} (IST)`;
+  <footer>
+    © <span id="year"></span> THRD Clothing · THRD Festive Fortune
+  </footer>
 
-    // ====== TIMER (four boxes) ======
-    (function(){
-      const t = target.getTime();
-      const dEl = document.getElementById('d'), hEl = document.getElementById('h'), mEl = document.getElementById('m'), sEl = document.getElementById('s');
-      let firedTen=false;
-      const pad = n => String(n).padStart(2,'0');
-      function tick(){
-        const now = Date.now(); let diff = Math.max(0, t - now);
-        const days = Math.floor(diff / 86400000); diff -= days*86400000;
-        const hours = Math.floor(diff / 3600000); diff -= hours*3600000;
-        const mins = Math.floor(diff / 60000); diff -= mins*60000;
-        const secs = Math.floor(diff / 1000);
-        dEl.textContent = pad(days); hEl.textContent = pad(hours); mEl.textContent = pad(mins); sEl.textContent = pad(secs);
+<script>
+  // ===== Event date helper (IST) =====
+  function eventDateIST(monthIndex, day, hour24, minute = 0) {
+    // Always use the current year for predictable testing
+    const yearNow = new Date().getFullYear();
+    return new Date(`${yearNow}-${(monthIndex + 1 + '').padStart(2, '0')}-${(day + '').padStart(2, '0')}T${(hour24 + '').padStart(2, '0')}:${(minute + '').padStart(2, '0')}:00+05:30`);
+  }
 
-        const leftSecs = Math.floor((t - now)/1000);
-        if(leftSecs === 10 && !firedTen){ firedTen=true; launchConfetti(200); }
-        if(leftSecs <= 0){ dEl.textContent='00'; hEl.textContent='00'; mEl.textContent='00'; sEl.textContent='00'; launchConfetti(500); clearInterval(iv); }
+  // 💡 Change this freely when testing
+  // Example: 3 Oct 6 PM IST for testing
+  const EVENT_DATE = eventDateIST(9, 7, 18, 0);
+
+  // ===== Elements =====
+  const elD = document.getElementById('d');
+  const elH = document.getElementById('h');
+  const elM = document.getElementById('m');
+  const elS = document.getElementById('s');
+  const slotStatus = document.getElementById('slotStatus');
+  const spinBtn = document.getElementById('spinBtn');
+  const claimBtn = document.getElementById('claimBtn');
+  const resultHint = document.getElementById('resultHint');
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  let live = false;
+
+  function tick() {
+    const now = Date.now();
+    const diff = EVENT_DATE.getTime() - now;
+
+    if (diff <= 0) {
+      // Event is live
+      if (!live) {
+        live = true;
+        elD.textContent = elH.textContent = elM.textContent = elS.textContent = '00';
+        slotStatus.textContent = 'LIVE — Spin now!';
+        spinBtn.disabled = false;
+        spinBtn.setAttribute('aria-disabled', 'false');
+        spinBtn.textContent = 'Spin to Win';
+        spinBtn.href="./fortune.html"
+        resultHint.textContent = 'It’s live! Spin to reveal your extra discount.';
       }
-      tick();
-      const iv = setInterval(tick,1000);
-    })();
-
-    // ====== ADD TO CALENDAR (Google, builds from DROP_ISO) ======
-    (function(){
-      const start = new Date(DROP_ISO);
-      const end   = new Date(start.getTime() + 60*60*1000); // +1h
-      const toGC = (d)=>`${d.getUTCFullYear()}${String(d.getUTCMonth()+1).padStart(2,'0')}${String(d.getUTCDate()).padStart(2,'0')}T${String(d.getUTCHours()).padStart(2,'0')}${String(d.getUTCMinutes()).padStart(2,'0')}00Z`;
-      const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('THRD Members-Only Drop — Live')}&dates=${toGC(start)}/${toGC(end)}&details=${encodeURIComponent('Members-only drop goes live. Be ready.')}&location=${encodeURIComponent('thrd.store')}&sf=true&output=xml`;
-      document.getElementById('calLink').href = url;
-    })();
-
-    // ====== FLOATING CTA MERGE ======
-    const dock = document.getElementById('final');
-    const obs = new IntersectionObserver(entries=>{
-      entries.forEach(entry=>{ document.body.classList.toggle('merged', entry.isIntersecting); });
-    },{threshold:.25});
-    obs.observe(dock);
-
-    // ====== CONFETTI (muted colors) ======
-    const canvas = document.getElementById('confetti');
-    const ctx = canvas.getContext('2d');
-    let confettiPieces = [];
-    function resize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-    window.addEventListener('resize', resize, {passive:true}); resize();
-
-    function makePiece(){
-      const w = canvas.width, h = canvas.height;
-      const colors = ['#ffd166','#7ac6ff','#ffffff','#f1f2ff','#cbd5e1'];
-      return {
-        x: Math.random()*w, y: -20,
-        r: Math.random()*8+4, c: colors[(Math.random()*colors.length)|0],
-        vx: (Math.random()-0.5)*2, vy: Math.random()*2+2,
-        rot: Math.random()*Math.PI, vr: (Math.random()-0.5)*0.2
-      };
+      return;
     }
-    function step(){
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      confettiPieces.forEach(p=>{
-        p.x += p.vx; p.y += p.vy; p.rot += p.vr;
-        ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
-        ctx.fillStyle = p.c; ctx.fillRect(-p.r, -p.r/2, p.r*2, p.r);
-        ctx.restore();
-      });
-      confettiPieces = confettiPieces.filter(p=>p.y < canvas.height+30);
-      if(confettiPieces.length>0) requestAnimationFrame(step);
-    }
-    function launchConfetti(count=140){ for(let i=0;i<count;i++) confettiPieces.push(makePiece()); step(); }
-    // fire on first load
-    launchConfetti(120);
-  </script>
 
-  <!-- Optional Netlify RUM -->
-  <!-- <script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="..."></script> -->
+    // Countdown in progress
+    const s = Math.floor(diff / 1000);
+    const days = Math.floor(s / 86400);
+    const hours = Math.floor((s % 86400) / 3600);
+    const mins = Math.floor((s % 3600) / 60);
+    const secs = s % 60;
+    elD.textContent = pad(days);
+    elH.textContent = pad(hours);
+    elM.textContent = pad(mins);
+    elS.textContent = pad(secs);
+  }
+
+  tick();
+  setInterval(tick, 1000);
+
+  // ===== WhatsApp CTA =====
+  const ctaWhatsApp = document.getElementById('cta-whatsapp');
+  ctaWhatsApp.addEventListener('click', (e) => {
+    e.preventDefault();
+    const num = "918198845888";
+    const txt = encodeURIComponent("I'm excited for THRD Festive Fortune! Remind me on sale");
+    const url = num ? `https://wa.me/${num}?text=${txt}` : `https://wa.me/?text=${txt}`;
+    window.open(url, '_blank', 'noopener');
+  });
+
+  // ===== Slot symbols =====
+  const icon = {
+    diya: `<svg viewBox="0 0 64 64" width="40" height="40" aria-hidden="true">
+      <path d="M32 12c0 6-6 10-6 14 0 3 2 6 6 6s6-3 6-6c0-4-6-8-6-14z" fill="#d49a30"/>
+      <path d="M8 36c0 8 10 16 24 16s24-8 24-16H8z" fill="#2f5a47"/>
+      <path d="M12 36c2 6 10 12 20 12s18-6 20-12H12z" fill="#b84528" opacity=".9"/>
+    </svg>`,
+    coin: `<svg viewBox="0 0 64 64" width="40" height="40" aria-hidden="true">
+      <circle cx="32" cy="32" r="20" fill="#f1c872" stroke="#d49a30" stroke-width="4"/>
+      <path d="M22 32h20M32 22v20" stroke="#9a6c22" stroke-width="4" />
+    </svg>`,
+    gift: `<svg viewBox="0 0 64 64" width="40" height="40" aria-hidden="true">
+      <rect x="10" y="24" width="44" height="28" rx="6" fill="#b84528"/><rect x="14" y="18" width="36" height="16" rx="6" fill="#2f5a47"/>
+      <rect x="30" y="18" width="4" height="34" fill="#d49a30"/><rect x="20" y="32" width="24" height="4" fill="#d49a30"/>
+    </svg>`,
+    star: `<svg viewBox="0 0 64 64" width="40" height="40" aria-hidden="true">
+      <path d="M32 8l7 14 16 2-11 11 3 16-15-8-15 8 3-16L9 24l16-2 7-14z" fill="#2f5a47"/>
+    </svg>`
+  };
+  const SYMBOL_SET = ['diya', 'coin', 'gift', 'star'];
+  function buildColumnHTML() {
+    const seq = [...SYMBOL_SET, ...SYMBOL_SET, ...SYMBOL_SET];
+    return seq.map(key => `<div>${icon[key]}</div>`).join('');
+  }
+  document.getElementById('reel1').innerHTML = buildColumnHTML();
+  document.getElementById('reel2').innerHTML = buildColumnHTML();
+  document.getElementById('reel3').innerHTML = buildColumnHTML();
+
+  // ===== Spin logic =====
+  function weightedPrize() {
+    const table = [10, 10, 15, 15, 20, 20, 25, 30, 30, 40, 50, 60];
+    return table[Math.floor(Math.random() * table.length)];
+  }
+  function randomOffset() {
+    const steps = 12;
+    const index = Math.floor(Math.random() * steps);
+    return -(index * 60 - 2);
+  }
+  const reels = [document.getElementById('reel1'), document.getElementById('reel2'), document.getElementById('reel3')];
+  const confettiEl = document.getElementById('confetti');
+
+  function makeConfetti() {
+    confettiEl.innerHTML = '';
+    for (let i = 0; i < 60; i++) {
+      const p = document.createElement('i');
+      p.style.left = Math.random() * 100 + '%';
+      p.style.background = ['#b84528', '#f1c872', '#2f5a47', '#d49a30'][Math.floor(Math.random() * 4)];
+      p.style.animationDelay = (Math.random() * 0.25) + 's';
+      confettiEl.appendChild(p);
+    }
+    setTimeout(() => confettiEl.innerHTML = '', 1500);
+  }
+
+  let spinning = false, prize = 0;
+     // Redirect to fortune.html on spin
+    spinBtn.addEventListener('click', ()=>{
+      if(!live){
+        resultHint.textContent='Spins unlock at 6:00 PM IST on Oct 7.';
+        return;
+      }
+      window.location.href='./fortune.html';
+    });
+  // Claim → WhatsApp with prize mention
+  claimBtn.addEventListener('click', () => {
+    const num = "918198845888";
+    const msg = encodeURIComponent(`I'm excited for THRD Festive Fortune! Remind me on sale`);
+    const url = num ? `https://wa.me/${num}?text=${msg}` : `https://wa.me/?text=${msg}`;
+    window.open(url, '_blank', 'noopener');
+  });
+
+  // Footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+
 </body>
 </html>
