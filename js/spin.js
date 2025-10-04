@@ -228,7 +228,7 @@ function showPersistentCoupon() {
   elements.persistentCoupon.classList.remove('hide');
   elements.persistentPct.textContent = userData.prize;
   elements.persistentCode.textContent = userData.coupon;
-  elements.persistentShopBtn.href = 'https://example.com/';
+  elements.persistentShopBtn.href = '../index.html';
 }
 
 function showGameScreen() {
@@ -442,7 +442,7 @@ elements.spinBtn.addEventListener('click', async () => {
 function openScratchCard() {
   elements.winPct.textContent = userData.prize;
   elements.couponCode.textContent = userData.coupon;
-  elements.shopBtn.href = 'https://example.com/';
+  elements.shopBtn.href = '../index.html';
   setupScratchCard();
   elements.scratchModal.classList.add('on');
 }

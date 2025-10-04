@@ -725,6 +725,50 @@
     border-top: 1px solid var(--border);
   }
 
+  /* --- IMAGE RESPONSIVENESS --- */
+#login .row img {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+
+/* Center the image with some breathing space */
+#login .row {
+  flex-direction: column;
+  text-align: center;
+}
+
+#login .row strong,
+#login .row small.help {
+  text-align: center;
+}
+
+#game{
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+/* On smaller screens */
+@media (max-width: 480px) {
+  #login .row img {
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 360px) {
+  #login .row img {
+    max-width: 180px;
+  }
+}
+
+
+
+
+
   /* Responsive Design */
   @media (max-width: 480px) {
     :root {
