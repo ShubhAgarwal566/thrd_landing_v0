@@ -156,7 +156,7 @@ function generateCoupon(discount) {
   for (let i = 0; i < 5; i++) {
     code += chars[Math.floor(Math.random() * chars.length)];
   }
-  return `THRD${discount}-${code}`;
+  return `JMRK40`;
 }
 
 // Validate User from API
