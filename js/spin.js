@@ -337,6 +337,7 @@ elements.startBtn.addEventListener('click', async () => {
 // });
 
 // Reel Animation
+
 const CELL_HEIGHT = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--slotSize')) || 96;
 const SYMBOL_KEYS = SYMBOLS.map(s => s.key);
 
