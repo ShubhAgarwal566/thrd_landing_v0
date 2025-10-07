@@ -85,7 +85,7 @@ const elements = {
   startBtn: byId('startBtn'),
   changeNum: byId('changeNum'),
   resetDemo: byId('resetDemo'),
-  showDetails: byId('showDetails'),
+  // showDetails: byId('showDetails'),
   login: byId('login'),
   game: byId('game'),
   phoneEcho: byId('phoneEcho'),
@@ -170,7 +170,16 @@ async function fetchUserPrize(phone) {
     if (!response.ok) {
       throw new Error(`API request failed: ${response.status}`);
     }
+
     const apiRes = await response.json();
+
+    // 🟢 Handle error case from API
+    if (!apiRes.success) {
+      const msg = apiRes.message || "Something went wrong. Please try again.";
+      alert(msg);
+      throw new Error(msg); // stop login flow
+    }
+
     if (apiRes.success && apiRes.data) {
       const { coupon, percentage } = apiRes.data;
       const urlParams = getUrlParams();
@@ -187,6 +196,7 @@ async function fetchUserPrize(phone) {
     throw error;
   }
 }
+
 
 // Update User Coupon
 async function updateUserCoupon(phone) {
@@ -259,9 +269,10 @@ elements.startBtn.addEventListener('click', async () => {
     elements.startBtn.disabled = true;
     elements.startBtn.textContent = 'Loading...';
     elements.status.textContent = 'Fetching your prize...';
-    
     try {
       const apiRig = await fetchUserPrize(phone);
+
+      if (!apiRig) return; // <-- stop flow if alert was shown
       existingData = {
         phone,
         credits: START_CREDITS,
@@ -273,18 +284,16 @@ elements.startBtn.addEventListener('click', async () => {
         spinCount: 0,
       };
     } catch (error) {
+      alert("Invalid Number. Please apply for membership first.")
+      if (error.message?.includes("Invalid Number")) {
+        // already handled via alert
+        elements.startBtn.disabled = false;
+        elements.startBtn.textContent = 'Start Playing';
+        elements.status.textContent = 'Enter your mobile number to begin.';
+        return; // stop flow entirely
+      }
       console.warn('Using fallback generation due to API error');
-      gameRig = setupGameRig(phone);
-      existingData = {
-        phone,
-        credits: START_CREDITS,
-        spins: START_SPINS,
-        hasWon: false,
-        prize: gameRig.prize,
-        coupon: gameRig.coupon,
-        winSpin: gameRig.winSpin,
-        spinCount: 0,
-      };
+
     }
     saveUserData(phone, existingData);
     
@@ -314,16 +323,16 @@ elements.resetDemo.addEventListener('click', (e) => {
   location.reload();
 });
 
-elements.showDetails.addEventListener('click', (e) => {
-  e.preventDefault();
-  alert(`Rules (Prototype):
-• Login with a 10-digit mobile number to get 10,000 credits.
-• Each spin costs 1,000 credits (10 spins total).
-• One winning spin is set in the last 4 spins (7-10), showing 👕👕👕.
-• Prize is assigned via API (25%, 30%, 40%, or 50% OFF) or fallback.
-• After winning, scratch the card to reveal your coupon and tap Shop Now.
-(Real apps should validate everything on the server.)`);
-});
+// elements.showDetails.addEventListener('click', (e) => {
+//   e.preventDefault();
+//   alert(`Rules (Prototype):
+// • Login with a 10-digit mobile number to get 10,000 credits.
+// • Each spin costs 1,000 credits (10 spins total).
+// • One winning spin is set in the last 4 spins (7-10), showing 👕👕👕.
+// • Prize is assigned via API (25%, 30%, 40%, or 50% OFF) or fallback.
+// • After winning, scratch the card to reveal your coupon and tap Shop Now.
+// (Real apps should validate everything on the server.)`);
+// });
 
 // Reel Animation
 const CELL_HEIGHT = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--slotSize')) || 96;
