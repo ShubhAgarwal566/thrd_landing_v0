@@ -83,8 +83,8 @@ const elements = {
   spinsLeftPill: byId('spinsLeftPill'),
   phone: byId('phone'),
   startBtn: byId('startBtn'),
-  changeNum: byId('changeNum'),
-  resetDemo: byId('resetDemo'),
+  // changeNum: byId('changeNum'),
+  // resetDemo: byId('resetDemo'),
   // showDetails: byId('showDetails'),
   login: byId('login'),
   game: byId('game'),
@@ -159,8 +159,8 @@ function generateCoupon(discount) {
   return `THRD${discount}-${code}`;
 }
 
-// Fetch User Prize from API
-async function fetchUserPrize(phone) {
+// Validate User from API
+async function validateUser(phone) {
   try {
     const response = await fetch(GET_COUPON_ENDPOINT, {
       method: 'POST',
@@ -176,30 +176,18 @@ async function fetchUserPrize(phone) {
     // 🟢 Handle error case from API
     if (!apiRes.success) {
       const msg = apiRes.message || "Something went wrong. Please try again.";
-      alert(msg);
       throw new Error(msg); // stop login flow
     }
 
-    if (apiRes.success && apiRes.data) {
-      const { coupon, percentage } = apiRes.data;
-      const urlParams = getUrlParams();
-      const seed = hashString(phone);
-      const randomGenerator = createRandomGenerator(seed);
-      const prize = urlParams.prize ? +urlParams.prize : parseInt(percentage);
-      const winSpin = urlParams.win ? Math.max(7, Math.min(10, +urlParams.win)) : 7 + Math.floor(randomGenerator() * 4);
-      return { prize, winSpin, coupon };
-    } else {
-      throw new Error('Invalid API response');
-    }
+    return true;
   } catch (error) {
-    console.error('API fetch error:', error);
+    console.error('User validation error:', error);
     throw error;
   }
 }
 
-
-// Update User Coupon
-async function updateUserCoupon(phone) {
+// Fetch Prize Data on Win from Update Coupon API
+async function fetchPrizeOnWin(phone) {
   try {
     const response = await fetch(UPDATE_COUPON_ENDPOINT, {
       method: 'POST',
@@ -207,12 +195,29 @@ async function updateUserCoupon(phone) {
       body: JSON.stringify({ phone })
     });
     if (!response.ok) {
-      throw new Error(`Update failed: ${response.status}`);
+      throw new Error(`Prize fetch failed: ${response.status}`);
     }
-    // Assume success; log if needed
-    console.log('Coupon updated successfully');
+    const apiRes = await response.json();
+    if (!apiRes.success || !apiRes.data) {
+      throw new Error('Invalid prize response');
+    }
+    const { coupon, percentage } = apiRes.data;
+    return { coupon, percentage: parseInt(percentage) };
   } catch (error) {
-    console.error('Update coupon error:', error);
+    console.error('Prize data fetch error:', error);
+    // Fallback generation
+    const urlParams = getUrlParams();
+    const seed = hashString(phone);
+    const randomGenerator = createRandomGenerator(seed);
+    const prizeOptions = [
+      { value: 25, w: 45 },
+      { value: 30, w: 30 },
+      { value: 40, w: 20 },
+      { value: 50, w: 5 },
+    ];
+    const prize = urlParams.prize ? +urlParams.prize : pickWeightedOption(prizeOptions, randomGenerator);
+    const coupon = generateCoupon(prize);
+    return { coupon, percentage: prize };
   }
 }
 
@@ -268,32 +273,29 @@ elements.startBtn.addEventListener('click', async () => {
     const originalText = elements.startBtn.textContent;
     elements.startBtn.disabled = true;
     elements.startBtn.textContent = 'Loading...';
-    elements.status.textContent = 'Fetching your prize...';
+    elements.status.textContent = 'Validating user...';
     try {
-      const apiRig = await fetchUserPrize(phone);
-
-      if (!apiRig) return; // <-- stop flow if alert was shown
+      await validateUser(phone);
+      const urlParams = getUrlParams();
+      const seed = hashString(phone);
+      const randomGenerator = createRandomGenerator(seed);
+      const winSpin = urlParams.win ? Math.max(7, Math.min(10, +urlParams.win)) : 7 + Math.floor(randomGenerator() * 4);
       existingData = {
         phone,
         credits: START_CREDITS,
         spins: START_SPINS,
         hasWon: false,
-        prize: apiRig.prize,
-        coupon: apiRig.coupon,
-        winSpin: apiRig.winSpin,
+        prize: null,
+        coupon: null,
+        winSpin,
         spinCount: 0,
       };
     } catch (error) {
-      alert("Invalid Number. Please apply for membership first.")
-      if (error.message?.includes("Invalid Number")) {
-        // already handled via alert
-        elements.startBtn.disabled = false;
-        elements.startBtn.textContent = 'Start Playing';
-        elements.status.textContent = 'Enter your mobile number to begin.';
-        return; // stop flow entirely
-      }
-      console.warn('Using fallback generation due to API error');
-
+      alert("Invalid Number. Please apply for membership first.");
+      elements.startBtn.disabled = false;
+      elements.startBtn.textContent = 'Start Playing';
+      elements.status.textContent = 'Enter your mobile number to begin.';
+      return; // stop flow entirely
     }
     saveUserData(phone, existingData);
     
@@ -308,20 +310,20 @@ elements.startBtn.addEventListener('click', async () => {
   showGameScreen();
 });
 
-elements.changeNum.addEventListener('click', () => {
-  userData = null;
-  gameRig = null;
-  showLoginScreen();
-  elements.phone.value = '';
-  elements.status.textContent = 'Enter your mobile number to begin.';
-  updateInterface();
-});
+// elements.changeNum.addEventListener('click', () => {
+//   userData = null;
+//   gameRig = null;
+//   showLoginScreen();
+//   elements.phone.value = '';
+//   elements.status.textContent = 'Enter your mobile number to begin.';
+//   updateInterface();
+// });
 
-elements.resetDemo.addEventListener('click', (e) => {
-  e.preventDefault();
-  localStorage.clear();
-  location.reload();
-});
+// elements.resetDemo.addEventListener('click', (e) => {
+//   e.preventDefault();
+//   localStorage.clear();
+//   location.reload();
+// });
 
 // elements.showDetails.addEventListener('click', (e) => {
 //   e.preventDefault();
@@ -439,12 +441,14 @@ elements.spinBtn.addEventListener('click', async () => {
   updateInterface();
 
   const isWinningSpin = (!userData.hasWon) && (userData.spinCount >= 6) && (userData.spinCount === userData.winSpin);
-  spinReels({ isWin: isWinningSpin });
   if (isWinningSpin) {
+    const prizeData = await fetchPrizeOnWin(userData.phone);
+    userData.prize = prizeData.percentage;
+    userData.coupon = prizeData.coupon;
     userData.hasWon = true;
     saveUserData(userData.phone, userData);
-    await updateUserCoupon(userData.phone);
   }
+  spinReels({ isWin: isWinningSpin });
 });
 
 // Coupon and Scratch Card
