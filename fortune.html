@@ -19,20 +19,6 @@
       font-size:clamp(22px,3.2vw,30px);
       letter-spacing:.02em;
     }
-    .wait-message {
-      background: #fff3cd;
-      border: 1px solid #ffeaa7;
-      border-radius: 8px;
-      padding: 16px;
-      margin-bottom: 16px;
-      text-align: center;
-      font-weight: 600;
-      color: #856404;
-    }
-    #startBtn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
 </style>
 </head>
 <body>
@@ -56,9 +42,6 @@
       <!-- LOGIN -->
       <section id="login" class="card">
         <div class="stack">
-          <div class="wait-message" id="waitMessage">
-            <strong>Event starts in 15 minutes at 6:20 PM. Please wait.</strong>
-          </div>
           <div class="row">
             <div>
               <strong>Play & win up to 60% OFF</strong>
@@ -77,7 +60,7 @@
             <label for="phone">Mobile number</label>
             <input id="phone" type="tel" inputmode="numeric" placeholder="10-digit Number" maxlength="10" autocomplete="tel" />
           </div>
-          <button id="startBtn" class="btn" disabled>Start Playing</button>
+          <button id="startBtn" class="btn">Start Playing</button>
           <!-- <small class="help">By continuing you agree to the <a class="link" href="#" id="showDetails">rules</a>. You'll get your coupon via scratch card when you win.</small> -->
         </div>
       </section>
@@ -178,19 +161,8 @@
 
 </div>
 
-<script>
-  // Wait 15 minutes (900000 ms) before enabling the start button and hiding the message
-  setTimeout(() => {
-    const waitMessage = document.getElementById('waitMessage');
-    const startBtn = document.getElementById('startBtn');
-    if (waitMessage) {
-      waitMessage.style.display = 'none';
-    }
-    if (startBtn) {
-      startBtn.disabled = false;
-    }
-  }, 15 * 60 * 1000);
+<script src="/js/spin.js">
+
 </script>
-<script src="/js/spin.js"></script>
 </body>
 </html>
