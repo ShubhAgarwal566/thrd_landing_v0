@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THRD Biggest Drop Coming Soon 🔥</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="./css/drop.css" >
+    <link rel="stylesheet" href="./css/membership.css" >
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    
+</head>
+
+<body>
+    <nav class="navBar">
+        <ul class="navbarelements">
+            <li class="navitem left">
+                <a class="shop-link" href="./request_access.html">SHOP</a>
+            </li>
+            <li class="navitem name"><a href="./index.html">THRD</a></li>
+            <li class="navitem right"><a href="./our_story.html">ABOUT</a></li>
+        </ul>
+    </nav>
+    
+    <div class="main-container">
+        <!-- Pre-launch content -->
+        <section id="pre-launch-content" class="content-section">
+            <div class="highlight"><span class="emoji">👋</span> Hey THRD Members! <span class="emoji">👋</span></div>
+            
+            <h1 class="headline"><span class="emoji">🎉</span> Our Biggest Drop Is Almost Here! <span class="emoji">🎉</span></h1>
+            
+            <p class="subheading">The moment you've been waiting for—less than 24 hours until we reveal our most exciting collection yet.</p>
+            
+            <div class="countdown-container">
+                <div class="countdown-label">⏰ Countdown to Launch:</div>
+                <div id="countdown" class="timer">00:00:00</div>
+            </div>
+            
+            <h2 class="benefits-title"><span class="emoji">🚀</span> Stay Ahead of the Crowd</h2>
+            
+            <p class="subheading">We've upgraded our search features to help you find and purchase your favorites faster than ever before!</p>
+            
+            <div class="video-wrapper">
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/lUTM7_Aa0-4?si=ZvXQzXVvmEL8ZdPO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+            
+            <div class="notice-box">
+                <div class="notice-title"><span class="warning-icon">⚠️</span> Community Notice</div>
+                <p>If you refuse COD (Cash on Delivery) orders upon delivery, your membership will be revoked and you'll be blacklisted. Please only order items you intend to keep.</p>
+            </div>
+            
+            <div class="benefits-section">
+                <h2 class="benefits-title">Why Choose Prepaid Orders?</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🚚</div>
+                        <div class="benefit-title">Faster Shipping</div>
+                        <p>Prepaid orders are processed and shipped with priority</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🔒</div>
+                        <div class="benefit-title">Safer Deliveries</div>
+                        <p>Secured packaging and tracking for your peace of mind</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">✅</div>
+                        <div class="benefit-title">100% Delivery Rate</div>
+                        <p>Our data confirms prepaid orders are always delivered successfully</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn pulse" onclick="manualRedirect1()">I'm Ready for the Drop!</button>
+        </section>
+        
+        <!-- Live drop content - shown after countdown ends -->
+        <section id="live-drop-content" class="content-section">
+            <div class="highlight"><span class="emoji">🎊</span> The Drop Is Live Now! <span class="emoji">🎊</span></div>
+            
+            <h1 class="headline"><span class="emoji">🛒</span> Shop Our Exclusive Collection</h1>
+            
+            <p class="subheading">Don't miss your chance to grab our limited edition items before they're gone!</p>
+            
+            <div class="benefits-section">
+                <h2 class="benefits-title">Shopping Benefits</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🔑</div>
+                        <div class="benefit-title">Easy Login</div>
+                        <p>Use your registered WhatsApp phone number</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🌍</div>
+                        <div class="benefit-title">Free Shipping</div>
+                        <p>Enjoy free delivery anywhere in India</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">💸</div>
+                        <div class="benefit-title">Cash on Delivery</div>
+                        <p>Free COD available across India</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🏃‍♂️</div>
+                        <div class="benefit-title">Limited Stocks</div>
+                        <p>Act fast before they're gone!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn pulse shop-now" onclick="manualRedirect()">SHOP NOW</button>
+        </section>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            if (mobileMenuToggle) {
+                const navbarLinks = document.getElementById('navbar-links');
+                mobileMenuToggle.addEventListener('click', () => {
+                    navbarLinks.classList.toggle('active');
+                });
+            }
+        });
+    
+        // Shop URL
+        const SHOP_URL = "https://www.thrd.store/shop";
+
+        const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=918198845888&text=Lets%20GOOO%0A";
+
+        // Manual redirect function for button click
+        function manualRedirect() {
+            window.location.href=SHOP_URL
+        }
+        function manualRedirect1() {
+            window.location.href=WHATSAPP_URL;
+        }
+        
+        function updateTimer() {
+            // Get the current date/time in local time zone
+            const now = new Date();
+
+            // Set drop time to 7:00 PM on 2025-04-12 in IST
+            // Convert to local time zone
+            const dropTimeIST = new Date('2025-09-22T19:00:00+05:30');
+
+            const timerElement = document.getElementById('countdown');
+            const preLaunchContent = document.getElementById('pre-launch-content');
+            const liveDropContent = document.getElementById('live-drop-content');
+
+            // Check drop status
+            if (now < dropTimeIST) {
+                // Drop hasn't started yet
+                const timeRemaining = dropTimeIST - now;
+                updateTimerDisplay(timeRemaining, timerElement);
+                
+                // Show pre-launch content
+                preLaunchContent.style.display = "flex";
+                liveDropContent.style.display = "none";
+            } else {
+                // Drop is live
+                timerElement.textContent = "00:00:00";
+                
+                // Show live drop content
+                preLaunchContent.style.display = "none";
+                liveDropContent.style.display = "flex";
+            }
+        }
+        
+        // Helper function to format the time display
+        function updateTimerDisplay(timeRemaining, timerElement) {
+            // Ensure timeRemaining is non-negative
+            const time = Math.max(0, timeRemaining);
+
+            const hours = Math.floor(time / (1000 * 60 * 60));
+            const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((time % (1000 * 60)) / 1000);
+
+            const formattedHours = String(hours).padStart(2, '0');
+            const formattedMinutes = String(minutes).padStart(2, '0');
+            const formattedSeconds = String(seconds).padStart(2, '0');
+
+            timerElement.textContent = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+        }
+
+        // Update timer every second
+        setInterval(updateTimer, 1000);
+        
+        // Initialize the timer immediately
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTimer();
+        });
+        
+        // Counter API call
+        const COUNTER_URL = 'https://api.thrd.store/api/website/counter?base_name=drop';
+        
+        async function incrementCounter() {
+            try {
+                const response = await fetch(COUNTER_URL, {
+                    method: 'GET'
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Counter updated:', data);
+                } else {
+                    console.error('Error updating counter: Server returned', response.status);
+                }
+            } catch (error) {
+                console.error('Error updating counter:', error);
+            }
+        }
+        
+        // Call when page loads
+        window.addEventListener('load', incrementCounter);
+    </script>
+</body>
+</html>
