@@ -243,7 +243,7 @@ function showPersistentCoupon() {
   elements.persistentCoupon.classList.remove('hide');
   elements.persistentPct.textContent = userData.prize;
   elements.persistentCode.textContent = userData.coupon;
-  elements.persistentShopBtn.href = '../shop.html';
+  elements.persistentShopBtn.href = 'https://shop.thrd.store/';
 }
 
 function showGameScreen() {
