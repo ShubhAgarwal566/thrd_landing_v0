@@ -455,7 +455,7 @@ elements.spinBtn.addEventListener('click', async () => {
 function openScratchCard() {
   elements.winPct.textContent = userData.prize;
   elements.couponCode.textContent = userData.coupon;
-  elements.shopBtn.href = '../index.html';
+  elements.shopBtn.href = 'https://shop.thrd.store/';
   setupScratchCard();
   elements.scratchModal.classList.add('on');
 }
