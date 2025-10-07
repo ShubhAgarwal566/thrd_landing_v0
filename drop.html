@@ -193,6 +193,13 @@
       50% { transform: translateY(-3px); }
       100% { transform: translateY(0px); }
     }
+      .art{
+      border:1px solid var(--border);
+      border-radius:18px; overflow:hidden; background:var(--panel);
+      box-shadow:0 10px 24px rgba(0,0,0,.06);
+    }
+    .art img{width:100%;height:auto;display:block}
+
 
     /* Limit to mobile widths for visual integrity */
     @media (min-width: 560px) {
@@ -203,6 +210,7 @@
         border-right: 1px solid rgba(0,0,0,.05);
         min-height: 100dvh;
       }
+
     }
   </style>
 </head>
@@ -220,14 +228,10 @@
     </header>
 
     <!-- 16:9 Hero -->
-    <section class="hero" role="img" aria-label="THRD Festive Fortune hero image">
-      <div class="hero-text">
-        <div>
-          <div class="hero-title">Festive Fortune is here</div>
-          <div class="hero-sub">Your luck decides your discount</div>
-        </div>
-      </div>
-    </section>
+     <figure class="art">
+      <!-- Replace the src with your hosted image file -->
+      <img src="/images/specials/fortune.png" alt="Festive Fortune — slot machine with diya, fireworks, coins and the words Festive Fortune" />
+    </figure>
 
     <!-- Countdown -->
     <section class="countdown-wrap">
@@ -366,7 +370,7 @@
     const goPlay = () => {
       // TODO: wire to your game route or modal
       // For now, a tiny tactile feedback:
-      alert('Launching THRD Festive Fortune…');
+
       window.location.href='./fortune.html'
     };
     document.getElementById('playPrimary').addEventListener('click', goPlay);
