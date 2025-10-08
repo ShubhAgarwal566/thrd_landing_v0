@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>THRD Workstation Setup</title>
+  <style>
+    :root {
+      --bg: #0f1220;
+      --panel: #151a2c;
+      --soft: #1e2440;
+      --text: #e7ecff;
+      --muted: #a8b1d1;
+      --primary: #7aa2ff;
+      --accent: #8bd6fe;
+      --ok: #71f7c8;
+      --warn: #ffd166;
+      --danger: #ff6b6b;
+      --code-bg: #0c1020;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius-xl: 18px;
+      --radius-lg: 14px;
+      --radius-md: 12px;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f6f8ff;
+        --panel: #ffffff;
+        --soft: #eef2ff;
+        --text: #101431;
+        --muted: #4c5270;
+        --primary: #2b5cff;
+        --accent: #12a1e5;
+        --ok: #0bb884;
+        --warn: #c27c00;
+        --danger: #c62828;
+        --code-bg: #0e1116;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; background: radial-gradient(1200px 800px at 80% -10%, rgba(122,162,255,.12), transparent 50%),
+      radial-gradient(1000px 600px at -10% 10%, rgba(139,214,254,.10), transparent 50%), var(--bg);
+      color: var(--text);
+      font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      letter-spacing: .2px;
+    }
+
+    .wrap { max-width: 1100px; margin: 48px auto 96px; padding: 0 20px; }
+
+    header.hero {
+      position: relative; padding: 28px; border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border: 1px solid rgba(122,162,255,.25);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    header.hero:before {
+      content: ""; position: absolute; inset: -1px; border-radius: inherit;
+      background: radial-gradient(500px 140px at 15% 0%, rgba(122,162,255,.15), transparent 60%),
+                  radial-gradient(400px 120px at 85% 0%, rgba(139,214,254,.12), transparent 60%);
+      pointer-events: none;
+    }
+    .badge { display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; background:var(--soft); color:var(--muted); font-size:12px; }
+    .title { margin:12px 0 4px; font-size: clamp(28px, 2.8vw + 10px, 46px); line-height:1.15; letter-spacing:.2px; }
+    .subtitle { margin:0; color:var(--muted); font-size: 15px; }
+
+    .grid { display:grid; grid-template-columns: 1fr; gap: 18px; margin-top: 26px; }
+    @media (min-width: 860px) { .grid { grid-template-columns: 320px 1fr; gap: 22px; } }
+
+    nav.toc { position: sticky; top: 20px; align-self: start; padding:16px; border-radius: var(--radius-lg); background: var(--panel); border:1px solid rgba(122,162,255,.18); box-shadow: var(--shadow); }
+    nav.toc h3 { margin:4px 0 12px; font-size:14px; letter-spacing:.3px; color: var(--muted); }
+    nav.toc a { display:block; text-decoration:none; color: var(--text); padding:8px 10px; border-radius:10px; font-size:14px; }
+    nav.toc a:hover { background: var(--soft); }
+    nav.toc .minor { color: var(--muted); padding-left: 18px; font-size: 13px; }
+
+    section.card { background: var(--panel); border: 1px solid rgba(122,162,255,.20); border-radius: var(--radius-lg); box-shadow: var(--shadow); overflow: hidden; }
+    section.card header { display:flex; align-items:center; gap: 10px; padding: 14px 18px; border-bottom: 1px dashed rgba(122,162,255,.25); background: linear-gradient(180deg, rgba(122,162,255,.08), transparent); }
+    section.card header h2 { margin: 0; font-size: 18px; letter-spacing:.3px; }
+
+    .steps { padding: 18px; display: grid; gap: 14px; }
+    .step { background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0)); border: 1px solid rgba(122,162,255,.18); border-radius: 14px; padding: 14px; }
+    .step-title { display:flex; align-items:center; gap:10px; margin:0 0 8px; font-weight:600; }
+    .step-num { width: 26px; height: 26px; border-radius: 8px; display:grid; place-items:center; background: var(--soft); color: var(--primary); font-weight:700; }
+    .desc { margin: 0 0 12px; color: var(--muted); }
+
+    details.guide { background: rgba(122,162,255,.06); border: 1px solid rgba(122,162,255,.22); border-radius: 12px; padding: 12px; }
+    details.guide > summary { cursor: pointer; list-style: none; font-weight: 600; }
+    details.guide > summary::-webkit-details-marker { display: none; }
+
+    .btn-row { display:flex; flex-wrap:wrap; gap: 10px; margin-top: 10px; }
+    .btn { appearance: none; border: 1px solid rgba(122,162,255,.35); background: var(--soft); color: var(--text); border-radius: 12px; padding: 8px 12px; font-size: 13px; cursor: pointer; }
+    .btn:hover { filter: brightness(1.06); }
+
+    .code { position: relative; background: var(--code-bg); color: #e2e8f0; border: 1px solid rgba(255,255,255,.06); border-radius: 12px; padding: 12px 12px 12px 12px; overflow: auto; }
+    .code pre { margin: 0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 13px; line-height: 1.5; }
+    .copy { position:absolute; top:8px; right:8px; }
+
+    a.inline { color: var(--accent); text-decoration: none; border-bottom: 1px dashed currentColor; }
+
+    .note { display:flex; gap:10px; padding:10px 12px; background: rgba(255,255,255,.04); border:1px dashed rgba(122,162,255,.28); border-radius: 12px; color: var(--muted); font-size: 14px; }
+    .note.warn { background: rgba(255,209,102,.10); border-color: rgba(255,209,102,.55); color: #ffe9b3; }
+
+    footer { margin-top: 24px; color: var(--muted); font-size: 13px; text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="badge" aria-hidden>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Sparkle"><path d="M5 3h2v4h4v2H7v4H5V9H1V7h4V3Zm11 2c.3 0 .57.17.7.43l1.03 2.07 2.08 1.03a.78.78 0 0 1 0 1.42l-2.08 1.03-1.03 2.07a.78.78 0 0 1-1.42 0l-1.03-2.07-2.08-1.03a.78.78 0 0 1 0-1.42l2.08-1.03L15.3 5.43A.78.78 0 0 1 16 5Z"/></svg>
+        Quickstart Guide
+      </div>
+      <h1 class="title">THRD Workstation Setup</h1>
+      <p class="subtitle">Chrome · VS Code · Miniconda · Git · Google &amp; GitHub Sign‑In · SSH Keys</p>
+    </header>
+
+    <div class="grid">
+      <nav class="toc" aria-label="Table of contents">
+        <h3>Contents</h3>
+        <a href="#chrome">1. Install Google Chrome</a>
+        <a class="minor" href="#chrome-install">— Install</a>
+        <a class="minor" href="#chrome-login">— Sign in (Google)</a>
+        <a href="#vscode">2. Install Visual Studio Code</a>
+        <a class="minor" href="#vscode-install">— Install</a>
+        <a class="minor" href="#vscode-repo">— Add Microsoft repo</a>
+        <a href="#miniconda">3. Install Miniconda</a>
+        <a href="#git">4. Install Git</a>
+        <a href="#github">5. Log in to GitHub</a>
+        <a href="#ssh">6. Configure SSH key</a>
+      </nav>
+
+      <main>
+        <!-- Chrome -->
+        <section class="card" id="chrome">
+          <header><h2>1) Install Google Chrome</h2></header>
+          <div class="steps">
+            <div class="step" id="chrome-install">
+              <h3 class="step-title"><span class="step-num">1.1</span> Download &amp; Install</h3>
+              <p class="desc">Grab the <em>.deb</em> from the official site, then install with <code>dpkg</code>.</p>
+
+              <div class="note warn">⚠️ You may be prompted for your password when using <code>sudo</code>.</div>
+
+              <div class="code" data-code>
+                <button class="btn copy" data-copy>Copy</button>
+<pre><code># Download (saves to ~/Downloads)
+xdg-open https://www.google.com/chrome/
+# After the download completes, install (filename may match below)
+cd ~/Downloads
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+# If you see dependency errors:
+#   sudo apt -f install
+</code></pre>
+              </div>
+            </div>
+
+            <div class="step" id="chrome-login">
+              <h3 class="step-title"><span class="step-num">1.2</span> Sign in to THRD Staff Google</h3>
+              <p class="desc">Open Chrome and log in with the shared account.</p>
+              <div class="code" data-code>
+                <button class="btn copy" data-copy>Copy</button>
+<pre><code>Username: thrdstaff@gmail.com
+Password: ThrdStaff@789</code></pre>
+              </div>
+              <div class="note">Tip: Chrome &rarr; <em>Turn on sync</em> to sync extensions and bookmarks.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- VS Code -->
+        <section class="card" id="vscode">
+          <header><h2>2) Install Visual Studio Code</h2></header>
+          <div class="steps">
+            <div class="step" id="vscode-install">
+              <h3 class="step-title"><span class="step-num">2.1</span> Download &amp; Install</h3>
+              <p class="desc">Download the <em>.deb</em> package to <code>~/Downloads</code> and install it.</p>
+              <div class="code" data-code>
+                <button class="btn copy" data-copy>Copy</button>
+<pre><code># Download (opens the download page)
+xdg-open https://code.visualstudio.com/download
+# After the download completes, install (replace [complete filename])
+cd ~/Downloads
+sudo dpkg -i code_[complete filename].deb
+# If needed, resolve dependencies:
+#   sudo apt -f install
+</code></pre>
+              </div>
+            </div>
+
+            <div class="step" id="vscode-repo">
+              <h3 class="step-title"><span class="step-num">2.2</span> Add Microsoft APT Repository (Prompt)</h3>
+              <p class="desc">When prompted inside VS Code, select <strong>Yes</strong> to add the official Microsoft repository for automatic updates.</p>
+              <details class="guide">
+                <summary>Why this matters</summary>
+                <p>The repository ensures you receive security patches and new features via your system updates (<code>apt upgrade</code>).</p>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <!-- Miniconda -->
+        <section class="card" id="miniconda">
+          <header><h2>3) Install Miniconda</h2></header>
+          <div class="steps">
+            <div class="step">
+              <h3 class="step-title"><span class="step-num">3.1</span> One‑liner Install</h3>
+              <p class="desc">Create the target directory, download the installer, run it silently, and clean up.</p>
+              <div class="code" data-code>
+                <button class="btn copy" data-copy>Copy</button>
+<pre><code>mkdir -p ~/miniconda3
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
+bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+rm ~/miniconda3/miniconda.sh
+
+# (Optional) Initialize shell
+~/miniconda3/bin/conda init
+# Restart your shell to activate conda automatically
+</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Git -->
+        <section class="card" id="git">
+          <header><h2>4) Install Git</h2></header>
+          <div class="steps">
+            <div class="step">
+              <h3 class="step-title"><span class="step-num">4.1</span> Install via APT</h3>
+              <div class="code" data-code>
+                <button class="btn copy" data-copy>Copy</button>
+<pre><code>sudo apt update && sudo apt install -y git</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- GitHub Login -->
+        <section class="card" id="github">
+          <header><h2>5) Log in to GitHub</h2></header>
+          <div class="steps">
+            <div class="step">
+              <h3 class="step-title"><span class="step-num">5.1</span> Sign in</h3>
+              <p class="desc">Open <a class="inline" href="https://github.com" target="_blank" rel="noreferrer noopener">github.com</a> and log in using the THRD Staff account.</p>
+              <div class="code" data-code>
+                <button class="btn copy" data-copy>Copy</button>
+<pre><code>Username (email): thrdstaff@gmail.com
+Password: &lt;your GitHub password&gt;</code></pre>
+              </div>
+              <div class="note">If 2FA is enabled, complete verification as prompted.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SSH Keys -->
+        <section class="card" id="ssh">
+          <header><h2>6) Configure SSH Key for GitHub</h2></header>
+          <div class="steps">
+            <div class="step">
+              <h3 class="step-title"><span class="step-num">6.1</span> Generate an ed25519 key</h3>
+              <p class="desc">Accept defaults by pressing <kbd>ENTER</kbd> for all prompts.</p>
+              <div class="code" data-code>
+                <button class="btn copy" data-copy>Copy</button>
+<pre><code>ssh-keygen -t ed25519 -C "thrdstaff@gmail.com"
+# Press ENTER to all questions
+</code></pre>
+              </div>
+            </div>
+
+            <div class="step">
+              <h3 class="step-title"><span class="step-num">6.2</span> Copy your public key</h3>
+              <div class="code" data-code>
+                <button class="btn copy" data-copy>Copy</button>
+<pre><code>cat ~/.ssh/id_ed25519.pub</code></pre>
+              </div>
+              <div class="note">Select and copy the <strong>entire</strong> line (starts with <code>ssh-ed25519</code>).</div>
+            </div>
+
+            <div class="step">
+              <h3 class="step-title"><span class="step-num">6.3</span> Add key to GitHub</h3>
+              <ol>
+                <li>Go to <a class="inline" href="https://github.com" target="_blank" rel="noreferrer noopener">github.com</a> (ensure you're signed into the THRD Staff account).</li>
+                <li>Navigate to <em>Settings → SSH and GPG keys → New SSH key</em>.</li>
+                <li>Enter a descriptive <em>Title</em> (e.g., <em>THRD Laptop</em>), paste the key, then click <strong>Add SSH key</strong>.</li>
+              </ol>
+            </div>
+
+            <div class="step">
+              <h3 class="step-title"><span class="step-num">6.4</span> Test the connection</h3>
+              <div class="code" data-code>
+                <button class="btn copy" data-copy>Copy</button>
+<pre><code>ssh -T git@github.com
+# If you see a prompt about authenticity, type: yes
+# Expected: "Hi &lt;username&gt;! You've successfully authenticated, but GitHub does not provide shell access."
+</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <footer>
+          Built for THRD • Safe defaults, modern look, and copy‑ready commands.
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Copy-to-clipboard for all code blocks with a [data-copy] button
+    document.querySelectorAll('[data-code]').forEach((wrap) => {
+      const btn = wrap.querySelector('[data-copy]');
+      const code = wrap.querySelector('pre').innerText;
+      btn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(code);
+          const original = btn.textContent;
+          btn.textContent = 'Copied!';
+          btn.disabled = true;
+          setTimeout(() => { btn.textContent = original; btn.disabled = false; }, 1400);
+        } catch (e) {
+          alert('Copy failed. Select the text manually.');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
