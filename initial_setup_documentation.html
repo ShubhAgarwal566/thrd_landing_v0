@@ -196,10 +196,27 @@ sudo    chmod +x setup.sh # enter password
 ./setup.sh</pre></div>
       </section>
 
+      <!-- Debugging Help (separate, not a numbered step) -->
+      <section class="card" aria-labelledby="debug">
+        <h2 id="debug">Debugging help</h2>
+        <p>If there is a MESA error on any laptop when running <code>pygame</code>, this is because the <code>libGL</code> driver in conda is old and cannot bind with MESA. We can delete conda's <code>libGL</code> so that it is forced to use the system's <code>libGL</code>.</p>
+        <div class="section">
+          <h3>To remove conda's libGL</h3>
+          <div class="code"><pre>rm -f $CONDA_PREFIX/lib/libstdc++.so*</pre></div>
+        </div>
+        <div class="section">
+          If any Python packages are to be installed, make sure to run:<br/>
+        </div>
+        <div class="code">
+          <code>conda activate thrd</code><br/>
+          <code>pip install library_name</code>
+        </div>
+      </section>
+
     </div>
 
     <footer>
-      © THRD — Setup guide (HTML & CSS). Built for clarity and readability.
+      © THRD — Setup guide (HTML &amp; CSS). Built for clarity and readability.
     </footer>
   </div>
 </body>
