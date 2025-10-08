@@ -133,6 +133,40 @@
     .card b{display:block;font-size:1rem}
     .card span{display:block;font-size:.86rem;color:var(--muted)}
 
+    /* --- Sale End Overlay --- */
+#saleEndedOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.96);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 200;
+  padding: 1.5rem;
+  font-family: Inter, sans-serif;
+  color: var(--text);
+}
+#saleEndedOverlay h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+#saleEndedOverlay p {
+  color: var(--muted);
+  margin-bottom: 1.2rem;
+}
+#saleEndedOverlay a {
+  background: var(--text);
+  color: #fff;
+  text-decoration: none;
+  padding: 0.75rem 1.2rem;
+  border-radius: 999px;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(0,0,0,.15);
+}
+
+
     /* CTA */
     .cta{
       display:flex; flex-direction:column; gap:.7rem; align-items:center; text-align:center; margin:1rem 0 1.4rem;
@@ -545,6 +579,37 @@
 
   // Footer year
   document.getElementById('year').textContent = new Date().getFullYear();
+  
+  // ------------------------------
+// SALE END CHECK (8 Oct 2025, 11:30 PM IST)
+// ------------------------------
+const SALE_END_TIME_IST = new Date("2025-10-08T23:30:00+05:30").getTime();
+
+function showSaleEndedOverlayHard() {
+  document.body.innerHTML = `
+    <div style="
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      height:100vh;text-align:center;background:#fffdfc;color:#1b1b1b;
+      font-family:Inter,system-ui,sans-serif;padding:20px;">
+      <h1 style="font-size:2rem;margin-bottom:0.8rem;">🎉 The Festive Fortune Sale has Ended</h1>
+      <p style="font-size:1.1rem;color:#6c6c6c;margin-bottom:1.5rem;">
+        Thanks for joining us — see you at the next event.
+      </p>
+      <a href="https://shop.thrd.store/" target="_blank" rel="noopener"
+         style="padding:0.75rem 1.25rem;background:#1b1b1b;color:#fff;
+                text-decoration:none;font-weight:600;border-radius:999px;
+                box-shadow:0 8px 20px rgba(0,0,0,.15);">
+        Shop Now
+      </a>
+    </div>
+  `;
+}
+
+// Immediately check and block if sale ended
+if (Date.now() > SALE_END_TIME_IST) {
+  showSaleEndedOverlayHard();
+}
+
 </script>
 
 

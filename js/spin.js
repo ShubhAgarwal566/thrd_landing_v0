@@ -1,10 +1,39 @@
 // -------------------------------
 // THRD Slots — Front-End Prototype
 // -------------------------------
+
 const $ = selector => document.querySelector(selector);
 const byId = id => document.getElementById(id);
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 const vibrate = pattern => navigator.vibrate && navigator.vibrate(pattern);
+
+// -------------------------------
+// Sale End Check — THRD Festive Fortune
+// -------------------------------
+const SALE_END_TIME_IST = new Date("2025-10-08T23:30:00+05:30").getTime();
+
+function checkSaleEnded() {
+  const now = Date.now();
+  if (now > SALE_END_TIME_IST) {
+    document.body.innerHTML = `
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;
+                  height:100vh;text-align:center;background:#000;color:#fff;font-family:Poppins,sans-serif;">
+        <h1 style="font-size:2rem;margin-bottom:1rem;">🎉 The Festive Fortune sale has ended!</h1>
+        <p style="font-size:1.1rem;">Thanks for playing — see you in our next event.</p>
+        <a href="https://shop.thrd.store/" target="_blank" rel="noopener"
+           style="margin-top:1.5rem;padding:.75rem 1.25rem;background:#fff;color:#000;
+                  font-weight:600;border-radius:6px;text-decoration:none;">Shop Now</a>
+      </div>`;
+    return true;
+  }
+  return false;
+}
+
+// Immediately block if expired
+if (checkSaleEnded()) {
+  throw new Error("Sale ended — game disabled");
+}
+
 
 // Seeded Random Number Generator
 function hashString(str, seed = 0) {
