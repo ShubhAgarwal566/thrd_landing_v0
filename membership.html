@@ -1,617 +1,421 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>THRD — Welcome</title>
 
-  <title>THRD Festive Fortune — Oct 7, 6 PM IST</title>
-  <meta name="description" content="THRD Clothing · Festive Fortune · Flat 70% off for all. Win up to +60% extra. Everyone wins. Starts Oct 7, 6 PM IST." />
-  <meta name="theme-color" content="#ffffff" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="THRD Festive Fortune — Flat 70% + up to 60% extra" />
-  <meta property="og:description" content="THRD’s biggest event of the year. Starts Oct 7, 6 PM IST. Everyone wins." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/festive-fortune-hero.png" />
-  <meta property="og:url" content="https://yourdomain.com/thrd-festive-fortune" />
-
-  <!-- Fonts: Silkscreen (logo), Inter (UI) -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Silkscreen:wght@700&display=swap" rel="stylesheet">
+  <!-- Fonts: Inter (UI) + Silkscreen (logo/brand moments) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
+    /* ===== Design Tokens (Vibe Explainer 1, with Dark Mode option) ===== */
     :root{
-      /* Light, modern base with a hint of peach */
-      --bg:#fffdfc;                /* near-white */
-      --bg-soft:#fff7f3;           /* very light peach */
-      --panel:#ffffff;
-      --text:#1b1b1b;
-      --muted:#6c6c6c;
-      --border:#ece6e2;
-
-      /* Accents (kept from artwork but toned) */
-      --red:#b84528;
-      --green:#2f5a47;
-      --gold:#d49a30;
+      --bg: #FAF7F2;                /* Threaded off‑white */
+      --ink: #0F0F0F;               /* Deep neutral black */
+      --muted: #6F6A63;             /* Grey‑beige */
+      --card: #F5F1EA;              /* Layered neutral card base */
+      --gold: #C9A86A;              /* Signature champagne gold */
+      --gold-deep:#B8914C;          /* Deeper gold for depth/hover */
+      --radius-card: 16px;          /* Rounded soft corners (14–18px) */
+      --shadow-soft: 0 2px 6px rgba(15,15,15,.06), 0 10px 24px rgba(15,15,15,.06);
+      --ease: cubic-bezier(.22,1,.36,1); /* smooth, natural */
+      --pad: 16px; 
+      --pad-lg: 24px;
+      --maxw: 960px;
+    }
+    [data-theme="dark"]{
+      --bg:#181818; 
+      --ink:#F8F5EF; 
+      --muted:#C9C2B6; 
+      --card:#202020; 
+      --shadow-soft: 0 2px 6px rgba(0,0,0,.35), 0 10px 24px rgba(0,0,0,.45);
     }
 
+    /* ===== Base ===== */
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0;
-      font-family:Inter,system-ui,Segoe UI,Roboto,Arial,Helvetica,sans-serif;
-      color:var(--text);
-      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 80%, var(--bg) 100%);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+      margin:0; background:var(--bg); color:var(--ink);
+      font:400 16px/1.45 "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      letter-spacing:.01em;
     }
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
+    .container{max-width:var(--maxw); margin:0 auto; padding:0 var(--pad)}
+    .stack{display:grid; gap:16px}
+    .stack-lg{display:grid; gap:24px}
 
-    /* Header */
-    header{
-      position:sticky; top:0; z-index:10;
-      background:rgba(255,255,255,.92);
-      border-bottom:1px solid var(--border);
-      backdrop-filter:saturate(120%) blur(6px);
+    /* Background motif: soft gold shimmer corner + ultra subtle canvas grain */
+    body::before{
+      content:""; position:fixed; inset:-20vmax -20vmax auto auto; width:60vmax; height:60vmax; 
+      background: radial-gradient( circle at 70% 30%, rgba(201,168,106,.16), transparent 45% );
+      pointer-events:none; z-index:-1; filter:blur(20px);
+    }
+
+    /* ===== Header ===== */
+    .site-header{
+      position:sticky; top:0; z-index:20; backdrop-filter:saturate(1.2) blur(8px);
+      background:color-mix(in hsl, var(--bg) 86%, transparent);
+      border-bottom:1px solid color-mix(in srgb, var(--muted) 12%, transparent);
     }
     .nav{
-      max-width:1100px; margin:0 auto;
       display:flex; align-items:center; justify-content:space-between;
-      padding:.9rem .95rem;
+      padding:12px var(--pad);
     }
     .logo{
-      font-family:"Silkscreen",system-ui,monospace;
-      font-weight:700; font-size:1.35rem; letter-spacing:.4px;
-      color:var(--text);
+      display:flex; align-items:center; gap:8px; user-select:none;
+      font-family:"Silkscreen", ui-monospace, monospace; 
+      font-size:22px; letter-spacing:.5px;
     }
-    .pill{
-      font-size:.82rem; padding:.45rem .7rem; border-radius:999px;
-      background:#0f0f0f0d;
-      border:1px solid var(--border);
-      color:#1f1f1f;
-      display:flex; align-items:center; gap:.5rem;
+    .logo .dot{
+      width:8px; height:8px; border-radius:50%;
+      background:var(--gold); box-shadow:0 0 0 0 rgba(201,168,106,.6);
+      animation:pulse 1600ms var(--ease) infinite;
     }
-    .pill svg{width:16px;height:16px;color:#1f1f1f}
+    @keyframes pulse{ 
+      0%{ box-shadow:0 0 0 0 rgba(201,168,106,.55) }
+      70%{ box-shadow:0 0 0 12px rgba(201,168,106,0) }
+      100%{ box-shadow:0 0 0 0 rgba(201,168,106,0) }
+    }
+    .nav-actions{display:flex; align-items:center; gap:8px}
+    .chip{
+      font-size:12px; padding:6px 10px; border-radius:999px; 
+      background:color-mix(in srgb, var(--gold) 12%, var(--bg));
+      color:var(--ink); border:1px solid color-mix(in srgb, var(--gold) 22%, transparent);
+    }
+    .toggle{
+      appearance:none; cursor:pointer; border:1px solid color-mix(in srgb, var(--muted) 20%, transparent);
+      background:var(--card); color:var(--ink);
+      border-radius:999px; padding:8px 12px; font:600 12px/1 "Inter", sans-serif;
+      transition:transform .3s var(--ease), box-shadow .3s var(--ease);
+      box-shadow:var(--shadow-soft);
+    }
+    .toggle:hover{ transform:translateY(-1px) }
+    .toggle:focus-visible{ outline:2px dashed var(--gold); outline-offset:4px }
 
-    /* Layout container */
-    .wrap{max-width:1100px;margin:0 auto;padding:1rem .9rem}
-
-    /* Artwork (your provided image) */
-    .art{
-      border:1px solid var(--border);
-      border-radius:18px; overflow:hidden; background:var(--panel);
-      box-shadow:0 10px 24px rgba(0,0,0,.06);
-    }
-    .art img{width:100%;height:auto;display:block}
-
-    /* Leadline */
-    .leadline{
-      margin:.85rem .15rem 1.2rem;
-      font-size:1rem; line-height:1.55; color:#2b2b2b; text-align:center;
-    }
-    .leadline strong{font-weight:800}
-    .leadline .sep{padding:0 .4rem;color:#9b9b9b}
-
-    /* Countdown */
-    .countdown{
-      display:grid; gap:.6rem; justify-items:center; text-align:center;
-      border:1px solid var(--border); border-radius:16px;
-      background:var(--panel);
-      padding:1rem .9rem;
-      box-shadow:0 4px 14px rgba(0,0,0,.04);
-    }
-    .timer{display:flex;gap:.5rem;font-variant-numeric:tabular-nums}
-    .tile{
-      min-width:4.1rem; padding:.6rem; border-radius:12px;
-      background:var(--bg-soft);
-      border:1px solid var(--border);
-      color:var(--text);
-    }
-    .tile .num{display:block;font-size:1.75rem;font-weight:800}
-    .tile .lbl{display:block;font-size:.72rem;color:var(--muted)}
-
-    /* Video */
-    .video{
-      margin:1rem 0 1.2rem; border:1px solid var(--border);
-      border-radius:16px; overflow:hidden; background:var(--panel);
-      box-shadow:0 4px 14px rgba(0,0,0,.04);
-    }
-    .video video{width:100%;display:block;background:#fafafa}
-
-    /* Highlights */
-    .highlights{
-      display:grid; gap:.6rem; grid-template-columns:1fr; margin:.6rem 0 1.1rem;
-    }
-    .card{
-      display:flex; gap:.75rem; align-items:center;
-      background:var(--panel);
-      border:1px solid var(--border); border-radius:14px; padding:.9rem .95rem;
-      box-shadow:0 4px 14px rgba(0,0,0,.04);
-    }
-    .card svg{width:22px;height:22px;color:var(--green)}
-    .card b{display:block;font-size:1rem}
-    .card span{display:block;font-size:.86rem;color:var(--muted)}
-
-    /* --- Sale End Overlay --- */
-#saleEndedOverlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(255,255,255,0.96);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  z-index: 200;
-  padding: 1.5rem;
-  font-family: Inter, sans-serif;
-  color: var(--text);
-}
-#saleEndedOverlay h1 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-}
-#saleEndedOverlay p {
-  color: var(--muted);
-  margin-bottom: 1.2rem;
-}
-#saleEndedOverlay a {
-  background: var(--text);
-  color: #fff;
-  text-decoration: none;
-  padding: 0.75rem 1.2rem;
-  border-radius: 999px;
-  font-weight: 600;
-  box-shadow: 0 8px 20px rgba(0,0,0,.15);
+    /* ===== Hero Section (Optimized for Landscape Images) ===== */
+.hero-card {
+  margin: 0;
+  background: var(--card);
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+  position: relative;
 }
 
-
-    /* CTA */
-    .cta{
-      display:flex; flex-direction:column; gap:.7rem; align-items:center; text-align:center; margin:1rem 0 1.4rem;
-    }
-    .btn{
-      --pad:.95rem;
-      display:inline-flex; align-items:center; justify-content:center; gap:.6rem;
-      padding:var(--pad) 1.1rem; border-radius:14px; font-weight:800;
-      background: linear-gradient(180deg, var(--red), #9e3b22);
-      border:1px solid #842f1a; color:#fff;
-      box-shadow:0 10px 22px rgba(184,69,40,.22);
-    }
-    .btn:active{transform:translateY(1px)}
-    .btn.secondary{
-      background: linear-gradient(180deg, var(--green), #244a3a);
-      border:1px solid #1f3d31;
-    }
-    /* ===== Shorts-style Video ===== */
-.video-shorts {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 1.6rem 0 1.8rem;
-}
-
-.shorts-frame {
+.hero-media {
   position: relative;
   width: 100%;
-  max-width: 360px; /* typical mobile width */
-  aspect-ratio: 9 / 16; /* vertical video */
-  background: #000;
-  border-radius: 20px;
+  aspect-ratio: 16 / 9; /* match your image proportions */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
-  border: 1px solid var(--border);
+  background:
+    radial-gradient(1200px 600px at 85% 15%, color-mix(in srgb, var(--gold) 12%, transparent), transparent 60%),
+    color-mix(in srgb, var(--card) 88%, transparent);
 }
 
-.shorts-frame iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
+.hero-media img {
   width: 100%;
   height: 100%;
-  border: 0;
-  border-radius: inherit;
-  object-fit: cover;
+  object-fit: contain;   /* ✅ prevents cropping or overflow */
+  object-position: center;
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
 }
 
-/* Caption overlay (like Shorts title text) */
-.shorts-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.65), rgba(0,0,0,0));
-  padding: 1.2rem 0.8rem 0.8rem;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
-
-.shorts-caption {
-  color: #fff;
-  font-size: 0.92rem;
-  font-weight: 600;
-  text-align: center;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
-  max-width: 85%;
-  line-height: 1.3;
-}
-
-/* ===== Responsive tweaks ===== */
-@media (max-width: 480px) {
-  .shorts-frame {
-    max-width: 100%;
-    border-radius: 16px;
-    aspect-ratio: 9 / 16;
+/* Mobile: make it more immersive but keep proportions */
+@media (max-width: 640px) {
+  .hero-media {
+    aspect-ratio: auto;
+    height: auto;
   }
-  .shorts-caption {
-    font-size: 0.85rem;
+  .hero-media img {
+    width: 100%;
+    height: auto;
   }
 }
 
-    /* Highlights */
-    .highlights {
-      display:grid; gap:.6rem;
-      grid-template-columns:1fr;
-      margin:.6rem 0 1.1rem;
+
+    .hero-overlay{
+      position:absolute; inset:0; display:flex; align-items:flex-end; justify-content:flex-start;
+      padding:var(--pad-lg); background:linear-gradient(to top, rgba(0,0,0,.35), transparent 40%);
+      color:#fff;
+    }
+    .kicker{ font:600 12px/1 "Inter"; letter-spacing:.14em; text-transform:uppercase; opacity:.9 }
+    .hero-title{
+      margin:.4rem 0 0; font:700 22px/1.15 "Inter"; letter-spacing:.02em;
+      text-shadow:0 1px 2px rgba(0,0,0,.35);
     }
 
-    /* Slot Machine */
-    .slot{
-      margin:1.2rem 0 1.6rem;
-      border:1px solid var(--border); border-radius:16px;
-      background:var(--panel);
-      box-shadow:0 6px 18px rgba(0,0,0,.05);
-      overflow:hidden;
+    /* ===== Content Cards ===== */
+    .card{
+      background:var(--card); border-radius:var(--radius-card);
+      box-shadow:var(--shadow-soft); padding:var(--pad-lg);
     }
-    .slot-head{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:.9rem .9rem; border-bottom:1px dashed var(--border);
-      background:linear-gradient(180deg, #ffffff 0%, #fff9f5 100%);
+    h2{ font:700 20px/1.2 "Inter"; margin:0 0 .25rem }
+    p{ margin:.25rem 0 .5rem; color:var(--muted) }
+    .points{ list-style:none; margin:0; padding:0; display:grid; gap:14px }
+    .point{ display:grid; grid-template-columns:28px 1fr; align-items:start; gap:12px }
+    .icon{
+      width:24px; height:24px; stroke:var(--ink); stroke-width:1.6; fill:none; opacity:.9;
     }
-    .slot-title{font-weight:800}
-    .slot-status{font-size:.85rem;color:var(--muted)}
-    .reels{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem;padding:1rem .9rem .2rem}
-    .reel{
-      height:92px; overflow:hidden; border-radius:12px; border:1px solid var(--border);
-      background:#fffafa; position:relative;
+    .point b{ font-weight:600; }
+    .sub{ color:var(--muted); font-size:14px; }
+
+    /* ===== Buttons / CTA ===== */
+    .btn{
+      --bg-btn: var(--gold);
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 18px; border-radius:999px; border:0; cursor:pointer;
+      background:linear-gradient(180deg, var(--gold), var(--gold-deep));
+      color:#0E0E0E; font:700 13px/1 "Inter"; text-transform:uppercase; letter-spacing:.08em;
+      box-shadow:0 6px 14px rgba(185,145,76,.25), inset 0 0 0 1px rgba(255,255,255,.25);
+      transform:translateZ(0);
+      transition: transform .25s var(--ease), box-shadow .25s var(--ease), filter .25s var(--ease);
     }
-    .symbols{display:flex;flex-direction:column;align-items:center;padding:.4rem 0;transition:transform 1.2s cubic-bezier(.18,.77,.18,.99);will-change:transform}
-    .symbols>div{height:60px;display:grid;place-items:center}
-    .slot-cta{display:grid;gap:.7rem;padding:0 .9rem 1rem}
-    .slot-cta .btn{width:100%}
-    .hint{font-size:.82rem;color:var(--muted);text-align:center}
+    .btn:hover{ transform:translateY(-1px) scale(1.02); box-shadow:0 10px 22px rgba(185,145,76,.28) }
+    .btn:active{ transform:translateY(0) scale(.995) }
+    .btn:focus-visible{ outline:2px dashed var(--gold); outline-offset:4px }
+    .btn-text{ font-weight:800 }
 
-    .confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-    .confetti i{position:absolute;width:6px;height:10px;background:#fff;opacity:.9;transform:translateY(-10px) rotate(0deg);border-radius:1px;animation:fall 1.2s ease-in forwards}
-    @keyframes fall{to{transform:translateY(140%) rotate(720deg);opacity:0}}
-    @media (prefers-reduced-motion:reduce){.symbols{transition:none}.confetti i{animation:none;display:none}}
+    /* Sticky CTA: present at all times */
+    .cta-sticky{
+      position:fixed; left:50%; transform:translateX(-50%);
+      bottom:calc(16px + env(safe-area-inset-bottom, 0px));
+      width:min(680px, calc(100% - 32px));
+      display:flex; justify-content:center; z-index:30;
+      pointer-events:none; /* container ignores events */
+    }
+    .cta-sticky .btn{ width:100%; pointer-events:auto }
 
-    /* Terms + Footer */
-    .terms{font-size:.82rem;color:var(--muted);padding:1rem .9rem 1.8rem;border-top:1px dashed var(--border)}
-    .terms ul{margin:.4rem 0 0;padding-left:1.2rem}
-    .terms li{margin:.25rem 0}
-    footer{padding:1.2rem .9rem 2.2rem;text-align:center;color:var(--muted);font-size:.82rem}
+    /* ===== Reveal Animations ===== */
+    .reveal{ opacity:0; transform:translateY(14px); filter:saturate(.96) }
+    .reveal.in-view{ opacity:1; transform:translateY(0); filter:saturate(1); transition: all .45s var(--ease) }
+    .delay-1{ transition-delay:.08s } .delay-2{ transition-delay:.16s } .delay-3{ transition-delay:.24s }
 
-    /* Desktop tweaks */
-    @media (min-width:720px){
-      .highlights{grid-template-columns:repeat(3,1fr)}
-      .slot-cta{grid-template-columns:1fr 1fr;align-items:center}
-      .slot-cta .btn{width:auto}
+    /* ===== Confetti (minimal, gold/white, dissolves quickly) ===== */
+    .fx{ position:fixed; inset:0; pointer-events:none; z-index:40 }
+    .confetti{
+      position:absolute; width:6px; height:10px; border-radius:2px;
+      opacity:.95; transform:translate(-50%,-50%) rotate(0deg);
+      animation:float 900ms var(--ease) forwards;
+      will-change: transform, opacity;
+    }
+    @keyframes float{
+      0%{ transform:translate(var(--x), var(--y)) rotate(0deg); opacity:1 }
+      70%{ transform:translate(calc(var(--x) + var(--dx)), calc(var(--y) + var(--dy))) rotate(180deg); opacity:.9 }
+      100%{ transform:translate(calc(var(--x) + var(--dx)), calc(var(--y) + var(--dy) + 20px)) rotate(260deg); opacity:0 }
+    }
+
+    /* ===== Responsive ===== */
+    @media (min-width: 880px){
+      .grid-2{ display:grid; grid-template-columns:1.2fr .8fr; gap:24px }
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .reveal{ transition:none; transform:none; opacity:1 }
+      .btn{ transition:none }
+      .confetti{ display:none }
     }
   </style>
-
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"SaleEvent",
-    "name":"THRD Festive Fortune",
-    "startDate":"2025-10-07T18:00:00+05:30",
-    "eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode",
-    "eventStatus":"https://schema.org/EventScheduled",
-    "description":"THRD Clothing’s biggest event of the year — Flat 70% off for all + win up to 60% extra via Festive Fortune.",
-    "image":["https://yourdomain.com/assets/festive-fortune-hero.png"],
-    "location":{"@type":"VirtualLocation","url":"https://yourdomain.com/thrd-festive-fortune"},
-    "organizer":{"@type":"Organization","name":"THRD Clothing","url":"https://yourdomain.com"}
-  }
-  </script>
 </head>
 <body>
+  <!-- Visual FX layer -->
+  <div class="fx" aria-hidden="true"></div>
 
   <!-- Header -->
-  <header>
-    <div class="nav">
-      <div class="logo" aria-label="THRD logo" ><a href="/index.html">THRD</a></div>
-      <div class="pill" aria-label="Up to 60% extra off · Win big">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v5M12 16v5M21 12h-5M8 12H3M18.4 5.6l-3.5 3.5M9.1 14.9l-3.5 3.5M18.4 18.4l-3.5-3.5M9.1 9.1L5.6 5.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-        Up to +60% extra off · Win big
+  <header class="site-header">
+    <div class="container nav">
+      <div class="logo" aria-label="THRD">
+        <span>THRD</span> <span class="dot" aria-hidden="true"></span>
+      </div>
+      <div class="nav-actions">
+        <span class="chip">Members‑only</span>
+        <button class="toggle" id="themeToggle" type="button" aria-pressed="false">Dark</button>
       </div>
     </div>
   </header>
 
   <!-- Main -->
-  <main class="wrap" id="main">
-    <!-- Artwork -->
-    <figure class="art">
-      <!-- Replace the src with your hosted image file -->
-      <img src="/images/specials/fortune.png" alt="Festive Fortune — slot machine with diya, fireworks, coins and the words Festive Fortune" />
-    </figure>
-
-    <!-- Leadline (plain text, no bolded initials) -->
-    <p class="leadline">
-      Flat 70% Off For All <span class="sep">·</span> Win Up To +60% Extra <span class="sep">·</span> Everyone Wins
-    </p>
-
-    <!-- Countdown -->
-    <section class="countdown" aria-live="polite">
-      <div class="timer" id="timer">
-        <div class="tile"><span class="num" id="d">00</span><span class="lbl">Days</span></div>
-        <div class="tile"><span class="num" id="h">00</span><span class="lbl">Hours</span></div>
-        <div class="tile"><span class="num" id="m">00</span><span class="lbl">Mins</span></div>
-        <div class="tile"><span class="num" id="s">00</span><span class="lbl">Secs</span></div>
+  <main class="container stack-lg" style="padding-bottom:120px">
+    <!-- Hero (16:9) -->
+    <section class="hero-card reveal">
+      <div class="hero-media" id="heroMedia">
+        <!-- Provide your 16:9 welcome photo by setting ?img=<url> or replacing the <img> src in markup. -->
+      <img src="/images/specials/oct14.png" id="heroImg" alt="Welcome to THRD" loading="eager" decoding="async" />
+        <!-- <div class="hero-overlay">
+          <div>
+            <div class="kicker">Welcome</div>
+            <h1 class="hero-title" id="heroTitle">You’ve unlocked something rare.</h1>
+          </div>
+        </div> -->
       </div>
-      <div style="font-size:.92rem;color:var(--muted)">Launches <b>Oct 7 · 6:00 PM IST</b></div>
     </section>
 
-     <!-- Shorts-style video -->
-    <section class="video video-shorts">
-      <div class="shorts-frame">
-        <iframe
-          src="https://www.youtube.com/embed/rt0RqtNSOaM"
-          title="THRD Festive Fortune"
-          allowfullscreen
-          referrerpolicy="strict-origin-when-cross-origin"></iframe>
-        <div class="shorts-overlay">
-          <div class="shorts-caption">THRD Festive Fortune </div>
+    <!-- Content -->
+    <section class="grid-2">
+      <div class="card stack reveal delay-1" id="welcomeBlock">
+        <h2>Welcome to THRD Clothing</h2>
+        <p class="sub" id="welcomeLine">You’re now a member of our exclusive club.</p>
+
+        <ul class="points" aria-label="What’s enabled">
+          <li class="point">
+            <!-- Sparkle / Key moment -->
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2v6M12 16v6M2 12h6M16 12h6M5.5 5.5l4 4M18.5 18.5l-4-4M18.5 5.5l-4 4M5.5 18.5l4-4" />
+            </svg>
+            <div>
+              <b>Member status: active</b>
+              <div class="sub">Full access unlocked across drops, sales and insider windows.</div>
+            </div>
+          </li>
+
+          <li class="point">
+            <!-- WhatsApp -->
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3a9 9 0 1 1-4.3 16.9L4 21l1.3-3.6A9 9 0 0 1 12 3z" />
+              <path d="M8.5 8.8c.2 3 2.7 5.5 5.7 5.7m0 0c.5 0 1.6-.6 1.8-1.2m-1.8 1.2c-.6.1-1.5-.2-2.2-.6-.8-.4-1.8-1.3-2.2-2.2-.3-.7-.7-1.6-.6-2.2 0-.7 1.2-1.8 1.2-1.8" />
+            </svg>
+            <div>
+              <b>WhatsApp approved</b>
+              <div class="sub">Your registered number is ready for shopping. Start now — top brands at <b>flat 70% off</b>.</div>
+            </div>
+          </li>
+
+          <li class="point">
+            <!-- Lock / Access -->
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8 10V7a4 4 0 1 1 8 0v3" />
+              <rect x="5" y="10" width="14" height="11" rx="2" />
+            </svg>
+            <div>
+              <b>Exclusive drop access</b>
+              <div class="sub">Get in first. We’ll quietly unlock member‑only windows before the crowd.</div>
+            </div>
+          </li>
+
+          <li class="point">
+            <!-- Refresh / Calendar -->
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 12a8 8 0 1 1-2.3-5.7M20 5v5h-5" />
+            </svg>
+            <div>
+              <b>Monthly restocks</b>
+              <div class="sub">If stock looks light, don’t worry — we restock every month during regular sales. We’ll notify you on WhatsApp before the next sale. 📲</div>
+            </div>
+          </li>
+        </ul>
+
+        <div>
+          <a class="btn" href="/drop.html" id="ctaTop">
+            <span class="btn-text">Shop Now</span>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="stroke:#0E0E0E"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="card stack reveal delay-2">
+        <h2>How to start</h2>
+        <p class="sub">Tap <b>Shop Now</b> and use your approved WhatsApp number at checkout. Keep notifications on for early links and limited‑time drops.</p>
+
+        <div class="stack" style="gap:10px">
+          <div class="chip">Clean, never crowded</div>
+          <div class="chip">Cool, never loud</div>
+          <div class="chip">Alive, never chaotic</div>
         </div>
       </div>
     </section>
-
-
-    <!-- Highlights -->
-    <section class="highlights" aria-label="Why you’ll love this">
-      <div class="card">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l2.09 4.23L18.7 8.1l-3.3 3.22.78 4.54L12 13.77 7.82 15.86l.78-4.54L5.3 8.1l4.61-.87L12 3z" stroke="currentColor" stroke-width="1.5"/></svg>
-        <div><b>Everyone Wins</b><span>No losses—every spin lands a reward.</span></div>
-      </div>
-      <div class="card">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 12a9 9 0 11-9-9" stroke="currentColor" stroke-width="1.7"/><path d="M21 12c-4 0-6 2-9 2s-5-2-9-2" stroke="currentColor" stroke-width="1.7" opacity=".6"/></svg>
-        <div><b>Up To +60% Extra</b><span>Stacked on top of flat 70% for all customers.</span></div>
-      </div>
-      <div class="card">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2v6M8 6h8M4 10h16M5 10v10h14V10" stroke="currentColor" stroke-width="1.5"/></svg>
-        <div><b>Festive‑Ready</b><span>Diwali vibes, exclusive drops, limited time.</span></div>
-      </div>
-    </section>
-
-    <!-- WhatsApp CTA -->
-    <section class="cta" aria-label="Stay in the loop">
-      <a id="cta-whatsapp" class="btn" href="#" rel="noopener" data-whatsapp-number=""
-         aria-label="Open WhatsApp to say: I'm excited for this one">
-        <!-- WhatsApp icon -->
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">
-          <path d="M3 12a9 9 0 1116.7 4.5L21 21l-4.5-1.3A9 9 0 013 12z" stroke="#ffffff" stroke-width="1.7" />
-          <path d="M8.5 9.5c0 3 2.5 5.5 5.5 5.5.5 0 1-.1 1.4-.3l1.1.3-.3-1.1c.2-.4.3-.9.3-1.4 0-3-2.5-5.5-5.5-5.5-1 0-1.9.3-2.7.8" fill="#ffffff" opacity=".35"/>
-        </svg>
-        I’m excited for this one
-      </a>
-      <div class="hint">Taps open WhatsApp with a prefilled message. Replace the number in code to route to your official account.</div>
-    </section>
-
-    <!-- Slot Machine -->
-    <section class="slot" aria-label="Festive Fortune Slot">
-      <div class="slot-head">
-        <div class="slot-title">Festive Fortune Slot</div>
-        <div class="slot-status" id="slotStatus">Locked until launch</div>
-      </div>
-      <div class="reels" aria-hidden="true">
-        <div class="reel"><div class="symbols" id="reel1"></div></div>
-        <div class="reel"><div class="symbols" id="reel2"></div></div>
-        <div class="reel"><div class="symbols" id="reel3"></div></div>
-      </div>
-      <div class="slot-cta">
-      <button class="btn" id="spinBtn" disabled aria-disabled="true">
-        Spin to Win — Opens Oct 7, 6:00 PM IST
-      </button>
-      <button class="btn secondary" id="claimBtn" hidden>Claim on WhatsApp</button>
-      <div class="hint" id="resultHint">Win up to +60% extra on top of flat 70%.</div>
-    </div>
-
-      <div class="confetti" id="confetti" aria-hidden="true"></div>
-    </section>
-
-    <!-- Terms -->
-    <section class="terms" aria-label="Terms and conditions">
-      <b>Quick T&Cs</b>
-      <ul>
-        <li>Flat 70% off available to all customers during the sale window.</li>
-        <li>Festive Fortune spin yields an extra discount between +10% and +60%; applied on top of 70%.</li>
-        <li>One spin per user (unless otherwise specified). Verification may apply.</li>
-        <li>Categories/exclusions and validity window may apply. See full terms at checkout.</li>
-      </ul>
-    </section>
   </main>
 
-  <footer>
-    © <span id="year"></span> THRD Clothing · THRD Festive Fortune
-  </footer>
+  <!-- Sticky CTA - always present -->
+  <div class="cta-sticky">
+    <a class="btn" href="/drop.html" id="ctaSticky" aria-label="Shop Now — members-only">
+      <span class="btn-text">Shop Now — Members‑only</span>
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="stroke:#0E0E0E"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
 
-<script>
-  // ===== Event date helper (IST) =====
-  function eventDateIST(monthIndex, day, hour24, minute = 0) {
-    // Always use the current year for predictable testing
-    const yearNow = new Date().getFullYear();
-    return new Date(`${yearNow}-${(monthIndex + 1 + '').padStart(2, '0')}-${(day + '').padStart(2, '0')}T${(hour24 + '').padStart(2, '0')}:${(minute + '').padStart(2, '0')}:00+05:30`);
-  }
+  <script>
+    // Parse query params for name & hero image
+    const params = new URLSearchParams(location.search);
+    const name = params.get('name');
+    const img  = params.get('img');
 
-  // 💡 Change this freely when testing
-  // Example: 3 Oct 6 PM IST for testing
-  const EVENT_DATE = eventDateIST(9, 7, 18, 0);
-
-  // ===== Elements =====
-  const elD = document.getElementById('d');
-  const elH = document.getElementById('h');
-  const elM = document.getElementById('m');
-  const elS = document.getElementById('s');
-  const slotStatus = document.getElementById('slotStatus');
-  const spinBtn = document.getElementById('spinBtn');
-  const claimBtn = document.getElementById('claimBtn');
-  const resultHint = document.getElementById('resultHint');
-
-  function pad(n) { return String(n).padStart(2, '0'); }
-
-  let live = false;
-
-  function tick() {
-    const now = Date.now();
-    const diff = EVENT_DATE.getTime() - now;
-
-    if (diff <= 0) {
-      // Event is live
-      if (!live) {
-        live = true;
-        elD.textContent = elH.textContent = elM.textContent = elS.textContent = '00';
-        slotStatus.textContent = 'LIVE — Spin now!';
-        spinBtn.disabled = false;
-        spinBtn.setAttribute('aria-disabled', 'false');
-        spinBtn.textContent = 'Spin to Win';
-        spinBtn.href="./fortune.html"
-        resultHint.textContent = 'It’s live! Spin to reveal your extra discount.';
-      }
-      return;
+    if(name){
+      document.getElementById('welcomeLine').textContent =
+        `Welcome ${name}, you’re now a member of our exclusive club.`;
+    }
+    if(img){
+      const heroImg = document.getElementById('heroImg');
+      heroImg.src = img;
+      document.getElementById('heroTitle').textContent = "Welcome to THRD";
+      document.getElementById('heroMedia').style.background = 'none';
     }
 
-    // Countdown in progress
-    const s = Math.floor(diff / 1000);
-    const days = Math.floor(s / 86400);
-    const hours = Math.floor((s % 86400) / 3600);
-    const mins = Math.floor((s % 3600) / 60);
-    const secs = s % 60;
-    elD.textContent = pad(days);
-    elH.textContent = pad(hours);
-    elM.textContent = pad(mins);
-    elS.textContent = pad(secs);
-  }
+    // Reveal-on-scroll
+    const io = new IntersectionObserver((entries)=> {
+      entries.forEach(e => e.isIntersecting && e.target.classList.add('in-view'));
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  tick();
-  setInterval(tick, 1000);
-
-  // ===== WhatsApp CTA =====
-  const ctaWhatsApp = document.getElementById('cta-whatsapp');
-  ctaWhatsApp.addEventListener('click', (e) => {
-    e.preventDefault();
-    const num = "918198845888";
-    const txt = encodeURIComponent("I'm excited for THRD Festive Fortune! Remind me on sale");
-    const url = num ? `https://wa.me/${num}?text=${txt}` : `https://wa.me/?text=${txt}`;
-    window.open(url, '_blank', 'noopener');
-  });
-
-  // ===== Slot symbols =====
-  const icon = {
-    diya: `<svg viewBox="0 0 64 64" width="40" height="40" aria-hidden="true">
-      <path d="M32 12c0 6-6 10-6 14 0 3 2 6 6 6s6-3 6-6c0-4-6-8-6-14z" fill="#d49a30"/>
-      <path d="M8 36c0 8 10 16 24 16s24-8 24-16H8z" fill="#2f5a47"/>
-      <path d="M12 36c2 6 10 12 20 12s18-6 20-12H12z" fill="#b84528" opacity=".9"/>
-    </svg>`,
-    coin: `<svg viewBox="0 0 64 64" width="40" height="40" aria-hidden="true">
-      <circle cx="32" cy="32" r="20" fill="#f1c872" stroke="#d49a30" stroke-width="4"/>
-      <path d="M22 32h20M32 22v20" stroke="#9a6c22" stroke-width="4" />
-    </svg>`,
-    gift: `<svg viewBox="0 0 64 64" width="40" height="40" aria-hidden="true">
-      <rect x="10" y="24" width="44" height="28" rx="6" fill="#b84528"/><rect x="14" y="18" width="36" height="16" rx="6" fill="#2f5a47"/>
-      <rect x="30" y="18" width="4" height="34" fill="#d49a30"/><rect x="20" y="32" width="24" height="4" fill="#d49a30"/>
-    </svg>`,
-    star: `<svg viewBox="0 0 64 64" width="40" height="40" aria-hidden="true">
-      <path d="M32 8l7 14 16 2-11 11 3 16-15-8-15 8 3-16L9 24l16-2 7-14z" fill="#2f5a47"/>
-    </svg>`
-  };
-  const SYMBOL_SET = ['diya', 'coin', 'gift', 'star'];
-  function buildColumnHTML() {
-    const seq = [...SYMBOL_SET, ...SYMBOL_SET, ...SYMBOL_SET];
-    return seq.map(key => `<div>${icon[key]}</div>`).join('');
-  }
-  document.getElementById('reel1').innerHTML = buildColumnHTML();
-  document.getElementById('reel2').innerHTML = buildColumnHTML();
-  document.getElementById('reel3').innerHTML = buildColumnHTML();
-
-  // ===== Spin logic =====
-  function weightedPrize() {
-    const table = [10, 10, 15, 15, 20, 20, 25, 30, 30, 40, 50, 60];
-    return table[Math.floor(Math.random() * table.length)];
-  }
-  function randomOffset() {
-    const steps = 12;
-    const index = Math.floor(Math.random() * steps);
-    return -(index * 60 - 2);
-  }
-  const reels = [document.getElementById('reel1'), document.getElementById('reel2'), document.getElementById('reel3')];
-  const confettiEl = document.getElementById('confetti');
-
-  function makeConfetti() {
-    confettiEl.innerHTML = '';
-    for (let i = 0; i < 60; i++) {
-      const p = document.createElement('i');
-      p.style.left = Math.random() * 100 + '%';
-      p.style.background = ['#b84528', '#f1c872', '#2f5a47', '#d49a30'][Math.floor(Math.random() * 4)];
-      p.style.animationDelay = (Math.random() * 0.25) + 's';
-      confettiEl.appendChild(p);
-    }
-    setTimeout(() => confettiEl.innerHTML = '', 1500);
-  }
-
-  let spinning = false, prize = 0;
-     // Redirect to fortune.html on spin
-    spinBtn.addEventListener('click', ()=>{
-      if(!live){
-        resultHint.textContent='Spins unlock at 6:00 PM IST on Oct 7.';
-        return;
-      }
-      window.location.href='./fortune.html';
+    // Theme toggle (Light <-> Dark) for drop moments
+    const toggle = document.getElementById('themeToggle');
+    const applyTheme = (t) => {
+      document.documentElement.setAttribute('data-theme', t);
+      toggle.textContent = t === 'dark' ? 'Light' : 'Dark';
+      toggle.setAttribute('aria-pressed', t === 'dark');
+      localStorage.setItem('thrd-theme', t);
+    };
+    const saved = localStorage.getItem('thrd-theme');
+    applyTheme(saved || 'light');
+    toggle.addEventListener('click', () => {
+      const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      applyTheme(next);
     });
-  // Claim → WhatsApp with prize mention
-  claimBtn.addEventListener('click', () => {
-    const num = "918198845888";
-    const msg = encodeURIComponent(`I'm excited for THRD Festive Fortune! Remind me on sale`);
-    const url = num ? `https://wa.me/${num}?text=${msg}` : `https://wa.me/?text=${msg}`;
-    window.open(url, '_blank', 'noopener');
-  });
 
-  // Footer year
-  document.getElementById('year').textContent = new Date().getFullYear();
-  
-  // ------------------------------
-// SALE END CHECK (8 Oct 2025, 11:30 PM IST)
-// ------------------------------
-const SALE_END_TIME_IST = new Date("2025-10-08T23:30:00+05:30").getTime();
+    // Minimal confetti (gold/white) for delight; fires on load + CTA clicks
+    const fxLayer = document.querySelector('.fx');
+    const cssVar = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+    const GOLD = cssVar('--gold') || '#C9A86A';
+    const GOLD_DEEP = cssVar('--gold-deep') || '#B8914C';
+    const WHITE = '#F8F5EF';
 
-function showSaleEndedOverlayHard() {
-  document.body.innerHTML = `
-    <div style="
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
-      height:100vh;text-align:center;background:#fffdfc;color:#1b1b1b;
-      font-family:Inter,system-ui,sans-serif;padding:20px;">
-      <h1 style="font-size:2rem;margin-bottom:0.8rem;">🎉 The Festive Fortune Sale has Ended</h1>
-      <p style="font-size:1.1rem;color:#6c6c6c;margin-bottom:1.5rem;">
-        Thanks for joining us — see you at the next event.
-      </p>
-      <a href="https://shop.thrd.store/" target="_blank" rel="noopener"
-         style="padding:0.75rem 1.25rem;background:#1b1b1b;color:#fff;
-                text-decoration:none;font-weight:600;border-radius:999px;
-                box-shadow:0 8px 20px rgba(0,0,0,.15);">
-        Shop Now
-      </a>
-    </div>
-  `;
-}
+    function confettiBurst(x, y, n = 28){
+      for(let i=0;i<n;i++){
+        const p = document.createElement('div');
+        p.className = 'confetti';
+        const angle = Math.random()*Math.PI*2;
+        const dist  = 40 + Math.random()*80;
+        const dx = Math.cos(angle)*dist;
+        const dy = Math.sin(angle)*dist;
+        p.style.setProperty('--x', x+'px');
+        p.style.setProperty('--y', y+'px');
+        p.style.setProperty('--dx', dx+'px');
+        p.style.setProperty('--dy', dy+'px');
+        p.style.background = [GOLD, GOLD_DEEP, WHITE][Math.floor(Math.random()*3)];
+        p.style.left = x+'px'; p.style.top = y+'px';
+        fxLayer.appendChild(p);
+        setTimeout(()=> p.remove(), 950);
+      }
+    }
+    const centerBurst = () => {
+      const r = document.body.getBoundingClientRect();
+      confettiBurst(r.width/2, 120);
+    };
+    window.addEventListener('load', () => {
+      setTimeout(centerBurst, 300); // quick, rhythmic
+    });
 
-// Immediately check and block if sale ended
-if (Date.now() > SALE_END_TIME_IST) {
-  showSaleEndedOverlayHard();
-}
-
-</script>
-
-
+    // CTA interactions
+    const bindBurst = (el) => el.addEventListener('click', (e)=>{
+      const rect = el.getBoundingClientRect();
+      confettiBurst(rect.left + rect.width/2, rect.top + window.scrollY);
+    });
+    bindBurst(document.getElementById('ctaTop'));
+    bindBurst(document.getElementById('ctaSticky'));
+  </script>
 </body>
 </html>
