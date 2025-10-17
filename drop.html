@@ -1,306 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>THRD — Festive Fortune</title>
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --bg:#faf7f2;
-      --ink:#0f0f0f;
-      --muted:#6f6a63;
-      --gold:#c9a86a;
-      --gold-strong:#b8914c;
-      --card:#ffffff;
-      --shadow:0 6px 24px rgba(0,0,0,.06);
-      --radius:18px;
-      --hero-image:url('/images/specials/fortune.png');
-    }
-
-    *{box-sizing:border-box}
-    html,body{
-      margin:0;padding:0;
-      background:var(--bg);color:var(--ink);
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
-    }
-
-    .header{
-      position:sticky;top:0;z-index:50;
-      background:linear-gradient(180deg,#fff,#fff9);
-      backdrop-filter:saturate(1.2) blur(6px);
-      border-bottom:1px solid rgba(0,0,0,.06);
-      padding:10px 14px env(safe-area-inset-top);
-      display:flex;align-items:center;justify-content:space-between;
-    }
-    .brand{
-      font-family:"Silkscreen",monospace;font-weight:700;
-      letter-spacing:1px;font-size:22px;color:var(--ink);
-      display:flex;align-items:baseline;gap:8px;
-    }
-    .brand .dot{
-      width:8px;height:8px;border-radius:50%;
-      background:var(--gold);
-      box-shadow:0 0 10px 2px rgba(201,168,106,.5);
-    }
-    .brand a{text-decoration:none;color:black;}
-    .cta-top{
-      appearance:none;border:none;outline:none;
-      background:var(--ink);color:#fff;
-      padding:10px 14px;border-radius:999px;
-      font-weight:600;font-size:13px;letter-spacing:.2px;
-      box-shadow:0 6px 16px rgba(0,0,0,.12);
-      cursor:pointer;
-    }
-
-    .art{
-      border:1px solid var(--border);
-      border-radius:18px;overflow:hidden;background:var(--panel);
-      box-shadow:0 10px 24px rgba(0,0,0,.06);
-    }
-    .art img{width:100%;height:auto;display:block}
-
-    .countdown-wrap{padding:16px 16px 8px;}
-    .countdown{
-      display:grid;place-items:center;background:var(--card);
-      border-radius:var(--radius);box-shadow:var(--shadow);
-      padding:22px 18px;position:relative;overflow:hidden;
-    }
-    .count-num{
-      font-variant-numeric:tabular-nums;font-weight:800;
-      letter-spacing:1px;font-size:44px;
-    }
-    .live{display:none;text-align:center;}
-    .live.show{display:block;}
-    .live .live-title{font-weight:800;font-size:22px;letter-spacing:.3px;}
-    .live .live-sub{margin-top:6px;font-size:13px;color:var(--muted);}
-    .play-btn{
-      margin-top:12px;appearance:none;border:none;outline:none;
-      background:linear-gradient(180deg,var(--gold),var(--gold-strong));
-      color:#fff;padding:14px 18px;border-radius:14px;width:100%;
-      font-weight:700;font-size:15px;
-      box-shadow:0 10px 24px rgba(185,145,76,.28);
-      cursor:pointer;
-    }
-
-    .section-title{padding:8px 16px 0;font-weight:800;font-size:16px;color:var(--ink);}
-    .cards{padding:10px 16px 100px;display:grid;gap:12px;}
-    .card{
-      background:var(--card);border-radius:var(--radius);
-      box-shadow:var(--shadow);padding:16px;
-    }
-    .card h3{margin:0 0 6px;font-size:15px;letter-spacing:.2px;}
-    .card p{margin:0;color:var(--muted);font-size:13px;line-height:1.45;}
-
-    .cta-float{
-      position:fixed;left:0;right:0;bottom:max(12px,env(safe-area-inset-bottom));
-      z-index:60;display:grid;place-items:center;pointer-events:none;
-    }
-    .cta-float button{
-      pointer-events:auto;appearance:none;border:none;outline:none;
-      background:var(--ink);color:#fff;
-      padding:16px 20px;border-radius:999px;width:calc(100% - 24px);
-      font-weight:800;letter-spacing:.2px;
-      box-shadow:0 20px 30px rgba(0,0,0,.22);
-      cursor:pointer;
-    }
-
-    canvas#confetti{position:fixed;inset:0;width:100%;height:100%;
-      pointer-events:none;z-index:40;}
-
-    .bg-sparks{
-      position:fixed;inset:0;pointer-events:none;z-index:0;
-      background:
-        radial-gradient(2px 2px at 20% 30%,rgba(201,168,106,.35),transparent 60%),
-        radial-gradient(1.5px 1.5px at 80% 10%,rgba(201,168,106,.3),transparent 60%),
-        radial-gradient(1.6px 1.6px at 65% 75%,rgba(201,168,106,.25),transparent 60%),
-        radial-gradient(1.8px 1.8px at 15% 80%,rgba(201,168,106,.3),transparent 60%);
-      animation:sparks 10s linear infinite;opacity:.5;
-    }
-    @keyframes sparks{
-      0%{transform:translateY(0px);}
-      50%{transform:translateY(-3px);}
-      100%{transform:translateY(0px);}
-    }
-
-    @media(min-width:560px){
-      body{display:grid;place-items:start;}
-      .frame{width:420px;margin:0 auto;min-height:100dvh;
-        border-left:1px solid rgba(0,0,0,.05);
-        border-right:1px solid rgba(0,0,0,.05);}
-    }
-
-    /* Sale End Overlay */
-    #saleEndedOverlay{
-      position:fixed;inset:0;background:rgba(250,247,242,0.96);
-      display:flex;flex-direction:column;align-items:center;
-      justify-content:center;text-align:center;z-index:100;
-      padding:20px;
-      font-family:Inter,sans-serif;color:var(--ink);
-    }
-    #saleEndedOverlay h1{
-      font-size:1.8rem;margin-bottom:0.8rem;
-    }
-    #saleEndedOverlay p{
-      color:var(--muted);font-size:1rem;margin-bottom:1.5rem;
-    }
-    #saleEndedOverlay a{
-      background:var(--ink);color:#fff;text-decoration:none;
-      padding:12px 20px;border-radius:999px;font-weight:600;
-      box-shadow:0 10px 20px rgba(0,0,0,.15);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THRD Biggest Drop Coming Soon 🔥</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="./css/drop.css" >
+    <link rel="stylesheet" href="./css/membership.css" >
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    
 </head>
+
 <body>
-  <div class="bg-sparks" aria-hidden="true"></div>
-  <canvas id="confetti"></canvas>
+    <nav class="navBar">
+        <ul class="navbarelements">
+            <li class="navitem left">
+                <a class="shop-link" href="./request_access.html">SHOP</a>
+            </li>
+            <li class="navitem name"><a href="./index.html">THRD</a></li>
+            <li class="navitem right"><a href="./our_story.html">ABOUT</a></li>
+        </ul>
+    </nav>
+    
+    <div class="main-container">
+        <!-- Pre-launch content -->
+        <section id="pre-launch-content" class="content-section">
+            <div class="highlight"><span class="emoji">👋</span> Hey THRD Members! <span class="emoji">👋</span></div>
+            
+            <h1 class="headline"><span class="emoji">🎉</span> Our Biggest Drop Is Almost Here! <span class="emoji">🎉</span></h1>
+            
+            <p class="subheading">The moment you've been waiting for—less than 24 hours until we reveal our most exciting collection yet.</p>
+            
+            <div class="countdown-container">
+                <div class="countdown-label">⏰ Countdown to Launch:</div>
+                <div id="countdown" class="timer">00:00:00</div>
+            </div>
+            
+            <h2 class="benefits-title"><span class="emoji">🚀</span> Stay Ahead of the Crowd</h2>
+            
+            <p class="subheading">We've upgraded our search features to help you find and purchase your favorites faster than ever before!</p>
+            
+            <div class="video-wrapper">
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/lUTM7_Aa0-4?si=ZvXQzXVvmEL8ZdPO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+            
+            <div class="notice-box">
+                <div class="notice-title"><span class="warning-icon">⚠️</span> Community Notice</div>
+                <p>If you refuse COD (Cash on Delivery) orders upon delivery, your membership will be revoked and you'll be blacklisted. Please only order items you intend to keep.</p>
+            </div>
+            
+            <div class="benefits-section">
+                <h2 class="benefits-title">Why Choose Prepaid Orders?</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🚚</div>
+                        <div class="benefit-title">Faster Shipping</div>
+                        <p>Prepaid orders are processed and shipped with priority</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🔒</div>
+                        <div class="benefit-title">Safer Deliveries</div>
+                        <p>Secured packaging and tracking for your peace of mind</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">✅</div>
+                        <div class="benefit-title">100% Delivery Rate</div>
+                        <p>Our data confirms prepaid orders are always delivered successfully</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn pulse" onclick="manualRedirect1()">I'm Ready for the Drop!</button>
+        </section>
+        
+        <!-- Live drop content - shown after countdown ends -->
+        <section id="live-drop-content" class="content-section">
+            <div class="highlight"><span class="emoji">🎊</span> The Drop Is Live Now! <span class="emoji">🎊</span></div>
+            
+            <h1 class="headline"><span class="emoji">🛒</span> Shop Our Exclusive Collection</h1>
+            
+            <p class="subheading">Don't miss your chance to grab our limited edition items before they're gone!</p>
+            
+            <div class="benefits-section">
+                <h2 class="benefits-title">Shopping Benefits</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🔑</div>
+                        <div class="benefit-title">Easy Login</div>
+                        <p>Use your registered WhatsApp phone number</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🌍</div>
+                        <div class="benefit-title">Free Shipping</div>
+                        <p>Enjoy free delivery anywhere in India</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">💸</div>
+                        <div class="benefit-title">Cash on Delivery</div>
+                        <p>Free COD available across India</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🏃‍♂️</div>
+                        <div class="benefit-title">Limited Stocks</div>
+                        <p>Act fast before they're gone!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn pulse shop-now" onclick="manualRedirect()">SHOP NOW</button>
+        </section>
+    </div>
 
-  <div class="frame">
-    <header class="header">
-      <div class="brand"><a href="/index.html">THRD</a><span class="dot"></span></div>
-      <button class="cta-top" id="ctaTop">PLAY & WIN</button>
-    </header>
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            if (mobileMenuToggle) {
+                const navbarLinks = document.getElementById('navbar-links');
+                mobileMenuToggle.addEventListener('click', () => {
+                    navbarLinks.classList.toggle('active');
+                });
+            }
+        });
+    
+        // Shop URL
+        const SHOP_URL = "https://www.thrd.store/shop";
 
-    <figure class="art">
-      <img src="/images/specials/fortune.png" alt="Festive Fortune slot machine with diya and fireworks" />
-    </figure>
+        const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=918198845888&text=Lets%20GOOO%0A";
 
-    <section class="countdown-wrap">
-      <div class="countdown" id="countdown">
-        <div class="count-num" id="countNum">3</div>
-        <div class="live" id="liveBlock">
-          <div class="badge">Festive Fortune</div>
-          <div class="live-title">SALE IS LIVE!</div>
-          <div class="live-sub">Win up to <strong>60% extra</strong> — play the Festive Fortune.</div>
-          <button class="play-btn" id="playPrimary">PLAY & WIN NOW →</button>
-        </div>
-      </div>
-    </section>
-
-    <h2 class="section-title">What to know</h2>
-    <section class="cards">
-      <article class="card">
-        <h3>Spin Your Luck</h3>
-        <p>Win between <strong>25% to 60% EXTRA</strong> discount on the current collection.</p>
-      </article>
-      <article class="card">
-        <h3>Restocks Just Dropped</h3>
-        <p>We’ve <strong>restocked few member favorites</strong> as per your requests.</p>
-      </article>
-      <article class="card">
-        <h3>3-Piece Rule</h3>
-        <p>Each member can shop up to <strong>3 products</strong>. Once your cart hits 3, it locks.</p>
-      </article>
-    </section>
-  </div>
-
-  <div class="cta-float">
-    <button id="ctaBottom">PLAY & WIN YOUR DISCOUNT</button>
-  </div>
-
-  <script>
-    // ----------------------------
-    // SALE END CHECK (8 Oct 11:30 PM IST)
-    // ----------------------------
-    const SALE_END_TIME_IST = new Date("2025-10-08T23:30:00+05:30").getTime();
-
-    function showSaleEndedOverlay(){
-      const overlay = document.createElement('div');
-      overlay.id = 'saleEndedOverlay';
-      overlay.innerHTML = `
-        <h1>🎉 The Festive Fortune sale has ended!</h1>
-        <p>Thanks for playing — see you in our next event.</p>
-        <a href="https://shop.thrd.store/" target="_blank" rel="noopener">Shop Now</a>
-      `;
-      document.body.appendChild(overlay);
-
-      // Disable all buttons
-      document.querySelectorAll('button').forEach(btn => {
-        btn.disabled = true;
-        btn.style.opacity = '0.5';
-        btn.style.cursor = 'not-allowed';
-      });
-    }
-
-    function checkSaleEnded(){
-      if(Date.now() > SALE_END_TIME_IST){
-        showSaleEndedOverlay();
-        return true;
-      }
-      return false;
-    }
-
-    if(!checkSaleEnded()){
-      // ------- Fake countdown animation -------
-      (function(){
-        const countNum=document.getElementById('countNum');
-        const liveBlock=document.getElementById('liveBlock');
-        const wrap=document.getElementById('countdown');
-        let n=3; countNum.textContent=n;
-        const tick=()=>{
-          if(n>0){
-            n-=1;countNum.textContent=n;setTimeout(tick,450);
-          }else{
-            countNum.style.display='none';
-            liveBlock.classList.add('show');
-            burstConfetti(1100);
-            wrap.animate([{transform:'scale(1)'},{transform:'scale(1.02)'},{transform:'scale(1)'}],
-              {duration:600,easing:'ease-out'});
-          }
-        };
-        setTimeout(tick,500);
-      })();
-
-      // ------- Simple confetti -------
-      function burstConfetti(durationMs=1500){
-        const canvas=document.getElementById('confetti');
-        const ctx=canvas.getContext('2d');
-        let W,H,start,raf;
-        const DPR=Math.max(1,Math.min(2,window.devicePixelRatio||1));
-        function resize(){
-          W=canvas.width=Math.floor(window.innerWidth*DPR);
-          H=canvas.height=Math.floor(window.innerHeight*DPR);
+        // Manual redirect function for button click
+        function manualRedirect() {
+            window.location.href=SHOP_URL
         }
-        resize(); window.addEventListener('resize',resize);
-        const colors=['#ffffff','#f7f2e8','#c9a86a','#b8914c','#e7d3a4'];
-        const pieces=[]; const COUNT=Math.floor(Math.min(180,W/4));
-        for(let i=0;i<COUNT;i++){
-          pieces.push({x:Math.random()*W,y:-20-Math.random()*H*0.3,r:4+Math.random()*4,
-            tilt:Math.random()*Math.PI,speedY:1.2+Math.random()*2.6,
-            speedX:-1+Math.random()*2,color:colors[Math.floor(Math.random()*colors.length)],
-            spin:(Math.random()>.5?1:-1)*(0.05+Math.random()*0.12)});
+        function manualRedirect1() {
+            window.location.href=WHATSAPP_URL;
         }
-        function draw(t){
-          if(!start)start=t;
-          const elapsed=t-start;
-          ctx.clearRect(0,0,W,H);
-          for(const p of pieces){
-            p.tilt+=p.spin;p.x+=p.speedX*DPR;p.y+=p.speedY*DPR;
-            const w=p.r*(0.8+0.6*Math.sin(p.tilt));
-            ctx.fillStyle=p.color;
-            ctx.beginPath();
-            ctx.ellipse(p.x,p.y,p.r,w,p.tilt,0,Math.PI*2);
-            ctx.fill();
-          }
-          const fade=Math.max(0,1-(elapsed/durationMs));
-          canvas.style.opacity=fade.toFixed(2);
-          if(elapsed<durationMs){raf=requestAnimationFrame(draw);}
-          else{cancelAnimationFrame(raf);canvas.style.opacity='0';pieces.length=0;}
-        }
-        canvas.style.opacity='1';
-        raf=requestAnimationFrame(draw);
-      }
+        
+        function updateTimer() {
+            // Get the current date/time in local time zone
+            const now = new Date();
 
-      // ------- CTA Hooks -------
-      const goPlay=()=>{ window.location.href='./fortune.html'; };
-      document.getElementById('playPrimary').addEventListener('click',goPlay);
-      document.getElementById('ctaBottom').addEventListener('click',goPlay);
-      document.getElementById('ctaTop').addEventListener('click',goPlay);
-    }
-  </script>
+            // Set drop time to 7:00 PM on 2025-04-12 in IST
+            // Convert to local time zone
+            const dropTimeIST = new Date('2025-10-18T19:00:00+05:30');
+
+            const timerElement = document.getElementById('countdown');
+            const preLaunchContent = document.getElementById('pre-launch-content');
+            const liveDropContent = document.getElementById('live-drop-content');
+
+            // Check drop status
+            if (now < dropTimeIST) {
+                // Drop hasn't started yet
+                const timeRemaining = dropTimeIST - now;
+                updateTimerDisplay(timeRemaining, timerElement);
+                
+                // Show pre-launch content
+                preLaunchContent.style.display = "flex";
+                liveDropContent.style.display = "none";
+            } else {
+                // Drop is live
+                timerElement.textContent = "00:00:00";
+                
+                // Show live drop content
+                preLaunchContent.style.display = "none";
+                liveDropContent.style.display = "flex";
+            }
+        }
+        
+        // Helper function to format the time display
+        function updateTimerDisplay(timeRemaining, timerElement) {
+            // Ensure timeRemaining is non-negative
+            const time = Math.max(0, timeRemaining);
+
+            const hours = Math.floor(time / (1000 * 60 * 60));
+            const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((time % (1000 * 60)) / 1000);
+
+            const formattedHours = String(hours).padStart(2, '0');
+            const formattedMinutes = String(minutes).padStart(2, '0');
+            const formattedSeconds = String(seconds).padStart(2, '0');
+
+            timerElement.textContent = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+        }
+
+        // Update timer every second
+        setInterval(updateTimer, 1000);
+        
+        // Initialize the timer immediately
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTimer();
+        });
+        
+        // Counter API call
+        const COUNTER_URL = 'https://api.thrd.store/api/website/counter?base_name=drop';
+        
+        async function incrementCounter() {
+            try {
+                const response = await fetch(COUNTER_URL, {
+                    method: 'GET'
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Counter updated:', data);
+                } else {
+                    console.error('Error updating counter: Server returned', response.status);
+                }
+            } catch (error) {
+                console.error('Error updating counter:', error);
+            }
+        }
+        
+        // Call when page loads
+        window.addEventListener('load', incrementCounter);
+    </script>
 </body>
 </html>
