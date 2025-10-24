@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TSC TE244 Printer Setup Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .navigation {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .nav-btn.active {
+            background: white;
+            color: #667eea;
+        }
+
+        .screen {
+            display: none;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .command-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            position: relative;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+
+        .command-line {
+            display: flex;
+            align-items: flex-start;
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .command-text {
+            flex: 1;
+            line-height: 1.6;
+        }
+
+        .info-icon {
+            background: #667eea;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: help;
+            margin-left: 10px;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .tooltip {
+            position: absolute;
+            background: #2d2d2d;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 13px;
+            width: 350px;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            display: none;
+            left: 30px;
+            top: -10px;
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.5;
+            border: 1px solid #667eea;
+        }
+
+        .info-icon:hover .tooltip {
+            display: block;
+        }
+
+        .explanation {
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .explanation h4 {
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .file-path {
+            background: #fff3cd;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #856404;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .comment {
+            color: #6a9955;
+        }
+
+        .keyword {
+            color: #569cd6;
+        }
+
+        .string {
+            color: #ce9178;
+        }
+
+        @media (max-width: 768px) {
+            .tooltip {
+                width: 250px;
+                left: auto;
+                right: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🖨️ TSC TE244 Printer Setup</h1>
+            <p>Complete Ubuntu Installation Guide with Detailed Explanations</p>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-btn active" onclick="showScreen(0)">📋 Overview</button>
+            <button class="nav-btn" onclick="showScreen(1)">Part 1: Driver</button>
+            <button class="nav-btn" onclick="showScreen(2)">Part 2: Filter</button>
+            <button class="nav-btn" onclick="showScreen(3)">Part 3: PPD</button>
+            <button class="nav-btn" onclick="showScreen(4)">Part 4: CUPS</button>
+            <button class="nav-btn" onclick="showScreen(5)">Part 5: Permissions</button>
+            <button class="nav-btn" onclick="showScreen(6)">Part 6: AppArmor</button>
+            <button class="nav-btn" onclick="showScreen(7)">Part 7: Verify</button>
+            <button class="nav-btn" onclick="showScreen(8)">Part 8: Test</button>
+        </div>
+
+        <!-- Screen 0: Overview -->
+        <div class="screen active" id="screen-0">
+            <div class="card">
+                <h2>📋 Setup Overview</h2>
+                <div class="explanation">
+                    <h4>What You'll Learn:</h4>
+                    <p>This guide will walk you through installing a TSC TE244 label printer on Ubuntu Linux. You'll learn how to install drivers, configure the printing system, and test your printer.</p>
+                </div>
+                
+                <h3 style="color: #667eea; margin-top: 25px;">📁 Required Files</h3>
+                <div class="explanation">
+                    <p><strong>PPD File:</strong> <span class="file-path">/home/thrd/Documents/thrd/codes/resources/initial_setup/TE244.ppd</span></p>
+                    <p style="margin-top: 10px;">This file tells your computer how to talk to the printer.</p>
+                    
+                    <p style="margin-top: 15px;"><strong>Driver Archive:</strong> <span class="file-path">https://drive.google.com/file/d/1CgIsx6VDyVE0jVTO1HlstHNtTgHmh0lN/view?usp=sharing</span></p>
+                    <p style="margin-top: 10px;">This contains the software needed to make the printer work.</p>
+                </div>
+
+                <div class="success-box">
+                    <strong>✅ Setup Steps:</strong>
+                    <ol style="margin-left: 20px; margin-top: 10px;">
+                        <li>Extract and install the official driver</li>
+                        <li>Install the printer filter</li>
+                        <li>Set up the PPD file</li>
+                        <li>Configure CUPS (the printing system)</li>
+                        <li>Fix permissions</li>
+                        <li>Configure security (AppArmor)</li>
+                        <li>Verify everything works</li>
+                        <li>Test print</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 1: Driver Installation -->
+        <div class="screen" id="screen-1">
+            <div class="card">
+                <h2><span class="step-number">1</span> Extract and Install the Driver</h2>
+                
+                <div class="explanation">
+                    <h4>What This Does:</h4>
+                    <p>This section extracts the printer driver from a compressed file and prepares it for installation.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="comment"># Create working directory</span></span>
+                    </div>
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">mkdir</span> <span class="string">-p</span> ~/tsc_driver/tsc64</span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>mkdir -p ~/tsc_driver/tsc64</strong><br><br>
+                                <strong>mkdir:</strong> Makes a new folder<br>
+                                <strong>-p:</strong> Creates parent folders if they don't exist (no error if folder already exists)<br>
+                                <strong>~/tsc_driver/tsc64:</strong> The location of the new folder in your home directory<br><br>
+                                <em>Think of it like: "Create a new folder and all folders needed to get there"</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Create a new folder called "tsc64" inside "tsc_driver" in your home directory. If the folders don't exist, create them.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="comment"># Extract the downloaded driver zip</span></span>
+                    </div>
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">unzip</span> <span class="string">-o</span> "/home/thrd/Desktop/Printer Driver/linux64_v1.2.13.zip" <span class="string">-d</span> ~/tsc_driver/tsc64</span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>unzip -o [file] -d [destination]</strong><br><br>
+                                <strong>unzip:</strong> Extracts files from a compressed .zip archive<br>
+                                <strong>-o:</strong> Overwrites existing files without asking<br>
+                                <strong>-d:</strong> Specifies the destination folder<br><br>
+                                <em>Like opening a zip file on your computer and extracting everything to a specific folder</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Unzip the driver file and put all the contents into the tsc64 folder we just created.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="comment"># Extract the actual driver package inside</span></span>
+                    </div>
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">tar</span> <span class="string">-xvzf</span> ~/tsc_driver/tsc64/Linux64_v1.2.13/barcodedriver-1.2.13-x86_64.tar.gz <span class="string">-C</span> ~/tsc_driver/tsc64/</span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>tar -xvzf [file] -C [destination]</strong><br><br>
+                                <strong>tar:</strong> Tool for working with archived files<br>
+                                <strong>-x:</strong> Extract files<br>
+                                <strong>-v:</strong> Verbose (show what's happening)<br>
+                                <strong>-z:</strong> Handle gzip compression (.gz files)<br>
+                                <strong>-f:</strong> Specify the file to work with<br>
+                                <strong>-C:</strong> Change to this directory before extracting<br><br>
+                                <em>Like opening a compressed folder and showing you each file as it's extracted</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Inside the zip file was another compressed file (tar.gz). This command extracts that file and shows you what's being extracted.</p>
+                </div>
+
+                <div class="success-box">
+                    <strong>✅ Result:</strong> The driver files are now extracted to:<br>
+                    <span class="file-path">~/tsc_driver/tsc64/barcodedriver-1.2.13/</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 2: Filter Installation -->
+        <div class="screen" id="screen-2">
+            <div class="card">
+                <h2><span class="step-number">2</span> Install the Printer Filter</h2>
+                
+                <div class="explanation">
+                    <h4>What This Does:</h4>
+                    <p>A "filter" is a program that converts your print job into a language the printer understands. This step installs that converter.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">cp</span> ~/tsc_driver/tsc64/barcodedriver-1.2.13/rastertobarcodetspl /usr/lib/cups/filter/</span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>sudo cp [source] [destination]</strong><br><br>
+                                <strong>sudo:</strong> Run command with administrator privileges<br>
+                                <strong>cp:</strong> Copy a file<br>
+                                <strong>Source:</strong> The filter file from the driver<br>
+                                <strong>Destination:</strong> System folder where CUPS looks for filters<br><br>
+                                <em>Like copying a file, but you need admin permission because it goes into a system folder</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Copy the printer filter file to the system folder where the printing system (CUPS) can find it. You need admin rights (sudo) because it's a system folder.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">chown</span> root:root /usr/lib/cups/filter/rastertobarcodetspl</span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>sudo chown root:root [file]</strong><br><br>
+                                <strong>chown:</strong> Change ownership of a file<br>
+                                <strong>root:root:</strong> Set owner to "root" (system admin) and group to "root"<br><br>
+                                <em>Like assigning who "owns" the file - in this case, the system itself</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Set the owner of the filter file to "root" (the system administrator account). This is a security measure.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">chmod</span> <span class="string">755</span> /usr/lib/cups/filter/rastertobarcodetspl</span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>sudo chmod 755 [file]</strong><br><br>
+                                <strong>chmod:</strong> Change file permissions (who can read/write/execute)<br>
+                                <strong>755:</strong> Owner can do everything (7), group can read & execute (5), others can read & execute (5)<br><br>
+                                <em>Sets who can use this file - everyone can run it, but only admin can change it</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Set the file permissions so the system can run it, but only administrators can modify it.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="comment"># Verify the filter was installed correctly</span></span>
+                    </div>
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">ls</span> <span class="string">-l</span> /usr/lib/cups/filter/ | <span class="keyword">grep</span> rastertobarcodetspl</span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>ls -l [folder] | grep [text]</strong><br><br>
+                                <strong>ls -l:</strong> List files with detailed information<br>
+                                <strong>|:</strong> Pipe - send output of one command to another<br>
+                                <strong>grep:</strong> Search for text in the output<br><br>
+                                <em>Shows details about the filter file to confirm it was installed correctly</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> List all files in the filter folder and search for our filter file to make sure it's there and has the right permissions.</p>
+                </div>
+
+                <div class="success-box">
+                    <strong>✅ What You Should See:</strong> A line showing the file with "rwxr-xr-x" permissions and "root root" as owner.
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 3: PPD Setup -->
+        <div class="screen" id="screen-3">
+            <div class="card">
+                <h2><span class="step-number">3</span> Set Up the PPD File</h2>
+                
+                <div class="explanation">
+                    <h4>What This Does:</h4>
+                    <p>A PPD (PostScript Printer Description) file tells your computer about the printer's capabilities - paper sizes, print quality, etc.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">cp</span> /home/thrd/Documents/thrd/codes/resources/initial_setup/TE244.ppd /etc/cups/ppd/</span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>sudo cp [source PPD] /etc/cups/ppd/</strong><br><br>
+                                Copies the printer description file to the CUPS configuration directory where printer definitions are stored.<br><br>
+                                <strong>/etc/cups/ppd/:</strong> The standard location for PPD files in CUPS<br><br>
+                                <em>Like adding your printer's manual to the system's library</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Copy the printer description file to the folder where CUPS (the printing system) keeps all printer information files.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">chown</span> root:lp /etc/cups/ppd/TE244.ppd</span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>sudo chown root:lp [file]</strong><br><br>
+                                <strong>root:lp:</strong> Owner is root, group is "lp" (line printer)<br>
+                                <strong>lp group:</strong> Special group for printing system users<br><br>
+                                <em>Makes sure the file belongs to root but the printing system group can access it</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Set the owner to "root" and the group to "lp" (the printer group), so the printing system can read it.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">chmod</span> <span class="string">644</span> /etc/cups/ppd/TE244.ppd</span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>sudo chmod 644 [file]</strong><br><br>
+                                <strong>644 permissions:</strong><br>
+                                - Owner can read & write (6)<br>
+                                - Group can only read (4)<br>
+                                - Others can only read (4)<br><br>
+                                <em>Lets everyone read the file, but only root can change it</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Set permissions so everyone can read the printer description, but only the system administrator can modify it.</p>
+                </div>
+
+                <div class="success-box">
+                    <strong>✅ Result:</strong> The PPD file is now in the right place with the correct permissions for CUPS to use it.
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 4: CUPS Configuration -->
+        <div class="screen" id="screen-4">
+            <div class="card">
+                <h2><span class="step-number">4</span> Configure Printer in CUPS</h2>
+                
+                <div class="explanation">
+                    <h4>What This Does:</h4>
+                    <p>CUPS (Common Unix Printing System) is the software that manages all printing on Linux. This section starts CUPS and adds your printer to it.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">systemctl</span> enable cups</span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>sudo systemctl enable cups</strong><br><br>
+                                <strong>systemctl:</strong> System control - manages services<br>
+                                <strong>enable:</strong> Makes CUPS start automatically when computer boots<br>
+                                <strong>cups:</strong> The printing service name<br><br>
+                                <em>Like setting a program to "start automatically" when you turn on your computer</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Set CUPS to start automatically every time you boot your computer.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">systemctl</span> start cups</span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>sudo systemctl start cups</strong><br><br>
+                                Starts the CUPS printing service right now (doesn't wait for reboot).<br><br>
+                                <em>Like clicking "Start" on a program</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Start the CUPS printing service right now.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">systemctl</span> status cups | <span class="keyword">grep</span> Active</span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>systemctl status cups | grep Active</strong><br><br>
+                                <strong>status:</strong> Shows if service is running<br>
+                                <strong>| grep Active:</strong> Filters output to show only the "Active" status line<br><br>
+                                <em>Quick check to see if CUPS is running properly</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Check if CUPS is running and show only the status line.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">lpadmin</span> <span class="string">-p</span> TE244 <span class="string">-v</span> usb://TSC/TE244?serial=000001 <span class="string">-P</span> /etc/cups/ppd/TE244.ppd <span class="string">-E</span></span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>lpadmin -p [name] -v [URI] -P [PPD] -E</strong><br><br>
+                                <strong>lpadmin:</strong> Line Printer Admin - adds/modifies printers<br>
+                                <strong>-p TE244:</strong> Printer name (what you'll call it)<br>
+                                <strong>-v usb://...:</strong> Connection path (where the printer is)<br>
+                                <strong>-P [PPD]:</strong> Which PPD file to use<br>
+                                <strong>-E:</strong> Enable and accept jobs immediately<br><br>
+                                <em>Registers your printer with CUPS and makes it ready to use</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Add the printer to CUPS with the name "TE244", tell it where the printer is connected (USB), which PPD file to use, and enable it immediately.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">lpstat</span> <span class="string">-p</span> <span class="string">-v</span></span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>lpstat -p -v</strong><br><br>
+                                <strong>lpstat:</strong> Line Printer Status - shows printer info<br>
+                                <strong>-p:</strong> Show printer status<br>
+                                <strong>-v:</strong> Show device URIs (connections)<br><br>
+                                <em>Lists all printers and how they're connected</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Show a list of all printers known to CUPS and how they're connected.</p>
+                </div>
+
+                <div class="success-box">
+                    <strong>✅ What You Should See:</strong> Your TE244 printer listed with status "idle" and the USB connection path.
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 5: Permissions -->
+        <div class="screen" id="screen-5">
+            <div class="card">
+                <h2><span class="step-number">5</span> Fix Permissions for CUPS</h2>
+                
+                <div class="explanation">
+                    <h4>What This Does:</h4>
+                    <p>This section ensures all CUPS folders have the correct permissions and adds your user account to the printer admin group.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">chown</span> <span class="string">-R</span> root:lp /etc/cups /var/spool/cups</span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>sudo chown -R root:lp [folders]</strong><br><br>
+                                <strong>-R:</strong> Recursive - applies to all files and subfolders<br>
+                                <strong>root:lp:</strong> Owner is root, group is lp (printer group)<br>
+                                <strong>/etc/cups:</strong> CUPS configuration folder<br>
+                                <strong>/var/spool/cups:</strong> Where print jobs are queued<br><br>
+                                <em>Sets ownership for all CUPS files and the print queue folder</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Set the owner of all CUPS configuration files and the print queue folder to root (system) and the lp (printer) group. The -R flag means this applies to everything inside these folders too.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">chmod</span> <span class="string">-R</span> <span class="string">755</span> /etc/cups /var/spool/cups</span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>sudo chmod -R 755 [folders]</strong><br><br>
+                                <strong>-R:</strong> Recursive - applies to all files and subfolders<br>
+                                <strong>755:</strong> Owner can do everything, others can read and execute<br><br>
+                                <em>Ensures everyone can read CUPS files and run programs, but only root can modify them</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Set permissions on all CUPS folders so everyone can read and use them, but only the system administrator can change them.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">usermod</span> <span class="string">-aG</span> lpadmin $USER</span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>sudo usermod -aG lpadmin $USER</strong><br><br>
+                                <strong>usermod:</strong> Modify user account settings<br>
+                                <strong>-aG:</strong> Add (-a) to a Group (-G)<br>
+                                <strong>lpadmin:</strong> Printer administration group<br>
+                                <strong>$USER:</strong> Your current username<br><br>
+                                <em>Gives you permission to manage printers without using sudo every time</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Add your user account to the "lpadmin" group, which allows you to manage printers without needing administrator rights every time.</p>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Important:</strong> After running this command, you need to log out and log back in for the group change to take effect.
+                </div>
+
+                <div class="success-box">
+                    <strong>✅ Result:</strong> All CUPS files have correct permissions and you can now manage printers as a regular user.
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 6: AppArmor -->
+        <div class="screen" id="screen-6">
+            <div class="card">
+                <h2><span class="step-number">6</span> Configure AppArmor for CUPS</h2>
+                
+                <div class="explanation">
+                    <h4>What This Does:</h4>
+                    <p>AppArmor is a security system that restricts what programs can do. Sometimes it blocks CUPS from working properly, so we need to adjust it.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">aa-status</span> | <span class="keyword">grep</span> cups</span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>sudo aa-status | grep cups</strong><br><br>
+                                <strong>aa-status:</strong> AppArmor status - shows security profiles<br>
+                                <strong>| grep cups:</strong> Filter to show only CUPS-related entries<br><br>
+                                <em>Checks if AppArmor is restricting CUPS</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Check if AppArmor has any security restrictions active for CUPS. If it shows "enforce mode", AppArmor is actively restricting CUPS.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">aa-complain</span> /usr/sbin/cupsd</span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>sudo aa-complain /usr/sbin/cupsd</strong><br><br>
+                                <strong>aa-complain:</strong> Sets AppArmor to "complain mode"<br>
+                                <strong>Complain mode:</strong> Logs violations but doesn't block them<br>
+                                <strong>/usr/sbin/cupsd:</strong> The CUPS daemon (service)<br><br>
+                                <em>Tells AppArmor to allow CUPS to work but log any security concerns</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Tell AppArmor to allow CUPS to work freely, but still log any security warnings. This is less restrictive than enforce mode.</p>
+                </div>
+
+                <h3 style="color: #667eea; margin-top: 25px;">Optional: Temporarily Disable AppArmor</h3>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">systemctl</span> stop apparmor</span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>sudo systemctl stop apparmor</strong><br><br>
+                                Completely stops AppArmor temporarily until next reboot.<br><br>
+                                <strong>Warning:</strong> This reduces system security. Only do this for testing.<br><br>
+                                <em>Turn off AppArmor completely (not recommended for daily use)</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Completely turn off AppArmor temporarily. Only do this if you're having issues and want to test if AppArmor is the cause.</p>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Security Note:</strong> Only disable AppArmor temporarily for troubleshooting. Re-enable it with:<br>
+                    <code style="background: white; padding: 2px 6px; border-radius: 3px;">sudo systemctl start apparmor</code>
+                </div>
+
+                <div class="success-box">
+                    <strong>✅ Result:</strong> AppArmor won't block CUPS from accessing necessary system resources.
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 7: Verify -->
+        <div class="screen" id="screen-7">
+            <div class="card">
+                <h2><span class="step-number">7</span> Restart and Verify</h2>
+                
+                <div class="explanation">
+                    <h4>What This Does:</h4>
+                    <p>This section restarts CUPS to apply all changes and verifies that your printer is properly recognized.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">systemctl</span> restart cups</span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>sudo systemctl restart cups</strong><br><br>
+                                Stops and starts CUPS again to apply all configuration changes.<br><br>
+                                <em>Like restarting an app after changing settings</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Restart the CUPS printing service so all the changes we made take effect.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">systemctl</span> status cups | <span class="keyword">grep</span> Active</span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>systemctl status cups | grep Active</strong><br><br>
+                                Checks if CUPS restarted successfully and is running.<br>
+                                Look for "active (running)" in the output.<br><br>
+                                <em>Confirms CUPS is working properly after restart</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Check that CUPS is running properly after the restart.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">lpinfo</span> <span class="string">-v</span> | <span class="keyword">grep</span> TSC</span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>lpinfo -v | grep TSC</strong><br><br>
+                                <strong>lpinfo:</strong> Line Printer Info - lists available devices<br>
+                                <strong>-v:</strong> Show device URIs (connection paths)<br>
+                                <strong>| grep TSC:</strong> Filter for TSC printers<br><br>
+                                <em>Shows if CUPS can see your TSC printer</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> List all printer devices that CUPS can see, and filter to show only TSC printers. You should see your TE244.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">lsusb</span> | <span class="keyword">grep</span> TSC</span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>lsusb | grep TSC</strong><br><br>
+                                <strong>lsusb:</strong> List USB devices connected to computer<br>
+                                <strong>| grep TSC:</strong> Show only TSC devices<br><br>
+                                <em>Confirms the printer is physically connected via USB</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Show all USB devices connected to your computer and filter to show only TSC devices. This confirms your printer is plugged in and detected.</p>
+                </div>
+
+                <div class="success-box">
+                    <strong>✅ What You Should See:</strong><br>
+                    - CUPS status showing "active (running)"<br>
+                    - lpinfo showing: <code style="background: white; padding: 2px 6px; border-radius: 3px;">usb://TSC/TE244?serial=000001</code><br>
+                    - lsusb showing your TSC printer device
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 8: Test Print -->
+        <div class="screen" id="screen-8">
+            <div class="card">
+                <h2><span class="step-number">8</span> Test Print</h2>
+                
+                <div class="explanation">
+                    <h4>What This Does:</h4>
+                    <p>The moment of truth! Let's send a test print to verify everything is working correctly.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">echo</span> <span class="string">"TSC TE244 Test Label"</span> | <span class="keyword">lp</span> <span class="string">-d</span> TE244</span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>echo "text" | lp -d [printer]</strong><br><br>
+                                <strong>echo:</strong> Displays text<br>
+                                <strong>|:</strong> Sends the text to the next command<br>
+                                <strong>lp:</strong> Line Printer - sends jobs to printer<br>
+                                <strong>-d TE244:</strong> Destination printer name<br><br>
+                                <em>Creates text and sends it directly to your printer</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Create a text message "TSC TE244 Test Label" and send it to the TE244 printer to print. The | symbol takes the output from echo and sends it to the lp (print) command.</p>
+                </div>
+
+                <div class="success-box">
+                    <strong>✅ If Successful:</strong> Your printer will print a small label with the test message. Congratulations! Your printer is fully set up!
+                </div>
+
+                <h3 style="color: #667eea; margin-top: 30px;">🎯 Optional: Raw Printing Mode</h3>
+                
+                <div class="explanation">
+                    <h4>What This Does:</h4>
+                    <p>Raw mode allows you to send TSPL2 commands directly to the printer without any processing. Useful for advanced users who want complete control.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">lpadmin</span> <span class="string">-p</span> TE244_RAW <span class="string">-v</span> usb://TSC/TE244?serial=000001 <span class="string">-m</span> raw <span class="string">-E</span></span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>lpadmin -p [name] -v [URI] -m raw -E</strong><br><br>
+                                <strong>-p TE244_RAW:</strong> New printer name for raw mode<br>
+                                <strong>-m raw:</strong> Use raw/direct printing (no filtering)<br>
+                                <strong>-E:</strong> Enable immediately<br><br>
+                                <em>Creates a second printer profile that prints without any conversion - sends commands directly</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Create a second printer profile called "TE244_RAW" that sends print jobs directly to the printer without any processing. This is for sending raw TSPL commands.</p>
+                </div>
+
+                <div class="command-block">
+                    <div class="command-line">
+                        <span class="command-text"><span class="keyword">lp</span> <span class="string">-d</span> TE244_RAW my_label.prn</span>
+                        <span class="info-icon">i
+                            <span class="tooltip">
+                                <strong>lp -d TE244_RAW [file]</strong><br><br>
+                                Prints a file containing raw TSPL commands using the raw printer profile.<br><br>
+                                <strong>.prn files:</strong> Usually contain printer-specific command codes<br><br>
+                                <em>Sends a file with special printer commands directly to the printer</em>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <p><strong>In Simple English:</strong> Print a file containing raw TSPL commands using the raw printer profile. The file should contain special commands the printer understands.</p>
+                </div>
+
+                <div class="warning-box">
+                    <strong>📌 Note:</strong> Raw mode is for advanced users who need to send TSPL2 commands directly. For normal printing, use the regular TE244 printer.
+                </div>
+
+                <div class="success-box" style="background: #d1ecf1; border-color: #bee5eb; color: #0c5460; margin-top: 30px;">
+                    <h3 style="margin-bottom: 15px;">🎉 Setup Complete!</h3>
+                    <p><strong>Your TSC TE244 printer is now fully configured and ready to use on Ubuntu.</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+                        <li>✓ Driver installed</li>
+                        <li>✓ Filter configured</li>
+                        <li>✓ PPD file in place</li>
+                        <li>✓ CUPS configured</li>
+                        <li>✓ Permissions set</li>
+                        <li>✓ Security configured</li>
+                        <li>✓ Printer tested</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>You can now print labels from any application!</strong></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function showScreen(index) {
+            // Hide all screens
+            const screens = document.querySelectorAll('.screen');
+            screens.forEach(screen => screen.classList.remove('active'));
+            
+            // Show selected screen
+            document.getElementById('screen-' + index).classList.add('active');
+            
+            // Update navigation buttons
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach((btn, i) => {
+                if (i === index) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
