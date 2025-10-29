@@ -155,6 +155,41 @@
             position: relative;
         }
 
+        .copy-icon {
+            background: #28a745;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin-left: 10px;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+            border: none;
+            padding: 0;
+        }
+
+        .copy-icon:hover {
+            background: #218838;
+            transform: scale(1.1);
+        }
+
+        .copy-icon:active {
+            transform: scale(0.95);
+        }
+
+        .copy-icon.copied {
+            background: #17a2b8;
+        }
+
+        .copy-icon svg {
+            width: 14px;
+            height: 14px;
+        }
+
         .tooltip {
             position: absolute;
             background: #2d2d2d;
@@ -316,15 +351,13 @@
                     </div>
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">mkdir</span> <span class="string">-p</span> ~/tsc_driver/tsc64</span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>mkdir -p ~/tsc_driver/tsc64</strong><br><br>
-                                <strong>mkdir:</strong> Makes a new folder<br>
-                                <strong>-p:</strong> Creates parent folders if they don't exist (no error if folder already exists)<br>
-                                <strong>~/tsc_driver/tsc64:</strong> The location of the new folder in your home directory<br><br>
-                                <em>Think of it like: "Create a new folder and all folders needed to get there"</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'mkdir -p ~/tsc_driver/tsc64')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                        
                     </div>
                 </div>
 
@@ -338,15 +371,13 @@
                     </div>
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">unzip</span> <span class="string">-o</span> "/home/thrd/Desktop/Printer Driver/linux64_v1.2.13.zip" <span class="string">-d</span> ~/tsc_driver/tsc64</span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>unzip -o [file] -d [destination]</strong><br><br>
-                                <strong>unzip:</strong> Extracts files from a compressed .zip archive<br>
-                                <strong>-o:</strong> Overwrites existing files without asking<br>
-                                <strong>-d:</strong> Specifies the destination folder<br><br>
-                                <em>Like opening a zip file on your computer and extracting everything to a specific folder</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'unzip -o &quot;/home/thrd/Desktop/Printer Driver/linux64_v1.2.13.zip&quot; -d ~/tsc_driver/tsc64')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+
                     </div>
                 </div>
 
@@ -360,18 +391,13 @@
                     </div>
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">tar</span> <span class="string">-xvzf</span> ~/tsc_driver/tsc64/Linux64_v1.2.13/barcodedriver-1.2.13-x86_64.tar.gz <span class="string">-C</span> ~/tsc_driver/tsc64/</span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>tar -xvzf [file] -C [destination]</strong><br><br>
-                                <strong>tar:</strong> Tool for working with archived files<br>
-                                <strong>-x:</strong> Extract files<br>
-                                <strong>-v:</strong> Verbose (show what's happening)<br>
-                                <strong>-z:</strong> Handle gzip compression (.gz files)<br>
-                                <strong>-f:</strong> Specify the file to work with<br>
-                                <strong>-C:</strong> Change to this directory before extracting<br><br>
-                                <em>Like opening a compressed folder and showing you each file as it's extracted</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'tar -xvzf ~/tsc_driver/tsc64/Linux64_v1.2.13/barcodedriver-1.2.13-x86_64.tar.gz -C ~/tsc_driver/tsc64/')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+
                     </div>
                 </div>
 
@@ -399,16 +425,13 @@
                 <div class="command-block">
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">cp</span> ~/tsc_driver/tsc64/barcodedriver-1.2.13/rastertobarcodetspl /usr/lib/cups/filter/</span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>sudo cp [source] [destination]</strong><br><br>
-                                <strong>sudo:</strong> Run command with administrator privileges<br>
-                                <strong>cp:</strong> Copy a file<br>
-                                <strong>Source:</strong> The filter file from the driver<br>
-                                <strong>Destination:</strong> System folder where CUPS looks for filters<br><br>
-                                <em>Like copying a file, but you need admin permission because it goes into a system folder</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'sudo cp ~/tsc_driver/tsc64/barcodedriver-1.2.13/rastertobarcodetspl /usr/lib/cups/filter/')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                        
                     </div>
                 </div>
 
@@ -419,14 +442,13 @@
                 <div class="command-block">
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">chown</span> root:root /usr/lib/cups/filter/rastertobarcodetspl</span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>sudo chown root:root [file]</strong><br><br>
-                                <strong>chown:</strong> Change ownership of a file<br>
-                                <strong>root:root:</strong> Set owner to "root" (system admin) and group to "root"<br><br>
-                                <em>Like assigning who "owns" the file - in this case, the system itself</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'sudo chown root:root /usr/lib/cups/filter/rastertobarcodetspl')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                       
                     </div>
                 </div>
 
@@ -437,14 +459,13 @@
                 <div class="command-block">
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">chmod</span> <span class="string">755</span> /usr/lib/cups/filter/rastertobarcodetspl</span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>sudo chmod 755 [file]</strong><br><br>
-                                <strong>chmod:</strong> Change file permissions (who can read/write/execute)<br>
-                                <strong>755:</strong> Owner can do everything (7), group can read & execute (5), others can read & execute (5)<br><br>
-                                <em>Sets who can use this file - everyone can run it, but only admin can change it</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'sudo chmod 755 /usr/lib/cups/filter/rastertobarcodetspl')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+
                     </div>
                 </div>
 
@@ -458,15 +479,13 @@
                     </div>
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">ls</span> <span class="string">-l</span> /usr/lib/cups/filter/ | <span class="keyword">grep</span> rastertobarcodetspl</span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>ls -l [folder] | grep [text]</strong><br><br>
-                                <strong>ls -l:</strong> List files with detailed information<br>
-                                <strong>|:</strong> Pipe - send output of one command to another<br>
-                                <strong>grep:</strong> Search for text in the output<br><br>
-                                <em>Shows details about the filter file to confirm it was installed correctly</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'ls -l /usr/lib/cups/filter/ | grep rastertobarcodetspl')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+
                     </div>
                 </div>
 
@@ -493,14 +512,13 @@
                 <div class="command-block">
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">cp</span> /home/thrd/Documents/thrd/codes/resources/initial_setup/TE244.ppd /etc/cups/ppd/</span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>sudo cp [source PPD] /etc/cups/ppd/</strong><br><br>
-                                Copies the printer description file to the CUPS configuration directory where printer definitions are stored.<br><br>
-                                <strong>/etc/cups/ppd/:</strong> The standard location for PPD files in CUPS<br><br>
-                                <em>Like adding your printer's manual to the system's library</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'sudo cp /home/thrd/Documents/thrd/codes/resources/initial_setup/TE244.ppd /etc/cups/ppd/')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                        
                     </div>
                 </div>
 
@@ -511,14 +529,13 @@
                 <div class="command-block">
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">chown</span> root:lp /etc/cups/ppd/TE244.ppd</span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>sudo chown root:lp [file]</strong><br><br>
-                                <strong>root:lp:</strong> Owner is root, group is "lp" (line printer)<br>
-                                <strong>lp group:</strong> Special group for printing system users<br><br>
-                                <em>Makes sure the file belongs to root but the printing system group can access it</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'sudo chown root:lp /etc/cups/ppd/TE244.ppd')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                        
                     </div>
                 </div>
 
@@ -529,16 +546,13 @@
                 <div class="command-block">
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">chmod</span> <span class="string">644</span> /etc/cups/ppd/TE244.ppd</span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>sudo chmod 644 [file]</strong><br><br>
-                                <strong>644 permissions:</strong><br>
-                                - Owner can read & write (6)<br>
-                                - Group can only read (4)<br>
-                                - Others can only read (4)<br><br>
-                                <em>Lets everyone read the file, but only root can change it</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'sudo chmod 644 /etc/cups/ppd/TE244.ppd')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+
                     </div>
                 </div>
 
@@ -565,15 +579,13 @@
                 <div class="command-block">
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">systemctl</span> enable cups</span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>sudo systemctl enable cups</strong><br><br>
-                                <strong>systemctl:</strong> System control - manages services<br>
-                                <strong>enable:</strong> Makes CUPS start automatically when computer boots<br>
-                                <strong>cups:</strong> The printing service name<br><br>
-                                <em>Like setting a program to "start automatically" when you turn on your computer</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'sudo systemctl enable cups')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+
                     </div>
                 </div>
 
@@ -584,13 +596,13 @@
                 <div class="command-block">
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">systemctl</span> start cups</span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>sudo systemctl start cups</strong><br><br>
-                                Starts the CUPS printing service right now (doesn't wait for reboot).<br><br>
-                                <em>Like clicking "Start" on a program</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'sudo systemctl start cups')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                        
                     </div>
                 </div>
 
@@ -601,14 +613,13 @@
                 <div class="command-block">
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">systemctl</span> status cups | <span class="keyword">grep</span> Active</span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>systemctl status cups | grep Active</strong><br><br>
-                                <strong>status:</strong> Shows if service is running<br>
-                                <strong>| grep Active:</strong> Filters output to show only the "Active" status line<br><br>
-                                <em>Quick check to see if CUPS is running properly</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'sudo systemctl status cups | grep Active')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                        
                     </div>
                 </div>
 
@@ -619,17 +630,13 @@
                 <div class="command-block">
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">lpadmin</span> <span class="string">-p</span> TE244 <span class="string">-v</span> usb://TSC/TE244?serial=000001 <span class="string">-P</span> /etc/cups/ppd/TE244.ppd <span class="string">-E</span></span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>lpadmin -p [name] -v [URI] -P [PPD] -E</strong><br><br>
-                                <strong>lpadmin:</strong> Line Printer Admin - adds/modifies printers<br>
-                                <strong>-p TE244:</strong> Printer name (what you'll call it)<br>
-                                <strong>-v usb://...:</strong> Connection path (where the printer is)<br>
-                                <strong>-P [PPD]:</strong> Which PPD file to use<br>
-                                <strong>-E:</strong> Enable and accept jobs immediately<br><br>
-                                <em>Registers your printer with CUPS and makes it ready to use</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'sudo lpadmin -p TE244 -v usb://TSC/TE244?serial=000001 -P /etc/cups/ppd/TE244.ppd -E')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                        
                     </div>
                 </div>
 
@@ -640,15 +647,13 @@
                 <div class="command-block">
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">lpstat</span> <span class="string">-p</span> <span class="string">-v</span></span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>lpstat -p -v</strong><br><br>
-                                <strong>lpstat:</strong> Line Printer Status - shows printer info<br>
-                                <strong>-p:</strong> Show printer status<br>
-                                <strong>-v:</strong> Show device URIs (connections)<br><br>
-                                <em>Lists all printers and how they're connected</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'lpstat -p -v')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                        
                     </div>
                 </div>
 
@@ -675,16 +680,13 @@
                 <div class="command-block">
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">chown</span> <span class="string">-R</span> root:lp /etc/cups /var/spool/cups</span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>sudo chown -R root:lp [folders]</strong><br><br>
-                                <strong>-R:</strong> Recursive - applies to all files and subfolders<br>
-                                <strong>root:lp:</strong> Owner is root, group is lp (printer group)<br>
-                                <strong>/etc/cups:</strong> CUPS configuration folder<br>
-                                <strong>/var/spool/cups:</strong> Where print jobs are queued<br><br>
-                                <em>Sets ownership for all CUPS files and the print queue folder</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'sudo chown -R root:lp /etc/cups /var/spool/cups')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                        
                     </div>
                 </div>
 
@@ -695,14 +697,13 @@
                 <div class="command-block">
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">chmod</span> <span class="string">-R</span> <span class="string">755</span> /etc/cups /var/spool/cups</span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>sudo chmod -R 755 [folders]</strong><br><br>
-                                <strong>-R:</strong> Recursive - applies to all files and subfolders<br>
-                                <strong>755:</strong> Owner can do everything, others can read and execute<br><br>
-                                <em>Ensures everyone can read CUPS files and run programs, but only root can modify them</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'sudo chmod -R 755 /etc/cups /var/spool/cups')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                        
                     </div>
                 </div>
 
@@ -713,16 +714,13 @@
                 <div class="command-block">
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">usermod</span> <span class="string">-aG</span> lpadmin $USER</span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>sudo usermod -aG lpadmin $USER</strong><br><br>
-                                <strong>usermod:</strong> Modify user account settings<br>
-                                <strong>-aG:</strong> Add (-a) to a Group (-G)<br>
-                                <strong>lpadmin:</strong> Printer administration group<br>
-                                <strong>$USER:</strong> Your current username<br><br>
-                                <em>Gives you permission to manage printers without using sudo every time</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'sudo usermod -aG lpadmin $USER')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                        
                     </div>
                 </div>
 
@@ -753,14 +751,13 @@
                 <div class="command-block">
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">aa-status</span> | <span class="keyword">grep</span> cups</span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>sudo aa-status | grep cups</strong><br><br>
-                                <strong>aa-status:</strong> AppArmor status - shows security profiles<br>
-                                <strong>| grep cups:</strong> Filter to show only CUPS-related entries<br><br>
-                                <em>Checks if AppArmor is restricting CUPS</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'sudo aa-status | grep cups')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                        
                     </div>
                 </div>
 
@@ -771,15 +768,13 @@
                 <div class="command-block">
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">aa-complain</span> /usr/sbin/cupsd</span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>sudo aa-complain /usr/sbin/cupsd</strong><br><br>
-                                <strong>aa-complain:</strong> Sets AppArmor to "complain mode"<br>
-                                <strong>Complain mode:</strong> Logs violations but doesn't block them<br>
-                                <strong>/usr/sbin/cupsd:</strong> The CUPS daemon (service)<br><br>
-                                <em>Tells AppArmor to allow CUPS to work but log any security concerns</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'sudo aa-complain /usr/sbin/cupsd')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                        
                     </div>
                 </div>
 
@@ -792,14 +787,13 @@
                 <div class="command-block">
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">systemctl</span> stop apparmor</span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>sudo systemctl stop apparmor</strong><br><br>
-                                Completely stops AppArmor temporarily until next reboot.<br><br>
-                                <strong>Warning:</strong> This reduces system security. Only do this for testing.<br><br>
-                                <em>Turn off AppArmor completely (not recommended for daily use)</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'sudo systemctl stop apparmor')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+
                     </div>
                 </div>
 
@@ -831,13 +825,13 @@
                 <div class="command-block">
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">systemctl</span> restart cups</span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>sudo systemctl restart cups</strong><br><br>
-                                Stops and starts CUPS again to apply all configuration changes.<br><br>
-                                <em>Like restarting an app after changing settings</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'sudo systemctl restart cups')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                        
                     </div>
                 </div>
 
@@ -848,14 +842,13 @@
                 <div class="command-block">
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">systemctl</span> status cups | <span class="keyword">grep</span> Active</span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>systemctl status cups | grep Active</strong><br><br>
-                                Checks if CUPS restarted successfully and is running.<br>
-                                Look for "active (running)" in the output.<br><br>
-                                <em>Confirms CUPS is working properly after restart</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'systemctl status cups | grep Active')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                        
                     </div>
                 </div>
 
@@ -866,15 +859,13 @@
                 <div class="command-block">
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">lpinfo</span> <span class="string">-v</span> | <span class="keyword">grep</span> TSC</span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>lpinfo -v | grep TSC</strong><br><br>
-                                <strong>lpinfo:</strong> Line Printer Info - lists available devices<br>
-                                <strong>-v:</strong> Show device URIs (connection paths)<br>
-                                <strong>| grep TSC:</strong> Filter for TSC printers<br><br>
-                                <em>Shows if CUPS can see your TSC printer</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'lpinfo -v | grep TSC')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                        
                     </div>
                 </div>
 
@@ -885,14 +876,13 @@
                 <div class="command-block">
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">lsusb</span> | <span class="keyword">grep</span> TSC</span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>lsusb | grep TSC</strong><br><br>
-                                <strong>lsusb:</strong> List USB devices connected to computer<br>
-                                <strong>| grep TSC:</strong> Show only TSC devices<br><br>
-                                <em>Confirms the printer is physically connected via USB</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'lsusb | grep TSC')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                        
                     </div>
                 </div>
 
@@ -922,16 +912,13 @@
                 <div class="command-block">
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">echo</span> <span class="string">"TSC TE244 Test Label"</span> | <span class="keyword">lp</span> <span class="string">-d</span> TE244</span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>echo "text" | lp -d [printer]</strong><br><br>
-                                <strong>echo:</strong> Displays text<br>
-                                <strong>|:</strong> Sends the text to the next command<br>
-                                <strong>lp:</strong> Line Printer - sends jobs to printer<br>
-                                <strong>-d TE244:</strong> Destination printer name<br><br>
-                                <em>Creates text and sends it directly to your printer</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'echo &quot;TSC TE244 Test Label&quot; | lp -d TE244')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                        
                     </div>
                 </div>
 
@@ -953,15 +940,13 @@
                 <div class="command-block">
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">sudo</span> <span class="keyword">lpadmin</span> <span class="string">-p</span> TE244_RAW <span class="string">-v</span> usb://TSC/TE244?serial=000001 <span class="string">-m</span> raw <span class="string">-E</span></span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>lpadmin -p [name] -v [URI] -m raw -E</strong><br><br>
-                                <strong>-p TE244_RAW:</strong> New printer name for raw mode<br>
-                                <strong>-m raw:</strong> Use raw/direct printing (no filtering)<br>
-                                <strong>-E:</strong> Enable immediately<br><br>
-                                <em>Creates a second printer profile that prints without any conversion - sends commands directly</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'sudo lpadmin -p TE244_RAW -v usb://TSC/TE244?serial=000001 -m raw -E')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                        
                     </div>
                 </div>
 
@@ -972,14 +957,13 @@
                 <div class="command-block">
                     <div class="command-line">
                         <span class="command-text"><span class="keyword">lp</span> <span class="string">-d</span> TE244_RAW my_label.prn</span>
-                        <span class="info-icon">i
-                            <span class="tooltip">
-                                <strong>lp -d TE244_RAW [file]</strong><br><br>
-                                Prints a file containing raw TSPL commands using the raw printer profile.<br><br>
-                                <strong>.prn files:</strong> Usually contain printer-specific command codes<br><br>
-                                <em>Sends a file with special printer commands directly to the printer</em>
-                            </span>
-                        </span>
+                        <button class="copy-icon" onclick="copyCommand(this, 'lp -d TE244_RAW my_label.prn')" title="Copy command">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                        
                     </div>
                 </div>
 
@@ -1031,6 +1015,27 @@
             
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function copyCommand(button, command) {
+            // Copy to clipboard
+            navigator.clipboard.writeText(command).then(() => {
+                // Change icon to checkmark
+                const originalHTML = button.innerHTML;
+                button.classList.add('copied');
+                button.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>`;
+                
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                    button.innerHTML = originalHTML;
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                alert('Failed to copy command. Please copy manually.');
+            });
         }
     </script>
 </body>
