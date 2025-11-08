@@ -2,32 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>THRD — Diwali Megadrop (18 Oct • 7:00 PM IST)</title>
+  <title>THRD — Claim Your 50% Off</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="THRD Diwali Megadrop — Winter arrives with a bang. Balmain launches. Mobile-first. Timer + Sneak Peek + Categories." />
+  <meta name="description" content="Congrats on your first order! Claim 50% off with your exclusive coupon code." />
   <meta name="theme-color" content="#0b0b0c" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Silkscreen for THRD, Montserrat for headlines, Poppins for body -->
   <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Montserrat:wght@600;800&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
   <style>
     :root{
-      /* Dark festive base */
       --bg:#0b0b0c;
       --layer:#0e0e12;
       --card:#111016;
       --ink:#f7f9ff;
       --muted:#b9bcc7;
       --border:#272634;
-
-      /* Diwali golds */
-      --gold:#c9a86a;      /* champagne gold */
-      --gold-2:#b8914c;    /* deeper gold for depth */
-
-      /* CTA variants */
-      --pill:#ffffff; --pill-fg:#111217;    /* light pill (secondary) */
-      --ink-pill:#0f0f10; --ink-pill-fg:#fff; /* dark pill (primary) */
-
+      --gold:#c9a86a;
+      --gold-2:#b8914c;
+      --pill:#ffffff;
+      --pill-fg:#111217;
       --radius:16px;
       --shadow:0 18px 40px rgba(0,0,0,.35);
     }
@@ -36,15 +29,14 @@
     html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
     a{color:inherit;text-decoration:none}
 
-    /* Subtle festive background wash + gold shimmer */
     body{
       background:
         radial-gradient(900px 600px at 10% -6%, rgba(201,168,106,.10), transparent 55%),
         radial-gradient(820px 560px at 92% 5%, rgba(184,145,76,.10), transparent 55%),
         linear-gradient(180deg,#0b0b0c 0%, #0c0c10 100%);
+      min-height:100vh;
     }
 
-    /* ========= NAV (sticky, same as your original) ========= */
     .navBar{
       position:sticky;top:0;z-index:60;
       background:rgba(11,11,12,.78);
@@ -66,31 +58,14 @@
       letter-spacing:.02em;
     }
 
-    .container{max-width:1100px;margin:0 auto;padding:18px 16px 120px}
-
-    /* Announcement strip */
-    .announce{
-      margin:14px 0;border-radius:14px;padding:12px 16px;text-align:center;
-      border:1px solid var(--border);
-      background:linear-gradient(180deg,#121118,#0f0f14);
-    }
-    .announce .line1{font-weight:800;letter-spacing:.02em}
-    .announce a{
-      display:inline-block;margin-top:6px;font-weight:800;
-      color:var(--gold);
-      text-decoration:underline;
-      text-underline-offset:3px;
-    }
-
-    /* ========= HERO ========= */
-    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:center;margin-top:10px}
-    @media (max-width:960px){.hero{grid-template-columns:1fr}}
+    .container{max-width:1100px;margin:0 auto;padding:40px 16px 60px;display:flex;justify-content:center;align-items:center;min-height:calc(100vh - 80px)}
 
     .hero-card{
-      position:relative;overflow:hidden;padding:24px;border-radius:var(--radius);
+      position:relative;overflow:hidden;padding:48px;border-radius:var(--radius);
       border:1px solid var(--border);
       background:linear-gradient(180deg,#111016,#0e0e12);
       box-shadow:var(--shadow);
+      max-width:600px;width:100%;text-align:center;
     }
     .hero-card::before{
       content:"";position:absolute;inset:-20%;
@@ -99,383 +74,214 @@
         radial-gradient(50% 40% at 30% 80%, rgba(184,145,76,.14), transparent 60%);
       filter:blur(42px);z-index:-1;opacity:.65;
     }
+
+    .hero-card.revealed::after{
+      content:"";position:absolute;inset:-20%;
+      background:
+        radial-gradient(60% 40% at 70% 20%, rgba(201,168,106,.25), transparent 50%),
+        radial-gradient(50% 40% at 30% 80%, rgba(184,145,76,.2), transparent 60%);
+      filter:blur(42px);z-index:-1;opacity:1;animation:pulse 0.6s ease-out;
+    }
+
+    @keyframes pulse{
+      0%{opacity:0;}
+      100%{opacity:1;}
+    }
+
     .eyebrow{
-      font-size:.85rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px
+      font-size:.95rem;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px;font-weight:700;
     }
-    .hero h1{
+
+    h1{
       font-family:Montserrat, sans-serif;font-weight:800;
-      font-size:clamp(26px,3.6vw,38px);
-      line-height:1.08;margin:6px 0 10px;letter-spacing:.01em;
+      font-size:clamp(32px,5vw,48px);
+      line-height:1.1;margin:12px 0 16px;letter-spacing:.01em;
     }
-    .hero p.sub{color:#e8e9f6;margin:6px 0 14px;font-weight:600}
 
-    /* Timer (4 ticks) */
-    .timer{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 10px}
-    .tick{
-      min-width:88px;text-align:center;border-radius:14px;padding:10px 12px;
-      background:linear-gradient(180deg,#151421,#0f0e15);
-      border:1px solid rgba(255,255,255,.12)
+    .description{
+      color:#e8e9f6;margin:16px 0 28px;font-weight:600;font-size:1.1rem;line-height:1.5;
     }
-    .tick strong{font-family:Montserrat, sans-serif;display:block;font-size:22px;letter-spacing:.02em}
-    .tick span{font-size:12px;color:var(--muted)}
-    .unlock{font-size:.95rem;color:#e0e2ef;margin-top:6px;opacity:.9}
 
-    /* Buttons */
-    .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
     .btn{
       display:inline-flex;align-items:center;justify-content:center;
-      padding:12px 16px;border-radius:999px;font-weight:800;border:1px solid transparent;
-      transition:.2s transform,.2s opacity,.2s box-shadow
+      padding:14px 28px;border-radius:999px;font-weight:800;border:1px solid transparent;
+      transition:.2s transform,.2s opacity,.2s box-shadow;
+      font-size:1rem;cursor:pointer;
     }
-    .btn:hover{transform:translateY(-1px)}
+    .btn:hover{transform:translateY(-2px);opacity:0.95}
     .btn-primary{background:linear-gradient(180deg,var(--gold),var(--gold-2));color:#0b0906;box-shadow:0 8px 24px rgba(185,145,76,.28)}
-    .btn-outline{border:1px solid #2b2b35;background:#14141a;color:#e9ecf5}
     .btn-dark{background:#111217;color:#fff;border:1px solid rgba(255,255,255,.1)}
-    .btn-white{background:var(--pill);color:var(--pill-fg);box-shadow:0 8px 20px rgba(0,0,0,.22)}
 
-    .meta{font-size:.9rem;color:var(--muted);margin-top:10px}
+    .cta-section{margin-top:32px}
+    .cta-section.hidden{display:none}
 
-    /* Video (9:16) */
-    .video{
-      border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);
-      background:linear-gradient(180deg,#0f0f15,#0f0f15);
+    .coupon-reveal{
+      background:linear-gradient(180deg,#151421,#0f0e15);
+      border:2px solid var(--gold);
+      border-radius:16px;
+      padding:24px;
+      margin-top:28px;
+      text-align:center;
+      animation:slideUp 0.5s ease-out;
     }
-    .video .frame{position:relative;padding-top:177.77%}
-    .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:12px}
-    .video .caption{font-size:.9rem;color:var(--muted);padding:10px 14px}
 
-    /* Stripe / meta */
-    .stripe{
-      margin:22px 0;border-radius:14px;padding:14px 16px;text-align:center;
-      border:1px dashed rgba(255,255,255,.18);
-      background:linear-gradient(180deg,#12111a,#13131b);
+    @keyframes slideUp{
+      0%{
+        opacity:0;
+        transform:translateY(20px);
+      }
+      100%{
+        opacity:1;
+        transform:translateY(0);
+      }
     }
-    .stripe b{font-family:Montserrat, sans-serif;color:#fff2cf}
 
-    /* Sections */
-    .section-title{
-      font-family:Montserrat, sans-serif;font-weight:800;letter-spacing:.01em;margin:20px 0 12px;
-      font-size:clamp(22px,3.2vw,28px)
+    .coupon-label{
+      font-size:.9rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;
     }
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    @media (max-width:900px){.grid{grid-template-columns:1fr}}
 
-    .card{
-      border-radius:16px;padding:16px;position:relative;overflow:hidden;
-      border:1px solid var(--border);
-      background:linear-gradient(180deg,#12111a,#111118);
+    .coupon-code{
+      font-family:Montserrat, monospace;
+      font-size:2.4rem;font-weight:800;
+      color:var(--gold);
+      letter-spacing:.05em;
+      margin:16px 0;
+      word-break:break-all;
     }
-    .card h3{margin:0 0 8px;font-size:1.05rem;font-weight:800}
-    .card p{margin:6px 0 10px;color:#dfe1ee}
 
-    .chips{display:flex;flex-wrap:wrap;gap:8px}
-    .pill{background:#191a21;border:1px solid rgba(255,255,255,.14);padding:6px 10px;border-radius:999px;font-size:.88rem;white-space:nowrap;font-weight:700}
-    .pill.gold{border-color:var(--gold);color:#fff1c9}
-
-    /* “New/First time” badges */
-    .badge{display:inline-block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;background:rgba(201,168,106,.14);color:#ffe6b6;border:1px solid rgba(201,168,106,.4);padding:4px 8px;border-radius:999px;margin-bottom:8px}
-
-    /* Warning */
-    .warning{
-      margin:2px 0 0;padding:14px;border-radius:14px;
-      background:linear-gradient(180deg,#1a1509,#130f07);
-      border:1px dashed rgba(201,168,106,.45)
+    .copy-hint{
+      font-size:.85rem;color:var(--muted);margin-top:12px;
     }
-    .warning strong{color:#ffdf6a}
 
-    /* Final CTA Dock */
-    .final-cta{
-      margin:28px 0 0;padding:18px;border-radius:16px;text-align:center;
-      border:1px solid var(--border);
-      background:linear-gradient(180deg,#0f1514,#0d1014);
+    .success-msg{
+      color:#b8d4a8;font-size:.95rem;font-weight:700;margin-top:8px;animation:fadeIn 0.4s ease-out;
     }
-    .final-cta h3{margin:0 0 10px;font-weight:800}
-    .cta-stack{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
-    .fine{color:var(--muted);font-size:.9rem;margin-top:6px}
 
-    /* Floating CTA (exactly like your original) merges at footer */
-    .floating-cta{position:fixed;right:16px;bottom:16px;z-index:65;display:flex;gap:8px;align-items:center;transition:.28s transform,.28s opacity}
-    .floating-cta .btn{box-shadow:0 10px 24px rgba(0,0,0,.25)}
-    body.merged .floating-cta{opacity:0;transform:translateY(12px) scale(.95);pointer-events:none}
+    @keyframes fadeIn{
+      0%{opacity:0}
+      100%{opacity:1}
+    }
+
+    /* Loader */
+    .loader-section{
+      text-align:center;
+    }
+
+    .spinner{
+      border:3px solid rgba(201,168,106,.2);
+      border-top:3px solid var(--gold);
+      border-radius:50%;
+      width:48px;height:48px;
+      animation:spin 0.8s linear infinite;
+      margin:0 auto 20px;
+    }
+
+    @keyframes spin{
+      0%{transform:rotate(0deg)}
+      100%{transform:rotate(360deg)}
+    }
+
+    .loader-text{
+      color:var(--muted);font-size:.95rem;font-weight:600;letter-spacing:.05em;
+    }
 
     /* Fireworks canvas */
     #fx{position:fixed;inset:0;pointer-events:none;z-index:70}
 
-    /* Footer */
-    footer{margin:22px 0;color:var(--muted);font-size:.9rem;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+    footer{margin:20px 0;color:var(--muted);font-size:.9rem;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;text-align:center}
     footer a{font-weight:800}
+
+    @media (max-width:768px){
+      .hero-card{padding:32px 24px}
+      h1{font-size:clamp(24px,4vw,36px)}
+      .coupon-code{font-size:1.8rem}
+    }
   </style>
 </head>
 <body>
-  <!-- Fireworks -->
   <canvas id="fx"></canvas>
 
-  <!-- NAV (same structure as original) -->
   <nav class="navBar" aria-label="Primary">
     <ul class="navbarelements">
-      <li class="navitem left"><a class="shop-link" href="/request_access.html" aria-label="Shop / Request Access">SHOP</a></li>
+      <li class="navitem left"><a class="shop-link" href="/request_access.html" aria-label="Shop">SHOP</a></li>
       <li class="navitem name"><a href="/index.html" aria-label="THRD Home">THRD</a></li>
       <li class="navitem right"><a href="/our_story.html" aria-label="About THRD">ABOUT</a></li>
     </ul>
   </nav>
 
   <div class="container">
-    <!-- Announcement -->
-    <div class="announce" role="region" aria-label="Announcement">
-      <div class="line1">✨ THRD Diwali Megadrop — it’s almost time.</div>
-      <a href="https://instagram.com/thrd.store" rel="noopener" aria-label="Open Instagram sneak peek">instagram.com/thrd.store</a>
-    </div>
+    <div class="hero-card" id="heroCard">
+      <div class="eyebrow">🎉 Welcome to THRD</div>
+      <h1>Congrats on your first order!</h1>
+      <p class="description">You're in an exclusive crew now. Unlock your welcome gift — <span style="color:var(--gold);">50% off</span> on your next purchase.</p>
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-card">
-        <div class="eyebrow">THRD Diwali Megadrop</div>
-        <h1>Winter arrives with a bang.</h1>
-        <p class="sub"><b>Balmain</b> launches. Jackets, hoodies, sweatshirts & more.</p>
-        <p class="sub"><b>Go live</b> — <span id="heroDate">18 Oct • 7:00 PM IST</span></p>
-
-        <!-- 4-box timer -->
-        <div class="timer" id="timer" aria-live="polite">
-          <div class="tick"><strong id="d">00</strong><span>Days</span></div>
-          <div class="tick"><strong id="h">00</strong><span>Hours</span></div>
-          <div class="tick"><strong id="m">00</strong><span>Mins</span></div>
-          <div class="tick"><strong id="s">00</strong><span>Secs</span></div>
-        </div>
-        <div class="unlock" id="unlockLine">Unlocks on <b>18 Oct, 7:00 PM IST</b></div>
-
-        <div class="cta-row">
-          <a class="btn btn-primary" href="#video" aria-label="Play Sneak Peek on this page">▶ Play 60s Sneak Peek</a>
-          <a class="btn btn-outline" id="calLink" rel="noopener" aria-label="Add to Google Calendar">📅 Add to Calendar</a>
-        </div>
-        <div class="meta">Members shop first. <a href="/request_access">Request access</a>.</div>
+      <div class="cta-section" id="claimSection">
+        <button class="btn btn-primary" id="claimBtn" aria-label="Claim your coupon">✨ Claim Now</button>
       </div>
 
-    <div class="video" id="video">
-        <div class="frame">
-          <!-- Replace VIDEO_ID if needed -->
-          <iframe
-            src="https://www.youtube.com/embed/BmsvVmUPtPk"
-            title="THRD Drop Sneak Peek"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen></iframe>
+      <div class="cta-section hidden" id="loaderSection">
+        <div class="loader-section">
+          <div class="spinner"></div>
+          <div class="loader-text">Unlocking your reward...</div>
         </div>
-        <div class="caption">60s sneak peek. Blink and you’ll miss it.</div>
       </div>
-    </section>
 
-    <div class="stripe">
-      <b>Balmain debuts • Versace features • Winter layers take over.</b> Limited units — once it’s gone, it’s gone.
-    </div>
-
-    <!-- CATEGORIES -->
-    <h2 class="section-title">What’s in this drop</h2>
-    <div class="grid">
-      <!-- Hoodies -->
-      <article class="card">
-        <span class="badge">Winter core</span>
-        <h3>Hoodies</h3>
-        <p>Core layers. Cozy, clean, ready.</p>
-        <div class="chips">
-          <span class="pill">Adidas</span><span class="pill gold">AllSaints</span><span class="pill">BOSS</span>
-          <span class="pill">Gap</span><span class="pill">Essentials</span>
+      <div class="cta-section hidden" id="revealSection">
+        <div class="coupon-reveal">
+          <div class="coupon-label">Your Exclusive Code</div>
+          <div class="coupon-code" id="couponCode">THRD50FIRST</div>
+          <div class="copy-hint">Click to copy</div>
+          <div class="success-msg hidden" id="copySuccess">✓ Copied to clipboard!</div>
         </div>
-      </article>
-
-      <!-- Jackets -->
-      <article class="card">
-        <span class="badge">Layer up</span>
-        <h3>Jackets</h3>
-        <p>Denim, puffers & bombers.</p>
-        <div class="chips">
-          <span class="pill">Tommy Hilfiger (Denim/Puffer/Bomber)</span>
-          <span class="pill gold">Diesel</span>
-        </div>
-      </article>
-
-      <!-- Sweatshirts / Winter wear -->
-      <article class="card">
-        <span class="badge">Warmth</span>
-        <h3>Sweatshirts & Knit</h3>
-        <p>Everyday warmth. Premium fits.</p>
-        <div class="chips">
-          <span class="pill">Armani Exchange</span><span class="pill">Hackett</span><span class="pill">Polo Ralph Lauren</span>
-          <span class="pill">Fred Perry</span><span class="pill gold">Superdry</span>
-        </div>
-      </article>
-
-      <!-- Roundnecks -->
-      <article class="card">
-        <span class="badge">Statement</span>
-        <h3>Roundnecks / Tees</h3>
-        <p>Graphics & classics.</p>
-        <div class="chips">
-          <span class="pill gold">Balmain (NEW)</span><span class="pill">AMI Paris</span>
-          <span class="pill">AllSaints</span><span class="pill">Armani Exchange</span>
-          <span class="pill">Calvin Klein</span><span class="pill">Emporio Armani</span>
-          <span class="pill">Gap</span><span class="pill">Fred Perry</span>
-          <span class="pill">Hackett</span><span class="pill">Karl Lagerfeld</span>
-          <span class="pill">Lacoste</span><span class="pill">Nike</span>
-          <span class="pill">Ralph Lauren</span><span class="pill">Tommy Hilfiger</span>
-        </div>
-      </article>
-
-      <!-- Polos -->
-      <article class="card">
-        <span class="badge">Smart casual</span>
-        <h3>Polos</h3>
-        <p>Boardroom to brunch.</p>
-        <div class="chips">
-          <span class="pill">AllSaints</span><span class="pill">Armani Exchange</span><span class="pill">BOSS</span>
-          <span class="pill">Calvin Klein</span><span class="pill">Coach</span><span class="pill">Diesel</span>
-          <span class="pill">Emporio Armani</span><span class="pill">Fred Perry</span><span class="pill">GANT</span>
-          <span class="pill">Lacoste</span><span class="pill">Michael Kors</span><span class="pill gold">Versace</span>
-        </div>
-      </article>
-
-      <!-- Shirts -->
-      <article class="card">
-        <span class="badge">Sharp</span>
-        <h3>Shirts</h3>
-        <p>Crisp lines. Clean cuffs.</p>
-        <div class="chips">
-          <span class="pill">AMI Paris</span><span class="pill">Abercrombie &amp; Fitch</span><span class="pill">AllSaints</span>
-          <span class="pill gold">Barbour</span><span class="pill">Bershka</span><span class="pill">Calvin Klein</span>
-          <span class="pill">GANT</span><span class="pill">Hackett</span><span class="pill">Ralph Lauren</span>
-          <span class="pill">True Religion</span><span class="pill">Zara</span>
-        </div>
-      </article>
-
-      <!-- Lowers -->
-      <article class="card">
-        <span class="badge">Rotation</span>
-        <h3>Lowers</h3>
-        <p>Fits that stay in play.</p>
-        <div class="chips">
-          <span class="pill gold">Columbia</span><span class="pill">Calvin Klein</span><span class="pill">Armani Exchange</span>
-          <span class="pill">Karl Lagerfeld</span><span class="pill">Levi’s</span>
-          <span class="pill">Ralph Lauren</span><span class="pill">Superdry</span>
-          <span class="pill">Tommy Hilfiger</span><span class="pill">Zara</span>
-        </div>
-      </article>
-
-      <!-- Socks -->
-      <article class="card">
-        <span class="badge">Essentials</span>
-        <h3>Socks</h3>
-        <p>Premium pairs. Everyday flex.</p>
-        <div class="chips">
-          <span class="pill">AMI Paris</span><span class="pill">BOSS</span><span class="pill">Calvin Klein</span>
-          <span class="pill">Diesel</span><span class="pill gold">Essentials</span><span class="pill">GANT</span>
-          <span class="pill">Karl Lagerfeld</span><span class="pill">Kenzo</span><span class="pill">Lacoste</span>
-          <span class="pill">Tommy Hilfiger</span>
-        </div>
-      </article>
-
-      <!-- Sports & Jerseys -->
-      <article class="card">
-        <span class="badge">Game on</span>
-        <h3>Sports & Jerseys</h3>
-        <p>Pitch to pavement.</p>
-        <div class="chips">
-          <span class="pill">Adidas</span><span class="pill">Nike</span><span class="pill gold">Football Jerseys</span>
-        </div>
-      </article>
-
-      <!-- Stock note -->
-      <aside class="warning card" role="note" aria-label="Stock warning">
-        <p><strong>⚠ Limited stock:</strong> sizes vanish fast. Avoid the “sold out already?” moment.</p>
-        <p><span id="warnDate">Drop at 7:00 PM (IST)</span></p>
-      </aside>
-    </div>
-
-    <!-- FINAL CTA (merge target) -->
-    <section id="final" class="final-cta" aria-label="Final call to action">
-      <h3>Set your alarm. Then tap this.</h3>
-      <div class="cta-stack">
-        <a class="btn btn-white" href="https://instagram.com/thrd.store" rel="noopener" aria-label="Watch Sneak Peek (footer)">👀 Watch Sneak Peek</a>
-        <a class="btn btn-dark" id="waBottom" rel="noopener" aria-label="I’m in for this drop on WhatsApp">🔥 I’m in for this drop</a>
+        <p style="color:var(--muted);margin-top:20px;font-size:.95rem;">Valid on your next purchase. Members only.</p>
       </div>
-      <div class="fine">Add to Calendar above so you don’t miss the 7 PM rush.</div>
-    </section>
 
-    <footer>
-      <span>Curated.</span><span>Verified.</span><span>Members-only.</span>
-      <a href="/request_access">Request access</a>
-    </footer>
+      <footer>
+        <span>Limited time.</span><span>Members only.</span><span>Enjoy the rush.</span>
+      </footer>
+    </div>
   </div>
 
-  <!-- Floating sticky pill (exactly like earlier; merges at footer) -->
-  <div class="floating-cta" id="floatingCta">
-    <a class="btn btn-white" href="https://instagram.com/thrd.store" rel="noopener" aria-label="Watch Sneak Peek (floating)">▶ Watch Sneak Peek</a>
-    <a class="btn btn-outline" href="#final" aria-label="Scroll to final CTAs">⬇ Scroll to CTAs</a>
-  </div>
-
-  <!-- Fireworks canvas -->
   <canvas id="fx"></canvas>
 
   <script>
-    // ====== CONFIG ======
-    // Drop: 18 Oct 2025, 7:00 PM IST
-    const DROP_ISO = '2025-10-18T19:00:00+05:30';
-    const WA_NUMBER = '918198845888'; // your WhatsApp number
-    const WA_TEXT   = "Let's go — ping me before the drop!";
-    const WA_URL    = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_TEXT)}`;
-    document.getElementById('waBottom').href = WA_URL;
+    const claimBtn = document.getElementById('claimBtn');
+    const claimSection = document.getElementById('claimSection');
+    const revealSection = document.getElementById('revealSection');
+    const couponCode = document.getElementById('couponCode');
+    const copySuccess = document.getElementById('copySuccess');
+    const heroCard = document.getElementById('heroCard');
 
-    // ====== Helpers ======
-    function monthAbbr(i){return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][i];}
-    function formatIST(dt){
-      const d = dt.getDate();
-      const m = monthAbbr(dt.getMonth());
-      const t = dt.toLocaleString('en-IN',{hour:'numeric',minute:'2-digit',hour12:true,timeZone:'Asia/Kolkata'}).toUpperCase();
-      return `${d} ${m}, ${t} IST`;
-    }
-    const target = new Date(DROP_ISO);
-    document.getElementById('heroDate').textContent  = formatIST(target);
-    document.getElementById('unlockLine').innerHTML  = `Unlocks on <b>${formatIST(target)}</b>`;
-    document.getElementById('warnDate').textContent  = `Drop at ${target.toLocaleString('en-IN',{hour:'numeric',minute:'2-digit',hour12:true,timeZone:'Asia/Kolkata'}).toUpperCase()} (IST)`;
+    // Claim button handler
+    claimBtn.addEventListener('click', ()=>{
+      claimSection.classList.add('hidden');
+      document.getElementById('loaderSection').classList.remove('hidden');
+      heroCard.classList.add('revealed');
+      
+      // Show loader for 2 seconds, then reveal coupon
+      setTimeout(()=>{
+        document.getElementById('loaderSection').classList.add('hidden');
+        revealSection.classList.remove('hidden');
+        couponCode.style.animation = 'none';
+        setTimeout(()=>{
+          couponCode.style.animation = 'slideUp 0.5s ease-out';
+        }, 10);
+        fireworks.showcase();
+      }, 2000);
+    });
 
-    // ====== TIMER ======
-    (function(){
-      const t = target.getTime();
-      const dEl = document.getElementById('d'), hEl = document.getElementById('h'), mEl = document.getElementById('m'), sEl = document.getElementById('s');
-      let firedTen=false, firedZero=false;
-      const pad = n => String(n).padStart(2,'0');
-      function tick(){
-        const now = Date.now(); let diff = Math.max(0, t - now);
-        const days = Math.floor(diff / 86400000); diff -= days*86400000;
-        const hours = Math.floor(diff / 3600000); diff -= hours*3600000;
-        const mins = Math.floor(diff / 60000); diff -= mins*60000;
-        const secs = Math.floor(diff / 1000);
-        dEl.textContent = pad(days); hEl.textContent = pad(hours); mEl.textContent = pad(mins); sEl.textContent = pad(secs);
+    // Copy to clipboard
+    couponCode.addEventListener('click', ()=>{
+      navigator.clipboard.writeText(couponCode.textContent).then(()=>{
+        copySuccess.classList.remove('hidden');
+        setTimeout(()=>{
+          copySuccess.classList.add('hidden');
+        }, 2000);
+      });
+    });
+    couponCode.style.cursor = 'pointer';
 
-        const leftSecs = Math.floor((t - now)/1000);
-        if(leftSecs === 10 && !firedTen){ firedTen=true; fireworks.burst(6); }
-        if(leftSecs <= 0 && !firedZero){ firedZero=true; dEl.textContent='00'; hEl.textContent='00'; mEl.textContent='00'; sEl.textContent='00'; fireworks.showcase(); clearInterval(iv); }
-      }
-      tick();
-      const iv = setInterval(tick,1000);
-    })();
-
-    // ====== CALENDAR ======
-    (function(){
-      const start = new Date(DROP_ISO);
-      const end   = new Date(start.getTime() + 60*60*1000);
-      const z = n=>String(n).padStart(2,'0');
-      const toGC = (d)=>`${d.getUTCFullYear()}${z(d.getUTCMonth()+1)}${z(d.getUTCDate())}T${z(d.getUTCHours())}${z(d.getUTCMinutes())}00Z`;
-      const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('THRD Diwali Megadrop — Live')}&dates=${toGC(start)}/${toGC(end)}&details=${encodeURIComponent('Winter arrives with a bang. Balmain launches. Members-only rush at 7 PM IST.')}&location=${encodeURIComponent('thrd.store')}&sf=true&output=xml`;
-      document.getElementById('calLink').href = url;
-    })();
-
-    // ====== FLOATING CTA MERGE (same behavior as your original) ======
-    const dock = document.getElementById('final');
-    const obs = new IntersectionObserver(entries=>{
-      entries.forEach(entry=>{ document.body.classList.toggle('merged', entry.isIntersecting); });
-    },{threshold:.25});
-    obs.observe(dock);
-
-    // ====== FIREWORKS (subtle gold / white) ======
+    // ====== FIREWORKS (gold/white theme) ======
     const fireworks = (function(){
       const canvas = document.getElementById('fx');
       const ctx = canvas.getContext('2d');
@@ -539,8 +345,7 @@
       function burst(n=5){ for(let i=0;i<n;i++) setTimeout(spawnRocket, i*120); }
       function showcase(){ burst(10); setTimeout(()=>burst(6), 900); }
 
-      // Auto: on load
-      burst(6); if(!RAF) RAF = requestAnimationFrame(step);
+      if(!RAF) RAF = requestAnimationFrame(step);
       return { burst, showcase };
     })();
 
