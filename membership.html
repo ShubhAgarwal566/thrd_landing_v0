@@ -160,7 +160,7 @@
       font-size:.85rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;
     }
 
-    .coupon-code{
+    .coupon-display{
       font-family:Montserrat, monospace;
       font-size:2rem;font-weight:800;
       color:#0b0906;
@@ -170,26 +170,30 @@
       padding:18px 24px;
       background:linear-gradient(180deg,var(--gold),var(--gold-2));
       border-radius:12px;
-      transition:.3s all;
-      cursor:pointer;
       border:2px solid var(--gold);
       box-shadow:0 8px 24px rgba(201,168,106,.3);
       display:inline-block;
       min-width:200px;
       user-select:all;
-      position:relative;
     }
 
-    .coupon-code:hover{
-      background:linear-gradient(180deg,var(--gold-2),var(--gold));
-      transform:scale(1.08);
+    .copy-btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:14px 28px;border-radius:999px;font-weight:800;border:2px solid var(--gold);
+      transition:.2s transform,.2s opacity,.2s box-shadow;
+      font-size:1rem;cursor:pointer;
+      background:linear-gradient(180deg,var(--gold),var(--gold-2));
+      color:#0b0906;
+      box-shadow:0 8px 24px rgba(201,168,106,.28);
+      margin-top:12px;
+    }
+    .copy-btn:hover{
+      transform:translateY(-2px);
+      opacity:0.95;
       box-shadow:0 12px 32px rgba(201,168,106,.5);
-      filter:brightness(1.1);
     }
-
-    .coupon-code:active{
-      transform:scale(0.98);
-      box-shadow:0 4px 12px rgba(201,168,106,.3);
+    .copy-btn:active{
+      transform:translateY(0);
     }
 
     .copy-hint{
@@ -281,10 +285,26 @@
     @media (max-width:768px){
       .hero-card{padding:24px 16px}
       h1{font-size:clamp(24px,4vw,32px)}
-      .coupon-code{font-size:1.6rem}
+      .coupon-display{font-size:1.3rem;padding:16px 12px;min-width:auto}
+      .copy-btn{padding:12px 20px;font-size:0.9rem}
       .timer-display{font-size:1.4rem}
-      .btn{padding:12px 24px;font-size:0.95rem}
+      .btn{padding:12px 24px;font-size:0.95rem;max-width:100%}
       .container{padding:16px 12px;min-height:auto}
+      .countdown{padding:14px;font-size:1rem}
+      .expiry-text{font-size:0.8rem}
+      .coupon-label{font-size:0.8rem}
+    }
+
+    @media (max-width:480px){
+      .hero-card{padding:20px 12px}
+      h1{font-size:clamp(20px,4vw,28px)}
+      .coupon-display{font-size:1.1rem;padding:14px 10px;word-break:break-all;min-width:150px}
+      .copy-btn{padding:11px 16px;font-size:0.85rem;width:100%;max-width:none}
+      .btn{padding:12px 20px;font-size:0.9rem}
+      .timer-display{font-size:1.2rem}
+      .countdown{padding:12px;font-size:0.95rem}
+      .description{font-size:0.9rem}
+      .coupon-reveal{padding:18px 12px}
     }
   </style>
 </head>
@@ -324,8 +344,8 @@
       <div class="cta-section hidden" id="revealSection">
         <div class="coupon-reveal">
           <div class="coupon-label">Your Exclusive Code</div>
-          <div class="coupon-code" id="couponCode" title="Click to copy code">THRD50FIRST</div>
-          <div class="copy-hint">Click to copy</div>
+          <div class="coupon-display" id="couponCode">THRD50FIRST</div>
+          <button class="copy-btn" id="copyBtn" aria-label="Copy coupon code">📋 Copy Code</button>
           <div class="success-msg hidden" id="copySuccess">✓ Copied to clipboard!</div>
         </div>
 
@@ -402,24 +422,18 @@
     });
 
     // Copy to clipboard
-    couponCode.addEventListener('click', ()=>{
-      navigator.clipboard.writeText(couponCode.textContent).then(()=>{
+    const copyBtn = document.getElementById('copyBtn');
+    copyBtn.addEventListener('click', ()=>{
+      const code = couponCode.textContent.trim();
+      navigator.clipboard.writeText(code).then(()=>{
         copySuccess.classList.remove('hidden');
+        copyBtn.textContent = '✓ Copied!';
         setTimeout(()=>{
           copySuccess.classList.add('hidden');
+          copyBtn.textContent = '📋 Copy Code';
         }, 2000);
-      }).catch(()=>{
-        // Fallback for older browsers
-        const temp = document.createElement('textarea');
-        temp.value = couponCode.textContent;
-        document.body.appendChild(temp);
-        temp.select();
-        document.execCommand('copy');
-        document.body.removeChild(temp);
-        copySuccess.classList.remove('hidden');
-        setTimeout(()=>{
-          copySuccess.classList.add('hidden');
-        }, 2000);
+      }).catch((err)=>{
+        console.error('Failed to copy:', err);
       });
     });
 
