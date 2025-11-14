@@ -2,25 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>THRD — Claim Your 50% Off</title>
+  <title>THRD — Winter Gets Real Drop (17 Nov • 7:00 PM IST)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Congrats on your first order! Claim 50% off with your exclusive coupon code." />
+  <meta name="description" content="THRD Winter Gets Real Drop — Winter just got real. Kenzo & Versace tees, Essentials hoodies, Zegna. Mobile-first. Timer + Sneak Peek + Categories." />
   <meta name="theme-color" content="#0b0b0c" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Silkscreen for THRD, Montserrat for headlines, Poppins for body -->
   <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Montserrat:wght@600;800&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
   <style>
     :root{
+      /* Dark festive base */
       --bg:#0b0b0c;
       --layer:#0e0e12;
       --card:#111016;
       --ink:#f7f9ff;
       --muted:#b9bcc7;
       --border:#272634;
-      --gold:#c9a86a;
-      --gold-2:#b8914c;
-      --pill:#ffffff;
-      --pill-fg:#111217;
+
+      /* Diwali golds / winter luxe */
+      --gold:#c9a86a;      /* champagne gold */
+      --gold-2:#b8914c;    /* deeper gold for depth */
+
+      /* CTA variants */
+      --pill:#ffffff; --pill-fg:#111217;    /* light pill (secondary) */
+      --ink-pill:#0f0f10; --ink-pill-fg:#fff; /* dark pill (primary) */
+
       --radius:16px;
       --shadow:0 18px 40px rgba(0,0,0,.35);
     }
@@ -29,15 +36,15 @@
     html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
     a{color:inherit;text-decoration:none}
 
+    /* Subtle festive/winter background wash + gold shimmer */
     body{
       background:
         radial-gradient(900px 600px at 10% -6%, rgba(201,168,106,.10), transparent 55%),
         radial-gradient(820px 560px at 92% 5%, rgba(184,145,76,.10), transparent 55%),
         linear-gradient(180deg,#0b0b0c 0%, #0c0c10 100%);
-      min-height:100vh;
-      padding:0;
     }
 
+    /* ========= NAV (sticky, same as original) ========= */
     .navBar{
       position:sticky;top:0;z-index:60;
       background:rgba(11,11,12,.78);
@@ -59,18 +66,31 @@
       letter-spacing:.02em;
     }
 
-    .container{
-      max-width:600px;margin:0 auto;padding:20px 16px;
-      display:flex;justify-content:center;align-items:center;
-      min-height:calc(100vh - 80px);
+    .container{max-width:1100px;margin:0 auto;padding:18px 16px 120px}
+
+    /* Announcement strip */
+    .announce{
+      margin:14px 0;border-radius:14px;padding:12px 16px;text-align:center;
+      border:1px solid var(--border);
+      background:linear-gradient(180deg,#121118,#0f0f14);
+    }
+    .announce .line1{font-weight:800;letter-spacing:.02em}
+    .announce a{
+      display:inline-block;margin-top:6px;font-weight:800;
+      color:var(--gold);
+      text-decoration:underline;
+      text-underline-offset:3px;
     }
 
+    /* ========= HERO ========= */
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:center;margin-top:10px}
+    @media (max-width:960px){.hero{grid-template-columns:1fr}}
+
     .hero-card{
-      position:relative;overflow:hidden;padding:32px 24px;border-radius:var(--radius);
+      position:relative;overflow:hidden;padding:24px;border-radius:var(--radius);
       border:1px solid var(--border);
       background:linear-gradient(180deg,#111016,#0e0e12);
       box-shadow:var(--shadow);
-      width:100%;text-align:center;
     }
     .hero-card::before{
       content:"";position:absolute;inset:-20%;
@@ -79,365 +99,413 @@
         radial-gradient(50% 40% at 30% 80%, rgba(184,145,76,.14), transparent 60%);
       filter:blur(42px);z-index:-1;opacity:.65;
     }
-
-    .hero-card.revealed::after{
-      content:"";position:absolute;inset:-20%;
-      background:
-        radial-gradient(60% 40% at 70% 20%, rgba(201,168,106,.25), transparent 50%),
-        radial-gradient(50% 40% at 30% 80%, rgba(184,145,76,.2), transparent 60%);
-      filter:blur(42px);z-index:-1;opacity:1;animation:pulse 0.6s ease-out;
-    }
-
-    @keyframes pulse{
-      0%{opacity:0;}
-      100%{opacity:1;}
-    }
-
-    .welcome-image{
-      width:100%;max-width:300px;margin:0 auto 24px;border-radius:12px;
-      animation:slideDown 0.5s ease-out;
-    }
-
-    @keyframes slideDown{
-      0%{opacity:0;transform:translateY(-20px)}
-      100%{opacity:1;transform:translateY(0)}
-    }
-
     .eyebrow{
-      font-size:.85rem;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px;font-weight:700;
+      font-size:.85rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px
     }
-
-    h1{
+    .hero h1{
       font-family:Montserrat, sans-serif;font-weight:800;
-      font-size:clamp(28px,5vw,40px);
-      line-height:1.1;margin:12px 0 8px;letter-spacing:.01em;
+      font-size:clamp(26px,3.6vw,38px);
+      line-height:1.08;margin:6px 0 10px;letter-spacing:.01em;
     }
+    .hero p.sub{color:#e8e9f6;margin:6px 0 14px;font-weight:600}
 
-    .description{
-      color:#e8e9f6;margin:8px 0 20px;font-weight:600;font-size:0.95rem;line-height:1.5;
+    /* Timer (4 ticks) */
+    .timer{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 10px}
+    .tick{
+      min-width:88px;text-align:center;border-radius:14px;padding:10px 12px;
+      background:linear-gradient(180deg,#151421,#0f0e15);
+      border:1px solid rgba(255,255,255,.12)
     }
+    .tick strong{font-family:Montserrat, sans-serif;display:block;font-size:22px;letter-spacing:.02em}
+    .tick span{font-size:12px;color:var(--muted)}
+    .unlock{font-size:.95rem;color:#e0e2ef;margin-top:6px;opacity:.9}
 
-    .highlight{
-      color:var(--gold);font-weight:800;
-    }
-
+    /* Buttons */
+    .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
     .btn{
       display:inline-flex;align-items:center;justify-content:center;
-      padding:14px 28px;border-radius:999px;font-weight:800;border:1px solid transparent;
-      transition:.2s transform,.2s opacity,.2s box-shadow;
-      font-size:1rem;cursor:pointer;width:100%;max-width:280px;
+      padding:12px 16px;border-radius:999px;font-weight:800;border:1px solid transparent;
+      transition:.2s transform,.2s opacity,.2s box-shadow
     }
-    .btn:hover{transform:translateY(-2px);opacity:0.95}
-    .btn:active{transform:translateY(0)}
+    .btn:hover{transform:translateY(-1px)}
     .btn-primary{background:linear-gradient(180deg,var(--gold),var(--gold-2));color:#0b0906;box-shadow:0 8px 24px rgba(185,145,76,.28)}
+    .btn-outline{border:1px solid #2b2b35;background:#14141a;color:#e9ecf5}
     .btn-dark{background:#111217;color:#fff;border:1px solid rgba(255,255,255,.1)}
+    .btn-white{background:var(--pill);color:var(--pill-fg);box-shadow:0 8px 20px rgba(0,0,0,.22)}
 
-    .cta-section{margin-top:20px}
-    .cta-section.hidden{display:none}
+    .meta{font-size:.9rem;color:var(--muted);margin-top:10px}
 
-    .coupon-reveal{
-      background:linear-gradient(180deg,#151421,#0f0e15);
-      border:2px solid var(--gold);
-      border-radius:16px;
-      padding:24px;
-      margin:20px 0;
-      text-align:center;
-      animation:slideUp 0.5s ease-out;
+    /* Video (9:16) */
+    .video{
+      border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);
+      background:linear-gradient(180deg,#0f0f15,#0f0f15);
     }
+    .video .frame{position:relative;padding-top:177.77%}
+    .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:12px}
+    .video .caption{font-size:.9rem;color:var(--muted);padding:10px 14px}
 
-    @keyframes slideUp{
-      0%{
-        opacity:0;
-        transform:translateY(20px);
-      }
-      100%{
-        opacity:1;
-        transform:translateY(0);
-      }
+    /* Stripe / meta */
+    .stripe{
+      margin:22px 0;border-radius:14px;padding:14px 16px;text-align:center;
+      border:1px dashed rgba(255,255,255,.18);
+      background:linear-gradient(180deg,#12111a,#13131b);
     }
+    .stripe b{font-family:Montserrat, sans-serif;color:#fff2cf}
 
-    .coupon-label{
-      font-size:.85rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;
+    /* Sections */
+    .section-title{
+      font-family:Montserrat, sans-serif;font-weight:800;letter-spacing:.01em;margin:20px 0 12px;
+      font-size:clamp(22px,3.2vw,28px)
     }
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
 
-    .coupon-display{
-      font-family:Montserrat, monospace;
-      font-size:2rem;font-weight:800;
-      color:#0b0906;
-      letter-spacing:.05em;
-      margin:16px 0;
-      word-break:break-all;
-      padding:18px 24px;
-      background:linear-gradient(180deg,var(--gold),var(--gold-2));
-      border-radius:12px;
-      border:2px solid var(--gold);
-      box-shadow:0 8px 24px rgba(201,168,106,.3);
-      display:inline-block;
-      min-width:200px;
-      user-select:all;
+    .card{
+      border-radius:16px;padding:16px;position:relative;overflow:hidden;
+      border:1px solid var(--border);
+      background:linear-gradient(180deg,#12111a,#111118);
     }
+    .card h3{margin:0 0 8px;font-size:1.05rem;font-weight:800}
+    .card p{margin:6px 0 10px;color:#dfe1ee}
 
-    .copy-btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:8px;
-      padding:14px 28px;border-radius:999px;font-weight:800;border:2px solid var(--gold);
-      transition:.2s transform,.2s opacity,.2s box-shadow;
-      font-size:1rem;cursor:pointer;
-      background:linear-gradient(180deg,var(--gold),var(--gold-2));
-      color:#0b0906;
-      box-shadow:0 8px 24px rgba(201,168,106,.28);
-      margin-top:12px;
-    }
-    .copy-btn:hover{
-      transform:translateY(-2px);
-      opacity:0.95;
-      box-shadow:0 12px 32px rgba(201,168,106,.5);
-    }
-    .copy-btn:active{
-      transform:translateY(0);
-    }
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .pill{background:#191a21;border:1px solid rgba(255,255,255,.14);padding:6px 10px;border-radius:999px;font-size:.88rem;white-space:nowrap;font-weight:700}
+    .pill.gold{border-color:var(--gold);color:#fff1c9}
 
-    .copy-hint{
-      font-size:.9rem;color:var(--gold);margin-top:12px;font-weight:800;
-      display:flex;align-items:center;justify-content:center;gap:8px;
-      text-transform:uppercase;
-      letter-spacing:.05em;
-      animation:pulse-hint 1.5s ease-in-out infinite;
-    }
+    /* “New/First time” badges */
+    .badge{display:inline-block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;background:rgba(201,168,106,.14);color:#ffe6b6;border:1px solid rgba(201,168,106,.4);padding:4px 8px;border-radius:999px;margin-bottom:8px}
 
-    .copy-hint::before{
-      content:"👆";
-      display:inline-block;
-      animation:bounce 1s ease-in-out infinite;
-      font-size:1.2rem;
+    /* Warning */
+    .warning{
+      margin:2px 0 0;padding:14px;border-radius:14px;
+      background:linear-gradient(180deg,#1a1509,#130f07);
+      border:1px dashed rgba(201,168,106,.45)
     }
+    .warning strong{color:#ffdf6a}
 
-    @keyframes pulse-hint{
-      0%, 100%{opacity:1}
-      50%{opacity:0.5}
+    /* Final CTA Dock */
+    .final-cta{
+      margin:28px 0 0;padding:18px;border-radius:16px;text-align:center;
+      border:1px solid var(--border);
+      background:linear-gradient(180deg,#0f1514,#0d1014);
     }
+    .final-cta h3{margin:0 0 10px;font-weight:800}
+    .cta-stack{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+    .fine{color:var(--muted);font-size:.9rem;margin-top:6px}
 
-    @keyframes bounce{
-      0%, 100%{transform:translateY(0)}
-      50%{transform:translateY(-6px)}
-    }
+    /* Floating CTA (merges at footer) */
+    .floating-cta{position:fixed;right:16px;bottom:16px;z-index:65;display:flex;gap:8px;align-items:center;transition:.28s transform,.28s opacity}
+    .floating-cta .btn{box-shadow:0 10px 24px rgba(0,0,0,.25)}
+    body.merged .floating-cta{opacity:0;transform:translateY(12px) scale(.95);pointer-events:none}
 
-    .success-msg{
-      color:#b8d4a8;font-size:.95rem;font-weight:700;margin-top:8px;animation:fadeIn 0.4s ease-out;
-    }
-
-    @keyframes fadeIn{
-      0%{opacity:0}
-      100%{opacity:1}
-    }
-
-    .countdown{
-      background:rgba(201,168,106,.1);
-      border:1px solid var(--gold);
-      border-radius:12px;
-      padding:16px;
-      margin:16px 0;
-      font-size:1.1rem;
-      font-weight:700;
-      color:var(--gold);
-    }
-
-    .timer-display{
-      font-size:1.8rem;font-weight:800;margin-top:8px;
-      font-family:Montserrat, monospace;
-    }
-
-    .expiry-text{
-      color:var(--muted);margin-top:12px;font-size:.85rem;line-height:1.5;
-    }
-
-    .loader-section{
-      text-align:center;
-    }
-
-    .spinner{
-      border:3px solid rgba(201,168,106,.2);
-      border-top:3px solid var(--gold);
-      border-radius:50%;
-      width:48px;height:48px;
-      animation:spin 0.8s linear infinite;
-      margin:0 auto 20px;
-    }
-
-    @keyframes spin{
-      0%{transform:rotate(0deg)}
-      100%{transform:rotate(360deg)}
-    }
-
-    .loader-text{
-      color:var(--muted);font-size:.95rem;font-weight:600;letter-spacing:.05em;
-    }
-
+    /* Fireworks canvas */
     #fx{position:fixed;inset:0;pointer-events:none;z-index:70}
 
-    footer{margin:16px 0 0;color:var(--muted);font-size:.8rem;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;text-align:center}
+    /* Footer */
+    footer{margin:22px 0;color:var(--muted);font-size:.9rem;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
     footer a{font-weight:800}
-
-    .shop-btn-wrapper{
-      margin-top:20px;
-      margin-bottom:24px;
-    }
-
-    @media (max-width:768px){
-      .hero-card{padding:24px 16px}
-      h1{font-size:clamp(24px,4vw,32px)}
-      .coupon-display{font-size:1.3rem;padding:16px 12px;min-width:auto}
-      .copy-btn{padding:12px 20px;font-size:0.9rem}
-      .timer-display{font-size:1.4rem}
-      .btn{padding:12px 24px;font-size:0.95rem;max-width:100%}
-      .container{padding:16px 12px;min-height:auto}
-      .countdown{padding:14px;font-size:1rem}
-      .expiry-text{font-size:0.8rem}
-      .coupon-label{font-size:0.8rem}
-    }
-
-    @media (max-width:480px){
-      .hero-card{padding:20px 12px}
-      h1{font-size:clamp(20px,4vw,28px)}
-      .coupon-display{font-size:1.6rem;padding:16px 12px;word-break:break-all;min-width:auto}
-      .copy-btn{padding:10px 16px;font-size:0.8rem;width:auto;max-width:none}
-      .btn{padding:12px 20px;font-size:0.9rem}
-      .timer-display{font-size:1.2rem}
-      .countdown{padding:12px;font-size:0.95rem}
-      .description{font-size:0.9rem}
-      .coupon-reveal{padding:18px 12px}
-    }
   </style>
 </head>
 <body>
+  <!-- Fireworks / crackers -->
   <canvas id="fx"></canvas>
 
+  <!-- NAV -->
   <nav class="navBar" aria-label="Primary">
     <ul class="navbarelements">
-      <li class="navitem left"><a class="shop-link" href="#shop" aria-label="Shop">SHOP</a></li>
+      <li class="navitem left"><a class="shop-link" href="/request_access" aria-label="Shop / Request Access">SHOP</a></li>
       <li class="navitem name"><a href="/" aria-label="THRD Home">THRD</a></li>
-      <li class="navitem right"><a href="/about" aria-label="About THRD">ABOUT</a></li>
+      <li class="navitem right"><a href="/our_story" aria-label="About THRD">ABOUT</a></li>
     </ul>
   </nav>
 
   <div class="container">
-    <div class="hero-card" id="heroCard">
-      <img src="./images/specials/oct14.png" alt="Welcome" class="welcome-image">
-      
-      <div class="eyebrow">✨ Special Thank You</div>
-      <h1>Your Welcome Gift</h1>
-      <p class="description">As a special thank-you, we're unlocking your exclusive reward:</p>
-
-      <div class="cta-section" id="claimSection">
-        <div style="font-size:1.3rem;font-weight:800;color:var(--gold);margin:16px 0;">
-          50% OFF this purchase
-        </div>
-        <button class="btn btn-primary" id="claimBtn" aria-label="Reveal your coupon">✨ Reveal Code</button>
-      </div>
-
-      <div class="cta-section hidden" id="loaderSection">
-        <div class="loader-section">
-          <div class="spinner"></div>
-          <div class="loader-text">Unlocking your reward...</div>
-        </div>
-      </div>
-
-      <div class="cta-section hidden" id="revealSection">
-        <div class="coupon-reveal">
-          <div class="coupon-label">Your Exclusive Code</div>
-          <div class="coupon-display" id="couponCode">THRD50FIRST</div>
-          <button class="copy-btn" id="copyBtn" aria-label="Copy coupon code">📋 Copy Code</button>
-          <div class="success-msg hidden" id="copySuccess">✓ Copied to clipboard!</div>
-        </div>
-
-        <div class="shop-btn-wrapper">
-          <button class="btn btn-primary" onclick="window.location.href='/shop'" aria-label="Shop now">🛍️ Shop Now</button>
-        </div>
-
-        <div class="countdown">
-          <div>⏳ Hurry — Your offer expires soon!</div>
-          <div class="timer-display" id="timer">23:59:59</div>
-          <div class="expiry-text">This exclusive 50% off is valid only until <strong>November 10, 11:59 PM</strong>. The clock is ticking — claim your reward before it's gone!<br><span id="offerStatus"></span></div>
-        </div>
-
-        <p style="color:var(--muted);margin-top:16px;font-size:.85rem;">Valid on your next purchase. Members only.</p>
-      </div>
-
-      <footer>
-        <span>Limited time.</span><span>Members only.</span><span>Enjoy!</span>
-      </footer>
+    <!-- Announcement -->
+    <div class="announce" role="region" aria-label="Announcement">
+      <div class="line1">❄️ THRD Winter Gets Real Drop — it’s almost time.</div>
+      <a href="https://instagram.com/thrd.store" rel="noopener" aria-label="Open Instagram sneak peek">instagram.com/thrd.store</a>
     </div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-card">
+        <div class="eyebrow">THRD Winter Gets Real Drop</div>
+        <h1>Winter just got real.</h1>
+        <p class="sub">
+          <b>Kenzo</b> &amp; <b>Versace</b> tees. <b>Essentials</b> hoodies. <b>Zegna</b> joins the winter lineup.
+        </p>
+        <p class="sub"><b>Go live</b> — <span id="heroDate">17 Nov • 7:00 PM IST</span></p>
+
+        <!-- 4-box timer -->
+        <div class="timer" id="timer" aria-live="polite">
+          <div class="tick"><strong id="d">00</strong><span>Days</span></div>
+          <div class="tick"><strong id="h">00</strong><span>Hours</span></div>
+          <div class="tick"><strong id="m">00</strong><span>Mins</span></div>
+          <div class="tick"><strong id="s">00</strong><span>Secs</span></div>
+        </div>
+        <div class="unlock" id="unlockLine">Unlocks on <b>17 Nov, 7:00 PM IST</b></div>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#video" aria-label="Play Sneak Peek on this page">▶ Play 60s Sneak Peek</a>
+          <a class="btn btn-outline" id="calLink" rel="noopener" aria-label="Add to Google Calendar">📅 Add to Calendar</a>
+        </div>
+        <div class="meta">Members shop first. <a href="/request_access">Request access</a>.</div>
+      </div>
+
+      <div class="video" id="video">
+        <div class="frame">
+          <!-- Replace VIDEO_ID with actual ID -->
+          <iframe
+            src="https://www.youtube.com/embed/DoBfsZMdXis"
+            title="THRD Winter Gets Real Drop — 60s Sneak Peek"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+        </div>
+        <div class="caption">60 seconds. Blink and you’ll miss it.</div>
+      </div>
+    </section>
+
+    <div class="stripe">
+      <b>Zegna debuts • Kenzo &amp; Versace tees • Essentials hoodies + winter layers.</b> Limited units — once it’s gone, it’s gone.
+    </div>
+
+    <!-- CATEGORIES -->
+    <h2 class="section-title">What’s in this drop</h2>
+    <div class="grid">
+      <!-- Hoodies -->
+      <article class="card">
+        <span class="badge">Winter core</span>
+        <h3>Hoodies</h3>
+        <p>Core layers. Cozy, clean, ready.</p>
+        <div class="chips">
+          <span class="pill gold">Coach (NEW)</span>
+          <span class="pill gold">Essentials</span>
+          <span class="pill">GANT</span>
+          <span class="pill">Lacoste</span>
+          <span class="pill">New Balance</span>
+          <span class="pill">Ralph Lauren</span>
+          <span class="pill">Tommy Hilfiger</span>
+          <span class="pill">Under Armour</span>
+        </div>
+      </article>
+
+      <!-- Jackets -->
+      <article class="card">
+        <span class="badge">Layer up</span>
+        <h3>Jackets</h3>
+        <p>Leather, puffers &amp; bombers built for winter.</p>
+        <div class="chips">
+          <span class="pill gold">Hackett (genuine leather)</span>
+          <span class="pill">Pull &amp; Bear</span>
+          <span class="pill">Tommy Hilfiger</span>
+        </div>
+      </article>
+
+      <!-- Sweatshirts & Sweaters -->
+      <article class="card">
+        <span class="badge">Warmth</span>
+        <h3>Sweatshirts &amp; Sweaters</h3>
+        <p>Everyday warmth. Premium knits &amp; crews.</p>
+        <div class="chips">
+          <span class="pill">AllSaints</span>
+          <span class="pill">AMI Paris</span>
+          <span class="pill">Armani Exchange</span>
+          <span class="pill">Calvin Klein</span>
+          <span class="pill">Lyle &amp; Scott</span>
+          <span class="pill">Ralph Lauren</span>
+          <span class="pill">Tommy Jeans</span>
+          <span class="pill gold">Zegna (NEW)</span>
+          <span class="pill">GANT</span>
+          <span class="pill">Scotch &amp; Soda</span>
+        </div>
+      </article>
+
+      <!-- Roundnecks / Tees -->
+      <article class="card">
+        <span class="badge">Statement</span>
+        <h3>Roundnecks / Tees</h3>
+        <p>Graphics &amp; classics that do the talking.</p>
+        <div class="chips">
+          <span class="pill">Balmain</span>
+          <span class="pill">Essentials</span>
+          <span class="pill gold">Kenzo (NEW)</span>
+          <span class="pill gold">Versace (NEW)</span>
+          <span class="pill">Armani Exchange</span>
+          <span class="pill">Emporio Armani</span>
+          <span class="pill">Lacoste</span>
+          <span class="pill">Nike</span>
+          <span class="pill">Ralph Lauren</span>
+          <span class="pill">Under Armour</span>
+        </div>
+      </article>
+
+      <!-- Polos -->
+      <article class="card">
+        <span class="badge">Smart casual</span>
+        <h3>Polos</h3>
+        <p>Boardroom to brunch, one collar away.</p>
+        <div class="chips">
+          <span class="pill gold">Balmain (NEW)</span>
+          <span class="pill">Armani Exchange</span>
+          <span class="pill">Coach</span>
+          <span class="pill">Diesel</span>
+          <span class="pill">Emporio Armani</span>
+          <span class="pill">Hackett</span>
+          <span class="pill">Lacoste</span>
+          <span class="pill">Michael Kors</span>
+          <span class="pill">Ralph Lauren</span>
+          <span class="pill gold">Versace</span>
+          <span class="pill">Puma</span>
+        </div>
+      </article>
+
+      <!-- Shirts -->
+      <article class="card">
+        <span class="badge">Sharp</span>
+        <h3>Shirts</h3>
+        <p>Crisp lines. Clean cuffs. Winter-ready.</p>
+        <div class="chips">
+          <span class="pill">AMI Paris</span>
+          <span class="pill">Calvin Klein</span>
+          <span class="pill">Hackett</span>
+          <span class="pill">Lacoste</span>
+          <span class="pill gold">Massimo Dutti (NEW)</span>
+          <span class="pill">Ralph Lauren</span>
+          <span class="pill">Tommy Hilfiger</span>
+          <span class="pill">Zara</span>
+        </div>
+      </article>
+
+      <!-- Lowers -->
+      <article class="card">
+        <span class="badge">Rotation</span>
+        <h3>Lowers</h3>
+        <p>Fits that stay in your weekly rotation.</p>
+        <div class="chips">
+          <span class="pill">Armani Exchange</span>
+          <span class="pill">Calvin Klein</span>
+          <span class="pill">Emporio Armani</span>
+          <span class="pill">Jack &amp; Jones</span>
+          <span class="pill">Karl Lagerfeld</span>
+          <span class="pill">Ralph Lauren</span>
+          <span class="pill">Pull &amp; Bear</span>
+          <span class="pill">Tommy Hilfiger</span>
+        </div>
+      </article>
+
+      <!-- Sports & Jerseys -->
+      <article class="card">
+        <span class="badge">Game on</span>
+        <h3>Sports &amp; Jerseys</h3>
+        <p>Pitch, gym, or street — your call.</p>
+        <div class="chips">
+          <span class="pill">Adidas</span>
+          <span class="pill">Nike</span>
+          <span class="pill">Puma</span>
+          <span class="pill">Under Armour</span>
+          <span class="pill gold">Football Jerseys</span>
+        </div>
+      </article>
+
+      <!-- Stock note -->
+      <aside class="warning card" role="note" aria-label="Stock warning">
+        <p><strong>⚠ Limited stock:</strong> winter sizes vanish fast. Avoid the “sold out already?” moment.</p>
+        <p><span id="warnDate">Drop at 7:00 PM (IST) — 17 Nov</span></p>
+      </aside>
+    </div>
+
+    <!-- FINAL CTA (merge target) -->
+    <section id="final" class="final-cta" aria-label="Final call to action">
+      <h3>Set your alarm for 7 PM. Then tap this.</h3>
+      <div class="cta-stack">
+        <a class="btn btn-white" href="https://instagram.com/thrd.store" rel="noopener" aria-label="Watch Sneak Peek (footer)">👀 Watch Sneak Peek</a>
+        <a class="btn btn-dark" id="waBottom" rel="noopener" aria-label="I’m in for this drop on WhatsApp">🔥 I’m in for this drop</a>
+      </div>
+      <div class="fine">Add to Calendar above so you don’t miss the 7 PM rush.</div>
+    </section>
+
+    <footer>
+      <span>Curated.</span><span>Verified.</span><span>Members-only.</span>
+      <a href="/request_access">Request access</a>
+    </footer>
   </div>
 
-  <canvas id="fx"></canvas>
+  <!-- Floating sticky pill -->
+  <div class="floating-cta" id="floatingCta">
+    <a class="btn btn-white" href="https://instagram.com/thrd.store" rel="noopener" aria-label="Watch Sneak Peek (floating)">▶ Watch Sneak Peek</a>
+    <a class="btn btn-outline" href="#final" aria-label="Scroll to final CTAs">⬇ Scroll to CTAs</a>
+  </div>
 
   <script>
-    const claimBtn = document.getElementById('claimBtn');
-    const claimSection = document.getElementById('claimSection');
-    const revealSection = document.getElementById('revealSection');
-    const couponCode = document.getElementById('couponCode');
-    const copySuccess = document.getElementById('copySuccess');
-    const heroCard = document.getElementById('heroCard');
-    const timerDisplay = document.getElementById('timer');
-    const offerStatus = document.getElementById('offerStatus');
+    // ====== CONFIG ======
+    // Drop: 17 Nov 2025, 7:00 PM IST
+    const DROP_ISO = '2025-11-17T19:00:00+05:30';
+    const WA_NUMBER = '918198845888'; // your WhatsApp number
+    const WA_TEXT   = "Let's go — ping me before the drop!";
+    const WA_URL    = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_TEXT)}`;
+    document.getElementById('waBottom').href = WA_URL;
 
-    // Countdown timer - expires November 10, 2025 at 11:59 PM
-    function startCountdown(){
-      const expiryDate = new Date('2025-11-10T23:59:59').getTime();
-      
-      function updateTimer(){
-        const now = new Date().getTime();
-        const remaining = expiryDate - now;
-        
-        if(remaining <= 0){
-          timerDisplay.textContent = '00:00:00';
-          offerStatus.textContent = 'Offer has expired.';
-          offerStatus.style.color = '#ff6b6b';
-          return;
-        }
-        
-        const hours = Math.floor(remaining / 3600000);
-        const minutes = Math.floor((remaining % 3600000) / 60000);
-        const seconds = Math.floor((remaining % 60000) / 1000);
-        timerDisplay.textContent = 
-          String(hours).padStart(2,'0') + ':' +
-          String(minutes).padStart(2,'0') + ':' +
-          String(seconds).padStart(2,'0');
-      }
-      updateTimer();
-      setInterval(updateTimer, 1000);
+    // ====== Helpers ======
+    function monthAbbr(i){return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][i];}
+    function formatIST(dt){
+      const d = dt.getDate();
+      const m = monthAbbr(dt.getMonth());
+      const t = dt.toLocaleString('en-IN',{hour:'numeric',minute:'2-digit',hour12:true,timeZone:'Asia/Kolkata'}).toUpperCase();
+      return `${d} ${m}, ${t} IST`;
     }
+    const target = new Date(DROP_ISO);
+    document.getElementById('heroDate').textContent  = formatIST(target);
+    document.getElementById('unlockLine').innerHTML  = `Unlocks on <b>${formatIST(target)}</b>`;
+    const dropTimeLabel = target.toLocaleString('en-IN',{hour:'numeric',minute:'2-digit',hour12:true,timeZone:'Asia/Kolkata'}).toUpperCase();
+    const dropDateLabel = `${target.getDate()} ${monthAbbr(target.getMonth())}`;
+    document.getElementById('warnDate').textContent  = `Drop at ${dropTimeLabel} (IST) — ${dropDateLabel}`;
 
-    // Claim button handler
-    claimBtn.addEventListener('click', ()=>{
-      claimSection.classList.add('hidden');
-      document.getElementById('loaderSection').classList.remove('hidden');
-      heroCard.classList.add('revealed');
-      
-      setTimeout(()=>{
-        document.getElementById('loaderSection').classList.add('hidden');
-        revealSection.classList.remove('hidden');
-        startCountdown();
-        fireworks.showcase();
-      }, 2000);
-    });
+    // ====== TIMER ======
+    (function(){
+      const t = target.getTime();
+      const dEl = document.getElementById('d'), hEl = document.getElementById('h'), mEl = document.getElementById('m'), sEl = document.getElementById('s');
+      let firedTen=false, firedZero=false;
+      const pad = n => String(n).padStart(2,'0');
+      function tick(){
+        const now = Date.now(); let diff = Math.max(0, t - now);
+        const days = Math.floor(diff / 86400000); diff -= days*86400000;
+        const hours = Math.floor(diff / 3600000); diff -= hours*3600000;
+        const mins = Math.floor(diff / 60000); diff -= mins*60000;
+        const secs = Math.floor(diff / 1000);
+        dEl.textContent = pad(days); hEl.textContent = pad(hours); mEl.textContent = pad(mins); sEl.textContent = pad(secs);
 
-    // Copy to clipboard
-    const copyBtn = document.getElementById('copyBtn');
-    copyBtn.addEventListener('click', ()=>{
-      const code = couponCode.textContent.trim();
-      navigator.clipboard.writeText(code).then(()=>{
-        copySuccess.classList.remove('hidden');
-        copyBtn.textContent = '✓ Copied!';
-        setTimeout(()=>{
-          copySuccess.classList.add('hidden');
-          copyBtn.textContent = '📋 Copy Code';
-        }, 2000);
-      }).catch((err)=>{
-        console.error('Failed to copy:', err);
-      });
-    });
+        const leftSecs = Math.floor((t - now)/1000);
+        if(leftSecs === 10 && !firedTen){ firedTen=true; fireworks.burst(6); }
+        if(leftSecs <= 0 && !firedZero){
+          firedZero=true;
+          dEl.textContent='00'; hEl.textContent='00'; mEl.textContent='00'; sEl.textContent='00';
+          fireworks.showcase();
+          clearInterval(iv);
+        }
+      }
+      tick();
+      const iv = setInterval(tick,1000);
+    })();
 
-    // ====== FIREWORKS ======
+    // ====== CALENDAR ======
+    (function(){
+      const start = new Date(DROP_ISO);
+      const end   = new Date(start.getTime() + 60*60*1000);
+      const z = n=>String(n).padStart(2,'0');
+      const toGC = (d)=>`${d.getUTCFullYear()}${z(d.getUTCMonth()+1)}${z(d.getUTCDate())}T${z(d.getUTCHours())}${z(d.getUTCMinutes())}00Z`;
+      const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('THRD Winter Gets Real Drop — Live')}&dates=${toGC(start)}/${toGC(end)}&details=${encodeURIComponent('Winter just got real. Kenzo & Versace tees, Essentials hoodies, Zegna. Members-only rush at 7 PM IST.')}&location=${encodeURIComponent('thrd.store')}&sf=true&output=xml`;
+      document.getElementById('calLink').href = url;
+    })();
+
+    // ====== FLOATING CTA MERGE ======
+    const dock = document.getElementById('final');
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{ document.body.classList.toggle('merged', entry.isIntersecting); });
+    },{threshold:.25});
+    obs.observe(dock);
+
+    // ====== FIREWORKS (subtle gold / white crackers + confetti-style sparks) ======
     const fireworks = (function(){
       const canvas = document.getElementById('fx');
       const ctx = canvas.getContext('2d');
@@ -469,21 +537,31 @@
           const angle = Math.random()*Math.PI*2;
           const speed = rand(1.2,3.2)*DPR;
           particles.push({
-            x,y, vx: Math.cos(angle)*speed, vy: Math.sin(angle)*speed,
-            alpha: 1, fade: rand(0.008,0.02), r: rand(1,2.2)*DPR,
-            color: COLORS[(Math.random()*COLORS.length)|0], glow: color
+            x,y,
+            vx: Math.cos(angle)*speed,
+            vy: Math.sin(angle)*speed,
+            alpha: 1,
+            fade: rand(0.008,0.02),
+            r: rand(1,2.2)*DPR,
+            color: COLORS[(Math.random()*COLORS.length)|0],
+            glow: color
           });
         }
       }
-      function step(ts){
+      function step(){
         ctx.clearRect(0,0,W,H);
+        // rockets
         for(let i=rockets.length-1;i>=0;i--){
           const r = rockets[i];
           r.x += r.vx; r.y += r.vy; r.vy += 0.045*DPR; r.life -= 0.012;
           ctx.fillStyle = r.color;
           ctx.beginPath(); ctx.arc(r.x,r.y,1.6*DPR,0,Math.PI*2); ctx.fill();
-          if(r.vy >= 0 || r.life<=0 || r.y < H*0.25){ explode(r.x,r.y,r.color); rockets.splice(i,1); }
+          if(r.vy >= 0 || r.life<=0 || r.y < H*0.25){
+            explode(r.x,r.y,r.color);
+            rockets.splice(i,1);
+          }
         }
+        // particles (confetti-style sparks)
         for(let i=particles.length-1;i>=0;i--){
           const p = particles[i];
           p.x += p.vx; p.y += p.vy; p.vy += 0.015*DPR; p.alpha -= p.fade;
@@ -499,7 +577,10 @@
       function burst(n=5){ for(let i=0;i<n;i++) setTimeout(spawnRocket, i*120); }
       function showcase(){ burst(10); setTimeout(()=>burst(6), 900); }
 
+      // Crackers/confetti when the page loads
       if(!RAF) RAF = requestAnimationFrame(step);
+      showcase();
+
       return { burst, showcase };
     })();
   </script>
