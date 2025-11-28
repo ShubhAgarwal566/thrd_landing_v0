@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>THRD Mystery Box</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #050507;
+      --bg-elevated: #101013;
+      --bg-elevated-softer: #17171c;
+      --border-subtle: #27272f;
+      --border-strong: #3a3a45;
+      --text-main: #f5f5f7;
+      --text-muted: #8f9097;
+      --text-soft: #6b6c73;
+      --accent: #a6ff4d;
+      --accent-soft: rgba(166, 255, 77, 0.18);
+      --danger: #ff4b5c;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.75);
+      --radius-md: 10px;
+      --radius-lg: 12px;
+      --transition-fast: 150ms ease-out;
+      --transition-med: 220ms ease;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #15151c 0, #050507 52%, #000 100%);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button { font-family: inherit; }
+
+    .app-shell { min-height: 100vh; display: flex; flex-direction: column; padding: 24px 18px 28px; }
+    @media (min-width: 768px) { .app-shell { align-items: center; } }
+
+    .app-inner { flex: 1; display: flex; flex-direction: column; max-width: 480px; width: 100%; margin: 0 auto; }
+
+    .screen {
+      flex: 1; display: none; flex-direction: column; justify-content: center;
+      opacity: 0; transform: translateY(10px);
+      transition: opacity var(--transition-med), transform var(--transition-med);
+    }
+    .screen--active { display: flex; opacity: 1; transform: translateY(0); }
+
+    .screen-inner {
+      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.04), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(166, 255, 77, 0.03), transparent 60%),
+        var(--bg-elevated);
+      border-radius: 18px; padding: 24px 18px 22px;
+      border: 1px solid rgba(255, 255, 255, 0.03); box-shadow: var(--shadow-soft);
+      position: relative; overflow: hidden;
+    }
+    @media (min-width: 480px) { .screen-inner { padding: 30px 26px 26px; } }
+    .screen-inner::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
+      border: 1px solid rgba(255, 255, 255, 0.02); mix-blend-mode: soft-light;
+    }
+
+    /* LOGO / BRAND LOCKUP */
+    .logo-lockup { display: inline-flex; align-items: baseline; gap: 10px; margin-bottom: 18px; }
+    .logo-word {
+      font-family: "Space Grotesk", system-ui, sans-serif; font-weight: 700; letter-spacing: 0.26em;
+      font-size: 14px; text-transform: uppercase; padding: 6px 12px 5px; border-radius: 999px;
+      border: 1px solid var(--border-strong); background: linear-gradient(135deg, #17171d, #09090c);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03);
+    }
+    .logo-sub {
+      font-family: "Space Grotesk", system-ui, sans-serif; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.18em; font-size: 10px; color: var(--text-soft); border-left: 1px solid var(--border-subtle); padding-left: 10px;
+    }
+    .logo-lockup--tight .logo-word { font-size: 13px; padding-inline: 10px; }
+
+    .eyebrow { text-transform: uppercase; letter-spacing: 0.16em; font-size: 11px; color: var(--accent); margin-bottom: 10px; }
+    .headline { font-family: "Space Grotesk", system-ui, sans-serif; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-size: 20px; margin-bottom: 8px; }
+    @media (min-width: 480px) { .headline { font-size: 22px; } }
+    .subhead { font-size: 14px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.4; }
+    .body-copy { font-size: 13px; color: var(--text-soft); margin-bottom: 22px; line-height: 1.5; }
+    .microcopy { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-soft); margin-bottom: 18px; }
+    .fine-print { font-size: 11px; color: var(--text-soft); margin-top: 16px; }
+
+    /* FORM */
+    .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+    .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-soft); }
+    .input-shell { position: relative; }
+    .input-field {
+      width: 100%; background: var(--bg-elevated-softer); border-radius: var(--radius-md); border: 1px solid var(--border-subtle);
+      padding: 12px 12px 11px; color: var(--text-main); font-size: 14px; outline: none;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), transform var(--transition-fast);
+    }
+    .input-field::placeholder { color: rgba(143, 144, 151, 0.7); }
+    .input-field:focus-visible { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent-soft); transform: translateY(-1px); background: #17171d; }
+    .input-field--error { border-color: var(--danger); }
+    .input-error { min-height: 14px; font-size: 11px; color: var(--danger); margin-top: 3px; }
+    .legal-note { font-size: 10px; color: var(--text-soft); margin-top: 4px; line-height: 1.4; }
+
+    /* BUTTONS */
+    .btn {
+      border: 0; border-radius: var(--radius-lg); padding: 13px 14px 12px; font-size: 13px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.14em; cursor: pointer; transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), opacity var(--transition-fast), border-color var(--transition-fast);
+      width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .btn-primary { background: #f5f5f7; color: #050507; box-shadow: 0 14px 32px rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.04); }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7); background: #ffffff; }
+    .btn-primary:active { transform: translateY(1px) scale(0.99); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6); }
+    .btn-ghost {
+      background: rgba(10, 10, 14, 0.9); border-radius: var(--radius-md); border: 1px solid var(--border-strong);
+      padding: 8px 10px 7px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: #f5f5f7;
+      cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap;
+      transition: border-color var(--transition-fast), background var(--transition-fast), transform var(--transition-fast), opacity var(--transition-fast);
+    }
+    .btn-ghost:hover { border-color: var(--accent); background: #1a1a21; transform: translateY(-0.5px); }
+    .btn-ghost:active { transform: translateY(0.5px) scale(0.99); opacity: 0.85; }
+    .btn:disabled, .btn-ghost:disabled { opacity: 0.5; cursor: default; transform: none; box-shadow: none; }
+    .btn--secondary { background: var(--bg-elevated-softer); color: var(--text-main); border: 1px solid var(--border-subtle); box-shadow: none; margin-top: 10px; }
+    .btn--secondary:hover { background: #1a1a21; border-color: var(--border-strong); box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6); }
+    .btn-icon-dot { width: 5px; height: 5px; border-radius: 999px; background: #050507; box-shadow: 0 0 0 1px #050507, 0 0 0 2px rgba(0, 0, 0, 0.9); }
+    .btn-label { position: relative; top: 1px; }
+
+    /* Focus styles */
+    .btn:focus-visible, .btn-ghost:focus-visible, .box-card:focus-visible, .input-field:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    /* BOXES / GAME */
+    .game-header { margin-bottom: 18px; }
+    .game-topline { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+    .pill { font-size: 10px; text-transform: uppercase; letter-spacing: 0.16em; padding: 4px 9px 3px; border-radius: 999px; border: 1px solid var(--border-strong); color: var(--text-soft); background: rgba(12, 12, 16, 0.95); }
+    .pill--accent { border-color: var(--accent); color: var(--accent); background: rgba(166, 255, 77, 0.04); }
+
+    .boxes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .box-card {
+      position: relative; border-radius: var(--radius-lg); border: 1px solid var(--border-subtle);
+      background: radial-gradient(circle at top, rgba(255, 255, 255, 0.04), transparent 55%), #09090e;
+      padding: 18px 12px 16px; min-height: 90px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start;
+      cursor: pointer; transition: transform var(--transition-med), box-shadow var(--transition-med), border-color var(--transition-med), background var(--transition-med), opacity var(--transition-fast);
+      text-align: left;
+    }
+    .box-card:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85); border-color: var(--border-strong); background: radial-gradient(circle at top, rgba(166, 255, 77, 0.08), transparent 60%), #0d0d12; }
+    .box-card:active { transform: translateY(0) scale(0.99); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7); }
+    .box-card.is-disabled { opacity: 0.35; cursor: default; transform: none !important; box-shadow: none !important; }
+    .box-card.is-selected { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent-soft), 0 18px 45px rgba(0, 0, 0, 0.9); animation: thrdBoxPulse 700ms ease-in-out; }
+
+    @keyframes thrdBoxPulse {
+      0% { transform: translateY(0) scale(1); }
+      20% { transform: translateY(-2px) scale(1.04); }
+      45% { transform: translateY(1px) scale(0.98); }
+      70% { transform: translateY(-1px) scale(1.02); }
+      100% { transform: translateY(0) scale(1); }
+    }
+
+    .box-label-row { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .box-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--text-soft); }
+    .box-tag { font-size: 9px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--text-muted); padding: 3px 6px 2px; border-radius: 999px; border: 1px dashed rgba(255, 255, 255, 0.14); }
+    .box-main { margin-top: 18px; width: 100%; display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; }
+    .box-symbol { font-family: "Space Grotesk", system-ui, sans-serif; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; font-size: 18px; }
+    .box-question { font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--text-soft); opacity: 0.85; }
+
+    /* RESULT */
+    .result-badge-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
+    .result-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 11px 5px; border-radius: 999px; border: 1px solid var(--accent); background: rgba(166, 255, 77, 0.03); font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent); }
+    .result-badge-dot { width: 7px; height: 7px; border-radius: 999px; background: var(--accent); box-shadow: 0 0 0 2px rgba(166, 255, 77, 0.15); }
+    .result-secondary-pill { font-size: 10px; text-transform: uppercase; letter-spacing: 0.16em; color: var(--text-soft); padding: 4px 8px 3px; border-radius: 999px; border: 1px solid var(--border-subtle); background: rgba(5, 5, 9, 0.9); }
+    .result-subhead { font-size: 14px; color: var(--text-muted); margin-bottom: 14px; }
+    .result-meta { font-size: 11px; color: var(--text-soft); margin-top: 4px; margin-bottom: 14px; }
+
+    .code-card { margin-top: 12px; background: #08080d; border-radius: var(--radius-lg); border: 1px solid var(--border-strong); padding: 10px 10px 10px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .code-main { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+    .code-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-soft); }
+    .code-value { font-family: "Space Grotesk", system-ui, sans-serif; font-weight: 700; letter-spacing: 0.16em; font-size: 14px; text-transform: uppercase; white-space: nowrap; }
+    .copy-feedback { font-size: 11px; color: var(--accent); margin-top: 6px; opacity: 0; transform: translateY(4px); transition: opacity var(--transition-fast), transform var(--transition-fast); min-height: 14px; }
+    .copy-feedback--visible { opacity: 1; transform: translateY(0); }
+    .conditions { font-size: 11px; color: var(--text-soft); margin-top: 10px; line-height: 1.45; }
+    .result-bottom { margin-top: 18px; }
+    .result-note { font-size: 11px; color: var(--text-soft); margin-top: 10px; }
+
+    /* ALREADY PLAYED */
+    .played-icon { width: 36px; height: 36px; border-radius: 999px; border: 1px solid var(--border-strong); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 14px; background: rgba(10, 10, 14, 0.9); }
+    .played-icon-inner { width: 18px; height: 18px; border-radius: 999px; border: 1px solid var(--accent); box-shadow: 0 0 0 2px rgba(166, 255, 77, 0.16); position: relative; }
+    .played-icon-inner::before { content: ""; position: absolute; inset: 4px; border-radius: inherit; background: var(--accent); opacity: 0.7; }
+
+    /* FOOTER */
+    .app-footer {
+      margin-top: 14px; max-width: 480px; width: 100%; margin-inline: auto; display: flex; justify-content: space-between;
+      font-size: 9px; text-transform: uppercase; letter-spacing: 0.16em; color: var(--text-soft); opacity: 0.85;
+    }
+    .footer-right { text-align: right; }
+    .footer-dot { display: inline-block; width: 4px; height: 4px; border-radius: 999px; background: var(--accent); margin-inline: 4px; opacity: 0.9; }
+
+    @media (max-width: 360px) {
+      .logo-lockup { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .code-value { font-size: 13px; letter-spacing: 0.14em; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <div class="app-inner">
+      <!-- ONBOARDING / PHONE ENTRY SCREEN -->
+      <section class="screen screen--active" id="screen-onboarding" data-screen="onboarding">
+        <div class="screen-inner">
+          <div class="logo-lockup">
+            <span class="logo-word">THRD</span>
+            <span class="logo-sub">MYSTERY BOX</span>
+          </div>
+
+          <p class="eyebrow">Once it's gone, it's gone</p>
+          <h1 class="headline">ONE SHOT. ONE BOX.</h1>
+          <p class="subhead">Up to 40% off if you hit. No noise.</p>
+          <p><br></p>
+
+          <form id="phone-form" novalidate>
+            <div class="form-group">
+              <label class="label" for="phone-input">Phone number</label>
+              <div class="input-shell">
+                <input
+                  id="phone-input"
+                  class="input-field"
+                  type="tel"
+                  inputmode="tel"
+                  autocomplete="tel"
+                  placeholder="Enter your phone number"
+                />
+              </div>
+              <p id="phone-error" class="input-error" aria-live="polite"></p>
+            </div>
+
+            <button class="btn btn-primary" type="submit" id="phone-submit">
+              <span class="btn-label">Unlock My Box</span>
+            </button>
+          </form>
+
+        </div>
+      </section>
+
+      <!-- MYSTERY BOX GAME SCREEN -->
+      <section class="screen" id="screen-game" data-screen="game">
+        <div class="screen-inner">
+          <div class="logo-lockup logo-lockup--tight">
+            <span class="logo-word">THRD</span>
+            <span class="logo-sub">MYSTERY BOX</span>
+          </div>
+
+          <div class="game-header">
+            <div class="game-topline">
+              <span class="eyebrow">Pick your box</span>
+            </div>
+          </div>
+
+          <div class="boxes-grid">
+            <button class="box-card" type="button" data-box="1">
+              <div class="box-label-row">
+                <span class="box-label">BOX I</span>
+              </div>
+              <div class="box-main">
+                <span class="box-symbol">?</span>
+                <span class="box-question">LOCKED</span>
+              </div>
+            </button>
+
+            <button class="box-card" type="button" data-box="2">
+              <div class="box-label-row">
+                <span class="box-label">BOX II</span>
+              </div>
+              <div class="box-main">
+                <span class="box-symbol">?</span>
+                <span class="box-question">LOCKED</span>
+              </div>
+            </button>
+
+            <button class="box-card" type="button" data-box="3">
+              <div class="box-label-row">
+                <span class="box-label">BOX III</span>
+              </div>
+              <div class="box-main">
+                <span class="box-symbol">?</span>
+                <span class="box-question">LOCKED</span>
+              </div>
+            </button>
+
+            <button class="box-card" type="button" data-box="4">
+              <div class="box-label-row">
+                <span class="box-label">BOX IV</span>
+              </div>
+              <div class="box-main">
+                <span class="box-symbol">?</span>
+                <span class="box-question">LOCKED</span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESULT / CODE REVEAL SCREEN -->
+      <section class="screen" id="screen-result" data-screen="result">
+        <div class="screen-inner">
+          <div class="logo-lockup logo-lockup--tight">
+            <span class="logo-word">THRD</span>
+            <span class="logo-sub">MYSTERY BOX</span>
+          </div>
+
+        <div class="result-badge-row">
+            <div class="result-badge">
+              <span class="result-badge-dot"></span>
+              <span id="result-badge">Code Ready</span>
+            </div>
+          </div>
+
+          <h2 class="headline" id="result-heading">YOU HIT 0% OFF</h2>
+          <p class="result-subhead" id="result-subtext">
+            This is not normal. Neither are our drops.
+          </p>
+
+          <div class="code-card">
+            <div class="code-main">
+              <span class="code-label">Your code</span>
+              <span class="code-value" id="result-code">THRD00BOX</span>
+            </div>
+            <button class="btn-ghost" type="button" id="copy-btn">
+              <span class="btn-label">Copy Code</span>
+            </button>
+          </div>
+          <p class="copy-feedback" id="copy-feedback" aria-live="polite"></p>
+
+          <p class="conditions">
+            Valid till 2nd Dec, 2025. One-time use per member.
+          </p>
+
+          <div class="result-bottom">
+            <button class="btn btn-primary js-shop-link" type="button">
+              <span class="btn-label">Shop Now</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ALREADY PLAYED SCREEN -->
+      <section class="screen" id="screen-played" data-screen="played">
+        <div class="screen-inner">
+          <div class="logo-lockup logo-lockup--tight">
+            <span class="logo-word">THRD</span>
+            <span class="logo-sub">ACCESS LOG</span>
+          </div>
+
+          <div class="played-icon">
+            <div class="played-icon-inner"></div>
+          </div>
+
+          <h2 class="headline">YOU'VE ALREADY OPENED YOUR BOX</h2>
+          <p class="subhead">
+            One play per member. Check your messages or notes for your code - it is on you now.
+          </p>
+
+          <button class="btn btn-primary js-shop-link" type="button" id="played-shop-btn">
+            <span class="btn-icon-dot"></span>
+            <span class="btn-label">Go to Shop</span>
+          </button>
+
+          <p class="fine-print">
+            Same browser, same member. New codes drop with future activations - not on refresh.
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <footer class="app-footer">
+      <div>THRD MYSTERY BOX</div>
+      <div class="footer-right">
+        ONCE IT'S GONE<span class="footer-dot"></span>IT'S GONE
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // ---------------------------------------------------------------------------
+    // THRD MYSTERY BOX - FRONTEND-ONLY LOGIC
+    // ---------------------------------------------------------------------------
+
+    // Shop URL
+    const SHOP_URL = "https://shop.thrd.store";
+
+    // Discount tiers and probabilities
+    // Updated values: 20, 25, 30, 40. Thresholds unchanged.
+    const DISCOUNT_CONFIG = [
+      { value: 20, threshold: 40 }, // 1-40 -> 20% off
+      { value: 25, threshold: 70 }, // 41-70 -> 25% off
+      { value: 30, threshold: 90 }, // 71-90 -> 30% off
+      { value: 40, threshold: 100 } // 91-100 -> 40% off
+    ];
+
+    // Result copy by discount tier
+    // Texts kept exactly as provided; added a 25% entry using the same tone as 20%.
+    const RESULT_COPY = {
+      40: { badge: "Code Ready", heading: "YOU HIT 40% OFF", subtext: "This is not normal. Neither are our drops." },
+      30: { badge: "Code Ready", heading: "30% OFF UNLOCKED", subtext: "Strong pull. Stack your favorites and check out." },
+      25: { badge: "Code Ready", heading: "25% OFF SECURED", subtext: "Perfect for that cart you've been building." },
+      20: { badge: "Code Ready", heading: "20% OFF SECURED", subtext: "Perfect for that cart you've been building." },
+    };
+
+    // Custom coupon codes per discount level
+    // Fill these with your real codes.
+    const COUPON_CODES = {
+      20: "BLACK20WXKTD",
+      25: "BLACK25MNSYU",
+      30: "BLACK30JDELF",
+      40: "BLACK40ZX6AZ"
+    };
+
+    // Storage keys
+    const STORAGE_KEYS = {
+      phone: "thrdMysteryPhone",
+      played: "thrdMysteryPlayed",
+      discount: "thrdMysteryDiscount",
+      code: "thrdMysteryCode"
+    };
+
+    let hasChosenBox = false;
+
+    function getRandomDiscount() {
+      const roll = Math.floor(Math.random() * 100) + 1;
+      for (const tier of DISCOUNT_CONFIG) {
+        if (roll <= tier.threshold) return tier.value;
+      }
+      return DISCOUNT_CONFIG[0].value;
+    }
+
+    function setLocal(key, value) {
+      try { localStorage.setItem(key, value); } catch (err) {}
+    }
+
+    function getLocal(key) {
+      try { return localStorage.getItem(key); } catch (err) { return null; }
+    }
+
+    function removeLocal(key) {
+      try { localStorage.removeItem(key); } catch (err) {}
+    }
+
+    function showScreen(name) {
+      const screens = document.querySelectorAll(".screen");
+      screens.forEach((screen) => {
+        if (screen.dataset.screen === name) {
+          screen.classList.add("screen--active");
+        } else {
+          screen.classList.remove("screen--active");
+        }
+      });
+      if (name === "game") resetBoxes();
+    }
+
+    function resetBoxes() {
+      const boxes = document.querySelectorAll(".box-card");
+      hasChosenBox = false;
+      boxes.forEach((box) => {
+        box.classList.remove("is-selected", "is-disabled");
+        box.disabled = false;
+      });
+    }
+
+    function validatePhone(raw) {
+      const digitsOnly = raw.replace(/\D/g, "");
+      if (!digitsOnly || digitsOnly.length < 9) {
+        return { valid: false, cleaned: digitsOnly };
+      }
+      return { valid: true, cleaned: digitsOnly };
+    }
+
+    function populateResult(discount, code, isReturning) {
+      const cfg = RESULT_COPY[discount] || RESULT_COPY[20];
+      const badgeEl = document.getElementById("result-badge");
+      const headingEl = document.getElementById("result-heading");
+      const subtextEl = document.getElementById("result-subtext");
+      const codeEl = document.getElementById("result-code");
+      const copyFeedback = document.getElementById("copy-feedback");
+
+      badgeEl.textContent = cfg.badge;
+      headingEl.textContent = cfg.heading;
+      subtextEl.textContent = cfg.subtext;
+      codeEl.textContent = code;
+
+      copyFeedback.textContent = "";
+      copyFeedback.classList.remove("copy-feedback--visible");
+    }
+
+    function attachShopLinks() {
+      const shopButtons = document.querySelectorAll(".js-shop-link");
+      shopButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          window.location.href = SHOP_URL;
+        });
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const phoneForm = document.getElementById("phone-form");
+      const phoneInput = document.getElementById("phone-input");
+      const phoneError = document.getElementById("phone-error");
+      const copyButton = document.getElementById("copy-btn");
+      const copyFeedback = document.getElementById("copy-feedback");
+
+      attachShopLinks();
+
+      phoneForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        phoneError.textContent = "";
+        phoneInput.classList.remove("input-field--error");
+
+        const raw = phoneInput.value.trim();
+        const { valid, cleaned } = validatePhone(raw);
+
+        if (!valid) {
+          phoneError.textContent = "Enter a valid phone number to play.";
+          phoneInput.classList.add("input-field--error");
+          return;
+        }
+
+        setLocal(STORAGE_KEYS.phone, cleaned);
+
+        const alreadyPlayed = getLocal(STORAGE_KEYS.played) === "true";
+        if (alreadyPlayed) {
+          showScreen("played");
+          return;
+        }
+
+        showScreen("game");
+      });
+
+      const boxes = document.querySelectorAll(".box-card");
+      boxes.forEach((box) => {
+        box.addEventListener("click", () => {
+          if (hasChosenBox) return;
+          hasChosenBox = true;
+
+          boxes.forEach((b) => {
+            if (b !== box) { b.classList.add("is-disabled"); b.disabled = true; }
+          });
+
+          box.classList.add("is-selected");
+          box.disabled = true;
+
+          const discount = getRandomDiscount();
+
+          // Use custom code from the mapping
+          const code = COUPON_CODES[discount] || "THRD00BOX";
+
+          setLocal(STORAGE_KEYS.played, "true");
+          setLocal(STORAGE_KEYS.discount, String(discount));
+          setLocal(STORAGE_KEYS.code, code);
+
+          setTimeout(() => {
+            populateResult(discount, code, false);
+            showScreen("result");
+          }, 900);
+        });
+      });
+
+      copyButton.addEventListener("click", async () => {
+        const codeText = document.getElementById("result-code").textContent.trim();
+        copyFeedback.classList.remove("copy-feedback--visible");
+
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(codeText);
+          } else {
+            const tempInput = document.createElement("input");
+            tempInput.value = codeText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+          }
+          copyFeedback.textContent = "Code copied.";
+          copyFeedback.classList.add("copy-feedback--visible");
+        } catch (err) {
+          copyFeedback.textContent = "Copy failed. Hold and copy the code manually.";
+          copyFeedback.classList.add("copy-feedback--visible");
+        }
+      });
+
+      const storedPlayed = getLocal(STORAGE_KEYS.played) === "true";
+      const storedDiscountStr = getLocal(STORAGE_KEYS.discount);
+      const storedCode = getLocal(STORAGE_KEYS.code);
+
+      if (storedPlayed && storedDiscountStr && storedCode) {
+        const storedDiscount = parseInt(storedDiscountStr, 10);
+        populateResult(storedDiscount, storedCode, true);
+        showScreen("result");
+      } else {
+        showScreen("onboarding");
+      }
+    });
+  </script>
+</body>
+</html>
