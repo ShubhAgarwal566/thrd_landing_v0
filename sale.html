@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>THRD — Black Friday | Mystery Box Access</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       THRD Black Friday Landing — Mobile-first, Vanilla CSS
+       ============================================================ */
+    :root{
+      --bg:#050507;
+      --bg-elev:#0e0e13;
+      --panel:#14141a;
+      --ink:#f5f5f7;
+      --muted:#9a9aa3;
+      --soft:#6f707a;
+      --line:#2b2b34;
+      --line-strong:#3b3b46;
+      --accent:#a6ff4d;
+      --accent-ghost:rgba(166,255,77,.08);
+      --radius:12px;
+      --shadow:0 24px 64px rgba(0,0,0,.68);
+      --maxw:820px;
+      --transition:220ms ease;
+      --top-gap: max(28px, calc(24px + env(safe-area-inset-top)));
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 600px at 30% -5%, #181820 0, rgba(24,24,32,.02) 50%, transparent 70%),
+        var(--bg);
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+
+    a{color:inherit;text-decoration:none}
+
+    .wrap{min-height:100dvh;display:flex;flex-direction:column}
+
+    /* =================== Top Bar =================== */
+    .topbar{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:saturate(120%) blur(6px);
+      background:rgba(5,5,7,.72);
+      border-bottom:1px solid rgba(255,255,255,.04);
+    }
+    .topbar-inner{
+      max-width:var(--maxw);margin:0 auto;
+      display:flex;align-items:center;justify-content:space-between;
+      gap:12px;padding:14px 16px;
+    }
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand-badge{
+      font-family:"Space Grotesk",sans-serif;font-weight:700;letter-spacing:.26em;text-transform:uppercase;
+      font-size:14px;padding:6px 12px 5px;border-radius:999px;
+      border:1px solid var(--line-strong);
+      background:linear-gradient(135deg,#1a1a22,#0b0b0f);
+      box-shadow:0 0 0 1px rgba(255,255,255,.03);
+    }
+    .brand-dot{
+      width:6px;height:6px;border-radius:999px;background:var(--accent);
+      box-shadow:0 0 0 2px rgba(166,255,77,.16);
+    }
+    .pills{display:flex;gap:8px}
+    .pill{
+      font-size:10px;text-transform:uppercase;letter-spacing:.16em;
+      padding:6px 10px 5px;border-radius:999px;
+      border:1px solid var(--line-strong);color:var(--muted);
+      background:rgba(12,12,16,.85)
+    }
+    .pill-live{
+      border-color:var(--accent);color:var(--accent);
+      background:var(--accent-ghost);
+      box-shadow:0 0 0 2px rgba(166,255,77,.06) inset;
+      transition:filter 300ms ease;
+    }
+    .pill-live.is-dark{ /* before countdown ends */
+      border-color:var(--line-strong);color:var(--soft);background:rgba(12,12,16,.85);
+      box-shadow:none;
+    }
+
+    /* =================== Sections =================== */
+    .section{padding:24px 16px}
+    .constrain{max-width:var(--maxw);margin:0 auto}
+
+    /* =================== Hero =================== */
+    .hero{
+      display:grid;gap:14px;
+      padding-top:var(--top-gap); /* guaranteed space above hero image */
+    }
+    .billboard{
+      position:relative;overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,.06);
+      box-shadow:var(--shadow);background:var(--panel);
+      aspect-ratio:16/9; /* reserves space to avoid layout jump */
+    }
+    .billboard img{
+      position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+      filter:contrast(1.02) saturate(.98);
+    }
+    .billboard::after{ /* light grain & glow */
+      content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+      background:
+        radial-gradient(80% 60% at 20% 0%, rgba(166,255,77,.06), transparent 60%),
+        linear-gradient(rgba(255,255,255,.02), rgba(255,255,255,0));
+      mix-blend-mode:overlay
+    }
+
+    /* =================== Countdown Tile (separate card) =================== */
+    .count-tile{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      background:var(--bg-elev);border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;padding:14px 14px;box-shadow:var(--shadow);
+    }
+    .count-left{
+      display:flex;flex-direction:column;gap:6px
+    }
+    .count-eyebrow{
+      font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--soft)
+    }
+    .count-headline{
+      font-family:"Space Grotesk",sans-serif;font-weight:700;text-transform:uppercase;
+      letter-spacing:.08em;font-size:18px;margin:0;color:var(--ink)
+    }
+    .count-number{
+      font-family:"Space Grotesk",sans-serif;font-weight:700;text-transform:uppercase;
+      letter-spacing:.12em;font-size:48px;color:var(--ink)
+    }
+    .ready-badge{
+      display:none;align-items:center;gap:8px;border:1px solid var(--accent);
+      background:var(--accent-ghost);color:var(--accent);
+      border-radius:999px;padding:6px 10px 5px;font-size:11px;text-transform:uppercase;letter-spacing:.16em
+    }
+    .ready-dot{width:6px;height:6px;border-radius:999px;background:var(--accent)}
+
+    @media (min-width:640px){
+      .count-headline{font-size:20px}
+      .count-number{font-size:56px}
+    }
+
+    /* CTA */
+    .cta{margin-top:10px;display:flex;gap:10px}
+    .btn{
+      flex:1;border:1px solid rgba(255,255,255,.06);
+      background:#f5f5f7;color:#0a0a0d;
+      border-radius:14px;padding:13px 14px 12px;
+      font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:13px;
+      box-shadow:0 18px 48px rgba(0,0,0,.65);
+      transition:transform var(--transition), box-shadow var(--transition), opacity var(--transition), background var(--transition);
+      cursor:pointer;
+    }
+    .btn:hover{transform:translateY(-1px);box-shadow:0 24px 64px rgba(0,0,0,.75)}
+    .btn:active{transform:translateY(0) scale(.99)}
+    .btn[disabled]{opacity:.5;cursor:default;transform:none;box-shadow:none}
+
+    .note{font-size:12px;color:var(--soft);margin-top:6px}
+
+    /* Cards */
+    .card{background:var(--bg-elev);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:16px 14px;box-shadow:var(--shadow)}
+    .card + .card{margin-top:12px}
+    .h-label{font-family:"Space Grotesk",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.12em;font-size:13px;margin-bottom:10px}
+    .list{display:grid;gap:8px;color:var(--muted);font-size:14px}
+    .list li{display:flex;gap:10px}
+    .dot{width:6px;height:6px;border-radius:999px;background:var(--accent);margin-top:.55rem;box-shadow:0 0 0 2px rgba(166,255,77,.15)}
+
+    /* Steps */
+    .steps{display:grid;gap:10px}
+    .step{
+      display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;
+      border:1px dashed rgba(255,255,255,.08);border-radius:12px;padding:10px 12px;background:#0a0a10
+    }
+    .badge{font-size:10px;text-transform:uppercase;letter-spacing:.18em;color:var(--muted);border:1px solid var(--line-strong);border-radius:999px;padding:4px 8px 3px;background:rgba(12,12,16,.9)}
+    .step h4{margin:2px 0 2px;font-family:"Space Grotesk",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:13px}
+    .step p{margin:0;color:var(--soft);font-size:12px}
+
+    /* Odds grid (20/25/30/40) */
+    .odds{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .odd{background:#0b0b10;border:1px solid var(--line-strong);border-radius:12px;padding:10px 12px}
+    .odd h5{margin:0;font-size:14px;letter-spacing:.08em;text-transform:uppercase;font-family:"Space Grotesk",sans-serif}
+    .odd span{color:var(--muted);font-size:12px}
+
+    /* FAQ */
+    details{border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:10px 12px;background:#0a0a10}
+    details + details{margin-top:8px}
+    summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:10px;font-size:13px;text-transform:uppercase;letter-spacing:.08em;font-family:"Space Grotesk",sans-serif}
+    summary::-webkit-details-marker{display:none}
+    details p{color:var(--muted);font-size:13px;margin:8px 0 0}
+
+    /* Ticker */
+    .ticker{margin-top:14px;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);overflow:hidden;background:#0b0b10}
+    .marquee{display:flex;gap:24px;white-space:nowrap;animation:scroll 28s linear infinite;padding:10px 0;color:var(--soft);text-transform:uppercase;letter-spacing:.14em;font-size:11px}
+    .sep{width:6px;height:6px;border-radius:999px;background:var(--accent);display:inline-block;margin:0 10px;opacity:.85}
+    @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    @media (prefers-reduced-motion:reduce){.marquee{animation:none}}
+
+    /* Already played banner */
+    .played{display:none;margin-top:10px;border:1px solid var(--line-strong);background:#0b0b10;border-radius:12px;padding:10px 12px;color:var(--muted);font-size:13px}
+    .played a{color:var(--accent);text-decoration:underline}
+
+    /* Sticky CTA */
+    .dock{position:sticky;bottom:0;z-index:60;backdrop-filter:saturate(120%) blur(8px);background:linear-gradient(180deg, rgba(5,5,7,.1), rgba(5,5,7,.82));border-top:1px solid rgba(255,255,255,.06);padding:10px 12px}
+    .dock-inner{max-width:var(--maxw);margin:0 auto;display:flex;gap:10px;align-items:center}
+    .dock-label{display:none;gap:8px;align-items:center;border:1px solid var(--accent);background:var(--accent-ghost);color:var(--accent);border-radius:999px;padding:6px 10px 5px;font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+    .dock .btn{flex:1}
+
+    /* Footer */
+    footer{padding:22px 16px;color:var(--soft);text-transform:uppercase;letter-spacing:.12em;font-size:10px;border-top:1px solid rgba(255,255,255,.06)}
+
+    @media (min-width:880px){
+      .section{padding:28px 24px}
+      .headline{font-size:26px}
+      .odds{grid-template-columns:repeat(4,1fr)}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- =================== Top Bar =================== -->
+    <header class="topbar" aria-label="THRD navigation">
+      <div class="topbar-inner">
+        <div class="brand" aria-label="THRD">
+          <span class="brand-badge">THRD</span>
+          <span class="brand-dot" aria-hidden="true"></span>
+        </div>
+        <div class="pills">
+          <span class="pill">Members-only</span>
+          <span id="livePill" class="pill pill-live is-dark" aria-live="polite">Dark</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- =================== Hero =================== -->
+    <main id="content" class="section">
+      <div class="constrain hero">
+        <div class="billboard" aria-label="Black Friday welcome image">
+          <!-- 👉 Replace with your hero image URL -->
+          <img src="HERO_IMAGE_URL_HERE" alt="Welcome to THRD — Members-only drop energy" />
+        </div>
+
+        <!-- Countdown TILE (sits below the image, gets removed after live) -->
+        <div id="countTile" class="count-tile" role="status" aria-live="polite">
+          <div class="count-left">
+            <span id="countEyebrow" class="count-eyebrow">Black Friday access pending…</span>
+            <h2 id="countHeadline" class="count-headline">Starting in</h2>
+          </div>
+          <div class="count-right">
+            <div id="countNumber" class="count-number">3</div>
+            <div id="readyBadge" class="ready-badge"><span class="ready-dot"></span> READY</div>
+          </div>
+        </div>
+
+        <h1 id="headline" class="headline">BLACK FRIDAY: ACCESS PENDING…</h1>
+        <p id="sub" class="sub">Once a year. Members first. Don’t blink.</p>
+
+        <div class="cta">
+          <!-- 👉 Replace with your Mystery Box game URL -->
+          <button id="playTop" class="btn" disabled>Play Mystery Box</button>
+        </div>
+
+        <p class="note">One shot. One box. Up to 40% off.</p>
+
+        <div id="playedBanner" class="played">
+          You’ve already opened your box on this device. Use your saved code.
+          <a href="MYSTERY_GAME_URL_HERE">Open game</a>.
+        </div>
+      </div>
+    </main>
+
+    <!-- =================== Explainer Cards =================== -->
+    <section class="section">
+      <div class="constrain">
+        <div class="card">
+          <div class="h-label">What you’re getting into</div>
+          <ul class="list">
+            <li><span class="dot"></span><span>Members-only side quest. No spin wheels.</span></li>
+            <li><span class="dot"></span><span>One play per member. Your code locks to your number.</span></li>
+            <li><span class="dot"></span><span>Valid only for Black Friday. Use it before it’s gone.</span></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="h-label">How it works</div>
+          <div class="steps">
+            <div class="step">
+              <span class="badge">1</span>
+              <div>
+                <h4>Enter number</h4>
+                <p>Unlock access. Members-only energy.</p>
+              </div>
+            </div>
+            <div class="step">
+              <span class="badge">2</span>
+              <div>
+                <h4>Pick 1 of 4 boxes</h4>
+                <p>No do-overs. Trust your gut, not your brain.</p>
+              </div>
+            </div>
+            <div class="step">
+              <span class="badge">3</span>
+              <div>
+                <h4>Reveal code</h4>
+                <p>Copy &amp; shop immediately. Once it’s gone, it’s gone.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="h-label">Discount tiers</div>
+          <div class="odds" role="list">
+            <div class="odd" role="listitem"><h5>20% OFF</h5><span>Black Friday only</span></div>
+            <div class="odd" role="listitem"><h5>25% OFF</h5><span>Black Friday only</span></div>
+            <div class="odd" role="listitem"><h5>30% OFF</h5><span>Black Friday only</span></div>
+            <div class="odd" role="listitem"><h5>40% OFF</h5><span>Black Friday only</span></div>
+          </div>
+          <p class="note">Trust your gut, not your brain.</p>
+        </div>
+
+        <div class="card">
+          <div class="h-label">Mini FAQ</div>
+          <details>
+            <summary>Can I play twice?</summary>
+            <p>No. One play per member + browser.</p>
+          </details>
+          <details>
+            <summary>When does the code expire?</summary>
+            <p>Black Friday window only (details shown after reveal).</p>
+          </details>
+          <details>
+            <summary>Does this stack with other promos?</summary>
+            <p>No. Side quest ≠ sitewide deals.</p>
+          </details>
+        </div>
+
+        <div class="ticker" aria-hidden="true">
+          <div class="marquee">
+            <span>Members first</span><span class="sep"></span>
+            <span>Once it’s gone, it’s gone</span><span class="sep"></span>
+            <span>THRD drop culture</span><span class="sep"></span>
+            <span>Limited stock</span><span class="sep"></span>
+            <span>Members first</span><span class="sep"></span>
+            <span>Once it’s gone, it’s gone</span><span class="sep"></span>
+            <span>THRD drop culture</span><span class="sep"></span>
+            <span>Limited stock</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== Sticky CTA =================== -->
+    <div class="dock" role="region" aria-label="Quick action">
+      <div class="dock-inner">
+        <span id="dockLabel" class="dock-label"><span class="brand-dot"></span> BLACK FRIDAY IS LIVE</span>
+        <button id="playDock" class="btn">Play Mystery Box</button>
+      </div>
+    </div>
+
+    <footer class="constrain">
+      THRD MYSTERY BOX — MEMBERS-ONLY • STREETWEAR • PREMIUM BASICS
+    </footer>
+  </div>
+
+  <script>
+    // ============================================================
+    // THRD Black Friday Landing — Vanilla JS
+    // - Countdown is a SEPARATE TILE under the hero image
+    // - On finish: tile is REMOVED from DOM, page reflows
+    // - LIVE pill + CTAs enable
+    // ============================================================
+
+    const GAME_URL = "MYSTERY_GAME_URL_HERE"; // ← update this
+
+    const livePill     = document.getElementById('livePill');
+    const headline     = document.getElementById('headline');
+    const sub          = document.getElementById('sub');
+    const playTop      = document.getElementById('playTop');
+    const playDock     = document.getElementById('playDock');
+    const dockLabel    = document.getElementById('dockLabel');
+    const playedBanner = document.getElementById('playedBanner');
+
+    const countTile    = document.getElementById('countTile');
+    const countNumber  = document.getElementById('countNumber');
+    const countEyebrow = document.getElementById('countEyebrow');
+    const countHeadline= document.getElementById('countHeadline');
+    const readyBadge   = document.getElementById('readyBadge');
+
+    function goPlay(){ window.location.href = GAME_URL; }
+    playTop.addEventListener('click', goPlay);
+    playDock.addEventListener('click', goPlay);
+
+    // "Already played" notice if the game set a flag
+    try {
+      const already = localStorage.getItem('thrdMysteryPlayed') === 'true';
+      if (already) playedBanner.style.display = 'block';
+    } catch(_) {}
+
+    const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function setLiveUI(){
+      // Update top labels and CTAs
+      livePill.textContent = 'Live';
+      livePill.classList.remove('is-dark');
+      headline.textContent = 'BLACK FRIDAY: LIVE NOW';
+      sub.textContent      = 'Side quest unlocked. One shot. One box.';
+      playTop.disabled = false;
+      dockLabel.style.display = 'flex';
+
+      if (!prefersReduce){
+        playTop.style.transform = 'translateY(-2px)';
+        setTimeout(()=>{ playTop.style.transform = 'translateY(0)'; }, 220);
+      }
+
+      // Remove the countdown TILE entirely so layout reflows
+      if (countTile && countTile.parentNode){
+        countTile.parentNode.removeChild(countTile);
+      }
+    }
+
+    // Countdown: 3 → 2 → 1 → READY (badge) → remove + LIVE
+    let sequence = ['3','2','1','READY'];
+    let idx = 0;
+
+    function step(){
+      const current = sequence[idx];
+
+      if (current === 'READY'){
+        // swap number for READY badge for a brief beat
+        countNumber.style.display = 'none';
+        readyBadge.style.display  = 'inline-flex';
+        countEyebrow.textContent  = 'Black Friday';
+        countHeadline.textContent = 'Access ready';
+      } else {
+        countNumber.textContent   = current;
+      }
+
+      idx++;
+      if (idx >= sequence.length){
+        setTimeout(setLiveUI, 500); // give READY a short moment, then go live
+      } else {
+        setTimeout(step, 750);
+      }
+    }
+
+    // Start sequence shortly after paint
+    setTimeout(step, 250);
+
+    // Reveal sticky label on 30% scroll even if user scrolls early
+    const revealDockOnScroll = () => {
+      const scrolled = window.scrollY;
+      const height = document.body.scrollHeight - window.innerHeight;
+      if (height && scrolled/height > 0.3) dockLabel.style.display = 'flex';
+    };
+    window.addEventListener('scroll', revealDockOnScroll, { passive:true });
+  </script>
+</body>
+</html>
