@@ -530,6 +530,8 @@
             3: { standard: 45, game: 15, virus: 0,  cure: 40 }
         };
 
+        const MIN_VIRUS_LIFETIME_ROUNDS = 3;
+
         /* State management */
         let players = [];
         let currentMode = 'mild';
@@ -644,10 +646,30 @@
             el.innerText = "Round " + currentRound + " / " + totalRounds;
         }
 
+        function getCurrentRoundNumber() {
+            // The card being drawn in this call to nextCard is roundsPlayed + 1
+            return roundsPlayed + 1;
+        }
+
         /* Helper for viruses */
         function getOldestInfectedPlayer() {
             if (activeViruses.length === 0) return null;
             return activeViruses[0].player;
+        }
+
+        function getOldestCureEligibleVirus() {
+            if (activeViruses.length === 0) return null;
+            const currentRound = getCurrentRoundNumber();
+            const oldest = activeViruses[0];
+            if (typeof oldest.infectedRound !== 'number') {
+                // For safety, treat old entries without infectedRound as eligible
+                return oldest;
+            }
+            const age = currentRound - oldest.infectedRound;
+            if (age >= MIN_VIRUS_LIFETIME_ROUNDS) {
+                return oldest;
+            }
+            return null;
         }
 
         /* Card validity checks */
@@ -680,6 +702,7 @@
         /* Probability helpers and drawing */
         function hasCardOfType(type) {
             if (type === 'cure') {
+                // Cure cards are virtual; available whenever at least one virus is active
                 return activeViruses.length > 0;
             }
 
@@ -845,12 +868,25 @@
         }
 
         function injectNamesForCure() {
-            let targetPlayer = getOldestInfectedPlayer();
-            if (!targetPlayer && players.length > 0) {
-                targetPlayer = players[Math.floor(Math.random() * players.length)];
+            const eligibleVirus = getOldestCureEligibleVirus();
+            let targetPlayer = null;
+            let text;
+
+            if (eligibleVirus) {
+                targetPlayer = eligibleVirus.player;
+                const template = cureTemplates[currentMode] || "Cure card: {p1} is cured from their virus.";
+                text = template.replace(/{p1}/g, targetPlayer || '');
+            } else if (activeViruses.length > 0) {
+                text = "Cure card: The viruses are not weak enough yet. No one is cured this round.";
+            } else if (players.length > 0) {
+                const randomPlayer = players[Math.floor(Math.random() * players.length)];
+                const template = cureTemplates[currentMode] || "Cure card: {p1} is cured from their virus.";
+                text = template.replace(/{p1}/g, randomPlayer || '');
+                targetPlayer = randomPlayer;
+            } else {
+                text = "Cure card.";
             }
-            const template = cureTemplates[currentMode] || "Cure card: {p1} is cured from their oldest virus.";
-            const text = template.replace(/{p1}/g, targetPlayer || '');
+
             return { text, p1: targetPlayer, p2: null };
         }
 
@@ -963,20 +999,23 @@
         /* Virus and cure application */
         function applyVirus(cardData, nameInfo) {
             const infectedSet = new Set(activeViruses.map(v => v.player));
+            const infectionRound = getCurrentRoundNumber();
 
             if (nameInfo.p1 && !infectedSet.has(nameInfo.p1) && activeViruses.length < MAX_GLOBAL_VIRUSES) {
-                activeViruses.push({ player: nameInfo.p1, source: cardData.text });
+                activeViruses.push({ player: nameInfo.p1, source: cardData.text, infectedRound: infectionRound });
                 infectedSet.add(nameInfo.p1);
             }
 
             if (cardData.infectsBoth && nameInfo.p2 && !infectedSet.has(nameInfo.p2) && activeViruses.length < MAX_GLOBAL_VIRUSES) {
-                activeViruses.push({ player: nameInfo.p2, source: cardData.text });
+                activeViruses.push({ player: nameInfo.p2, source: cardData.text, infectedRound: infectionRound });
                 infectedSet.add(nameInfo.p2);
             }
         }
 
         function applyCure() {
-            if (activeViruses.length === 0) return;
+            const eligibleVirus = getOldestCureEligibleVirus();
+            if (!eligibleVirus) return;
+            // Oldest eligible virus is always at index 0 in FIFO queue
             activeViruses.shift();
         }
 
