@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Party Protocol</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #2D2D2D;
+            --input-bg: #404040;
+            --accent: #FFD166;
+            --text-color: #FFFFFF;
+            --card-std: #118AB2;
+            --card-virus: #EF476F;
+            --card-game: #06D6A0;
+            --card-cure: #FFC857;
+            --shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Fredoka', sans-serif;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .screen.active {
+            opacity: 1;
+            pointer-events: all;
+            z-index: 10;
+            transform: scale(1);
+        }
+
+        .screen.hidden {
+            transform: scale(0.95);
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        /* Player setup */
+        #player-list {
+            width: 100%;
+            max-width: 400px;
+            max-height: 50vh;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding-right: 5px;
+        }
+
+        #player-list::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        #player-list::-webkit-scrollbar-thumb {
+            background: #666;
+            border-radius: 5px;
+        }
+
+        .player-input-group {
+            display: flex;
+            margin-bottom: 10px;
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        input {
+            flex-grow: 1;
+            padding: 15px;
+            border-radius: 12px;
+            border: none;
+            background: var(--input-bg);
+            color: white;
+            font-size: 1.1rem;
+            font-family: 'Fredoka', sans-serif;
+            outline: none;
+        }
+
+        .remove-btn {
+            background: #ff4757;
+            border: none;
+            color: white;
+            width: 40px;
+            margin-left: 10px;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        /* Buttons */
+        .btn-main {
+            background-color: var(--accent);
+            color: #2D2D2D;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: transform 0.1s;
+            width: 80%;
+            max-width: 300px;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .btn-main:active {
+            transform: scale(0.95);
+        }
+
+        .btn-main:disabled {
+            opacity: 0.5;
+            cursor: default;
+            transform: none;
+        }
+
+        .btn-main.btn-secondary {
+            background-color: #505050;
+            color: white;
+        }
+
+        /* Mode selection */
+        .mode-btn {
+            width: 100%;
+            max-width: 350px;
+            padding: 25px;
+            margin: 10px 0;
+            border-radius: 20px;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .mode-btn span {
+            font-size: 0.9rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .mode-mild {
+            background: #78d2e2;
+        }
+
+        .mode-dirty {
+            background: #cc6969;
+            border: 1px solid #333;
+        }
+
+        /* Game screen */
+        #game-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .top-btn {
+            background: #505050;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 16px;
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        .top-btn:active {
+            transform: scale(0.95);
+        }
+
+        .round-info {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            flex-grow: 1;
+            border-radius: 25px;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: background-color 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-category {
+            position: absolute;
+            top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-weight: bold;
+        }
+
+        .card-text {
+            font-size: 2rem;
+            line-height: 1.4;
+            font-weight: 600;
+        }
+
+        @media (max-width: 400px) {
+            .card-text {
+                font-size: 1.6rem;
+            }
+        }
+
+        #virus-status {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            margin-bottom: 10px;
+            text-align: center;
+            min-height: 1em;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            align-items: center;
+        }
+
+        /* Animations */
+        @keyframes popIn {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .pulse {
+            animation: pulse 0.3s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Screen 1: player setup -->
+    <div id="screen-setup" class="screen active">
+        <h1>Who's Playing?</h1>
+        <div id="player-list"></div>
+        <button class="btn-main btn-secondary" onclick="addPlayerInput()">+ Add Player</button>
+        <button class="btn-main" onclick="goToModes()">Next</button>
+    </div>
+
+    <!-- Screen 2: mode selection -->
+    <div id="screen-modes" class="screen">
+        <h2>Choose the Vibe</h2>
+        <button class="mode-btn mode-mild" onclick="startGame('mild')">
+            Mild
+            <span>Drinks and icebreakers</span>
+        </button>
+        <button class="mode-btn mode-dirty" onclick="startGame('dirty')">
+            Naughty
+            <span>Gets spicy and hot</span>
+        </button>
+        <button class="btn-main btn-secondary" style="margin-top: 20px; width: auto; padding: 10px 20px;" onclick="goToScreen('screen-setup')">Back</button>
+    </div>
+
+    <!-- Screen 3: game -->
+    <div id="screen-game" class="screen">
+        <div id="game-container">
+            <div class="top-bar">
+                <button class="top-btn" onclick="endCurrentGameToModes()">Change vibe</button>
+                <div class="round-info" id="round-info"></div>
+            </div>
+            <div id="card" class="card">
+                <div id="card-cat" class="card-category">CATEGORY</div>
+                <div id="card-txt" class="card-text">Loading...</div>
+            </div>
+            <div id="virus-status"></div>
+            <div class="controls">
+                <button class="btn-main" onclick="nextCard()">Next Card</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 4: end screen -->
+    <div id="screen-end" class="screen">
+        <h2>All rounds complete</h2>
+        <p id="end-summary"></p>
+        <button class="btn-main" id="extend-btn" onclick="extendRounds()" style="background-color:#5ED3C7; color:#2D2D2D;">Extend</button>
+        <button class="btn-main" onclick="restartSameVibe()">Restart same vibe</button>
+        <button class="btn-main btn-secondary" onclick="endCurrentGameToModes()">Change vibe</button>
+    </div>
+
+    <script>
+        /* Game data */
+        const db = {
+            mild: [
+                { text: "Everyone drinks one sip for every year they have studied after high school.", type: "game" },
+                { text: "{p1} is the Question Master. Anyone who answers their question drinks.", type: "virus" },
+                { text: "{p1}, choose a mate. Whenever you drink, {p2} drinks.", type: "virus" },
+                { text: "Categories: Brands of cars. {p1} starts. Loser drinks.", type: "game" },
+                { text: "{p1}, give out 3 sips to the person you think is the smartest.", type: "standard" },
+                { text: "Rhyme time: {p1} picks a word. Go clockwise. First to fail drinks.", type: "game" },
+                { text: "{p1} vs {p2}: Staring contest. Loser takes 2 sips.", type: "standard" },
+                { text: "Everyone touch the floor. Last one drinks.", type: "game" },
+                
+                // New mild viruses
+                { text: "Before drinking, {p1} must say \"I am happy\".", type: "virus" },
+                { text: "{p1} must speak in a childish voice until next turn.", type: "virus" },
+                { text: "{p1} must clap twice before speaking.", type: "virus" },
+                { text: "{p1} cannot say any number.", type: "virus" },
+                { text: "{p1} must raise their hand before speaking.", type: "virus" },
+                { text: "{p1} cannot say yes or no.", type: "virus" },
+                { text: "{p1} must compliment the last person who spoke.", type: "virus" },
+                { text: "{p1} must hold an object chosen by the group.", type: "virus" },
+                { text: "{p1} must speak in german accent.", type: "virus" },
+                { text: "{p1} must speak in russian accent.", type: "virus" },
+                { text: "{p1} must speak in french accent.", type: "virus" },
+
+                // New mild games
+                { text: "Rhyme Time. {p1} says a word. Go clockwise saying rhyming words. First wrong or repeated rhyme drinks.", type: "game" },
+                { text: "Categories. Alcohol brands. {p1} starts. Go clockwise naming brands. First person who repeats or hesitates drinks.", type: "game" },
+                { text: "Touch something blue when the host says go. Last person drinks.", type: "game" },
+                { text: "Counting game up to 11. Players say one to three numbers on their turn. Whoever ends up saying 11 drinks.", type: "game" },
+                { text: "Never Have I Ever. {p1} starts. Go clockwise.", type: "game" },
+                { text: "Who is most likely to forget to reply for days but still claim they are not ignoring anyone. Everyone points at 3. The one with the most fingers pointed drinks.", type: "game" },
+                { text: "Who is most likely to get a text from a random person. Everyone points at 3. The one with the most fingers pointed drinks.", type: "game" },
+                { text: "Who is most likely to have the funniest dating story. Everyone points at 3. The one with the most fingers pointed drinks.", type: "game" },
+                { text: "Medusa. Everyone looks down. On three, look up at someone. If two people lock eyes, they drink.", type: "game" },
+                { text: "Emoji acting. {p1} acts an emoji. First correct guess gives out 3 sips.", type: "game" },
+                { text: "Humming challenge. {p1} hums a song. First person to guess it correctly gives out 3 sips.", type: "game" },
+                { text: "Freeze when {p1} shouts stop. Everyone freezes instantly. Anyone who moves drinks.", type: "game" },
+                { text: "{p1} Two truths and one lie. {p2} guesses the lie. If wrong guess, drink.", type: "game" },
+                { text: "Reverse alphabet chain. Say the alphabet backward around the circle. First mistake drinks. {p1} starts.", type: "game" },
+                { text: "Describe an object without naming it. First correct guess gives out 3 sips.", type: "game" },
+                { text: "Memory chain with random words. Repeat the chain and add one word. First mistake drinks.", type: "game" },
+                { text: "Everyone fake cries. The weakest attempt according to group drinks.", type: "game" },
+
+                // Mild - STANDARD cards
+                { text: "{p1}, show your last text message.", type: "standard" },
+                { text: "{p1}, give out two sips to best hair.", type: "standard" },
+                { text: "{p1}, let {p2} check photos for ten seconds.", type: "standard" },
+                { text: "{p1}, imitate {p2}.", type: "standard" },
+                { text: "{p1}, describe your first crush.", type: "standard" },
+                { text: "{p1}, pick a forbidden word. Anyone who says it drinks.", type: "standard" },
+                { text: "{p1}, call a shop and ask a silly question.", type: "standard" },
+                { text: "{p1}, rate {p2}'s outfit.", type: "standard" },
+                { text: "{p1}, reveal one harmless secret from school days.", type: "standard" },
+
+                // New Mild - STANDARD
+                { text: "{p1}, tell the group the most desperate thing you ever did to impress someone.", type: "standard" },
+                { text: "{p1}, let {p2} read one random chat on whatsapp. {p2} choses which chat to read.", type: "standard" },
+                { text: "{p1}, let {p2} read one random chat on instagram. {p2} choses which chat to read.", type: "standard" },
+                { text: "{p1}, show the last screenshot you took and explain why you took it.", type: "standard" },
+                { text: "{p1}, let the group choose one random contact you must describe with one honest sentence.", type: "standard" },
+                { text: "{p1}, confess the last thing you pretended to understand but actually did not.", type: "standard" },
+                { text: "{p1}, say the most awkward compliment someone gave you.", type: "standard" },
+                { text: "{p1}, tell the group which emoji you overuse because you do not know how to reply.", type: "standard" },
+                { text: "{p1}, show a selfie you took that never saw the light of day.", type: "standard" },
+                { text: "{p1}, tell the group one moment you still cringe about whenever you remember it.", type: "standard" },
+                { text: "{p1}, let {p2} pick any app on your phone. You must open it and show the first thing that appears.", type: "standard" },
+                { text: "{p1}, describe the most embarrassing typo you ever sent someone.", type: "standard" },
+                { text: "{p1}, tell the group one person you tried to impress but failed miserably.", type: "standard" }
+            ],
+            dirty: [
+                { text: "{p1}, demonstrate your favorite sex position using invisible objects.", type: "standard" },
+                { text: "Never have I ever: Sent a nude. Those who have, drink.", type: "game" },
+                { text: "{p1}, let {p2} look through your photo gallery for 30 seconds.", type: "standard" },
+                { text: "{p1}, kiss the person to your right on the neck or drink 3 times.", type: "standard" },
+                { text: "{p1}, keep your hands on {p2}'s knees for 2 rounds.", type: "virus" },
+                { text: "Everyone who has had sex in a public place, drink.", type: "game" },
+                { text: "{p1}, send a risky text to a contact chosen by {p2}.", type: "standard" },
+                { text: "{p1}, moan as loud as you can.", type: "standard" },
+
+                // New spicy viruses
+                { text: "{p1} cannot take their eyes off {p2}. If they look away, they drink.", type: "virus" },
+                { text: "{p1} must speak in a soft romantic tone until next turn.", type: "virus" },
+                { text: "{p1} cannot look at {p2}. If they do, they drink.", type: "virus" },
+                { text: "{p1} must end every sentence with Darling.", type: "virus" },
+                { text: "{p1} must ignore the next three compliments given to them.", type: "virus" },
+                { text: "Whenever someone says the word love, {p1} drinks.", type: "virus" },
+                { text: "{p1} must pause for two seconds before replying to anyone, as if thinking too deeply.", type: "virus" },
+                { text: "{p1} and {p2} must hold hands. If they let go, both take a shot.", type: "virus", infectsBoth: true },
+                { text: "{p1} must hold an object as if it is precious.", type: "virus" },
+                { text: "{p1} must react dramatically to whatever anyone says until their next turn.", type: "virus" },
+
+                // New spicy games
+                { text: "Never Have I Ever with mild spicy prompts. {p1} starts. Go clockwise.", type: "game" },
+                { text: "Most Likely To get caught flirting. Everyone points at 3. Whoever gets the most fingers pointed at them drinks.", type: "game" },
+                { text: "Rhyme something with kiss. {p1} says kiss and players go clockwise giving rhymes. First wrong rhyme drinks.", type: "game" },
+                { text: "Two truths and a lie. {p1} shares two truths and one lie. {p2} guesses the lie. If wrong guess, drink.", type: "game" },
+                { text: "Whisper challenge. {p1} mouths a short phrase silently. First person to guess it correctly is safe. Someone else drinks.", type: "game" },
+                { text: "Finish the pickup line. Sleeping with me is like a ____ for example mystery novel... you never know what twist is coming next. {p1} starts. Weakest one drinks.", type: "game" },
+                { text: "Roast someone very gently. {p1} gives a soft roast to anyone. If it is too weak or too harsh, they drink.", type: "game" },
+                { text: "Flattery chain. Players give compliments one by one. Break the chain or repeat one and you drink.", type: "game" },
+                { text: "Predict who will marry first. Everyone points at 3. The one with the most fingers pointed drinks.", type: "game" },
+                { text: "Predict who will send a risky text first. Same pointing rule. The most votes drinks.", type: "game" },
+                { text: "Guess which person would secretly write poetry. {p1} chooses. If the group disagrees, they drink.", type: "game" },
+                { text: "Telephone chain with flirty sentence. {p1} whispers a flirty line to the next person. Final version is revealed. If it is too different, last person drinks.", type: "game" },
+                { text: "Guess the color of the last person’s bedsheet. {p1} guesses. If wrong, they drink.", type: "game" },
+                { text: "Who is most likely to get caught texting late at night. Everyone points at 3. Most votes drinks.", type: "game" },
+                { text: "Who takes the best selfies. Everyone points at 3. The most fingers pointed drinks.", type: "game" },
+                { text: "What is the cutest thing you think someone in the room has done. {p1} starts, go clockwise. Weakest one drinks.", type: "game" },
+                { text: "Give an attractive sounding nickname to the person on your left. {p1} starts. Weakest one drinks.", type: "game" },
+                { text: "Who is most likely to be dramatic in relationships. Everyone points at 3. Most votes drinks.", type: "game" },
+                { text: "Rate your own flirting skills. {p1} gives a score. If the group disagrees, {p1} drinks.", type: "game" },
+                { text: "Guess who has the most unread messages. Everyone points at 3. Most votes drinks.", type: "game" },
+                { text: "Who is most likely to get a DM from a stranger today. Everyone points at 3. The most votes drinks.", type: "game" },
+
+                // Naughty (dirty) - STANDARD cards
+                { text: "{p1}, read the last compliment you received.", type: "standard" },
+                { text: "{p1}, describe an embarrassing crush moment.", type: "standard" },
+                { text: "{p1}, reveal the most harmless risky message you have sent.", type: "standard" },
+                { text: "{p1}, show the last selfie you took.", type: "standard" },
+                { text: "{p1}, say your type in three words.", type: "standard" },
+                { text: "{p1}, describe {p2} in one mildly flirty line.", type: "standard" },
+                { text: "{p1}, share a soft secret that you would never put on social media.", type: "standard" },
+                { text: "{p1}, show the oldest photo you have on your phone.", type: "standard" },
+                { text: "{p1}, tell the group one thing that always impresses you in people.", type: "standard" },
+                { text: "{p1}, predict who in the room has the funniest dating story.", type: "standard" },
+                { text: "{p1}, show a photo of your partner to the group.", type: "standard" },
+
+                // New Naughty - STANDARD
+                { text: "{p1}, describe your most harmless secret crush moment in one sentence.", type: "standard" },
+                { text: "{p1}, tell the group the most unexpected person you ever found attractive.", type: "standard" },
+                { text: "{p1}, read the last mildly flirty message you sent.", type: "standard" },
+                { text: "{p1}, let {p2} choose a name from your contacts for you to describe with one honest line.", type: "standard" },
+                { text: "{p1}, reveal the last thing that made you blush for no reason.", type: "standard" },
+                { text: "{p1}, show the group the last selfie you took that was meant to look good.", type: "standard" },
+                { text: "{p1}, confess the cringiest compliment you ever gave someone.", type: "standard" },
+                { text: "{p1}, say the most dramatic thing you have said while trying to flirt.", type: "standard" },
+                { text: "{p1}, reveal one thing that instantly makes someone more attractive to you.", type: "standard" },
+                { text: "{p1}, let {p2} pick one emoji from your recent list and you must explain who it was for.", type: "standard" },
+                { text: "{p1}, read the last flirty pickup line you received or remember.", type: "standard" },
+                { text: "{p1}, admit the last time someone made you nervous by just talking to you.", type: "standard" },
+                { text: "{p1}, reveal the most harmless bold thing you ever said to someone.", type: "standard" },
+                { text: "{p1}, show a photo you once took because you felt cute and then never posted.", type: "standard" },
+                { text: "{p1}, confess the last time you exaggerated something to impress someone.", type: "standard" },
+                { text: "{p1}, describe the energy of your last crush in one flirty sentence.", type: "standard" },
+                { text: "{p1}, tell the group who in the room you think gives the most romantic vibes.", type: "standard" },
+                { text: "{p1}, show the last song you listened to that you would never admit is your flirt mood song.", type: "standard" },
+                { text: "{p1}, tell the group the weirdest reason you ever found someone attractive.", type: "standard" }
+            ]
+        };
+
+        const cureTemplates = {
+            mild: "Cure card: {p1} is cured from their virus.",
+            dirty: "Cure card: {p1} is cured from their virus."
+        };
+
+        const colors = {
+            standard: 'var(--card-std)',
+            virus: 'var(--card-virus)',
+            game: 'var(--card-game)',
+            cure: 'var(--card-cure)'
+        };
+
+        const modeLabels = {
+            mild: 'Mild',
+            dirty: 'Naughty'
+        };
+
+        const typeProbabilities = {
+            0: { standard: 60, game: 20, virus: 20, cure: 0 },
+            1: { standard: 50, game: 15, virus: 15, cure: 20 },
+            2: { standard: 45, game: 15, virus: 10, cure: 30 },
+            3: { standard: 45, game: 15, virus: 0,  cure: 40 }
+        };
+
+        /* State management */
+        let players = [];
+        let currentMode = 'mild';
+        let currentDeck = [];
+        let activeViruses = [];
+        let totalRounds = 0;
+        let roundsPlayed = 0;
+        const MAX_GLOBAL_VIRUSES = 3;
+
+        /* Init */
+        window.onload = function () {
+            loadPlayers();
+            if (players.length === 0) {
+                addPlayerInput();
+                addPlayerInput();
+                addPlayerInput();
+            } else {
+                renderPlayerInputs();
+            }
+        };
+
+        /* Screen navigation */
+        function goToScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => {
+                s.classList.remove('active');
+                s.classList.add('hidden');
+            });
+            const target = document.getElementById(screenId);
+            target.classList.remove('hidden');
+            target.classList.add('active');
+        }
+
+        /* Player management */
+        function addPlayerInput(value = "") {
+            const list = document.getElementById('player-list');
+            if (list.children.length >= 20) return;
+
+            const div = document.createElement('div');
+            div.className = 'player-input-group';
+            div.innerHTML = `
+                <input type="text" placeholder="Player Name" value="${value}" onchange="savePlayers()">
+                <button class="remove-btn" onclick="removePlayer(this)">×</button>
+            `;
+            list.appendChild(div);
+            div.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function removePlayer(btn) {
+            btn.parentElement.remove();
+            savePlayers();
+        }
+
+        function savePlayers() {
+            const inputs = document.querySelectorAll('#player-list input');
+            players = Array.from(inputs)
+                .map(i => i.value.trim())
+                .filter(n => n !== "");
+            localStorage.setItem('picolo_players', JSON.stringify(players));
+        }
+
+        function loadPlayers() {
+            const stored = localStorage.getItem('picolo_players');
+            if (stored) {
+                players = JSON.parse(stored);
+            }
+        }
+
+        function renderPlayerInputs() {
+            const list = document.getElementById('player-list');
+            list.innerHTML = '';
+            players.forEach(p => addPlayerInput(p));
+            if (players.length < 20) addPlayerInput();
+        }
+
+        function goToModes() {
+            savePlayers();
+            if (players.length < 3) {
+                console.error("You need at least 3 players to start!");
+                return;
+            }
+            goToScreen('screen-modes');
+        }
+
+        /* Rounds logic */
+        function calculateTotalRounds() {
+            const playerCount = players.length;
+            const deckSize = db[currentMode].length;
+            if (deckSize === 0) return 0;
+
+            const maxPossible = deckSize;
+            const baseMin = Math.min(15, maxPossible);
+
+            const minPlayers = 3;
+            const maxPlayers = 20;
+            const clampedPlayers = Math.min(Math.max(playerCount, minPlayers), maxPlayers);
+
+            const factor = (clampedPlayers - minPlayers) / (maxPlayers - minPlayers);
+            const roundsFloat = baseMin + factor * (maxPossible - baseMin);
+            const rounds = Math.round(roundsFloat);
+
+            return Math.min(Math.max(rounds, 1), maxPossible);
+        }
+
+        function updateRoundInfo() {
+            const el = document.getElementById('round-info');
+            if (!el) return;
+            if (totalRounds <= 0) {
+                el.innerText = "";
+                return;
+            }
+            const currentRound = Math.min(roundsPlayed + 1, totalRounds);
+            el.innerText = "Round " + currentRound + " / " + totalRounds;
+        }
+
+        /* Helper for viruses */
+        function getOldestInfectedPlayer() {
+            if (activeViruses.length === 0) return null;
+            return activeViruses[0].player;
+        }
+
+        /* Card validity checks */
+        function isCardPlayable(card) {
+            const activeCount = activeViruses.length;
+
+            if (card.type === 'virus') {
+                if (players.length === 0) return false;
+                if (activeCount >= MAX_GLOBAL_VIRUSES) return false;
+
+                const infectedSet = new Set(activeViruses.map(v => v.player));
+                const healthyPlayers = players.filter(p => !infectedSet.has(p));
+
+                if (healthyPlayers.length === 0) return false;
+
+                if (card.infectsBoth) {
+                    if (healthyPlayers.length < 2) return false;
+                }
+
+                return true;
+            }
+
+            if (card.type === 'cure') {
+                return activeCount > 0;
+            }
+
+            return true;
+        }
+
+        /* Probability helpers and drawing */
+        function hasCardOfType(type) {
+            if (type === 'cure') {
+                return activeViruses.length > 0;
+            }
+
+            if (!currentDeck || currentDeck.length === 0) {
+                return false;
+            }
+
+            if (type === 'virus') {
+                return currentDeck.some(card => card.type === 'virus' && isCardPlayable(card));
+            }
+
+            if (type === 'standard' || type === 'game') {
+                return currentDeck.some(card => card.type === type);
+            }
+
+            return false;
+        }
+
+        function pickCardTypeForNextDraw() {
+            const virusCount = activeViruses.length;
+            const key = Math.max(0, Math.min(virusCount, 3));
+            const base = typeProbabilities[key];
+
+            const entries = [];
+            const types = ['standard', 'game', 'virus', 'cure'];
+
+            for (let i = 0; i < types.length; i++) {
+                const t = types[i];
+                const weight = base[t] || 0;
+                if (weight <= 0) continue;
+                if (!hasCardOfType(t)) continue;
+                entries.push({ type: t, weight });
+            }
+
+            if (entries.length === 0) {
+                return null;
+            }
+
+            let total = 0;
+            for (let i = 0; i < entries.length; i++) {
+                total += entries[i].weight;
+            }
+
+            let r = Math.random() * total;
+            for (let i = 0; i < entries.length; i++) {
+                if (r < entries[i].weight) {
+                    return entries[i].type;
+                }
+                r -= entries[i].weight;
+            }
+
+            return entries[entries.length - 1].type;
+        }
+
+        function drawCardOfType(type) {
+            if (type === 'cure') {
+                const template = cureTemplates[currentMode] || "Cure card: {p1} is cured from their virus.";
+                return {
+                    text: template,
+                    type: 'cure',
+                    isVirtualCure: true
+                };
+            }
+
+            if (!currentDeck || currentDeck.length === 0) {
+                return null;
+            }
+
+            const candidateIndices = [];
+            for (let i = 0; i < currentDeck.length; i++) {
+                const card = currentDeck[i];
+                if (card.type !== type) continue;
+                if (!isCardPlayable(card)) continue;
+                candidateIndices.push(i);
+            }
+
+            if (candidateIndices.length === 0) {
+                return null;
+            }
+
+            const randomIndex = candidateIndices[Math.floor(Math.random() * candidateIndices.length)];
+            const selectedCard = currentDeck[randomIndex];
+            currentDeck.splice(randomIndex, 1);
+            return selectedCard;
+        }
+
+        function drawNextCardData() {
+            const cardType = pickCardTypeForNextDraw();
+            if (!cardType) {
+                return null;
+            }
+            return drawCardOfType(cardType);
+        }
+
+        /* Name injection helpers */
+        function injectNames(text) {
+            if (!players || players.length === 0) {
+                return { text, p1: null, p2: null };
+            }
+
+            let p1 = players[Math.floor(Math.random() * players.length)];
+            let p2 = null;
+
+            if (text.includes('{p2}')) {
+                if (players.length > 1) {
+                    const others = players.filter(p => p !== p1);
+                    if (others.length > 0) {
+                        p2 = others[Math.floor(Math.random() * others.length)];
+                    } else {
+                        p2 = p1;
+                    }
+                } else {
+                    p2 = p1;
+                }
+            }
+
+            let finalText = text.replace(/{p1}/g, p1);
+            if (p2 !== null) {
+                finalText = finalText.replace(/{p2}/g, p2);
+            }
+            return { text: finalText, p1, p2 };
+        }
+
+        function injectNamesForVirus(card) {
+            const text = card.text;
+            const infectedSet = new Set(activeViruses.map(v => v.player));
+            const healthyPlayers = players.filter(p => !infectedSet.has(p));
+
+            if (healthyPlayers.length === 0) {
+                return injectNames(text);
+            }
+
+            const p1 = healthyPlayers[Math.floor(Math.random() * healthyPlayers.length)];
+            let p2 = null;
+
+            if (text.includes('{p2}')) {
+                if (card.infectsBoth) {
+                    const otherHealthy = healthyPlayers.filter(p => p !== p1);
+                    if (otherHealthy.length > 0) {
+                        p2 = otherHealthy[Math.floor(Math.random() * otherHealthy.length)];
+                    } else {
+                        const others = players.filter(p => p !== p1);
+                        if (others.length > 0) {
+                            p2 = others[Math.floor(Math.random() * others.length)];
+                        }
+                    }
+                } else {
+                    const others = players.filter(p => p !== p1);
+                    if (others.length > 0) {
+                        p2 = others[Math.floor(Math.random() * others.length)];
+                    } else {
+                        p2 = p1;
+                    }
+                }
+            }
+
+            let finalText = text.replace(/{p1}/g, p1);
+            if (p2 !== null) {
+                finalText = finalText.replace(/{p2}/g, p2);
+            }
+
+            return { text: finalText, p1, p2 };
+        }
+
+        function injectNamesForCure() {
+            let targetPlayer = getOldestInfectedPlayer();
+            if (!targetPlayer && players.length > 0) {
+                targetPlayer = players[Math.floor(Math.random() * players.length)];
+            }
+            const template = cureTemplates[currentMode] || "Cure card: {p1} is cured from their oldest virus.";
+            const text = template.replace(/{p1}/g, targetPlayer || '');
+            return { text, p1: targetPlayer, p2: null };
+        }
+
+        /* Game control */
+        function startGame(mode) {
+            currentMode = mode;
+            currentDeck = db[mode].map(card => ({ ...card }));
+            activeViruses = [];
+            roundsPlayed = 0;
+            totalRounds = calculateTotalRounds();
+
+            updateVirusStatusUI();
+            updateRoundInfo();
+            goToScreen('screen-game');
+            nextCard();
+        }
+
+        function restartSameVibe() {
+            startGame(currentMode);
+        }
+
+        function endCurrentGameToModes() {
+            currentDeck = [];
+            activeViruses = [];
+            roundsPlayed = 0;
+            totalRounds = 0;
+            updateVirusStatusUI();
+            updateRoundInfo();
+            goToScreen('screen-modes');
+        }
+
+        /* Main draw */
+        function nextCard() {
+            if (roundsPlayed >= totalRounds) {
+                endGame();
+                return;
+            }
+
+            updateRoundInfo();
+
+            const cardEl = document.getElementById('card');
+            cardEl.classList.remove('pulse');
+            void cardEl.offsetWidth;
+            cardEl.classList.add('pulse');
+
+            const cardData = drawNextCardData();
+            if (!cardData) {
+                endGame();
+                return;
+            }
+
+            let nameInfo;
+            if (cardData.type === 'virus') {
+                nameInfo = injectNamesForVirus(cardData);
+            } else if (cardData.type === 'cure') {
+                nameInfo = injectNamesForCure();
+            } else {
+                nameInfo = injectNames(cardData.text);
+            }
+
+            const processedText = nameInfo.text;
+
+            document.getElementById('card-cat').innerText = cardData.type.toUpperCase();
+            document.getElementById('card-txt').innerText = processedText;
+            cardEl.style.backgroundColor = colors[cardData.type] || colors.standard;
+
+            if (cardData.type === 'virus') {
+                applyVirus(cardData, nameInfo);
+            } else if (cardData.type === 'cure') {
+                applyCure();
+            }
+
+            updateVirusStatusUI();
+            roundsPlayed += 1;
+        }
+
+        function endGame() {
+            const summary = document.getElementById('end-summary');
+            if (summary) {
+                const label = modeLabels[currentMode] || currentMode;
+                summary.innerText = "You played " + roundsPlayed + " rounds of " + label + " mode.";
+            }
+
+            const extendBtn = document.getElementById('extend-btn');
+            if (extendBtn) {
+                extendBtn.disabled = currentDeck.length === 0;
+            }
+
+            goToScreen('screen-end');
+        }
+
+        function extendRounds() {
+            if (currentDeck.length === 0) {
+                const extendBtn = document.getElementById('extend-btn');
+                if (extendBtn) extendBtn.disabled = true;
+                return;
+            }
+
+            totalRounds = roundsPlayed + currentDeck.length;
+
+            const extendBtn = document.getElementById('extend-btn');
+            if (extendBtn) {
+                extendBtn.disabled = currentDeck.length === 0;
+            }
+
+            updateRoundInfo();
+            goToScreen('screen-game');
+        }
+
+        /* Virus and cure application */
+        function applyVirus(cardData, nameInfo) {
+            const infectedSet = new Set(activeViruses.map(v => v.player));
+
+            if (nameInfo.p1 && !infectedSet.has(nameInfo.p1) && activeViruses.length < MAX_GLOBAL_VIRUSES) {
+                activeViruses.push({ player: nameInfo.p1, source: cardData.text });
+                infectedSet.add(nameInfo.p1);
+            }
+
+            if (cardData.infectsBoth && nameInfo.p2 && !infectedSet.has(nameInfo.p2) && activeViruses.length < MAX_GLOBAL_VIRUSES) {
+                activeViruses.push({ player: nameInfo.p2, source: cardData.text });
+                infectedSet.add(nameInfo.p2);
+            }
+        }
+
+        function applyCure() {
+            if (activeViruses.length === 0) return;
+            activeViruses.shift();
+        }
+
+        /* Virus status UI */
+        function updateVirusStatusUI() {
+            const container = document.getElementById('virus-status');
+            if (!container) return;
+
+            if (activeViruses.length === 0) {
+                container.style.display = 'none';
+                container.innerText = '';
+                return;
+            }
+
+            container.style.display = 'block';
+            const summary = activeViruses.map(v => v.player).join(' ');
+            container.innerText = "Active viruses: " + summary;
+        }
+    </script>
+</body>
+</html>
