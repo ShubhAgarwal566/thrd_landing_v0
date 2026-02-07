@@ -2,148 +2,191 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>THRD — Issue 01: The First Edition (10 Jan)</title>
+  <title>THRD — The Final Layer (10 Feb)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#F2F0E9" />
-  <meta name="description" content="THRD Issue 01. The North Face, Gymshark, Balmain. The first edit of 2026." />
+  <meta name="theme-color" content="#F4F4F0" />
+  <meta name="description" content="THRD Final Winter Drop. Moncler, Moschino, Ted Baker. Dress to impress. 10th Feb." />
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;900&family=Silkscreen:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inter:wght@600;800&family=Permanent+Marker&family=Silkscreen:wght@700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      /* PAPER PALETTE */
-      --bg: #F2F0E9;       /* Bone White / Newsprint */
-      --ink: #111111;      /* Charcoal */
-      --line: #D8D4CC;     /* Separator Lines */
-      --accent: #D2042D;   /* The Red (for final CTA) */
-      --highlight: #FFF8C5; /* Highlighter Yellow */
+      /* ZINE PALETTE */
+      --paper: #F4F4F0;
+      --ink: #1a1a1a;
+      --marker-red: #E9341D;
+      --grid-line: #d0d0d0;
+      --tape-color: rgba(240, 235, 220, 0.8);
       
-      --font-head: 'Playfair Display', serif;
-      --font-body: 'Inter', sans-serif;
+      --font-logo: 'Silkscreen', cursive;
+      --font-type: 'Courier Prime', monospace;
+      --font-marker: 'Permanent Marker', cursive;
+      --font-ui: 'Inter', sans-serif;
     }
 
-    /* RESETS */
     * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); overflow-x: hidden; }
-    a { text-decoration: none; color: inherit; cursor: pointer; }
-    
-    /* PAPER TEXTURE OVERLAY */
-    .texture {
-      position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.5;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+    html, body { 
+      margin: 0; padding: 0; background-color: var(--paper); 
+      color: var(--ink); font-family: var(--font-type); 
+      overflow-x: hidden;
+    }
+
+    /* === BACKGROUND: GRAPH PAPER & NOISE === */
+    body {
+      background-image: 
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    .noise {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.3;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
     }
 
     /* UTILS */
     .container { max-width: 600px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 10; }
-    .highlight { background: var(--highlight); padding: 0 2px; border-radius: 2px; }
+    .marker-text { font-family: var(--font-marker); color: var(--marker-red); }
+    .red-circle {
+      position: relative; display: inline-block; padding: 2px 8px;
+    }
+    .red-circle::after {
+      content: ""; position: absolute; inset: -4px -8px;
+      border: 3px solid var(--marker-red); border-radius: 50% 60% 40% 70% / 60% 50% 70% 40%;
+      opacity: 0.7; pointer-events: none; transform: rotate(-2deg);
+    }
 
-    /* ================= HEADER ================= */
-    .masthead {
+    /* === HEADER === */
+    .nav-strip {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(242, 240, 233, 0.95);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--line);
-      padding: 16px 20px;
-      display: flex; justify-content: space-between; align-items: center;
+      padding: 16px 20px; display: flex; justify-content: space-between; align-items: center;
+      background: rgba(244, 244, 240, 0.95); backdrop-filter: blur(5px);
+      border-bottom: 2px solid var(--ink);
     }
-    .logo { font-family: 'Silkscreen', cursive; font-size: 24px; color: var(--ink); font-weight: 700; letter-spacing: -1px; }
-    .nav-link { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+    .logo { font-family: var(--font-logo); font-size: 24px; color: var(--ink); font-weight: 700; letter-spacing: -1px; }
+    .nav-link { font-family: var(--font-type); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; color: var(--ink); }
 
-    /* ================= ANNOUNCEMENT BAR ================= */
+    /* === ANNOUNCEMENT BAR === */
     .announce-bar {
-      border-bottom: 1px solid var(--line); padding: 10px; text-align: center;
-      font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+      background: var(--paper); border-bottom: 1px dashed var(--ink);
+      padding: 8px; text-align: center; font-size: 11px;
+      font-family: var(--font-type); text-transform: uppercase;
     }
-    .announce-bar a { text-decoration: underline; color: var(--accent); }
-
-    /* ================= HERO SECTION ================= */
+    .announce-bar a { font-weight: 700; text-decoration: none; margin-left: 5px; color: var(--ink); }
+    .announce-bar a:hover { text-decoration: underline; color: var(--marker-red); }
+    
+    /* === HERO SECTION === */
     .hero { padding: 50px 0 30px; text-align: center; }
     
-    .issue-no { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: #555; margin-bottom: 10px; display: block;}
-    
-    .hero h1 {
-      font-family: var(--font-head); font-size: 42px; line-height: 0.95; margin: 0 0 20px;
-      text-transform: uppercase; letter-spacing: -1px;
-    }
-    
-    .hero-sub {
-      font-size: 14px; line-height: 1.6; color: #333; max-width: 90%; margin: 0 auto 30px;
+    .stamp-date {
+      font-family: var(--font-type); font-weight: 700; font-size: 12px;
+      text-transform: uppercase; letter-spacing: 1px;
+      border: 2px solid var(--ink); padding: 4px 10px; display: inline-block;
+      transform: rotate(-1deg); margin-bottom: 20px;
     }
 
-    /* CLOCK STYLE TIMER */
-    .clock-timer {
-      display: inline-flex; gap: 15px; margin-bottom: 30px;
-      padding: 12px 24px; border: 1px solid var(--ink); background: #fff;
+    .hero h1 {
+      font-size: 36px; line-height: 1; margin: 0 0 15px;
+      text-transform: uppercase; font-weight: 700;
     }
-    .t-seg { text-align: center; }
-    .t-val { font-family: var(--font-body); font-size: 22px; font-weight: 600; display: block; line-height: 1; min-width: 24px;}
-    .t-label { font-size: 9px; text-transform: uppercase; color: #666; margin-top: 4px; display: block;}
+    .hero-sub { font-size: 14px; margin-bottom: 20px; }
+
+    .new-recruits {
+      margin: 25px auto 35px; max-width: 80%;
+      transform: rotate(1deg);
+    }
+    .nr-label { font-family: var(--font-marker); color: var(--marker-red); font-size: 1.2rem; margin-bottom: 5px; display: block; }
+    .nr-list { font-weight: 700; font-size: 1.1rem; }
+
+    /* TIMER */
+    .timer-box {
+      font-family: var(--font-type); font-weight: 700; font-size: 24px;
+      background: #eee; padding: 15px; border: 3px solid var(--ink);
+      display: inline-block; margin-bottom: 35px;
+      box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+    }
+    .t-label { display: block; font-size: 10px; text-transform: uppercase; margin-top: 5px; color: #666; }
 
     /* HERO ACTIONS */
     .hero-actions { display: flex; flex-direction: column; gap: 12px; max-width: 100%; margin: 0 auto; }
     
-    .btn {
-      display: flex; justify-content: center; align-items: center; padding: 18px; width: 100%;
-      font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
-      transition: all 0.2s; cursor: pointer;
+    .btn-marker {
+      display: block; width: 100%; padding: 18px;
+      background: var(--marker-red); color: #fff;
+      font-family: var(--font-marker); font-size: 1.2rem;
+      text-transform: uppercase; text-decoration: none;
+      border: 2px solid var(--ink); box-shadow: 4px 4px 0px var(--ink);
+      transition: transform 0.1s, box-shadow 0.1s; transform: rotate(-1deg); text-align: center;
     }
-    .btn-black { background: var(--ink); color: var(--bg); border: 1px solid var(--ink); }
-    .btn-black:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-marker:hover { transform: translate(2px, 2px) rotate(-1deg); box-shadow: 2px 2px 0px var(--ink); }
     
-    .btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
-    .btn-outline:hover { background: rgba(0,0,0,0.05); }
-
-    /* ================= VIDEO (9:16) ================= */
-    .video-section {
-      margin: 40px auto; display: flex; flex-direction: column; align-items: center;
+    .btn-typewriter {
+      display: block; width: 100%; padding: 16px;
+      background: transparent; color: var(--ink);
+      font-family: var(--font-type); font-weight: 700; font-size: 1rem;
+      text-transform: uppercase; text-decoration: none;
+      border: 2px dashed var(--ink); text-align: center;
+      transition: all 0.2s;
     }
+    .btn-typewriter:hover { background: rgba(0,0,0,0.05); }
+
+    /* === VIDEO SECTION (TAPED) === */
+    .video-section { margin: 50px auto; position: relative; max-width: 360px; }
+    
     .video-frame {
-      width: 100%; max-width: 360px; aspect-ratio: 9/16;
-      background: #000; border: 1px solid var(--ink);
-      position: relative; overflow: hidden;
+      width: 100%; aspect-ratio: 9/16; background: #000;
+      border: 2px solid var(--ink); position: relative;
+      box-shadow: 5px 5px 15px rgba(0,0,0,0.15);
     }
     .video-frame iframe { width: 100%; height: 100%; border: none; }
-    .fig-caption {
-      margin-top: 10px; font-size: 11px; font-style: italic; color: #555;
+    
+    /* CSS Tape Effect */
+    .tape {
+      position: absolute; width: 70px; height: 25px; background: var(--tape-color);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      border-left: 1px dotted #ccc; border-right: 1px dotted #ccc;
+    }
+    .t-tl { top: -10px; left: -10px; transform: rotate(-30deg); }
+    .t-tr { top: -10px; right: -10px; transform: rotate(30deg); }
+
+    .fig-caption { margin-top: 15px; font-size: 11px; font-style: italic; text-align: center; }
+
+    /* === THE BACKROOM LOG (INVENTORY) === */
+    .log-section { margin-top: 50px; }
+    .log-header {
+      font-family: var(--font-type); font-weight: 700; font-size: 1.2rem;
+      text-transform: uppercase; border-bottom: 3px double var(--ink);
+      padding-bottom: 10px; margin-bottom: 30px;
     }
 
-    /* ================= THE INDEX (INVENTORY) ================= */
-    .index-header {
-      border-top: 2px solid var(--ink); border-bottom: 1px solid var(--ink);
-      padding: 15px 0; margin-bottom: 20px;
-      font-family: var(--font-head); font-size: 24px; font-weight: 700; text-transform: uppercase;
+    .file-block { margin-bottom: 35px; break-inside: avoid; }
+    .file-title {
+      font-weight: 700; font-size: 1rem; text-transform: uppercase;
+      background: var(--ink); color: var(--paper);
+      display: inline-block; padding: 4px 8px; margin-bottom: 10px;
+      transform: rotate(-0.5deg);
     }
+    .file-list { font-size: 0.95rem; line-height: 1.5; }
+    .file-note { font-size: 0.8rem; font-style: italic; color: #555; margin-top: 5px; }
+    .m-hlt { font-family: var(--font-marker); color: var(--marker-red); font-size: 1.1em; }
 
-    /* Index Table Layout */
-    .index-row {
-      display: grid; grid-template-columns: 1fr; gap: 4px;
-      padding: 15px 0; border-bottom: 1px solid var(--line);
-    }
-    
-    .sec-title {
-      font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 4px;
-    }
-    
-    .brand-list {
-      font-family: var(--font-head); font-size: 18px; line-height: 1.4; color: var(--ink);
-    }
-    .brand-list span { margin-right: 6px; }
-    
-    .note { font-size: 12px; font-family: var(--font-body); color: #444; margin-top: 4px; }
-
-    /* ================= FOOTER ================= */
+    /* === FOOTER === */
     .footer {
-      margin-top: 60px; padding: 40px 0 100px; text-align: center; border-top: 4px solid var(--ink);
+      margin-top: 60px; padding: 40px 0 80px; text-align: center;
+      border-top: 2px dashed var(--ink);
     }
-    .footer h3 { font-family: var(--font-head); font-size: 28px; margin: 0 0 10px; }
-    .footer p { font-size: 12px; color: #555; margin-bottom: 30px; }
-
-    /* Final CTA Colors */
-    .btn-red { background: var(--accent); color: white; border: none; }
-    .btn-red:hover { opacity: 0.9; }
-    .btn-text { text-decoration: underline; background: transparent; border: none; font-size: 14px; margin-top: 10px; }
+    .footer p { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+    .footer-note { font-family: var(--font-marker); color: var(--marker-red); font-size: 1.5rem; transform: rotate(-2deg); display: inline-block; margin-bottom: 30px; }
+    
+    .footer-actions { display: flex; flex-direction: column; gap: 15px; align-items: center; }
+    
+    .wa-link {
+      font-family: var(--font-type); font-weight: 700; font-size: 0.9rem;
+      text-decoration: underline; text-transform: uppercase;
+      background: #eee; padding: 8px 12px; border: 1px solid var(--ink);
+      display: inline-block; transform: rotate(1deg); cursor: pointer;
+    }
 
     /* FLOATING BAR */
     .float-bar {
@@ -151,9 +194,10 @@
       transition: opacity 0.3s, transform 0.3s;
     }
     .float-btn {
-      background: var(--ink); color: var(--bg); padding: 12px 20px;
-      font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      background: var(--marker-red); color: #fff; padding: 12px 20px;
+      font-family: var(--font-marker); font-size: 1rem; text-transform: uppercase;
+      box-shadow: 3px 3px 0px var(--ink); border: 2px solid var(--ink);
+      text-decoration: none; display: block; transform: rotate(-1deg);
     }
     .merged { opacity: 0; transform: translateY(20px); pointer-events: none; }
 
@@ -161,102 +205,100 @@
 </head>
 <body>
 
-  <div class="texture"></div>
+  <div class="noise"></div>
 
-  <nav class="masthead">
-    <a href="./request_access.html" class="nav-link">SHOP</a>
-    <div class="logo">THRD</div>
-    <a href="./our_story.html" class="nav-link">ABOUT</a>
+  <nav class="nav-strip">
+    <a href="request_access.html" class="nav-link">SHOP</a>
+    <div class="logo"><a href="index.html" style="text-decoration: none;color: black;" >THRD</a></div>
+    <a href="our_story.html" class="nav-link">ABOUT</a>
   </nav>
 
   <div class="announce-bar">
-    VOL. 01 — THE JANUARY ISSUE. <a href="https://instagram.com/thrd.store">SEE SNEAK PEEK</a>
+    THE FINAL WINTER ARCHIVE. <a href="https://instagram.com/thrd.store">[ SEE SNEAK PEEK ]</a>
   </div>
 
   <div class="container">
     
     <section class="hero">
-      <span class="issue-no">Issue 01: The First Edition</span>
-      <h1>New Year.<br>New Standard.</h1>
-      
-      <p class="hero-sub">
-        The North Face. Gymshark. Balmain.<br>
-        The first definitive edit of 2026.
-      </p>
+      <div class="stamp-date">[ ARCHIVE DROP: 10 FEB ]</div>
+      <h1>THE FINAL LAYER.</h1>
+      <p class="hero-sub">Dress to impress.<br>The last winter archive of the season.</p>
 
-      <div class="clock-timer">
-        <div class="t-seg"><span class="t-val" id="d">00</span><span class="t-label">Days</span></div>
-        <div class="t-seg"><span class="t-val">:</span></div>
-        <div class="t-seg"><span class="t-val" id="h">00</span><span class="t-label">Hrs</span></div>
-        <div class="t-seg"><span class="t-val">:</span></div>
-        <div class="t-seg"><span class="t-val" id="m">00</span><span class="t-label">Mins</span></div>
+      <div class="new-recruits">
+        <span class="nr-label">NEW RECRUITS -></span>
+        <div class="red-circle">
+          <span class="nr-list">Moschino · Ted Baker · Moncler</span>
+        </div>
+      </div>
+
+      <div class="timer-box">
+        <span id="timer">00d : 00h : 00m</span>
+        <span class="t-label">T-Minus to Drop</span>
       </div>
 
       <div class="hero-actions">
-        <a href="#video" class="btn btn-black">▶ Play 60s Drop Video</a>
-        <a id="calLink" class="btn btn-outline">+ Add to Calendar</a>
+        <a href="#video" class="btn-marker">▶ PLAY DROP VIDEO</a>
+        <a id="calLink" class="btn-typewriter">[ + ADD TO CALENDAR ]</a>
       </div>
     </section>
 
     <div id="video" class="video-section">
+      <div class="tape t-tl"></div>
+      <div class="tape t-tr"></div>
       <div class="video-frame">
-         <iframe src="https://www.youtube.com/embed/4crxVIox97A?controls=0&modestbranding=1&rel=0&playsinline=1" title="Sneak Peek" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID?controls=0&modestbranding=1&rel=0&loop=1&playlist=VIDEO_ID" title="Sneak Peek"></iframe>
       </div>
+      <div class="fig-caption">Fig 1. The Lift Check (60s Sneakpeek).</div>
     </div>
 
-    <section id="inventory">
-      <div class="index-header">The Index</div>
+    <section class="log-section">
+      <div class="log-header">// THE BACKROOM LOG //</div>
 
-      <div class="index-row">
-        <div class="sec-title">THE HEADLINES</div>
-        <div class="brand-list">
-          <span class="highlight">Fred Perry.</span>
-          <span class="highlight">The North Face.</span>
-          <span class="highlight">Versace.</span>
+      <div class="file-block">
+        <div class="file-title">FILE 01: HEAVYWEIGHTS (Jackets)</div>
+        <div class="file-list">
+          <span class="m-hlt">Moncler</span>, <span class="m-hlt">Ted Baker</span>, <span class="m-hlt">Moschino</span>, Fred Perry, Lacoste.
         </div>
-        <div class="note">Key returns & luxury debuts.</div>
+        <div class="file-note">"Final winter outer layers."</div>
       </div>
 
-      <div class="index-row">
-        <div class="sec-title">SEC A: KNITWEAR</div>
-        <div class="brand-list">
-          <span class="highlight">Ralph Lauren.</span> Hackett. Zara. AllSaints.
-        </div>
-        <div class="note">Our best sweater collection to date.</div>
-      </div>
-
-      <div class="index-row">
-        <div class="sec-title">SEC B: HOODIES</div>
-        <div class="brand-list">
-          <span class="highlight">Gymshark.</span> <span class="highlight">AMI Paris.</span> Off-White. Essentials. Diesel. Lacoste.
+      <div class="file-block">
+        <div class="file-title">FILE 02: ARCHIVE HOODIES</div>
+        <div class="file-list">
+          Balmain, <span class="m-hlt">Essentials</span>, Diesel, Ralph Lauren.
         </div>
       </div>
 
-      <div class="index-row">
-        <div class="sec-title">SEC C: OUTERWEAR</div>
-        <div class="brand-list">
-          The North Face. <span class="highlight">AllSaints.</span> Pull & Bear.
+      <div class="file-block">
+        <div class="file-title">FILE 03: KNITS & SWEATS</div>
+        <div class="file-list">
+          Ralph Lauren, Hackett, Gant, Karl Lagerfeld, Kenzo, AllSaints, Tommy Hilfiger.
         </div>
-        <div class="note">Expedition ready layers.</div>
       </div>
 
-      <div class="index-row">
-        <div class="sec-title">SEC D: SHIRTS & POLOS</div>
-        <div class="brand-list">
-          <span class="highlight">Versace.</span> <span class="highlight">Kenzo.</span> Karl Lagerfeld. M&S Overshirts.
+      <div class="file-block">
+        <div class="file-title">FILE 04: BASE LAYERS</div>
+        <div class="file-list">
+          <span class="m-hlt">Versace</span>, AMI Paris, Balmain, Diesel, Armani Ex.
+        </div>
+      </div>
+
+      <div class="file-block">
+        <div class="file-title">FILE 05: LOWER DECK & SPORTS</div>
+        <div class="file-list">
+          True Religion, Diesel, Nike, Lacoste, Zara.
         </div>
       </div>
 
     </section>
 
     <div id="footer" class="footer">
-      <h3>10 JAN • 7 PM</h3>
-      <p>DISTRIBUTION BEGINS AUTOMATICALLY.<br>SECURE YOURS.</p>
+      <p>DOORS OPEN 10TH FEB, 7 PM IST.</p>
+      <span class="footer-note">"Don't lack."</span><br>
       
-      <div class="hero-actions">
-        <a href="https://instagram.com/thrd.store" class="btn btn-red">▶ Watch Sneak Peek</a>
-        <a id="waLink" class="btn-text">Notify me on WhatsApp</a>
+      <div class="footer-actions">
+        <a href="https://instagram.com/thrd.store" class="btn-marker">▶ WATCH SNEAK PEEK</a>
+        <a id="waLink" class="wa-link">[ PING ME ON WHATSAPP ]</a>
       </div>
     </div>
 
@@ -267,8 +309,8 @@
   </div>
 
   <script>
-    // CONFIG: 10 Jan 2026, 7:00 PM IST
-    const TARGET = new Date('2026-01-10T19:00:00+05:30'); 
+    // CONFIG: 10 Feb 2026, 7:00 PM IST
+    const TARGET = new Date('2026-02-10T19:00:00+05:30').getTime();
     
     // 1. WhatsApp Link
     const waNum = '918198845888';
@@ -276,19 +318,17 @@
     document.getElementById('waLink').href = `https://wa.me/${waNum}?text=${encodeURIComponent(waText)}`;
 
     // 2. Calendar Link
-    const startISO = TARGET.toISOString().replace(/-|:|\.\d\d\d/g, "");
-    const endISO   = new Date(TARGET.getTime() + 3600000).toISOString().replace(/-|:|\.\d\d\d/g, "");
-    document.getElementById('calLink').href = `https://www.google.com/calendar/render?action=TEMPLATE&text=THRD+Issue+01:+Winter+Heavy&dates=${startISO}/${endISO}&details=The+North+Face,+Gymshark,+Versace.+Distribution+starts+at+7+PM.&location=thrd.store`;
+    const startISO = new Date(TARGET).toISOString().replace(/-|:|\.\d\d\d/g, "");
+    const endISO   = new Date(TARGET + 3600000).toISOString().replace(/-|:|\.\d\d\d/g, "");
+    document.getElementById('calLink').href = `https://www.google.com/calendar/render?action=TEMPLATE&text=THRD+Final+Winter+Drop&dates=${startISO}/${endISO}&details=Moncler,+Ted+Baker,+Moschino.+Dress+to+impress.+Drop+starts+at+7+PM.&location=thrd.store`;
 
     // 3. Timer
     function tick() {
-      const now = new Date();
+      const now = new Date().getTime();
       const diff = TARGET - now;
       
       if (diff <= 0) {
-        document.getElementById('d').innerText = "00";
-        document.getElementById('h').innerText = "00";
-        document.getElementById('m').innerText = "00";
+        document.getElementById('timer').innerText = "DROP IS LIVE";
         return;
       }
 
@@ -296,12 +336,10 @@
       const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       
-      document.getElementById('d').innerText = String(d).padStart(2,'0');
-      document.getElementById('h').innerText = String(h).padStart(2,'0');
-      document.getElementById('m').innerText = String(m).padStart(2,'0');
+      document.getElementById('timer').innerText = 
+        `${d}d : ${String(h).padStart(2,'0')}h : ${String(m).padStart(2,'0')}m`;
     }
     
-    // Run immediately and then every second
     tick();
     setInterval(tick, 1000);
 
