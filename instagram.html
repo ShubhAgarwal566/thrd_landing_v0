@@ -1,14 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THRD</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>THRD</title>
 </head>
-<script>
-    window.location.href="https://www.instagram.com/thrd.store/"
-</script>
 <body>
-    
+  <h3>Opening Instagram…</h3>
+  <p>If nothing happens, tap:</p>
+  <button onclick="openInstagram()">Open in Instagram app</button>
+  <p><a href="https://www.instagram.com/thrd.store/">Open in browser</a></p>
+
+  <script>
+    const username = "thrd.store";
+    const webUrl = `https://www.instagram.com/${username}/`;
+    const ua = navigator.userAgent || "";
+    const isAndroid = /Android/i.test(ua);
+    const isIOS = /iPhone|iPad|iPod/i.test(ua);
+
+    function openInstagram() {
+      // mark time so we can detect if we got backgrounded
+      const start = Date.now();
+
+      // If the app opens, the page usually becomes hidden.
+      let didHide = false;
+      const onHide = () => { didHide = true; };
+      document.addEventListener("visibilitychange", onHide, { once: true });
+
+      if (isAndroid) {
+        // Android intent deep link
+        const intentUrl =
+          `intent://www.instagram.com/${username}/#Intent;` +
+          `package=com.instagram.android;scheme=https;end`;
+        window.location.href = intentUrl;
+      } else if (isIOS) {
+        // iOS URL scheme
+        window.location.href = `instagram://user?username=${encodeURIComponent(username)}`;
+      } else {
+        window.location.href = webUrl;
+        return;
+      }
+
+      // Fallback to web if app didn’t open
+      setTimeout(() => {
+        // If page got backgrounded, assume app opened → don't redirect to web
+        if (didHide) return;
+
+        // Extra guard: some browsers don't fire visibilitychange reliably
+        if (Date.now() - start < 1500) {
+          window.location.href = webUrl;
+        }
+      }, 1200);
+    }
+
+    // Auto-try once on load (may be blocked)
+    setTimeout(openInstagram, 200);
+  </script>
 </body>
 </html>
