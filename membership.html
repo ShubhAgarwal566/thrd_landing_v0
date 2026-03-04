@@ -2,315 +2,356 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>THRD — The Final Layer (10 Feb)</title>
+  <title>THRD — SUMMER'S BACK (07 March)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#F4F4F0" />
-  <meta name="description" content="THRD Final Winter Drop. Moncler, Moschino, Ted Baker. Dress to impress. 10th Feb." />
+  <meta name="theme-color" content="#F4F1EA" />
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inter:wght@600;800&family=Permanent+Marker&family=Silkscreen:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      /* ZINE PALETTE */
-      --paper: #F4F4F0;
-      --ink: #1a1a1a;
-      --marker-red: #E9341D;
-      --grid-line: #d0d0d0;
-      --tape-color: rgba(240, 235, 220, 0.8);
+      /* 8-BIT PALETTE */
+      --bg: #F4F1EA;       /* Warm Paper */
+      --ink: #2D2D2D;      /* Charcoal */
+      --sun: #E6A526;      /* Mustard Sun */
+      --holi-p: #D65A5A;   /* Faded Pink */
+      --holi-y: #C8B848;   /* Olive Yellow */
+      --sky: #6B8C96;      /* Dusty Blue */
       
-      --font-logo: 'Silkscreen', cursive;
-      --font-type: 'Courier Prime', monospace;
-      --font-marker: 'Permanent Marker', cursive;
-      --font-ui: 'Inter', sans-serif;
+      --font-head: 'Press Start 2P', cursive;
+      --font-body: 'VT323', monospace;
     }
 
     * { box-sizing: border-box; }
     html, body { 
-      margin: 0; padding: 0; background-color: var(--paper); 
-      color: var(--ink); font-family: var(--font-type); 
+      margin: 0; padding: 0; background-color: var(--bg); 
+      color: var(--ink); font-family: var(--font-body); 
       overflow-x: hidden;
     }
 
-    /* === BACKGROUND: GRAPH PAPER & NOISE === */
-    body {
-      background-image: 
-        linear-gradient(var(--grid-line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-      background-size: 20px 20px;
+    /* === BACKGROUND EFFECTS === */
+    .scanlines {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.05) 50%, rgba(0,0,0,0.05));
+      background-size: 100% 4px;
     }
-    .noise {
-      position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.3;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
+
+    /* Floating Dust Particles */
+    .particle {
+      position: fixed; width: 4px; height: 4px; background: var(--holi-p);
+      opacity: 0.6; pointer-events: none; z-index: 1;
+      animation: floatDown 10s linear infinite;
+    }
+    .p-yellow { background: var(--holi-y); }
+    @keyframes floatDown {
+      0% { transform: translateY(-10vh); opacity: 0; }
+      10% { opacity: 0.8; }
+      100% { transform: translateY(100vh); opacity: 0; }
     }
 
     /* UTILS */
     .container { max-width: 600px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 10; }
-    .marker-text { font-family: var(--font-marker); color: var(--marker-red); }
-    .red-circle {
-      position: relative; display: inline-block; padding: 2px 8px;
-    }
-    .red-circle::after {
-      content: ""; position: absolute; inset: -4px -8px;
-      border: 3px solid var(--marker-red); border-radius: 50% 60% 40% 70% / 60% 50% 70% 40%;
-      opacity: 0.7; pointer-events: none; transform: rotate(-2deg);
-    }
-
-    /* === HEADER === */
-    .nav-strip {
-      position: sticky; top: 0; z-index: 100;
-      padding: 16px 20px; display: flex; justify-content: space-between; align-items: center;
-      background: rgba(244, 244, 240, 0.95); backdrop-filter: blur(5px);
-      border-bottom: 2px solid var(--ink);
-    }
-    .logo { font-family: var(--font-logo); font-size: 24px; color: var(--ink); font-weight: 700; letter-spacing: -1px; }
-    .nav-link { font-family: var(--font-type); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; color: var(--ink); }
+    .blink { animation: blinker 1s steps(2, start) infinite; }
+    @keyframes blinker { 50% { opacity: 0; } }
 
     /* === ANNOUNCEMENT BAR === */
     .announce-bar {
-      background: var(--paper); border-bottom: 1px dashed var(--ink);
-      padding: 8px; text-align: center; font-size: 11px;
-      font-family: var(--font-type); text-transform: uppercase;
+      background: var(--ink); color: var(--sun);
+      padding: 8px; text-align: center; font-size: 1.2rem;
+      font-family: var(--font-body); text-transform: uppercase; letter-spacing: 1px;
     }
-    .announce-bar a { font-weight: 700; text-decoration: none; margin-left: 5px; color: var(--ink); }
-    .announce-bar a:hover { text-decoration: underline; color: var(--marker-red); }
-    
+    .announce-bar a { color: #fff; text-decoration: none; margin-left: 5px; border-bottom: 1px dashed #fff; }
+
+    /* === HEADER === */
+    .nav-strip {
+      padding: 20px 20px; display: flex; justify-content: space-between; align-items: center;
+      background: rgba(244, 241, 234, 0.9);
+      border-bottom: 4px solid var(--ink);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .logo { 
+      font-family: var(--font-head); font-size: 20px; color: var(--ink); 
+      text-transform: uppercase; line-height: 1;
+    }
+    .nav-btn { 
+      font-family: var(--font-head); font-size: 10px; color: var(--ink); 
+      text-decoration: none; text-transform: uppercase;
+    }
+
     /* === HERO SECTION === */
-    .hero { padding: 50px 0 30px; text-align: center; }
+    .hero { padding: 40px 0 30px; text-align: center; }
     
-    .stamp-date {
-      font-family: var(--font-type); font-weight: 700; font-size: 12px;
-      text-transform: uppercase; letter-spacing: 1px;
-      border: 2px solid var(--ink); padding: 4px 10px; display: inline-block;
-      transform: rotate(-1deg); margin-bottom: 20px;
+    /* NEW DATE DISPLAY */
+    .date-box {
+      display: inline-block; background: var(--ink); color: var(--bg);
+      font-family: var(--font-head); font-size: 12px; padding: 10px 15px;
+      margin-bottom: 20px; box-shadow: 4px 4px 0 var(--holi-p);
+      text-transform: uppercase;
     }
 
-    .hero h1 {
-      font-size: 36px; line-height: 1; margin: 0 0 15px;
-      text-transform: uppercase; font-weight: 700;
+    h1 {
+      font-family: var(--font-head); font-size: 28px; line-height: 1.4; margin: 0 0 10px;
+      color: var(--ink); text-shadow: 3px 3px 0px var(--sun);
     }
-    .hero-sub { font-size: 14px; margin-bottom: 20px; }
-
-    .new-recruits {
-      margin: 25px auto 35px; max-width: 80%;
-      transform: rotate(1deg);
+    .hero-sub { 
+      font-size: 1.4rem; color: #555; margin-bottom: 25px; 
+      border-bottom: 2px dashed #ccc; display: inline-block; padding-bottom: 5px;
     }
-    .nr-label { font-family: var(--font-marker); color: var(--marker-red); font-size: 1.2rem; margin-bottom: 5px; display: block; }
-    .nr-list { font-weight: 700; font-size: 1.1rem; }
 
-    /* TIMER */
-    .timer-box {
-      font-family: var(--font-type); font-weight: 700; font-size: 24px;
-      background: #eee; padding: 15px; border: 3px solid var(--ink);
-      display: inline-block; margin-bottom: 35px;
-      box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+    /* ALERT BOX (Moncler/Gymshark) */
+    .alert-box {
+      background: #fff; border: 4px solid var(--ink); padding: 15px;
+      margin: 0 auto 30px; max-width: 90%; text-align: left;
+      box-shadow: 6px 6px 0px var(--holi-p);
     }
-    .t-label { display: block; font-size: 10px; text-transform: uppercase; margin-top: 5px; color: #666; }
+    .ab-title { font-family: var(--font-head); font-size: 10px; color: var(--holi-p); margin-bottom: 10px; display: block; }
+    .ab-content { font-size: 1.3rem; line-height: 1.2; }
+    .highlight { background: var(--sun); color: #000; padding: 0 4px; font-weight: bold; }
 
-    /* HERO ACTIONS */
-    .hero-actions { display: flex; flex-direction: column; gap: 12px; max-width: 100%; margin: 0 auto; }
+    /* TIMER (Loading Bar) */
+    .loading-container {
+      margin-bottom: 30px; text-align: left; width: 100%; max-width: 300px; margin-left: auto; margin-right: auto;
+    }
+    .loading-label { font-family: var(--font-head); font-size: 10px; margin-bottom: 8px; display: block; }
+    .loading-track {
+      width: 100%; height: 24px; border: 3px solid var(--ink); background: #fff;
+      position: relative; padding: 2px;
+    }
+    .loading-fill {
+      height: 100%; width: 85%; background: repeating-linear-gradient(
+        45deg, var(--ink), var(--ink) 10px, var(--sun) 10px, var(--sun) 20px
+      );
+    }
+    .timer-text { text-align: center; font-size: 1.2rem; margin-top: 5px; color: #666; }
+
+    /* BUTTONS */
+    .hero-actions { display: flex; flex-direction: column; gap: 15px; max-width: 100%; margin: 0 auto; }
     
-    .btn-marker {
-      display: block; width: 100%; padding: 18px;
-      background: var(--marker-red); color: #fff;
-      font-family: var(--font-marker); font-size: 1.2rem;
-      text-transform: uppercase; text-decoration: none;
-      border: 2px solid var(--ink); box-shadow: 4px 4px 0px var(--ink);
-      transition: transform 0.1s, box-shadow 0.1s; transform: rotate(-1deg); text-align: center;
+    .btn-pixel-primary {
+      display: block; width: 100%; padding: 15px;
+      background: var(--sun); color: var(--ink);
+      font-family: var(--font-head); font-size: 12px;
+      text-transform: uppercase; text-decoration: none; text-align: center;
+      border: 4px solid var(--ink); box-shadow: 6px 6px 0px var(--ink);
+      transition: transform 0.1s, box-shadow 0.1s;
     }
-    .btn-marker:hover { transform: translate(2px, 2px) rotate(-1deg); box-shadow: 2px 2px 0px var(--ink); }
+    .btn-pixel-primary:hover { transform: translate(4px, 4px); box-shadow: 2px 2px 0px var(--ink); }
     
-    .btn-typewriter {
-      display: block; width: 100%; padding: 16px;
+    .btn-pixel-sec {
+      display: block; width: 100%; padding: 15px;
       background: transparent; color: var(--ink);
-      font-family: var(--font-type); font-weight: 700; font-size: 1rem;
-      text-transform: uppercase; text-decoration: none;
-      border: 2px dashed var(--ink); text-align: center;
-      transition: all 0.2s;
+      font-family: var(--font-head); font-size: 10px;
+      text-transform: uppercase; text-decoration: none; text-align: center;
+      border: 4px solid var(--ink); 
     }
-    .btn-typewriter:hover { background: rgba(0,0,0,0.05); }
 
-    /* === VIDEO SECTION (TAPED) === */
-    .video-section { margin: 50px auto; position: relative; max-width: 360px; }
+    /* === VIDEO SECTION === */
+    .video-section { margin: 50px auto; position: relative; max-width: 340px; }
     
     .video-frame {
       width: 100%; aspect-ratio: 9/16; background: #000;
-      border: 2px solid var(--ink); position: relative;
-      box-shadow: 5px 5px 15px rgba(0,0,0,0.15);
+      border: 6px solid var(--ink); position: relative;
+      box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
     }
     .video-frame iframe { width: 100%; height: 100%; border: none; }
+    .cutscene-tag { 
+      position: absolute; top: 10px; left: 10px; background: red; color: white; 
+      padding: 2px 5px; font-family: var(--font-head); font-size: 8px; z-index: 2;
+    }
+
+    /* === INVENTORY (LOADOUT) === */
+    .loadout-section { margin-top: 50px; }
+    .loadout-header {
+      font-family: var(--font-head); font-size: 14px; text-align: center;
+      background: var(--ink); color: #fff; padding: 10px;
+      margin-bottom: 30px; box-shadow: 4px 4px 0 var(--holi-p);
+    }
+
+    .class-block { 
+      margin-bottom: 30px; background: #fff; border: 2px solid var(--ink); 
+      padding: 15px; position: relative;
+    }
+    .class-title {
+      font-family: var(--font-head); font-size: 10px; color: var(--bg);
+      background: var(--ink); display: inline-block; padding: 5px 8px;
+      position: absolute; top: -12px; left: 10px;
+    }
+    .new-tag {
+      font-family: var(--font-head); font-size: 8px; color: #fff;
+      background: var(--holi-p); display: inline-block; padding: 4px 6px;
+      position: absolute; top: -10px; right: 10px;
+    }
     
-    /* CSS Tape Effect */
-    .tape {
-      position: absolute; width: 70px; height: 25px; background: var(--tape-color);
-      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-      border-left: 1px dotted #ccc; border-right: 1px dotted #ccc;
-    }
-    .t-tl { top: -10px; left: -10px; transform: rotate(-30deg); }
-    .t-tr { top: -10px; right: -10px; transform: rotate(30deg); }
-
-    .fig-caption { margin-top: 15px; font-size: 11px; font-style: italic; text-align: center; }
-
-    /* === THE BACKROOM LOG (INVENTORY) === */
-    .log-section { margin-top: 50px; }
-    .log-header {
-      font-family: var(--font-type); font-weight: 700; font-size: 1.2rem;
-      text-transform: uppercase; border-bottom: 3px double var(--ink);
-      padding-bottom: 10px; margin-bottom: 30px;
-    }
-
-    .file-block { margin-bottom: 35px; break-inside: avoid; }
-    .file-title {
-      font-weight: 700; font-size: 1rem; text-transform: uppercase;
-      background: var(--ink); color: var(--paper);
-      display: inline-block; padding: 4px 8px; margin-bottom: 10px;
-      transform: rotate(-0.5deg);
-    }
-    .file-list { font-size: 0.95rem; line-height: 1.5; }
-    .file-note { font-size: 0.8rem; font-style: italic; color: #555; margin-top: 5px; }
-    .m-hlt { font-family: var(--font-marker); color: var(--marker-red); font-size: 1.1em; }
+    .item-list { font-size: 1.2rem; line-height: 1.4; margin-top: 10px; }
+    .rare { color: var(--holi-p); font-weight: bold; border-bottom: 2px solid var(--holi-y); }
 
     /* === FOOTER === */
     .footer {
       margin-top: 60px; padding: 40px 0 80px; text-align: center;
-      border-top: 2px dashed var(--ink);
+      border-top: 4px dotted var(--ink);
     }
-    .footer p { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
-    .footer-note { font-family: var(--font-marker); color: var(--marker-red); font-size: 1.5rem; transform: rotate(-2deg); display: inline-block; margin-bottom: 30px; }
+    .footer-msg { font-family: var(--font-head); font-size: 12px; line-height: 1.8; margin-bottom: 30px; }
     
     .footer-actions { display: flex; flex-direction: column; gap: 15px; align-items: center; }
+
+    .insta-btn {
+      background: var(--ink); color: #fff; padding: 15px 20px;
+      font-family: var(--font-head); font-size: 10px; text-transform: uppercase;
+      border: 4px solid var(--sun); text-decoration: none; display: inline-block;
+      box-shadow: 4px 4px 0px var(--sun); width: 100%; max-width: 250px;
+    }
     
-    .wa-link {
-      font-family: var(--font-type); font-weight: 700; font-size: 0.9rem;
-      text-decoration: underline; text-transform: uppercase;
-      background: #eee; padding: 8px 12px; border: 1px solid var(--ink);
-      display: inline-block; transform: rotate(1deg); cursor: pointer;
+    .wa-btn {
+      background: #25D366; color: #fff; padding: 15px 20px;
+      font-family: var(--font-head); font-size: 10px; text-transform: uppercase;
+      border: 4px solid var(--ink); text-decoration: none; display: inline-block;
+      box-shadow: 4px 4px 0px var(--ink); width: 100%; max-width: 250px;
     }
 
-    /* FLOATING BAR */
-    .float-bar {
-      position: fixed; bottom: 20px; right: 20px; z-index: 99;
-      transition: opacity 0.3s, transform 0.3s;
+    /* === FLOATING BUTTON === */
+    .float-container {
+      position: fixed; bottom: 20px; right: 20px; z-index: 999;
+      transition: opacity 0.3s ease, transform 0.3s ease;
     }
     .float-btn {
-      background: var(--marker-red); color: #fff; padding: 12px 20px;
-      font-family: var(--font-marker); font-size: 1rem; text-transform: uppercase;
-      box-shadow: 3px 3px 0px var(--ink); border: 2px solid var(--ink);
-      text-decoration: none; display: block; transform: rotate(-1deg);
+      background: var(--holi-p); color: #fff; padding: 12px 16px;
+      font-family: var(--font-head); font-size: 10px; text-transform: uppercase;
+      border: 3px solid var(--ink); box-shadow: 4px 4px 0px var(--ink);
+      text-decoration: none; display: block;
     }
-    .merged { opacity: 0; transform: translateY(20px); pointer-events: none; }
+    /* Hidden state */
+    .hidden-float { opacity: 0; transform: translateY(20px); pointer-events: none; }
+    
+    /* PARTICLES */
+    #particles { position: fixed; inset: 0; pointer-events: none; z-index: 1; }
 
   </style>
 </head>
 <body>
 
-  <div class="noise"></div>
-
-  <nav class="nav-strip">
-    <a href="request_access.html" class="nav-link">SHOP</a>
-    <div class="logo"><a href="index.html" style="text-decoration: none;color: black;" >THRD</a></div>
-    <a href="our_story.html" class="nav-link">ABOUT</a>
-  </nav>
+  <div class="scanlines"></div>
+  <div id="particles"></div>
 
   <div class="announce-bar">
-    THE FINAL WINTER ARCHIVE. <a href="https://instagram.com/thrd.store">[ SEE SNEAK PEEK ]</a>
+    NEW LEVEL UNLOCKED. <a href="https://instagram.com/thrd.store">SEE SNEAK PEEK ▶</a>
   </div>
+
+  <nav class="nav-strip">
+    <a href="shop.html" class="nav-btn">[ SHOP ]</a>
+    <div class="logo"><a href="index.html" style="text-decoration: none; color: black;" >THRD></a><span style="color:var(--sun); font-size:12px;">☀</span></div>
+    <a href="our_story.html" class="nav-btn">♥ ABOUT</a>
+  </nav>
 
   <div class="container">
     
     <section class="hero">
-      <div class="stamp-date">[ ARCHIVE DROP: 10 FEB ]</div>
-      <h1>THE FINAL LAYER.</h1>
-      <p class="hero-sub">Dress to impress.<br>The last winter archive of the season.</p>
+      <div class="date-box blink">DROP DATE: 07 MARCH</div>
+      
+      <h1>SUMMER'S BACK!</h1>
+      <div class="hero-sub">HEAT MODE: ON — ROOFTOP: ACTIVE</div>
 
-      <div class="new-recruits">
-        <span class="nr-label">NEW RECRUITS -></span>
-        <div class="red-circle">
-          <span class="nr-list">Moschino · Ted Baker · Moncler</span>
+      <div class="alert-box">
+        <span class="ab-title blink">>> NEW CHALLENGER ALERT</span>
+        <div class="ab-content">
+          <span class="highlight">GYMSHARK IS BACK!</span><br>
+          <span class="highlight">MONCLER</span> (First Time Ever)<br>
+          <span class="highlight">OFF-WHITE</span> (Rare Drop)
         </div>
       </div>
 
-      <div class="timer-box">
-        <span id="timer">00d : 00h : 00m</span>
-        <span class="t-label">T-Minus to Drop</span>
+      <div class="loading-container">
+        <span class="loading-label">DROP LOADING...</span>
+        <div class="loading-track">
+          <div class="loading-fill" id="loadFill"></div>
+        </div>
+        <div class="timer-text" id="timer">03 DAYS LEFT</div>
       </div>
 
       <div class="hero-actions">
-        <a href="#video" class="btn-marker">▶ PLAY DROP VIDEO</a>
-        <a id="calLink" class="btn-typewriter">[ + ADD TO CALENDAR ]</a>
+        <a href="#video" class="btn-pixel-primary">▶ START GAME (VIDEO)</a>
+        <a id="calLink" class="btn-pixel-sec">[ 💾 SAVE DATE ]</a>
       </div>
     </section>
 
     <div id="video" class="video-section">
-      <div class="tape t-tl"></div>
-      <div class="tape t-tr"></div>
       <div class="video-frame">
-        <iframe src="https://www.youtube.com/embed/gFegrgYGEO0?controls=0&modestbranding=1&rel=0&loop=1&playlist=gFegrgYGEO0" title="Sneak Peek"></iframe>
+        <span class="cutscene-tag">REC ●</span>
+        <iframe src="https://www.youtube.com/embed/8ovSCcFdvXs?controls=0&modestbranding=1&rel=0&loop=1&playlist=VIDEO_ID" title="Sneak Peek"></iframe>
       </div>
-      <div class="fig-caption">Fig 1. The Lift Check (60s Sneakpeek).</div>
     </div>
 
-    <section class="log-section">
-      <div class="log-header">// THE BACKROOM LOG //</div>
+    <section class="loadout-section">
+      <div class="loadout-header">// SELECT LOADOUT //</div>
 
-      <div class="file-block">
-        <div class="file-title">FILE 01: HEAVYWEIGHTS (Jackets)</div>
-        <div class="file-list">
-          <span class="m-hlt">Moncler</span>, <span class="m-hlt">Ted Baker</span>, <span class="m-hlt">Moschino</span>, Fred Perry, Lacoste.
-        </div>
-        <div class="file-note">"Final winter outer layers."</div>
-      </div>
-
-      <div class="file-block">
-        <div class="file-title">FILE 02: ARCHIVE HOODIES</div>
-        <div class="file-list">
-          Balmain, <span class="m-hlt">Essentials</span>, Diesel, Ralph Lauren.
+      <div class="class-block">
+        <span class="class-title">UPPER ARMOR (TEES)</span>
+        <div class="item-list">
+          Gymshark, Kenzo, <span class="rare">Off-White</span>, The North Face, Superdry, Under Armour, Balmain, Nike, AllSaints.
         </div>
       </div>
 
-      <div class="file-block">
-        <div class="file-title">FILE 03: KNITS & SWEATS</div>
-        <div class="file-list">
-          Ralph Lauren, Hackett, Gant, Karl Lagerfeld, Kenzo, AllSaints, Tommy Hilfiger.
+      <div class="class-block">
+        <span class="class-title">CHARISMA (POLOS)</span>
+        <div class="item-list">
+          <span class="rare">Tod's</span> (New), <span class="rare">Moncler</span>, Balmain, Lacoste, Michael Kors, Ralph Lauren, Versace (Premium), Hackett, Diesel.
         </div>
       </div>
 
-      <div class="file-block">
-        <div class="file-title">FILE 04: BASE LAYERS</div>
-        <div class="file-list">
-          <span class="m-hlt">Versace</span>, AMI Paris, Balmain, Diesel, Armani Ex.
+      <div class="class-block">
+        <span class="class-title">MOBILITY</span>
+        <span class="new-tag blink">NEW CLASS UNLOCKED</span>
+        <div class="item-list">
+          AllSaints, Adidas, Armani Exchange, Columbia, Puma.<br>
+          <em>"Embrace the vibe!"</em>
         </div>
       </div>
 
-      <div class="file-block">
-        <div class="file-title">FILE 05: LOWER DECK & SPORTS</div>
-        <div class="file-list">
-          True Religion, Diesel, Nike, Lacoste, Zara.
+      <div class="class-block">
+        <span class="class-title">LEG DAY (JEANS)</span>
+        <div class="item-list">
+          Armani Exchange, Karl Lagerfeld, Lacoste, Ralph Lauren, Tiffosi.
+        </div>
+      </div>
+
+      <div class="class-block">
+        <span class="class-title">FORMAL SKINS (SHIRTS)</span>
+        <div class="item-list">
+          AllSaints, Ami Paris, Ben Sherman, Calvin Klein, Hackett, Kenzo, Ralph Lauren, Superdry, Zara.
+        </div>
+      </div>
+      
+       <div class="class-block">
+        <span class="class-title">ACCESSORIES</span>
+        <div class="item-list">
+           Karl Lagerfeld, Kenzo, Lacoste, Tommy Hilfiger, True Religion, Adidas, CK.
         </div>
       </div>
 
     </section>
 
     <div id="footer" class="footer">
-      <p>DOORS OPEN 10TH FEB, 7 PM IST.</p>
-      <span class="footer-note">"Don't lack."</span><br>
+      <div class="footer-msg">
+        SERVER OPENS 07 MARCH<br>7:00 PM IST<br>
+        <span style="color:var(--holi-p)">"Don't Lag."</span>
+      </div>
       
       <div class="footer-actions">
-        <a href="https://instagram.com/thrd.store" class="btn-marker">▶ WATCH SNEAK PEEK</a>
-        <a id="waLink" class="wa-link">[ PING ME ON WHATSAPP ]</a>
+        <a href="https://instagram.com/thrd.store" class="insta-btn">[ SEE SNEAK PEEK ]</a>
+        <a id="waLink" class="wa-btn">[ WHATSAPP ME ]</a>
       </div>
     </div>
 
   </div>
 
-  <div class="float-bar" id="floatBar">
+  <div id="floatBtn" class="float-container">
     <a href="https://instagram.com/thrd.store" class="float-btn">▶ SNEAK PEEK</a>
   </div>
 
   <script>
-    // CONFIG: 10 Feb 2026, 7:00 PM IST
-    const TARGET = new Date('2026-02-10T19:00:00+05:30').getTime();
+    // CONFIG: 7 March 2026, 7:00 PM IST
+    const TARGET = new Date('2026-03-07T19:00:00+05:30').getTime();
     
     // 1. WhatsApp Link
     const waNum = '918198845888';
@@ -320,38 +361,65 @@
     // 2. Calendar Link
     const startISO = new Date(TARGET).toISOString().replace(/-|:|\.\d\d\d/g, "");
     const endISO   = new Date(TARGET + 3600000).toISOString().replace(/-|:|\.\d\d\d/g, "");
-    document.getElementById('calLink').href = `https://www.google.com/calendar/render?action=TEMPLATE&text=THRD+Final+Winter+Drop&dates=${startISO}/${endISO}&details=Moncler,+Ted+Baker,+Moschino.+Dress+to+impress.+Drop+starts+at+7+PM.&location=thrd.store`;
+    document.getElementById('calLink').href = `https://www.google.com/calendar/render?action=TEMPLATE&text=THRD+SUMMER+BACK+DROP&dates=${startISO}/${endISO}&details=Gymshark,+Moncler,+Off-White.+Drop+starts+at+7+PM.&location=thrd.store`;
 
-    // 3. Timer
+    // 3. Timer & Loading Bar
     function tick() {
       const now = new Date().getTime();
       const diff = TARGET - now;
+      const totalDuration = 1000 * 60 * 60 * 24 * 5; // 5 Day lead up for bar calc
       
       if (diff <= 0) {
-        document.getElementById('timer').innerText = "DROP IS LIVE";
+        document.getElementById('timer').innerText = "SYSTEM LIVE";
+        document.getElementById('loadFill').style.width = "100%";
         return;
       }
 
       const d = Math.floor(diff / (1000 * 60 * 60 * 24));
       const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       
-      document.getElementById('timer').innerText = 
-        `${d}d : ${String(h).padStart(2,'0')}h : ${String(m).padStart(2,'0')}m`;
+      document.getElementById('timer').innerText = `${String(d).padStart(2,'0')} DAYS : ${String(h).padStart(2,'0')} HRS`;
+      
+      // Calculate Bar Width (Inverse of time left)
+      let percentage = 100 - ((diff / totalDuration) * 100);
+      if(percentage < 5) percentage = 5; // Min width
+      if(percentage > 100) percentage = 100;
+      document.getElementById('loadFill').style.width = percentage + "%";
     }
     
     tick();
     setInterval(tick, 1000);
 
-    // 4. Hide Floating Button at footer
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        const bar = document.getElementById('floatBar');
-        if(e.isIntersecting) bar.classList.add('merged');
-        else bar.classList.remove('merged');
+    // 4. Generate Particles
+    const pContainer = document.getElementById('particles');
+    
+    for(let i=0; i<30; i++) {
+      let p = document.createElement('div');
+      p.className = 'particle';
+      if(Math.random() > 0.5) p.classList.add('p-yellow');
+      
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      p.style.animationDelay = (Math.random() * 5) + 's';
+      pContainer.appendChild(p);
+    }
+
+    // 5. Smart Floating Button Logic
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const floatBtn = document.getElementById('floatBtn');
+        if (entry.isIntersecting) {
+          // Footer is visible, hide float button
+          floatBtn.classList.add('hidden-float');
+        } else {
+          // Footer is not visible, show float button
+          floatBtn.classList.remove('hidden-float');
+        }
       });
-    });
+    }, { threshold: 0.1 }); // Trigger when 10% of footer is visible
+
     observer.observe(document.getElementById('footer'));
+
   </script>
 </body>
 </html>
