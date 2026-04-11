@@ -1,468 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <title>THRD — Immerse Into The Heat (11 April)</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="theme-color" content="#F6EBDD" />
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THRD Biggest Drop Coming Soon 🔥</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800&family=Space+Mono:wght@700&family=Silkscreen:wght@700&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            /* HEATWAVE ATHLETICS PALETTE */
-            --paper: #F6EBDD;        /* Warm Court Paper */
-            --ink: #222222;          /* Athletic Charcoal */
-            --mustard: #E2B64C;      /* Sun Mustard */
-            --terracotta: #C96B45;   /* Dusty Terracotta */
-            --sport-blue: #6E8CA0;   /* Fresh Court Blue */
-            
-            --font-logo: 'Silkscreen', cursive;
-            --font-head: 'Bebas Neue', sans-serif;
-            --font-body: 'Inter', sans-serif;
-            --font-score: 'Space Mono', monospace;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        /* Added smooth scrolling for the button anchor links */
-        html { scroll-behavior: smooth; }
-
-        body { 
-            background-color: var(--paper); 
-            color: var(--ink); 
-            font-family: var(--font-body); 
-            overflow-x: hidden;
-            line-height: 1.5;
-            /* Subtle Court / Track Lines & Grain */
-            background-image: 
-                linear-gradient(var(--ink) 1px, transparent 1px),
-                linear-gradient(90deg, var(--ink) 1px, transparent 1px),
-                radial-gradient(rgba(34,34,34,0.1) 1px, transparent 1px);
-            background-size: 100px 100px, 100px 100px, 10px 10px;
-            background-position: center top;
-        }
-
-        /* === UTILS === */
-        .container { max-width: 650px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 10; }
-        .flex-between { display: flex; justify-content: space-between; align-items: center; }
-
-        /* === 1. MARQUEE TICKER === */
-        .marquee-strip {
-            background: var(--mustard); color: var(--ink);
-            border-bottom: 3px solid var(--ink);
-            overflow: hidden; white-space: nowrap;
-            padding: 8px 0; display: flex;
-        }
-        .marquee-content {
-            font-family: var(--font-body); font-weight: 800; font-size: 11px;
-            text-transform: uppercase; letter-spacing: 1px;
-            display: flex; animation: marquee 15s linear infinite;
-        }
-        .marquee-content span { padding: 0 30px; }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        /* === 2. NAV BOARD === */
-        header {
-            padding: 12px 0; background: rgba(246, 235, 221, 0.95);
-            border-bottom: 3px solid var(--ink); backdrop-filter: blur(5px);
-            position: sticky; top: 0; z-index: 100;
-        }
-        .logo { font-family: var(--font-logo); font-size: 26px; color: var(--ink); text-decoration: none; letter-spacing: -1px; }
-        .nav-link { font-weight: 800; font-size: 11px; color: var(--ink); text-decoration: none; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* === 3. THE STARTING BLOCK (SMART HERO SECTION) === */
-        /* Dynamic viewport height to push video exactly below the fold */
-        .hero { 
-            min-height: calc(100dvh - 90px); /* 90px accounts for marquee + header */
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            padding: 30px 0; text-align: center;
-        }
-        
-        .hero-content-wrapper { width: 100%; max-width: 500px; }
-
-        .date-chip {
-            display: inline-block; background: var(--terracotta); color: #FFF;
-            font-weight: 800; font-size: 11px; padding: 4px 14px; border-radius: 20px;
-            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;
-            border: 2px solid var(--ink); box-shadow: 2px 2px 0 var(--ink);
-        }
-
-        .main-headline {
-            font-family: var(--font-head); font-size: 60px; line-height: 0.9;
-            color: var(--ink); text-shadow: 4px 4px 0 var(--mustard);
-            margin-bottom: 10px; letter-spacing: 1px;
-        }
-        
-        .hero-sub {
-            font-size: 14px; font-weight: 600; color: #444; margin-bottom: 25px;
-        }
-
-        /* === 4. THE SCOUTING REPORT (HIGHLIGHTS) === */
-        .highlight-box {
-            background: #FFF; border: 3px solid var(--ink);
-            padding: 25px 20px 15px; position: relative; text-align: left;
-            margin-bottom: 25px; box-shadow: 6px 6px 0 var(--ink);
-            width: 100%;
-        }
-        .highlight-title {
-            position: absolute; top: -14px; left: 20px;
-            background: var(--ink); color: var(--paper);
-            font-family: var(--font-head); font-size: 16px; padding: 4px 12px;
-            letter-spacing: 1px;
-        }
-        .highlight-list { list-style: none; }
-        .highlight-list li {
-            position: relative; padding-left: 22px; margin-bottom: 8px;
-            font-weight: 600; font-size: 13px;
-        }
-        .highlight-list li::before {
-            content: ''; position: absolute; left: 0; top: 4px;
-            width: 10px; height: 10px; border: 2px solid var(--ink);
-        }
-        .highlight-list li:nth-child(1)::before { background: var(--mustard); }
-        .highlight-list li:nth-child(2)::before { background: var(--sport-blue); }
-        .highlight-list li:nth-child(3)::before { background: var(--terracotta); }
-
-        /* === 5. THE MATCH CLOCK === */
-        .scoreboard {
-            background: var(--ink); padding: 15px; margin-bottom: 30px;
-            border: 3px solid var(--mustard); box-shadow: 4px 4px 0 var(--mustard);
-            text-align: center; width: 100%;
-        }
-        .score-label {
-            font-weight: 800; font-size: 10px; color: var(--mustard);
-            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; display: block;
-        }
-        .score-display {
-            font-family: var(--font-score); font-size: 26px; color: #FFF; letter-spacing: -2px;
-        }
-
-        /* === 6. PLAY CALL BUTTONS === */
-        .btn-group { display: flex; flex-direction: column; gap: 12px; width: 100%; }
-        
-        .btn-primary {
-            background: var(--mustard); color: var(--ink);
-            font-weight: 800; font-size: 15px; padding: 18px;
-            text-transform: uppercase; text-decoration: none; text-align: center;
-            border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink);
-            transition: all 0.1s ease; cursor: pointer;
-        }
-        .btn-primary:active { transform: translate(4px, 4px); box-shadow: 0px 0px 0 var(--ink); }
-        
-        .btn-secondary {
-            background: transparent; color: var(--ink);
-            font-weight: 800; font-size: 13px; padding: 16px;
-            text-transform: uppercase; text-decoration: none; text-align: center;
-            border: 3px dashed var(--ink); transition: background 0.2s;
-        }
-        .btn-secondary:hover { background: rgba(0,0,0,0.05); }
-
-        /* === 7. JUMBOTRON (VIDEO) === */
-        /* Increased top margin to give breathing room after the scroll */
-        .video-section { margin-top: 40px; margin-bottom: 50px; text-align: center; scroll-margin-top: 80px; }
-        .video-frame {
-            width: 100%; max-width: 360px; aspect-ratio: 9/16; margin: 0 auto;
-            background: #000; border: 4px solid var(--ink); border-radius: 12px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15); overflow: hidden;
-        }
-        .video-frame iframe { width: 100%; height: 100%; border: none; }
-        .video-caption { font-size: 12px; color: #555; font-style: italic; margin-top: 15px; font-weight: 600; }
-
-        /* === 8. THE LINEUP (CATALOG) === */
-        .catalog-section { padding-top: 10px; }
-        
-        .section-badge {
-            background: var(--terracotta); color: #FFF;
-            font-family: var(--font-head); font-size: 22px; letter-spacing: 1px;
-            padding: 6px 20px; border-radius: 30px; display: inline-block;
-            border: 3px solid var(--ink); margin-bottom: 30px;
-        }
-
-        .catalog-grid { display: grid; gap: 20px; margin-bottom: 60px; }
-
-        .locker-card {
-            background: #FFF; border: 3px solid var(--ink); padding: 20px 15px;
-            box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
-            transform: translateY(20px); opacity: 0;
-        }
-        .locker-card.in-view { transform: translateY(0); opacity: 1; }
-        .locker-card:hover { transform: translateY(-3px); box-shadow: 6px 6px 0 var(--ink); }
-
-        .locker-title {
-            font-family: var(--font-head); font-size: 20px; color: var(--ink);
-            border-bottom: 2px solid var(--ink); padding-bottom: 6px; margin-bottom: 12px;
-            letter-spacing: 1px;
-        }
-        .locker-content { font-size: 13px; font-weight: 600; line-height: 1.6; color: #333; }
-        
-        .tag {
-            display: inline-block; font-size: 9px; font-weight: 800;
-            padding: 2px 6px; border-radius: 12px; margin: 0 4px;
-            text-transform: uppercase; vertical-align: middle; border: 1px solid var(--ink);
-        }
-        .tag.blue { background: var(--sport-blue); color: #FFF; }
-        .tag.red { background: var(--terracotta); color: #FFF; }
-        .tag.yellow { background: var(--mustard); color: var(--ink); }
-
-        /* === 9. POST-GAME (FOOTER) === */
-        footer {
-            background: var(--ink); color: #FFF;
-            padding: 50px 20px; text-align: center;
-            border-top: 4px solid var(--terracotta);
-        }
-        .footer-main {
-            font-family: var(--font-head); font-size: 34px; color: var(--mustard);
-            letter-spacing: 1px; margin-bottom: 8px;
-        }
-        .footer-sub { font-weight: 600; font-size: 13px; margin-bottom: 25px; color: #CCC;}
-        
-        .footer-btn {
-            display: inline-block; background: #FFF; color: var(--ink);
-            font-weight: 800; font-size: 13px; padding: 12px 18px;
-            text-transform: uppercase; text-decoration: none;
-            border: 2px solid var(--ink); margin: 5px; transition: transform 0.1s;
-        }
-        .footer-btn:active { transform: scale(0.95); }
-
-        /* === 10. FLOATING UTILITY === */
-        .float-bar {
-            position: fixed; bottom: 20px; right: 20px; z-index: 99;
-            transition: opacity 0.3s, transform 0.3s;
-        }
-        .float-btn {
-            background: var(--mustard); color: var(--ink); padding: 10px 18px;
-            font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;
-            border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink);
-            text-decoration: none; display: block;
-            transition: all 0.2s;
-        }
-        .merged { opacity: 0; transform: translateY(20px); pointer-events: none; }
-
-        /* The Attention Shake Keyframes */
-        @keyframes attentionShake {
-            0%, 100% { transform: translateX(0) scale(1); }
-            15%, 45%, 75% { transform: translateX(-4px) scale(1.05) rotate(-2deg); }
-            30%, 60%, 90% { transform: translateX(4px) scale(1.05) rotate(2deg); }
-        }
-        /* Class added via JS */
-        .vibrating .float-btn {
-            animation: attentionShake 0.6s cubic-bezier(.36,.07,.19,.97) both;
-            box-shadow: 6px 6px 0 var(--terracotta);
-            background: var(--terracotta);
-            color: #FFF;
-        }
-
-        /* Responsive */
-        @media (max-width: 400px) {
-            .main-headline { font-size: 48px; }
-            .score-display { font-size: 21px; letter-spacing: -1px; } 
-            .btn-primary { padding: 16px; font-size: 14px; }
-        }
-    </style>
+    <link rel="stylesheet" href="/css/drop.css" >
+    <link rel="stylesheet" href="/css/membership.css" >
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    
 </head>
+
 <body>
-
-    <div class="marquee-strip">
-        <div class="marquee-content">
-            <span>11 APRIL • THE HEAT IS BACK. SEE SNEAKPEEK →</span>
-            <span>11 APRIL • THE HEAT IS BACK. SEE SNEAKPEEK →</span>
-            <span>11 APRIL • THE HEAT IS BACK. SEE SNEAKPEEK →</span>
-            <span>11 APRIL • THE HEAT IS BACK. SEE SNEAKPEEK →</span>
-        </div>
-    </div>
-
-    <header>
-        <div class="container flex-between">
-            <a href="/shop.html" class="nav-link">Shop</a>
-            <a href="/index.html" class="logo">THRD</a>
-            <a href="/our_story.html" class="nav-link">About</a>
-        </div>
-    </header>
-
-    <main class="container">
+    <nav class="navBar">
+        <ul class="navbarelements">
+            <li class="navitem left">
+                <a class="shop-link" href="/request_access.html">SHOP</a>
+            </li>
+            <li class="navitem name"><a href="/index.html">THRD</a></li>
+            <li class="navitem right"><a href="/our_story.html">ABOUT</a></li>
+        </ul>
+    </nav>
+    
+    <div class="main-container">
+        <!-- Pre-launch content -->
+        <section id="pre-launch-content" class="content-section">
+            <div class="highlight"><span class="emoji">👋</span> Hey THRD Members! <span class="emoji">👋</span></div>
+            
+            <h1 class="headline"><span class="emoji">🎉</span> Our Biggest Drop Is Almost Here! <span class="emoji">🎉</span></h1>
+            
+            <p class="subheading">The moment you've been waiting for—less than 24 hours until we reveal our most exciting collection yet.</p>
+            
+            <div class="countdown-container">
+                <div class="countdown-label">⏰ Countdown to Launch:</div>
+                <div id="countdown" class="timer">00:00:00</div>
+            </div>
+            
+            <h2 class="benefits-title"><span class="emoji">🚀</span> Stay Ahead of the Crowd</h2>
+            
+            <p class="subheading">We've upgraded our search features to help you find and purchase your favorites faster than ever before!</p>
+            
+            <div class="video-wrapper">
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/lUTM7_Aa0-4?si=ZvXQzXVvmEL8ZdPO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+            
+            <div class="notice-box">
+                <div class="notice-title"><span class="warning-icon">⚠️</span> Community Notice</div>
+                <p>If you refuse COD (Cash on Delivery) orders upon delivery, your membership will be revoked and you'll be blacklisted. Please only order items you intend to keep.</p>
+            </div>
+            
+            <div class="benefits-section">
+                <h2 class="benefits-title">Why Choose Prepaid Orders?</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🚚</div>
+                        <div class="benefit-title">Faster Shipping</div>
+                        <p>Prepaid orders are processed and shipped with priority</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🔒</div>
+                        <div class="benefit-title">Safer Deliveries</div>
+                        <p>Secured packaging and tracking for your peace of mind</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">✅</div>
+                        <div class="benefit-title">100% Delivery Rate</div>
+                        <p>Our data confirms prepaid orders are always delivered successfully</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn pulse" onclick="manualRedirect1()">I'm Ready for the Drop!</button>
+        </section>
         
-        <section class="hero">
-            <div class="hero-content-wrapper">
-                <div class="date-chip">DROP ON 11 APRIL</div>
-                <h1 class="main-headline">IMMERSE INTO<br>THE HEAT</h1>
-                <p class="hero-sub">Summer’s back. Jerseys are back. Sport is back.</p>
-
-                <div class="highlight-box">
-                    <div class="highlight-title">WHAT'S SPECIAL THIS DROP</div>
-                    <ul class="highlight-list">
-                        <li>Sports jerseys return</li>
-                        <li>ON arrives for the first time</li>
-                        <li>Valentino lands in polos</li>
-                    </ul>
-                </div>
-
-                <div class="scoreboard">
-                    <span class="score-label">DROP IN</span>
-                    <div id="countdown" class="score-display">00 : 00 : 00 : 00</div>
-                </div>
-
-                <div class="btn-group">
-                    <a href="#video" class="btn-primary">WATCH DROP VIDEO</a>
-                    <a id="calLink" class="btn-secondary">SAVE THE DATE</a>
+        <!-- Live drop content - shown after countdown ends -->
+        <section id="live-drop-content" class="content-section">
+            <div class="highlight"><span class="emoji">🎊</span> The Drop Is Live Now! <span class="emoji">🎊</span></div>
+            
+            <h1 class="headline"><span class="emoji">🛒</span> Shop Our Exclusive Collection</h1>
+            
+            <p class="subheading">Don't miss your chance to grab our limited edition items before they're gone!</p>
+            
+            <div class="benefits-section">
+                <h2 class="benefits-title">Shopping Benefits</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🔑</div>
+                        <div class="benefit-title">Easy Login</div>
+                        <p>Use your registered WhatsApp phone number</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🌍</div>
+                        <div class="benefit-title">Free Shipping</div>
+                        <p>Enjoy free delivery anywhere in India</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">💸</div>
+                        <div class="benefit-title">Cash on Delivery</div>
+                        <p>Free COD available across India</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🏃‍♂️</div>
+                        <div class="benefit-title">Limited Stocks</div>
+                        <p>Act fast before they're gone!</p>
+                    </div>
                 </div>
             </div>
+            
+            <button class="btn pulse shop-now" onclick="manualRedirect()">SHOP NOW</button>
         </section>
-
-        <section id="video" class="video-section">
-            <div class="video-frame">
-                <iframe
-            src="https://www.youtube.com/embed/cHUaiVqQyF8"
-            title="THRD Winter Gets Real Drop — 60s Sneak Peek"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen></iframe>
-            </div>
-            <div class="video-caption">A first look at the drop.</div>
-        </section>
-
-        <section class="catalog-section">
-            <div style="text-align: center;">
-                <div class="section-badge">THE LINEUP</div>
-            </div>
-
-            <div class="catalog-grid">
-                
-                <div class="locker-card">
-                    <div class="locker-title">SPORTS TEES & JERSEYS</div>
-                    <div class="locker-content">
-                        Nike, Under Armour, ON <span class="tag blue">FIRST TIME</span>, Football Jerseys.
-                    </div>
-                </div>
-
-                <div class="locker-card">
-                    <div class="locker-title">TEES</div>
-                    <div class="locker-content">
-                        Abercrombie & Fitch, Adidas, AllSaints, Balmain <span class="tag yellow">EXCLUSIVE</span>, Calvin Klein, Diesel, Guess <span class="tag red">BACK</span>, Hackett, MK, Moncler, Nike, Puma, Reebok, Superdry, The North Face, Under Armour.
-                    </div>
-                </div>
-
-                <div class="locker-card">
-                    <div class="locker-title">POLOS</div>
-                    <div class="locker-content">
-                        Abercrombie & Fitch <span class="tag blue">FIRST TIME</span>, Balmain, Calvin Klein, Coach, Diesel, Ducati, Emporio, Fred Perry, Gant, Hackett, Karl Lagerfeld, Lacoste, MK, Moncler, Ralph, Puma, Superdry, Valentino <span class="tag blue">FIRST TIME</span>, Versace <span class="tag yellow">PREMIUM</span>.
-                    </div>
-                </div>
-
-                <div class="locker-card">
-                    <div class="locker-title">LINEN SHIRTS</div>
-                    <div class="locker-content">
-                        Hackett, Lacoste, Ralph Lauren, Tommy Hilfiger.
-                    </div>
-                </div>
-
-                <div class="locker-card">
-                    <div class="locker-title">LOWERS</div>
-                    <div class="locker-content">
-                        Armani Exchange, Calvin, Diesel, Gas, Lacoste, Calvin Klein, True Religion <span class="tag blue">FIRST TIME</span>, Zara, Tommy Hilfiger.
-                    </div>
-                </div>
-
-            </div>
-        </section>
-    </main>
-
-    <footer id="footer">
-        <div class="footer-main">LIVE ON 11 APRIL, 7 PM IST</div>
-        <div class="footer-sub">Be ready for the heat.</div>
-        <div>
-            <a href="https://instagram.com/thrd.store" class="footer-btn">SEE SNEAKPEEK</a>
-            <a id="waLink" class="footer-btn">WHATSAPP ME</a>
-        </div>
-    </footer>
-
-    <div class="float-bar" id="floatBar">
-        <a href="https://instagram.com/thrd.store" class="float-btn">▶ SEE SNEAKPEEK</a>
     </div>
 
     <script>
-        // CONFIG: 11 April 2026, 7:00 PM IST
-        const TARGET = new Date('2026-04-11T19:00:00+05:30').getTime();
-        
-        // WhatsApp Setup
-        const waNum = '918198845888';
-        const waText = "Let's go — ping me before the drop!";
-        document.getElementById('waLink').href = `https://api.whatsapp.com/send?phone=${waNum}&text=${encodeURIComponent(waText)}`;
-
-        // Calendar Setup
-        const startISO = new Date(TARGET).toISOString().replace(/-|:|\.\d\d\d/g, "");
-        const endISO   = new Date(TARGET + 3600000).toISOString().replace(/-|:|\.\d\d\d/g, "");
-        document.getElementById('calLink').href = `https://www.google.com/calendar/render?action=TEMPLATE&text=THRD+Heatwave+Athletics+Drop&dates=${startISO}/${endISO}&details=Jerseys,+Polos,+Linens.+Drop+starts+at+7+PM.&location=thrd.store`;
-
-        // Scoreboard Timer
-        function tick() {
-            const now = new Date().getTime();
-            const diff = TARGET - now;
-            
-            if (diff <= 0) {
-                document.getElementById('countdown').innerText = "LIVE";
-                return;
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            if (mobileMenuToggle) {
+                const navbarLinks = document.getElementById('navbar-links');
+                mobileMenuToggle.addEventListener('click', () => {
+                    navbarLinks.classList.toggle('active');
+                });
             }
+        });
+    
+        // Shop URL
+        const SHOP_URL = "https://www.thrd.store/shop";
 
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
-            
-            document.getElementById('countdown').innerText = 
-                `${String(d).padStart(2,'0')} : ${String(h).padStart(2,'0')} : ${String(m).padStart(2,'0')} : ${String(s).padStart(2,'0')}`;
+        const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=918198845888&text=Lets%20GOOO%0A";
+
+        // Manual redirect function for button click
+        function manualRedirect() {
+            window.location.href=SHOP_URL
         }
-        tick();
-        setInterval(tick, 1000);
+        function manualRedirect1() {
+            window.location.href=WHATSAPP_URL;
+        }
+        
+        function updateTimer() {
+            // Get the current date/time in local time zone
+            const now = new Date();
 
-        // Interaction Physics: Locker Cards Snap-In on Scroll
-        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('in-view');
-                    observer.unobserve(entry.target); 
-                }
-            });
-        }, observerOptions);
+            // Convert to local time zone
+            const dropTimeIST = new Date('2026-04-11T18:50:00+05:30');
 
-        document.querySelectorAll('.locker-card').forEach(card => {
-            observer.observe(card);
-        });
+            const timerElement = document.getElementById('countdown');
+            const preLaunchContent = document.getElementById('pre-launch-content');
+            const liveDropContent = document.getElementById('live-drop-content');
 
-        // Smart Floating Button (Hide at footer)
-        const floatBar = document.getElementById('floatBar');
-        const footerObserver = new IntersectionObserver(entries => {
-            entries.forEach(e => {
-                if(e.isIntersecting) floatBar.classList.add('merged');
-                else floatBar.classList.remove('merged');
-            });
-        });
-        footerObserver.observe(document.getElementById('footer'));
-
-        // Random Attention Shake for the Floating Button
-        function triggerAttentionShake() {
-            // Only shake if it's currently visible
-            if (!floatBar.classList.contains('merged')) {
-                floatBar.classList.add('vibrating');
+            // Check drop status
+            if (now < dropTimeIST) {
+                // Drop hasn't started yet
+                const timeRemaining = dropTimeIST - now;
+                updateTimerDisplay(timeRemaining, timerElement);
                 
-                // Remove the class after the animation completes (0.6s)
-                setTimeout(() => {
-                    floatBar.classList.remove('vibrating');
-                }, 600);
+                // Show pre-launch content
+                preLaunchContent.style.display = "flex";
+                liveDropContent.style.display = "none";
+            } else {
+                // Drop is live
+                timerElement.textContent = "00:00:00";
+                
+                // Show live drop content
+                preLaunchContent.style.display = "none";
+                liveDropContent.style.display = "flex";
             }
-            
-            // Schedule the next shake between 4 and 10 seconds from now
-            const nextShakeDelay = Math.floor(Math.random() * 6000) + 4000;
-            setTimeout(triggerAttentionShake, nextShakeDelay);
         }
         
-        // Start the shake logic 5 seconds after page load
-        setTimeout(triggerAttentionShake, 5000);
+        // Helper function to format the time display
+        function updateTimerDisplay(timeRemaining, timerElement) {
+            // Ensure timeRemaining is non-negative
+            const time = Math.max(0, timeRemaining);
 
+            const hours = Math.floor(time / (1000 * 60 * 60));
+            const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((time % (1000 * 60)) / 1000);
+
+            const formattedHours = String(hours).padStart(2, '0');
+            const formattedMinutes = String(minutes).padStart(2, '0');
+            const formattedSeconds = String(seconds).padStart(2, '0');
+
+            timerElement.textContent = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+        }
+
+        // Update timer every second
+        setInterval(updateTimer, 1000);
+        
+        // Initialize the timer immediately
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTimer();
+        });
+        
+        // Counter API call
+        const COUNTER_URL = 'https://api.thrd.store/api/website/counter?base_name=drop';
+        
+        async function incrementCounter() {
+            try {
+                const response = await fetch(COUNTER_URL, {
+                    method: 'GET'
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Counter updated:', data);
+                } else {
+                    console.error('Error updating counter: Server returned', response.status);
+                }
+            } catch (error) {
+                console.error('Error updating counter:', error);
+            }
+        }
+        
+        // Call when page loads
+        window.addEventListener('load', incrementCounter);
     </script>
 </body>
 </html>
